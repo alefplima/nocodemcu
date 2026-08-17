@@ -1,0 +1,121 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-08-17T20:19:44.706Z",
+  "placa": "uno",
+  "modo": "literal",
+  "nome": "Potenciômetro no plotter",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "ard_setup",
+          "id": "mJ[et]02EIXWc~,a8!(O",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_serial_begin",
+                "id": "o,zJX3^QeOt-S+)K=L2h",
+                "icons": {
+                  "comment": {
+                    "text": "Ligacao: pino A0 = cursor (perna do meio) do potenciometro;\nas outras duas pernas vao em 5V e GND.\nO Monitor serial tem de estar no mesmo 9600",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PORTA": "Serial",
+                  "BAUD": "9600"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_loop",
+          "id": "lBE`.ko-7b-T%X,Oyl%D",
+          "x": 40,
+          "y": 244,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_serial_print",
+                "id": "8y$^fA7?@+^;?!8j6v4R",
+                "icons": {
+                  "comment": {
+                    "text": "o rotulo \"nome:valor\" e o que a aba Plotter usa para nomear a curva",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PORTA": "Serial"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_text",
+                      "id": "hT=yl/}J?Gc0,ELJqdZQ",
+                      "fields": {
+                        "TEXTO": "pot:"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_serial_println",
+                    "id": "E4p;Gbf8hdC3(x3u*xTJ",
+                    "icons": {
+                      "comment": {
+                        "text": "analogRead devolve 0 a 1023 (0 V a 5 V)",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "PORTA": "Serial"
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_analogread",
+                          "id": "iU5,wZ(52~B6`n$kFheX",
+                          "fields": {
+                            "PIN": "A0"
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_delay",
+                        "id": "{uQM)J1tJJ.Rh@BRnOIy",
+                        "inputs": {
+                          "MS": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": ":*~/prfzY3T7AfX];!Ms",
+                              "fields": {
+                                "NUM": 50
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

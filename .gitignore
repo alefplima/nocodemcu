@@ -1,0 +1,12 @@
+# dependências e build
+node_modules/
+dist/
+
+# toolchain embutida: 370 MB (só AVR) a 1,7 GB (com ESP) — se remonta com
+# `node tools/fetch_toolchain.mjs`, não entra no versionamento
+resources/toolchain/
+.cache-toolchain/
+
+# rascunhos locais
+*.log
+.DS_Store

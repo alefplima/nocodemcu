@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'">
+    <title>TaskArduino</title>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+
+    <header class="barra-topo">
+        <div class="marca">
+            <span class="marca-icone">⚙</span>
+            <span class="marca-nome">TaskArduino</span>
+            <span class="marca-projeto" id="nome-projeto">sem título</span>
+        </div>
+
+        <div class="controles">
+            <label class="campo">
+                <span>Placa</span>
+                <select id="sel-placa"></select>
+            </label>
+
+            <label class="campo">
+                <span>Porta</span>
+                <select id="sel-porta"></select>
+            </label>
+            <button class="btn btn-icone" id="btn-portas" title="Atualizar lista de portas">⟳</button>
+
+            <button class="btn btn-secundario" id="btn-compilar">Compilar</button>
+            <button class="btn btn-primario" id="btn-gravar">Compilar e gravar</button>
+        </div>
+    </header>
+
+    <main class="corpo">
+        <section class="painel-blocos">
+            <div id="blockly"></div>
+        </section>
+
+        <div class="divisor" id="divisor"></div>
+
+        <section class="painel-lateral">
+            <nav class="abas" role="tablist">
+                <button class="aba ativa" data-aba="codigo">Código</button>
+                <button class="aba" data-aba="serial">Monitor serial</button>
+                <button class="aba" data-aba="plotter">Plotter</button>
+                <button class="aba" data-aba="reticulado">Reticulado</button>
+                <button class="aba" data-aba="saida">Saída</button>
+                <span class="cresce"></span>
+                <button class="btn-recolher" id="btn-recolher" title="Recolher o painel">❯</button>
+            </nav>
+
+            <!-- Código gerado -->
+            <div class="conteudo-aba ativa" data-conteudo="codigo">
+                <div class="barra-aba">
+                    <span class="rotulo-arquivo" id="rotulo-ino">sketch.ino</span>
+                    <span class="cresce"></span>
+                    <button class="btn btn-mini" id="btn-copiar">Copiar</button>
+                    <button class="btn btn-mini" id="btn-exportar">Exportar .ino</button>
+                </div>
+                <pre class="codigo" id="codigo"></pre>
+            </div>
+
+            <!-- Monitor serial -->
+            <div class="conteudo-aba" data-conteudo="serial">
+                <div class="barra-aba">
+                    <button class="btn btn-mini" id="btn-serial-abrir">Conectar</button>
+                    <select id="sel-baud" class="mini"></select>
+                    <select id="sel-terminador" class="mini">
+                        <option value="nl">Nova linha</option>
+                        <option value="cr">Retorno</option>
+                        <option value="crnl">Ambos</option>
+                        <option value="">Nenhum</option>
+                    </select>
+                    <span class="cresce"></span>
+                    <label class="chk"><input type="checkbox" id="chk-autoscroll" checked> rolar</label>
+                    <button class="btn btn-mini" id="btn-serial-limpar">Limpar</button>
+                    <button class="btn btn-mini" id="btn-serial-exportar">Salvar</button>
+                </div>
+                <div class="console" id="console-serial"></div>
+                <div class="linha-envio">
+                    <input type="text" id="entrada-serial" placeholder="mensagem para a placa…" disabled>
+                    <button class="btn btn-mini" id="btn-serial-enviar" disabled>Enviar</button>
+                </div>
+            </div>
+
+            <!-- Plotter -->
+            <div class="conteudo-aba" data-conteudo="plotter">
+                <div class="barra-aba">
+                    <span class="dica">Linhas no formato <code>rotulo:valor</code> ou números separados por vírgula
+                        viram séries.</span>
+                    <span class="cresce"></span>
+                    <label class="chk">janela
+                        <select id="sel-janela" class="mini">
+                            <option value="50">50</option>
+                            <option value="100" selected>100</option>
+                            <option value="300">300</option>
+                            <option value="1000">1000</option>
+                        </select>
+                    </label>
+                    <button class="btn btn-mini" id="btn-plotter-limpar">Limpar</button>
+                </div>
+                <div class="area-grafico"><canvas id="grafico"></canvas></div>
+            </div>
+
+            <!-- Reticulado da LPA2v -->
+            <div class="conteudo-aba" data-conteudo="reticulado">
+                <div class="barra-aba">
+                    <span class="dica">Linhas com <code>mu:0.86 lambda:0.28</code> ou
+                        <code>gc:0.58 gct:0.14</code> marcam o ponto no reticulado.</span>
+                    <span class="cresce"></span>
+                    <label class="chk">rastro
+                        <select id="sel-rastro" class="mini">
+                            <option value="1">1</option>
+                            <option value="30">30</option>
+                            <option value="60" selected>60</option>
+                            <option value="200">200</option>
+                        </select>
+                    </label>
+                    <button class="btn btn-mini" id="btn-reticulado-limpar">Limpar</button>
+                </div>
+                <div class="area-reticulado"><canvas id="reticulado"></canvas></div>
+                <div class="reticulado-leitura vazio" id="reticulado-leitura">aguardando dados da serial…</div>
+            </div>
+
+            <!-- Saída de build -->
+            <div class="conteudo-aba" data-conteudo="saida">
+                <div class="barra-aba">
+                    <span class="rotulo-arquivo">compilação e gravação</span>
+                    <span class="cresce"></span>
+                    <button class="btn btn-mini" id="btn-saida-limpar">Limpar</button>
+                </div>
+                <div class="console" id="console-saida"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="barra-status">
+        <span class="status-item" id="status-mensagem">pronto</span>
+        <span class="cresce"></span>
+        <span class="status-item" id="status-avisos"></span>
+        <span class="status-item" id="status-toolchain">verificando toolchain…</span>
+    </footer>
+
+    <script src="vendor/blockly/blockly_compressed.js"></script>
+    <script src="vendor/blockly/blocks_compressed.js"></script>
+    <script src="vendor/blockly/msg/pt-br.js"></script>
+    <script src="vendor/chart.umd.min.js"></script>
+
+    <script src="js/boards.js"></script>
+    <script src="js/fields.js"></script>
+    <script src="js/blocks/estrutura.js"></script>
+    <script src="js/blocks/io.js"></script>
+    <script src="js/blocks/serial.js"></script>
+    <script src="js/blocks/controle.js"></script>
+    <script src="js/blocks/operadores.js"></script>
+    <script src="js/blocks/variaveis.js"></script>
+    <script src="js/blocks/libs.js"></script>
+    <script src="js/blocks/avancado.js"></script>
+    <script src="js/blocks/lp.js"></script>
+    <script src="js/blocks/abstrato.js"></script>
+    <script src="js/generator/arduino_generator.js"></script>
+    <script src="js/generator/gen_estrutura.js"></script>
+    <script src="js/generator/gen_io.js"></script>
+    <script src="js/generator/gen_serial.js"></script>
+    <script src="js/generator/gen_controle.js"></script>
+    <script src="js/generator/gen_operadores.js"></script>
+    <script src="js/generator/gen_variaveis.js"></script>
+    <script src="js/generator/gen_libs.js"></script>
+    <script src="js/generator/gen_avancado.js"></script>
+    <script src="js/generator/gen_lp.js"></script>
+    <script src="js/generator/gen_abstrato.js"></script>
+    <script src="js/toolbox.js"></script>
+    <script src="js/converter.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/ui_serial.js"></script>
+    <script src="js/ui_reticulado.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

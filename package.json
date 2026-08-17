@@ -1,0 +1,82 @@
+{
+  "name": "taskarduino",
+  "productName": "TaskArduino",
+  "desktopName": "taskarduino.desktop",
+  "version": "0.1.0",
+  "description": "Programação no-code de Arduino com blocos 1:1 e gravação real via USB",
+  "author": {
+    "name": "TaskAI",
+    "email": "alessandrofpl@gmail.com"
+  },
+  "homepage": "https://taskai.keycorp.com.br",
+  "license": "UNLICENSED",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --no-sandbox",
+    "test": "node tools/test_all.js",
+    "test:gen": "node tools/gen_test.js",
+    "test:compile": "node tools/compile_test.js",
+    "test:pipeline": "node tools/pipeline_test.js",
+    "doc": "python3 tools/figuras_reticulado.py docs/img && node tools/gerar_doc.js && node tools/gerar_apostila.js",
+    "doc:tecnico": "node tools/gerar_doc.js",
+    "doc:apostila": "node tools/gerar_apostila.js",
+    "doc:figuras": "python3 tools/figuras_reticulado.py docs/img",
+    "toolchain": "node tools/fetch_toolchain.mjs",
+    "build:linux": "electron-builder --linux AppImage deb",
+    "build:win": "electron-builder --win nsis",
+    "build:full": "npm run toolchain -- --full && electron-builder --linux AppImage deb --win nsis",
+    "build:slim": "npm run toolchain -- --slim && electron-builder --linux AppImage --win nsis"
+  },
+  "dependencies": {
+    "serialport": "^13.0.0"
+  },
+  "devDependencies": {
+    "electron": "^43.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "br.com.keycorp.taskarduino",
+    "productName": "TaskArduino",
+    "npmRebuild": false,
+    "asarUnpack": [
+      "**/*.node",
+      "**/node_modules/@serialport/**"
+    ],
+    "files": [
+      "src/**/*",
+      "exemplos/*.tbk",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/toolchain/${os}",
+        "to": "toolchain",
+        "filter": [
+          "**/*",
+          "!user${/*}",
+          "!arduino-cli.build.yaml"
+        ]
+      }
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Development",
+      "synopsis": "Blocos 1:1 da linguagem Arduino com gravação pela USB",
+      "maintainer": "TaskAI <alessandrofpl@gmail.com>",
+      "syncDesktopName": true
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

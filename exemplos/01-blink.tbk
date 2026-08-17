@@ -1,0 +1,122 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-08-17T20:19:44.697Z",
+  "placa": "uno",
+  "modo": "literal",
+  "nome": "Blink",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "ard_setup",
+          "id": "(GLx3drQ4++Rz|nKh@)a",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_pinmode",
+                "id": "ai27p?MXS1P%e.NTa;Rj",
+                "icons": {
+                  "comment": {
+                    "text": "pino 13 = LED que ja vem soldado na placa: nao precisa de fio nenhum",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PIN": "13",
+                  "MODO": "OUTPUT"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_loop",
+          "id": "NB]}PO^(bIo8OtE`5xjL",
+          "x": 40,
+          "y": 244,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_digitalwrite",
+                "id": "RzZ%#|RJD#f$VB]0/F/x",
+                "fields": {
+                  "PIN": "13"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_const",
+                      "id": "3X=VLN[.AWfUl,`+E?;-",
+                      "fields": {
+                        "CONST": "HIGH"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_delay",
+                    "id": "--VU[4-HY=-UPKw/(4Ry",
+                    "inputs": {
+                      "MS": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "EPt)]jz3rnLutk5z[3pj",
+                          "fields": {
+                            "NUM": 1000
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_digitalwrite",
+                        "id": "Y.l{5=0Tl|0[Nlcq65yN",
+                        "fields": {
+                          "PIN": "13"
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_const",
+                              "id": "h4A/_oazJ)+(,s$#n9CB",
+                              "fields": {
+                                "CONST": "LOW"
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_delay",
+                            "id": "!XIzP=J(3j)gnA$#=0OR",
+                            "inputs": {
+                              "MS": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "3hNL5Z(^h*T]1A,b6TCo",
+                                  "fields": {
+                                    "NUM": 1000
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
