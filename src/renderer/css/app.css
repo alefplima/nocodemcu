@@ -1,0 +1,552 @@
+/* TaskArduino — dois temas, ambos pensados para projetor de sala de aula:
+   contraste alto, fontes grandes, nada de detalhe fino que some no data show.
+
+   Toda cor mora aqui. O gráfico do plotter e o reticulado leem estas mesmas
+   variáveis por getComputedStyle, então trocar o tema não exige mexer em
+   JavaScript — e não existe cor de canvas divergindo da cor da interface. */
+
+:root {
+    --bg: #11151c;
+    --bg-painel: #171c26;
+    --bg-fundo: #0d1117;
+    --borda: #232b39;
+    --grade: #1b2230;
+    --texto: #e6edf3;
+    --texto-fraco: #8b98a9;
+    --acento: #2f81f7;
+    --acento-forte: #1f6feb;
+    --ok: #3fb950;
+    --erro: #f85149;
+    --aviso: #d29922;
+    --realce: #21262d;
+    --sobre-acento: #fff;
+    --scroll-trilho: #11151c;
+    --scroll-polegar: #39414f;
+    --scroll-polegar-hover: #4b5768;
+    --eixo: #3d4757;
+    --mono: ui-monospace, "JetBrains Mono", "Fira Mono", Consolas, monospace;
+    --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+:root[data-tema="claro"] {
+    --bg: #eef1f6;
+    --bg-painel: #ffffff;
+    --bg-fundo: #f7f9fc;
+    --borda: #d3dae5;
+    --grade: #e4e9f1;
+    --texto: #1b2330;
+    --texto-fraco: #5a6673;
+    --acento: #1f6feb;
+    --acento-forte: #1758c4;
+    --ok: #1a7f37;
+    --erro: #cf222e;
+    --aviso: #9a6700;
+    --realce: #e6ebf3;
+    --sobre-acento: #fff;
+    --scroll-trilho: #eef1f6;
+    --scroll-polegar: #c2ccda;
+    --scroll-polegar-hover: #a8b5c7;
+    --eixo: #9aa7b8;
+}
+
+/* ---------- barras de rolagem ----------
+   O padrão do Chromium é claro e destoava do painel escuro. */
+
+* {
+    scrollbar-color: var(--scroll-polegar) var(--scroll-trilho);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scroll-trilho);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scroll-polegar);
+    border-radius: 6px;
+    border: 2px solid var(--scroll-trilho);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scroll-polegar-hover);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--scroll-trilho);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--texto);
+    font-family: var(--sans);
+    font-size: 14px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.cresce {
+    flex: 1;
+}
+
+/* ---------- barra superior ---------- */
+
+.barra-topo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 14px;
+    background: var(--bg-painel);
+    border-bottom: 1px solid var(--borda);
+    flex: 0 0 auto;
+}
+
+.marca {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    min-width: 0;
+}
+
+.marca-icone {
+    font-size: 18px;
+    color: var(--acento);
+}
+
+.marca-nome {
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+
+.marca-projeto {
+    color: var(--texto-fraco);
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+}
+
+.marca-projeto.sujo::after {
+    content: " •";
+    color: var(--aviso);
+}
+
+.controles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.campo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--texto-fraco);
+}
+
+select,
+input[type="text"] {
+    background: var(--bg-fundo);
+    color: var(--texto);
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-family: inherit;
+    font-size: 13px;
+    max-width: 260px;
+}
+
+select.mini {
+    padding: 3px 6px;
+    font-size: 12px;
+}
+
+select:focus,
+input:focus {
+    outline: 2px solid var(--acento);
+    outline-offset: -1px;
+}
+
+.btn {
+    background: var(--bg-fundo);
+    color: var(--texto);
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    padding: 7px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn:hover:not(:disabled) {
+    border-color: var(--acento);
+}
+
+.btn:disabled {
+    opacity: .45;
+    cursor: default;
+}
+
+.btn-primario {
+    background: var(--acento-forte);
+    border-color: var(--acento-forte);
+    /* No tema claro o --texto é escuro; sobre o azul do botão ele sumia. */
+    color: var(--sobre-acento);
+    font-weight: 600;
+}
+
+.btn-primario:hover:not(:disabled) {
+    background: var(--acento);
+}
+
+.btn-secundario {
+    background: var(--realce);
+}
+
+.btn-icone {
+    padding: 6px 9px;
+}
+
+.btn-mini {
+    padding: 3px 9px;
+    font-size: 12px;
+}
+
+.btn.ocupado {
+    position: relative;
+    color: transparent;
+}
+
+.btn.ocupado::after {
+    content: "…";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--sobre-acento);
+    font-size: 16px;
+}
+
+/* ---------- corpo ---------- */
+
+.corpo {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+}
+
+.painel-blocos {
+    flex: 1 1 60%;
+    min-width: 320px;
+    position: relative;
+}
+
+#blockly {
+    position: absolute;
+    inset: 0;
+}
+
+.divisor {
+    width: 5px;
+    cursor: col-resize;
+    background: var(--borda);
+    flex: 0 0 auto;
+}
+
+.divisor:hover {
+    background: var(--acento);
+}
+
+.painel-lateral {
+    flex: 0 0 44%;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-painel);
+    border-left: 1px solid var(--borda);
+    min-height: 0;
+}
+
+/* ---------- abas ---------- */
+
+.abas {
+    display: flex;
+    gap: 2px;
+    padding: 6px 8px 0;
+    border-bottom: 1px solid var(--borda);
+    flex: 0 0 auto;
+}
+
+.aba {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--texto-fraco);
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.aba:hover {
+    color: var(--texto);
+}
+
+.aba.ativa {
+    color: var(--texto);
+    border-bottom-color: var(--acento);
+}
+
+.conteudo-aba {
+    display: none;
+    flex: 1;
+    min-height: 0;
+    flex-direction: column;
+}
+
+.conteudo-aba.ativa {
+    display: flex;
+}
+
+.barra-aba {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--borda);
+    flex: 0 0 auto;
+    font-size: 12px;
+    color: var(--texto-fraco);
+}
+
+.rotulo-arquivo {
+    font-family: var(--mono);
+}
+
+.dica code {
+    font-family: var(--mono);
+    color: var(--texto);
+}
+
+.chk {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ---------- código ---------- */
+
+.codigo {
+    flex: 1;
+    margin: 0;
+    padding: 12px 14px;
+    overflow: auto;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.55;
+    background: var(--bg-fundo);
+    white-space: pre;
+    tab-size: 2;
+}
+
+.codigo .ln-erro {
+    display: block;
+    background: rgba(248, 81, 73, .18);
+    border-left: 3px solid var(--erro);
+    margin-left: -14px;
+    padding-left: 11px;
+}
+
+.codigo .ln-aviso {
+    display: block;
+    background: rgba(210, 153, 34, .14);
+    border-left: 3px solid var(--aviso);
+    margin-left: -14px;
+    padding-left: 11px;
+}
+
+/* ---------- consoles ---------- */
+
+.console {
+    flex: 1;
+    overflow: auto;
+    padding: 8px 12px;
+    background: var(--bg-fundo);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.console .l-erro {
+    color: var(--erro);
+}
+
+.console .l-ok {
+    color: var(--ok);
+}
+
+.console .l-info {
+    color: var(--acento);
+}
+
+.console .l-tempo {
+    color: var(--texto-fraco);
+    margin-right: 8px;
+}
+
+.linha-envio {
+    display: flex;
+    gap: 6px;
+    padding: 8px 10px;
+    border-top: 1px solid var(--borda);
+    flex: 0 0 auto;
+}
+
+.linha-envio input {
+    flex: 1;
+    max-width: none;
+}
+
+.area-grafico {
+    flex: 1;
+    position: relative;
+    padding: 10px;
+    min-height: 0;
+    background: var(--bg-fundo);
+}
+
+/* ---------- reticulado da LPA2v ---------- */
+
+.area-reticulado {
+    flex: 1;
+    min-height: 0;
+    background: var(--bg-fundo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.area-reticulado canvas {
+    display: block;
+}
+
+.reticulado-leitura {
+    flex: 0 0 auto;
+    padding: 8px 12px;
+    border-top: 1px solid var(--borda);
+    background: var(--bg-painel);
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--texto);
+    /* Quebra em vez de rolar: o aviso de indefinição fica no fim da linha e,
+       com o painel estreito, rolagem horizontal o esconderia justamente
+       quando ele é a informação que importa. */
+    white-space: normal;
+    word-spacing: 2px;
+}
+
+.reticulado-leitura.vazio {
+    color: var(--texto-fraco);
+}
+
+/* Indefinição não é um valor: é a análise dizendo que não dá para concluir. */
+.reticulado-leitura.indefinido {
+    color: var(--aviso);
+}
+
+/* ---------- painel lateral recolhível ---------- */
+
+.btn-recolher {
+    background: transparent;
+    border: none;
+    color: var(--texto-fraco);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 6px 10px;
+    line-height: 1;
+    border-radius: 4px;
+}
+
+.btn-recolher:hover {
+    color: var(--texto);
+    background: var(--bg-fundo);
+}
+
+.painel-lateral.recolhido {
+    flex: 0 0 38px !important;
+    min-width: 38px;
+}
+
+/* Recolhido sobra só o botão de trazer de volta: esconder por inteiro deixaria
+   o painel sem caminho de volta. */
+.painel-lateral.recolhido .conteudo-aba,
+.painel-lateral.recolhido .aba,
+.painel-lateral.recolhido .abas .cresce {
+    display: none;
+}
+
+.painel-lateral.recolhido .abas {
+    padding: 6px 0 0;
+    justify-content: center;
+    border-bottom: none;
+}
+
+/* O divisor vem antes do painel no DOM, então CSS não alcança: quem marca
+   .travado é o JS ao recolher. */
+.divisor.travado {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ---------- rodapé ---------- */
+
+.barra-status {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 5px 14px;
+    background: var(--bg-painel);
+    border-top: 1px solid var(--borda);
+    font-size: 12px;
+    color: var(--texto-fraco);
+    flex: 0 0 auto;
+}
+
+.status-item.erro {
+    color: var(--erro);
+}
+
+.status-item.ok {
+    color: var(--ok);
+}
+
+.status-item.aviso {
+    color: var(--aviso);
+}
+
+/* Blockly precisa de fundo próprio para não herdar o do app */
+.blocklySvg {
+    background: var(--bg-fundo) !important;
+}

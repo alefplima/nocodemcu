@@ -1,0 +1,1337 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-08-17T20:19:44.783Z",
+  "placa": "uno",
+  "modo": "abstrato",
+  "nome": "Abstrato — esteira, ultrassons e braço",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "abs_ao_iniciar",
+          "id": "O7?zJAuR`W,pArtNymZE",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_mostrar",
+                "id": "~81hO%3{6v1iC}l#$kMq",
+                "icons": {
+                  "comment": {
+                    "text": "Ligacao: pino 7 = rele da esteira | 2/3 = ultrassom 1 (trig/echo) |\n4/8 = ultrassom 2 | 9 = servo da base | 10 = servo da garra",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "ROTULO": "esteira"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_number",
+                      "id": "?*A4@~(qSA/@U6u~aec]",
+                      "fields": {
+                        "NUM": 1
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_escrita_digital",
+                    "id": "Bc@CQ_+S_(RSm9$}kv]P",
+                    "icons": {
+                      "comment": {
+                        "text": "liga a esteira",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "PIN": "7",
+                      "VALOR": "HIGH"
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_criar",
+                        "id": "wai~|sz;strIN2`eCx(u",
+                        "fields": {
+                          "VAR": {
+                            "id": "{WHmh7)Pt2RP/cxXMd[;"
+                          }
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "HE5lD3=Og@Gwff]59QqA",
+                              "fields": {
+                                "NUM": 0.5
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_criar",
+                            "id": "PIK^NU~GwNN!g={ChsU4",
+                            "fields": {
+                              "VAR": {
+                                "id": "x]WV@vR@MH;eH.9almMy"
+                              }
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "ev(Xq:L9AiE2?3.q+tLu",
+                                  "fields": {
+                                    "NUM": 0.5
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_sempre",
+          "id": "Y_x?E|TA~8AKp^j!fs)e",
+          "x": 40,
+          "y": 496,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_definir",
+                "id": "1~X5?jT|sIC_uFIC*y:l",
+                "icons": {
+                  "comment": {
+                    "text": "sensor 1 (trig 2, echo 3). 25 cm = peca rasa, 12 cm = peca alta:\nquanto mais alta a peca, mais perto do sensor e maior a evidencia",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "VAR": {
+                    "id": "{WHmh7)Pt2RP/cxXMd[;"
+                  }
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "abs_evidencia",
+                      "id": "AeTmA{5`hbN=kl57@3QQ",
+                      "inputs": {
+                        "X": {
+                          "block": {
+                            "type": "abs_distancia",
+                            "id": "3?.GmrIW--0JLY}v4rMq",
+                            "fields": {
+                              "TRIG": "2",
+                              "ECHO": "3"
+                            }
+                          }
+                        },
+                        "A1": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "?5%^A@qUy#e3McE%/}3F",
+                            "fields": {
+                              "NUM": 25
+                            }
+                          }
+                        },
+                        "A2": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "MT@r2nBkm2?)kvce5An-",
+                            "fields": {
+                              "NUM": 12
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_definir",
+                    "id": "2rUz:tP/mQE(p#A@fypf",
+                    "icons": {
+                      "comment": {
+                        "text": "sensor 2 (trig 4, echo 8), mesmo Universo de Discurso",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "VAR": {
+                        "id": "x]WV@vR@MH;eH.9almMy"
+                      }
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "abs_evidencia",
+                          "id": "IVtx$(!/Y0v8]6lrn95B",
+                          "inputs": {
+                            "X": {
+                              "block": {
+                                "type": "abs_distancia",
+                                "id": "==).{*Z2[+%;Tw4=SJ[}",
+                                "fields": {
+                                  "TRIG": "4",
+                                  "ECHO": "8"
+                                }
+                              }
+                            },
+                            "A1": {
+                              "block": {
+                                "type": "ard_number",
+                                "id": "mYS(4m%8csw{)%y1M`%S",
+                                "fields": {
+                                  "NUM": 25
+                                }
+                              }
+                            },
+                            "A2": {
+                              "block": {
+                                "type": "ard_number",
+                                "id": "3m=[%D0Z^MpbxqE4_7x5",
+                                "fields": {
+                                  "NUM": 12
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_mostrar_reticulado",
+                        "id": "UbIP-LLr?;8a%81oK|G!",
+                        "inputs": {
+                          "MU": {
+                            "block": {
+                              "type": "abs_ler",
+                              "id": "FR_,J@BzL5Sti0A@50AV",
+                              "fields": {
+                                "VAR": {
+                                  "id": "{WHmh7)Pt2RP/cxXMd[;"
+                                }
+                              }
+                            }
+                          },
+                          "LAMBDA": {
+                            "block": {
+                              "type": "abs_conta",
+                              "id": "{RidScEPBmi5cG@~!r;T",
+                              "fields": {
+                                "OP": "-"
+                              },
+                              "inputs": {
+                                "A": {
+                                  "block": {
+                                    "type": "ard_number",
+                                    "id": "IAgk8:=ZmlQfFQET@@j?",
+                                    "fields": {
+                                      "NUM": 1
+                                    }
+                                  }
+                                },
+                                "B": {
+                                  "block": {
+                                    "type": "abs_ler",
+                                    "id": "*;+wd]^E$US=i[DzjB-r",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "x]WV@vR@MH;eH.9almMy"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_se",
+                            "id": "ijh9]/Niv/uT^7-Z}h,k",
+                            "icons": {
+                              "comment": {
+                                "text": "so analisa quando ha peca: esteira vazia daria F (peca pequena)",
+                                "pinned": false,
+                                "height": 80,
+                                "width": 160
+                              }
+                            },
+                            "inputs": {
+                              "COND": {
+                                "block": {
+                                  "type": "abs_logico",
+                                  "id": "6)Z(y^.yUA?$L2wRirB*",
+                                  "fields": {
+                                    "OP": "OR"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "abs_comparar",
+                                        "id": "T.|p3b/{ckD[5*]^IZvN",
+                                        "fields": {
+                                          "OP": "GT"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "abs_ler",
+                                              "id": "@,l768i}5U.cVJw/ULe*",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "{WHmh7)Pt2RP/cxXMd[;"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "block": {
+                                              "type": "ard_number",
+                                              "id": "sH;+2aAkgBdg2Ic9Lx2(",
+                                              "fields": {
+                                                "NUM": 0
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "B": {
+                                      "block": {
+                                        "type": "abs_comparar",
+                                        "id": "OvA(zD3]|igGnEoW,]ay",
+                                        "fields": {
+                                          "OP": "GT"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "abs_ler",
+                                              "id": "fc3ek;2;VB?i00hvh3p{",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "x]WV@vR@MH;eH.9almMy"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "block": {
+                                              "type": "ard_number",
+                                              "id": "IgRZI8zflmOBN+WkTM(9",
+                                              "fields": {
+                                                "NUM": 0
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "ENTAO": {
+                                "block": {
+                                  "type": "abs_quando_estado",
+                                  "id": "X~d5gmrwm*kGsw[QLrZx",
+                                  "icons": {
+                                    "comment": {
+                                      "text": "mu = sensor 1, lambda = 1 - sensor 2 (o bloco faz o complemento)",
+                                      "pinned": false,
+                                      "height": 80,
+                                      "width": 160
+                                    }
+                                  },
+                                  "inputs": {
+                                    "MU1": {
+                                      "block": {
+                                        "type": "abs_ler",
+                                        "id": "TQf0PE)y101/:da`B)9.",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "{WHmh7)Pt2RP/cxXMd[;"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "MU2": {
+                                      "block": {
+                                        "type": "abs_ler",
+                                        "id": "^h*PH8xKG{#GG([CWi#1",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "x]WV@vR@MH;eH.9almMy"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "CASOS": {
+                                      "block": {
+                                        "type": "abs_caso_estado",
+                                        "id": "-d_{iijLuzmFDiLtjR/5",
+                                        "fields": {
+                                          "ESTADO": "LPA_V"
+                                        },
+                                        "inputs": {
+                                          "BODY": {
+                                            "block": {
+                                              "type": "abs_mostrar",
+                                              "id": "zT4L]R=,wXWknDibGq}}",
+                                              "icons": {
+                                                "comment": {
+                                                  "text": "V: os dois sensores veem peca alta -> esquerda",
+                                                  "pinned": false,
+                                                  "height": 80,
+                                                  "width": 160
+                                                }
+                                              },
+                                              "fields": {
+                                                "ROTULO": "peca"
+                                              },
+                                              "inputs": {
+                                                "VALOR": {
+                                                  "block": {
+                                                    "type": "ard_number",
+                                                    "id": "D]XN9k#$__Od-kKG$s2C",
+                                                    "fields": {
+                                                      "NUM": 1
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "next": {
+                                                "block": {
+                                                  "type": "abs_escrita_digital",
+                                                  "id": "=,D_|RAF_7T]$-Q-j[1d",
+                                                  "icons": {
+                                                    "comment": {
+                                                      "text": "pino 7 = rele da esteira. Para a esteira: a garra nao pega peca em movimento",
+                                                      "pinned": false,
+                                                      "height": 80,
+                                                      "width": 160
+                                                    }
+                                                  },
+                                                  "fields": {
+                                                    "PIN": "7",
+                                                    "VALOR": "LOW"
+                                                  },
+                                                  "next": {
+                                                    "block": {
+                                                      "type": "abs_servo",
+                                                      "id": "lPrS(4Fj4!skdjWz-mde",
+                                                      "icons": {
+                                                        "comment": {
+                                                          "text": "pino 10 = garra. 60 graus = aberta",
+                                                          "pinned": false,
+                                                          "height": 80,
+                                                          "width": 160
+                                                        }
+                                                      },
+                                                      "fields": {
+                                                        "PIN": "10"
+                                                      },
+                                                      "inputs": {
+                                                        "ANGULO": {
+                                                          "block": {
+                                                            "type": "ard_number",
+                                                            "id": "vl+dZLmPU|==^AISGf0_",
+                                                            "fields": {
+                                                              "NUM": 60
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "next": {
+                                                        "block": {
+                                                          "type": "abs_esperar",
+                                                          "id": "IVQe{@U{jrD%f~ms$/gm",
+                                                          "fields": {
+                                                            "UNI": "ms"
+                                                          },
+                                                          "inputs": {
+                                                            "QTD": {
+                                                              "block": {
+                                                                "type": "ard_number",
+                                                                "id": "D2:(.J+?g,.b44oEFd2k",
+                                                                "fields": {
+                                                                  "NUM": 400
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "next": {
+                                                            "block": {
+                                                              "type": "abs_servo",
+                                                              "id": "@1Nqa$FfXrPx69)M[ru4",
+                                                              "icons": {
+                                                                "comment": {
+                                                                  "text": "pino 9 = base. 90 graus = centro, sobre a esteira",
+                                                                  "pinned": false,
+                                                                  "height": 80,
+                                                                  "width": 160
+                                                                }
+                                                              },
+                                                              "fields": {
+                                                                "PIN": "9"
+                                                              },
+                                                              "inputs": {
+                                                                "ANGULO": {
+                                                                  "block": {
+                                                                    "type": "ard_number",
+                                                                    "id": "[B%[,WddSRUv(q,lAK`b",
+                                                                    "fields": {
+                                                                      "NUM": 90
+                                                                    }
+                                                                  }
+                                                                }
+                                                              },
+                                                              "next": {
+                                                                "block": {
+                                                                  "type": "abs_esperar",
+                                                                  "id": "j$1h[w7$j%%uU1WFE2kl",
+                                                                  "fields": {
+                                                                    "UNI": "ms"
+                                                                  },
+                                                                  "inputs": {
+                                                                    "QTD": {
+                                                                      "block": {
+                                                                        "type": "ard_number",
+                                                                        "id": "FsRu-}pFDNI`3p=47`N|",
+                                                                        "fields": {
+                                                                          "NUM": 600
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  "next": {
+                                                                    "block": {
+                                                                      "type": "abs_servo",
+                                                                      "id": "_FuQQsF1xNZQi66ju|mx",
+                                                                      "icons": {
+                                                                        "comment": {
+                                                                          "text": "15 graus = fechada: pegou a peca",
+                                                                          "pinned": false,
+                                                                          "height": 80,
+                                                                          "width": 160
+                                                                        }
+                                                                      },
+                                                                      "fields": {
+                                                                        "PIN": "10"
+                                                                      },
+                                                                      "inputs": {
+                                                                        "ANGULO": {
+                                                                          "block": {
+                                                                            "type": "ard_number",
+                                                                            "id": "T_-jjy#2Q^hw$Pp?Twr3",
+                                                                            "fields": {
+                                                                              "NUM": 15
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "next": {
+                                                                        "block": {
+                                                                          "type": "abs_esperar",
+                                                                          "id": "-OxB:j#Xxrc.Nu^+Z55e",
+                                                                          "fields": {
+                                                                            "UNI": "ms"
+                                                                          },
+                                                                          "inputs": {
+                                                                            "QTD": {
+                                                                              "block": {
+                                                                                "type": "ard_number",
+                                                                                "id": "Q)nOlZf3lsyRtwUh~t/{",
+                                                                                "fields": {
+                                                                                  "NUM": 500
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          "next": {
+                                                                            "block": {
+                                                                              "type": "abs_servo",
+                                                                              "id": "?R+7sh{adBDDBV5|M5r8",
+                                                                              "icons": {
+                                                                                "comment": {
+                                                                                  "text": "gira para a esquerda (170 graus)",
+                                                                                  "pinned": false,
+                                                                                  "height": 80,
+                                                                                  "width": 160
+                                                                                }
+                                                                              },
+                                                                              "fields": {
+                                                                                "PIN": "9"
+                                                                              },
+                                                                              "inputs": {
+                                                                                "ANGULO": {
+                                                                                  "block": {
+                                                                                    "type": "ard_number",
+                                                                                    "id": "k+s;Ky`_I:+mA-~P2#/z",
+                                                                                    "fields": {
+                                                                                      "NUM": 170
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              "next": {
+                                                                                "block": {
+                                                                                  "type": "abs_esperar",
+                                                                                  "id": "!+E/f%Wkplh[b`H}[F$Y",
+                                                                                  "fields": {
+                                                                                    "UNI": "ms"
+                                                                                  },
+                                                                                  "inputs": {
+                                                                                    "QTD": {
+                                                                                      "block": {
+                                                                                        "type": "ard_number",
+                                                                                        "id": "}S[Tw|ah7Il|xTHQ=UgG",
+                                                                                        "fields": {
+                                                                                          "NUM": 800
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "next": {
+                                                                                    "block": {
+                                                                                      "type": "abs_servo",
+                                                                                      "id": "0Kjl0)72]g,zA,iH2q+:",
+                                                                                      "icons": {
+                                                                                        "comment": {
+                                                                                          "text": "abre: soltou a peca no destino",
+                                                                                          "pinned": false,
+                                                                                          "height": 80,
+                                                                                          "width": 160
+                                                                                        }
+                                                                                      },
+                                                                                      "fields": {
+                                                                                        "PIN": "10"
+                                                                                      },
+                                                                                      "inputs": {
+                                                                                        "ANGULO": {
+                                                                                          "block": {
+                                                                                            "type": "ard_number",
+                                                                                            "id": "y%7.erKk~D~M,jqx*^MW",
+                                                                                            "fields": {
+                                                                                              "NUM": 60
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      },
+                                                                                      "next": {
+                                                                                        "block": {
+                                                                                          "type": "abs_esperar",
+                                                                                          "id": "PX8X=_F[%]4Lw(ZNHv/U",
+                                                                                          "fields": {
+                                                                                            "UNI": "ms"
+                                                                                          },
+                                                                                          "inputs": {
+                                                                                            "QTD": {
+                                                                                              "block": {
+                                                                                                "type": "ard_number",
+                                                                                                "id": "rYbvyc@(;QS6UH1tQ,/O",
+                                                                                                "fields": {
+                                                                                                  "NUM": 400
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          "next": {
+                                                                                            "block": {
+                                                                                              "type": "abs_servo",
+                                                                                              "id": "~(;78f[C#zQbYo%o^a$U",
+                                                                                              "icons": {
+                                                                                                "comment": {
+                                                                                                  "text": "volta ao centro para o proximo ciclo",
+                                                                                                  "pinned": false,
+                                                                                                  "height": 80,
+                                                                                                  "width": 160
+                                                                                                }
+                                                                                              },
+                                                                                              "fields": {
+                                                                                                "PIN": "9"
+                                                                                              },
+                                                                                              "inputs": {
+                                                                                                "ANGULO": {
+                                                                                                  "block": {
+                                                                                                    "type": "ard_number",
+                                                                                                    "id": "T3s[w`1-FG[:G9xV1J:n",
+                                                                                                    "fields": {
+                                                                                                      "NUM": 90
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              },
+                                                                                              "next": {
+                                                                                                "block": {
+                                                                                                  "type": "abs_esperar",
+                                                                                                  "id": "V;5LP$`Bn2#aq-Ww:mvF",
+                                                                                                  "fields": {
+                                                                                                    "UNI": "ms"
+                                                                                                  },
+                                                                                                  "inputs": {
+                                                                                                    "QTD": {
+                                                                                                      "block": {
+                                                                                                        "type": "ard_number",
+                                                                                                        "id": "hjHfuLL0)ELvAQ:{tX)I",
+                                                                                                        "fields": {
+                                                                                                          "NUM": 600
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "next": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_escrita_digital",
+                                                                                                      "id": "CVdbpK5,xA:B-TqLsIeL",
+                                                                                                      "icons": {
+                                                                                                        "comment": {
+                                                                                                          "text": "religa a esteira",
+                                                                                                          "pinned": false,
+                                                                                                          "height": 80,
+                                                                                                          "width": 160
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "fields": {
+                                                                                                        "PIN": "7",
+                                                                                                        "VALOR": "HIGH"
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "abs_caso_estado",
+                                            "id": "=jcR3g})ao0KSO#+o{4m",
+                                            "fields": {
+                                              "ESTADO": "LPA_F"
+                                            },
+                                            "inputs": {
+                                              "BODY": {
+                                                "block": {
+                                                  "type": "abs_mostrar",
+                                                  "id": "wQ$Y0r#):`T71)p$B3*F",
+                                                  "icons": {
+                                                    "comment": {
+                                                      "text": "F: os dois veem peca rasa -> direita",
+                                                      "pinned": false,
+                                                      "height": 80,
+                                                      "width": 160
+                                                    }
+                                                  },
+                                                  "fields": {
+                                                    "ROTULO": "peca"
+                                                  },
+                                                  "inputs": {
+                                                    "VALOR": {
+                                                      "block": {
+                                                        "type": "ard_number",
+                                                        "id": "UCC!6hEho3XgBi5fTo=:",
+                                                        "fields": {
+                                                          "NUM": 0
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "next": {
+                                                    "block": {
+                                                      "type": "abs_escrita_digital",
+                                                      "id": "ie:U=dms=CHnH;5/iBBh",
+                                                      "icons": {
+                                                        "comment": {
+                                                          "text": "pino 7 = rele da esteira. Para a esteira: a garra nao pega peca em movimento",
+                                                          "pinned": false,
+                                                          "height": 80,
+                                                          "width": 160
+                                                        }
+                                                      },
+                                                      "fields": {
+                                                        "PIN": "7",
+                                                        "VALOR": "LOW"
+                                                      },
+                                                      "next": {
+                                                        "block": {
+                                                          "type": "abs_servo",
+                                                          "id": "RPxS~8BYU8u{wnX;tHSn",
+                                                          "icons": {
+                                                            "comment": {
+                                                              "text": "pino 10 = garra. 60 graus = aberta",
+                                                              "pinned": false,
+                                                              "height": 80,
+                                                              "width": 160
+                                                            }
+                                                          },
+                                                          "fields": {
+                                                            "PIN": "10"
+                                                          },
+                                                          "inputs": {
+                                                            "ANGULO": {
+                                                              "block": {
+                                                                "type": "ard_number",
+                                                                "id": "l7Kt$dQ$=M6=ur^6xyC6",
+                                                                "fields": {
+                                                                  "NUM": 60
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "next": {
+                                                            "block": {
+                                                              "type": "abs_esperar",
+                                                              "id": "AyJ*]8Ie$I=Xq~ak%x[B",
+                                                              "fields": {
+                                                                "UNI": "ms"
+                                                              },
+                                                              "inputs": {
+                                                                "QTD": {
+                                                                  "block": {
+                                                                    "type": "ard_number",
+                                                                    "id": "(CyJc@B9F}P5B}oRg1Ps",
+                                                                    "fields": {
+                                                                      "NUM": 400
+                                                                    }
+                                                                  }
+                                                                }
+                                                              },
+                                                              "next": {
+                                                                "block": {
+                                                                  "type": "abs_servo",
+                                                                  "id": "(N*D0[2Op_B]5[l?j[0|",
+                                                                  "icons": {
+                                                                    "comment": {
+                                                                      "text": "pino 9 = base. 90 graus = centro, sobre a esteira",
+                                                                      "pinned": false,
+                                                                      "height": 80,
+                                                                      "width": 160
+                                                                    }
+                                                                  },
+                                                                  "fields": {
+                                                                    "PIN": "9"
+                                                                  },
+                                                                  "inputs": {
+                                                                    "ANGULO": {
+                                                                      "block": {
+                                                                        "type": "ard_number",
+                                                                        "id": "`]|o*z+!TcRkUX53+,I^",
+                                                                        "fields": {
+                                                                          "NUM": 90
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  "next": {
+                                                                    "block": {
+                                                                      "type": "abs_esperar",
+                                                                      "id": "5Gm*f1[(UjMUyF.]43=v",
+                                                                      "fields": {
+                                                                        "UNI": "ms"
+                                                                      },
+                                                                      "inputs": {
+                                                                        "QTD": {
+                                                                          "block": {
+                                                                            "type": "ard_number",
+                                                                            "id": "TSX#Sh|:P,`}gX+vKxH,",
+                                                                            "fields": {
+                                                                              "NUM": 600
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "next": {
+                                                                        "block": {
+                                                                          "type": "abs_servo",
+                                                                          "id": "B!rkt=RV.9dOh{lR^^n;",
+                                                                          "icons": {
+                                                                            "comment": {
+                                                                              "text": "15 graus = fechada: pegou a peca",
+                                                                              "pinned": false,
+                                                                              "height": 80,
+                                                                              "width": 160
+                                                                            }
+                                                                          },
+                                                                          "fields": {
+                                                                            "PIN": "10"
+                                                                          },
+                                                                          "inputs": {
+                                                                            "ANGULO": {
+                                                                              "block": {
+                                                                                "type": "ard_number",
+                                                                                "id": "8!%vxn4U`Vr,pRX*-8ci",
+                                                                                "fields": {
+                                                                                  "NUM": 15
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          "next": {
+                                                                            "block": {
+                                                                              "type": "abs_esperar",
+                                                                              "id": "zk-|BJ8.ciRtXQ-UULBm",
+                                                                              "fields": {
+                                                                                "UNI": "ms"
+                                                                              },
+                                                                              "inputs": {
+                                                                                "QTD": {
+                                                                                  "block": {
+                                                                                    "type": "ard_number",
+                                                                                    "id": "HBafxdYMsB0_6n|f[uB8",
+                                                                                    "fields": {
+                                                                                      "NUM": 500
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              "next": {
+                                                                                "block": {
+                                                                                  "type": "abs_servo",
+                                                                                  "id": "+U/VJ0Sn@12;:`!]+kFo",
+                                                                                  "icons": {
+                                                                                    "comment": {
+                                                                                      "text": "gira para a direita (10 graus)",
+                                                                                      "pinned": false,
+                                                                                      "height": 80,
+                                                                                      "width": 160
+                                                                                    }
+                                                                                  },
+                                                                                  "fields": {
+                                                                                    "PIN": "9"
+                                                                                  },
+                                                                                  "inputs": {
+                                                                                    "ANGULO": {
+                                                                                      "block": {
+                                                                                        "type": "ard_number",
+                                                                                        "id": "YOCSJyCVvM;%EyG^MX}_",
+                                                                                        "fields": {
+                                                                                          "NUM": 10
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "next": {
+                                                                                    "block": {
+                                                                                      "type": "abs_esperar",
+                                                                                      "id": "J(2!_}T?.0IN%eLD3=*j",
+                                                                                      "fields": {
+                                                                                        "UNI": "ms"
+                                                                                      },
+                                                                                      "inputs": {
+                                                                                        "QTD": {
+                                                                                          "block": {
+                                                                                            "type": "ard_number",
+                                                                                            "id": "fK2}=8#]P8Fp|*XQsE.i",
+                                                                                            "fields": {
+                                                                                              "NUM": 800
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      },
+                                                                                      "next": {
+                                                                                        "block": {
+                                                                                          "type": "abs_servo",
+                                                                                          "id": "dykK7]zcj1aCWiL?GQ?@",
+                                                                                          "icons": {
+                                                                                            "comment": {
+                                                                                              "text": "abre: soltou a peca no destino",
+                                                                                              "pinned": false,
+                                                                                              "height": 80,
+                                                                                              "width": 160
+                                                                                            }
+                                                                                          },
+                                                                                          "fields": {
+                                                                                            "PIN": "10"
+                                                                                          },
+                                                                                          "inputs": {
+                                                                                            "ANGULO": {
+                                                                                              "block": {
+                                                                                                "type": "ard_number",
+                                                                                                "id": "b0,pl1[B-}T/1(ccElZ[",
+                                                                                                "fields": {
+                                                                                                  "NUM": 60
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          "next": {
+                                                                                            "block": {
+                                                                                              "type": "abs_esperar",
+                                                                                              "id": "m.#JYrs){3x)/]a?1EB`",
+                                                                                              "fields": {
+                                                                                                "UNI": "ms"
+                                                                                              },
+                                                                                              "inputs": {
+                                                                                                "QTD": {
+                                                                                                  "block": {
+                                                                                                    "type": "ard_number",
+                                                                                                    "id": "K`7Iv%1)BYvwy3/*_~V|",
+                                                                                                    "fields": {
+                                                                                                      "NUM": 400
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              },
+                                                                                              "next": {
+                                                                                                "block": {
+                                                                                                  "type": "abs_servo",
+                                                                                                  "id": "zIN47{w,u}WWD4vV+-G*",
+                                                                                                  "icons": {
+                                                                                                    "comment": {
+                                                                                                      "text": "volta ao centro para o proximo ciclo",
+                                                                                                      "pinned": false,
+                                                                                                      "height": 80,
+                                                                                                      "width": 160
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "fields": {
+                                                                                                    "PIN": "9"
+                                                                                                  },
+                                                                                                  "inputs": {
+                                                                                                    "ANGULO": {
+                                                                                                      "block": {
+                                                                                                        "type": "ard_number",
+                                                                                                        "id": "v`(.~rN)FJDS5Gc43tNf",
+                                                                                                        "fields": {
+                                                                                                          "NUM": 90
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "next": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_esperar",
+                                                                                                      "id": "H.|(JrLrDjX+vA5LcDic",
+                                                                                                      "fields": {
+                                                                                                        "UNI": "ms"
+                                                                                                      },
+                                                                                                      "inputs": {
+                                                                                                        "QTD": {
+                                                                                                          "block": {
+                                                                                                            "type": "ard_number",
+                                                                                                            "id": "Ga=JNF,fwPU7$5-n+dN4",
+                                                                                                            "fields": {
+                                                                                                              "NUM": 600
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "next": {
+                                                                                                        "block": {
+                                                                                                          "type": "abs_escrita_digital",
+                                                                                                          "id": "rX:xUvwFrh7c]S!:rdji",
+                                                                                                          "icons": {
+                                                                                                            "comment": {
+                                                                                                              "text": "religa a esteira",
+                                                                                                              "pinned": false,
+                                                                                                              "height": 80,
+                                                                                                              "width": 160
+                                                                                                            }
+                                                                                                          },
+                                                                                                          "fields": {
+                                                                                                            "PIN": "7",
+                                                                                                            "VALOR": "HIGH"
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "abs_caso_estado",
+                                                "id": "[5jq%zL!77s5[AX6cgnN",
+                                                "fields": {
+                                                  "ESTADO": "LPA_T"
+                                                },
+                                                "inputs": {
+                                                  "BODY": {
+                                                    "block": {
+                                                      "type": "abs_mostrar",
+                                                      "id": "}LmgV%e%4qU*r:*B0mG:",
+                                                      "fields": {
+                                                        "ROTULO": "alarme"
+                                                      },
+                                                      "inputs": {
+                                                        "VALOR": {
+                                                          "block": {
+                                                            "type": "ard_number",
+                                                            "id": "}znzYSL^/HD9~VIh*-$G",
+                                                            "fields": {
+                                                              "NUM": 1
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "next": {
+                                                        "block": {
+                                                          "type": "abs_escrita_digital",
+                                                          "id": "]4HWpJ2pRA?g/hb{M=]f",
+                                                          "icons": {
+                                                            "comment": {
+                                                              "text": "para a esteira ate o operador olhar",
+                                                              "pinned": false,
+                                                              "height": 80,
+                                                              "width": 160
+                                                            }
+                                                          },
+                                                          "fields": {
+                                                            "PIN": "7",
+                                                            "VALOR": "LOW"
+                                                          },
+                                                          "next": {
+                                                            "block": {
+                                                              "type": "abs_esperar",
+                                                              "id": "F~7_(pcD9Z@NQBLB92Qp",
+                                                              "fields": {
+                                                                "UNI": "s"
+                                                              },
+                                                              "inputs": {
+                                                                "QTD": {
+                                                                  "block": {
+                                                                    "type": "ard_number",
+                                                                    "id": "9AMKG$:Yn=*E1l3Y6tvf",
+                                                                    "fields": {
+                                                                      "NUM": 3
+                                                                    }
+                                                                  }
+                                                                }
+                                                              },
+                                                              "next": {
+                                                                "block": {
+                                                                  "type": "abs_escrita_digital",
+                                                                  "id": "LF$YP[.Fk:ylXJ!6#?;P",
+                                                                  "fields": {
+                                                                    "PIN": "7",
+                                                                    "VALOR": "HIGH"
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "abs_caso_estado",
+                                                    "id": "j.KSqPo,!Kv1NO_RG:=z",
+                                                    "fields": {
+                                                      "ESTADO": "LPA_PC"
+                                                    },
+                                                    "inputs": {
+                                                      "BODY": {
+                                                        "block": {
+                                                          "type": "abs_mostrar",
+                                                          "id": "*N[hq,kV7A5|+$]qu=E]",
+                                                          "fields": {
+                                                            "ROTULO": "alarme"
+                                                          },
+                                                          "inputs": {
+                                                            "VALOR": {
+                                                              "block": {
+                                                                "type": "ard_number",
+                                                                "id": "{j3-;L+qS#2k/RHpS7E:",
+                                                                "fields": {
+                                                                  "NUM": 2
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "next": {
+                                                            "block": {
+                                                              "type": "abs_escrita_digital",
+                                                              "id": "FaKIFs4S.)s0YUV]W,_G",
+                                                              "icons": {
+                                                                "comment": {
+                                                                  "text": "para a esteira ate o operador olhar",
+                                                                  "pinned": false,
+                                                                  "height": 80,
+                                                                  "width": 160
+                                                                }
+                                                              },
+                                                              "fields": {
+                                                                "PIN": "7",
+                                                                "VALOR": "LOW"
+                                                              },
+                                                              "next": {
+                                                                "block": {
+                                                                  "type": "abs_esperar",
+                                                                  "id": "-T8J+.v6JujyGPr]M(`d",
+                                                                  "fields": {
+                                                                    "UNI": "s"
+                                                                  },
+                                                                  "inputs": {
+                                                                    "QTD": {
+                                                                      "block": {
+                                                                        "type": "ard_number",
+                                                                        "id": "hS.C`I0u+LKEIcOLeV^w",
+                                                                        "fields": {
+                                                                          "NUM": 3
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  "next": {
+                                                                    "block": {
+                                                                      "type": "abs_escrita_digital",
+                                                                      "id": "H00nk|w_9~S7YQ$hwQ`r",
+                                                                      "fields": {
+                                                                        "PIN": "7",
+                                                                        "VALOR": "HIGH"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_esperar",
+                                "id": "I3gW*8t?mRMhX*k#G6qH",
+                                "icons": {
+                                  "comment": {
+                                    "text": "respiro entre leituras do ultrassom",
+                                    "pinned": false,
+                                    "height": 80,
+                                    "width": 160
+                                  }
+                                },
+                                "fields": {
+                                  "UNI": "ms"
+                                },
+                                "inputs": {
+                                  "QTD": {
+                                    "block": {
+                                      "type": "ard_number",
+                                      "id": ".@N6+zPp(w=,_Bo,E]|N",
+                                      "fields": {
+                                        "NUM": 150
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "variables": [
+      {
+        "name": "contador",
+        "id": "Hdrx]UJCC-;0K0nue4RD"
+      },
+      {
+        "name": "evidencia1",
+        "id": "{WHmh7)Pt2RP/cxXMd[;"
+      },
+      {
+        "name": "evidencia2",
+        "id": "x]WV@vR@MH;eH.9almMy"
+      }
+    ]
+  }
+}
