@@ -36,6 +36,11 @@
     class FieldSerialPort extends Blockly.FieldDropdown {
         constructor(valor) {
             super(() => Boards.atual().seriais.map(s => [s, s]));
+            // Marca de classe, como o tipoPino dos campos de pino: é por ela que
+            // a validação reconhece uma porta serial. Reconhecer pelo NOME do
+            // campo ("PORTA") confundia a porta de rede do servidor web, que é
+            // um número de porta TCP e não tem nada a ver com a placa.
+            this.portaSerial = true;
             if (valor != null) this.setValue(String(valor));
         }
         doClassValidation_(valor) {

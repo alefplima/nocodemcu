@@ -37,8 +37,8 @@ const N = v => ({ t: 'ard_number', f: { NUM: v } });
 const K = v => ({ t: 'ard_const', f: { CONST: v } });
 
 async function main() {
-    const dirUsuario = fs.mkdtempSync(path.join(os.tmpdir(), 'taskarduino-pipeline-'));
-    console.log('\nTaskArduino — pipeline real (userData: ' + dirUsuario + ')');
+    const dirUsuario = fs.mkdtempSync(path.join(os.tmpdir(), 'nocodemcu-pipeline-'));
+    console.log('\nNoCodeMCU — pipeline real (userData: ' + dirUsuario + ')');
 
     console.log('\n— preparação da toolchain');
     const ctx = cli.iniciar({ raizApp: RAIZ, dirUsuario: dirUsuario, empacotado: false });

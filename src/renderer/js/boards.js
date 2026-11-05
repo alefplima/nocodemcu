@@ -152,6 +152,43 @@
             uploadReset: true
         },
 
+        /*
+         * ESP32-S3 com câmera (WROOM-1 N16R8, OV2640/OV5640 no conector).
+         * Conferida na bancada em 2026-11-05: OV5640 respondeu com PID 0x5640
+         * e 8 MB de PSRAM octal.
+         *
+         * A câmera ocupa 4-13 e 15-18, a PSRAM octal 35-37 e o USB 19/20 — por
+         * isso a lista de pinos é curta. Ficam fora também 0, 45 e 46 (strapping
+         * da partida) e 48, onde a maioria dessas placas tem o LED RGB.
+         *
+         * Wire e SPI ficam fora da lista de bibliotecas de propósito: os pinos
+         * padrão deles no S3 (8/9 e 10-13) são pinos de dados da câmera.
+         *
+         * CDCOnBoot=cdc põe o Serial no USB nativo (o mesmo cabo que grava);
+         * PSRAM=opi guarda os quadros da câmera; huge_app dá 3 MB para o
+         * programa, que com WiFi e câmera passa de 1 MB.
+         */
+        esp32s3cam: {
+            id: 'esp32s3cam',
+            nome: 'ESP32-S3 CAM (WROOM-1, câmera)',
+            fqbn: 'esp32:esp32:esp32s3:CDCOnBoot=cdc,PSRAM=opi,PartitionScheme=huge_app',
+            arch: 'esp32',
+            core: 'esp32:esp32',
+            digital: num([1, 2, 3, 14, 21, 38, 39, 40, 41, 42, 47]),
+            analog: num([1, 2, 3]),
+            pwm: num([1, 2, 3, 14, 21, 38, 39, 40, 41, 42, 47]),
+            interrupt: num([1, 2, 3, 14, 21, 38, 39, 40, 41, 42, 47]),
+            adcBits: 12,
+            pwmMax: 255,
+            ledBuiltin: 'LED_BUILTIN',
+            seriais: ['Serial', 'Serial1'],
+            i2c: 'sem I2C livre: os pinos padrão são da câmera',
+            libs: ['EEPROM', 'DHT'],
+            recursos: ['tone', 'pulseIn', 'shift', 'ledc', 'analogReadResolution', 'wifi', 'esp',
+                'eepromEmulada', 'camera'],
+            uploadReset: true
+        },
+
         esp8266: {
             id: 'esp8266',
             nome: 'NodeMCU ESP8266',
@@ -185,7 +222,7 @@
         }
     };
 
-    const ORDEM = ['uno', 'nano', 'nano_old', 'mega', 'leonardo', 'esp32', 'esp8266'];
+    const ORDEM = ['uno', 'nano', 'nano_old', 'mega', 'leonardo', 'esp32', 'esp32s3cam', 'esp8266'];
 
     let atual = 'uno';
 
@@ -216,8 +253,13 @@
         },
 
         /** FQBN sugerido a partir do VID/PID que o arduino-cli reportou. */
+        // O arduino-cli reporta o FQBN sem as opções de menu ("esp32:esp32:esp32s3"),
+        // então a comparação também aceita só as três primeiras partes.
         porFqbn(fqbn) {
-            return ORDEM.map(id => BOARDS[id]).find(b => b.fqbn === fqbn) || null;
+            const base = f => String(f || '').split(':').slice(0, 3).join(':');
+            const placas = ORDEM.map(id => BOARDS[id]);
+            return placas.find(b => b.fqbn === fqbn) ||
+                placas.find(b => base(b.fqbn) === base(fqbn)) || null;
         },
 
         /**

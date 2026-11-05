@@ -1,7 +1,7 @@
 {
-  "name": "taskarduino",
-  "productName": "TaskArduino",
-  "desktopName": "taskarduino.desktop",
+  "name": "nocodemcu",
+  "productName": "NoCodeMCU",
+  "desktopName": "nocodemcu.desktop",
   "version": "0.1.0",
   "description": "Programação no-code de Arduino com blocos 1:1 e gravação real via USB",
   "author": {
@@ -36,8 +36,8 @@
     "electron-builder": "^26.15.3"
   },
   "build": {
-    "appId": "br.com.keycorp.taskarduino",
-    "productName": "TaskArduino",
+    "appId": "br.com.keycorp.nocodemcu",
+    "productName": "NoCodeMCU",
     "npmRebuild": false,
     "asarUnpack": [
       "**/*.node",

@@ -1,6 +1,6 @@
 {
   "formato": "taskarduino/1",
-  "salvoEm": "2026-08-17T20:19:44.716Z",
+  "salvoEm": "2026-09-11T14:44:07.534Z",
   "placa": "uno",
   "modo": "literal",
   "nome": "PWM controlado por potenciômetro",
@@ -10,21 +10,21 @@
       "blocks": [
         {
           "type": "ard_var_global",
-          "id": "FI^}WCEzM_V3,)b4v`QL",
+          "id": "5G%JXWMNFq[m1lX{-h{P",
           "x": 40,
           "y": 40,
           "fields": {
             "QUAL": "",
             "TIPO": "int",
             "VAR": {
-              "id": "k4d]Ck?WUS.+7Sl`9BH3"
+              "id": "jab=ob0!HNjmuyb_OD12"
             }
           },
           "inputs": {
             "VALOR": {
               "block": {
                 "type": "ard_number",
-                "id": "8`w2GhPFZYCP$w$e;))C",
+                "id": "6vhWttl89u/OCN}K$0bn",
                 "fields": {
                   "NUM": 0
                 }
@@ -34,21 +34,21 @@
         },
         {
           "type": "ard_var_global",
-          "id": "w_^k}UrZuY;W((i(4$Qr",
+          "id": "U2uv|F;ttZ:OiA_A9bj/",
           "x": 40,
           "y": 110,
           "fields": {
             "QUAL": "",
             "TIPO": "int",
             "VAR": {
-              "id": "$1#^+wNhW4IQs:M64N5|"
+              "id": ")uLB2Q4HR,k=PnGQd60G"
             }
           },
           "inputs": {
             "VALOR": {
               "block": {
                 "type": "ard_number",
-                "id": "oX$,S])uLe9kLW{1It24",
+                "id": "eL*TIq#,_CZ1vAP:Xw^Y",
                 "fields": {
                   "NUM": 0
                 }
@@ -58,14 +58,14 @@
         },
         {
           "type": "ard_setup",
-          "id": "PC(=xW13I]}TIL}rt8J(",
+          "id": "9.N94f.q6[Kd9B3rSfek",
           "x": 40,
           "y": 180,
           "inputs": {
             "BODY": {
               "block": {
                 "type": "ard_serial_begin",
-                "id": "L]K*xMLDgk2*pXLA[;x/",
+                "id": "cT]`K=eqCoZ+aX^.M,*K",
                 "fields": {
                   "PORTA": "Serial",
                   "BAUD": "9600"
@@ -73,7 +73,7 @@
                 "next": {
                   "block": {
                     "type": "ard_pinmode",
-                    "id": "_ZXFE-ye$cPE3x!pi;yi",
+                    "id": "A7kyn{vN4z6cWu|_O}32",
                     "icons": {
                       "comment": {
                         "text": "Ligacao: A0 = cursor do potenciometro | pino 9 = LED com resistor\nde 220 ohm para o GND. O 9 e um dos pinos com ~ na placa, os\nunicos que aceitam analogWrite (PWM) na Uno: 3, 5, 6, 9, 10 e 11",
@@ -94,24 +94,24 @@
         },
         {
           "type": "ard_loop",
-          "id": "zK|-GE{NiO*=/R0f1[x.",
+          "id": "AjX`9_Ps0SG;`%*+)0I|",
           "x": 40,
           "y": 426,
           "inputs": {
             "BODY": {
               "block": {
                 "type": "variables_set",
-                "id": "?Cq-|xm*O9qcthEpl%3b",
+                "id": "7D3M=ZTli!Mj1+JJLneq",
                 "fields": {
                   "VAR": {
-                    "id": "k4d]Ck?WUS.+7Sl`9BH3"
+                    "id": "jab=ob0!HNjmuyb_OD12"
                   }
                 },
                 "inputs": {
                   "VALUE": {
                     "block": {
                       "type": "ard_analogread",
-                      "id": "GeZz|KD|C@.EHVhc?_{c",
+                      "id": "HYAO8ti7IBLLefI0]nlO",
                       "fields": {
                         "PIN": "A0"
                       }
@@ -121,7 +121,7 @@
                 "next": {
                   "block": {
                     "type": "variables_set",
-                    "id": "YEke*D)8^pjM$i??~4lB",
+                    "id": "7gl@tGLuy37Iakvo0kbC",
                     "icons": {
                       "comment": {
                         "text": "o potenciometro entrega 0..1023, o PWM aceita 0..255: map converte",
@@ -132,22 +132,22 @@
                     },
                     "fields": {
                       "VAR": {
-                        "id": "$1#^+wNhW4IQs:M64N5|"
+                        "id": ")uLB2Q4HR,k=PnGQd60G"
                       }
                     },
                     "inputs": {
                       "VALUE": {
                         "block": {
                           "type": "ard_map",
-                          "id": "k=jU-~1BvNwX,M?x=r;*",
+                          "id": "(DNV@vNn0ccS:7uq^F51",
                           "inputs": {
                             "VALOR": {
                               "block": {
                                 "type": "variables_get",
-                                "id": "=dM((4Rl+bKCo*x1A/UK",
+                                "id": "2Beg8e;0WSiUv$(f6}0^",
                                 "fields": {
                                   "VAR": {
-                                    "id": "k4d]Ck?WUS.+7Sl`9BH3"
+                                    "id": "jab=ob0!HNjmuyb_OD12"
                                   }
                                 }
                               }
@@ -155,7 +155,7 @@
                             "DE_MIN": {
                               "block": {
                                 "type": "ard_number",
-                                "id": "j{%lv:FLuQ1Xuz.]vfP2",
+                                "id": "?q4e[4{8,MlTW5O*Q1`o",
                                 "fields": {
                                   "NUM": 0
                                 }
@@ -164,7 +164,7 @@
                             "DE_MAX": {
                               "block": {
                                 "type": "ard_number",
-                                "id": "OkZt,uiibo,e(],K3(A:",
+                                "id": "rLb_sf~^T)?)1uD4@HvC",
                                 "fields": {
                                   "NUM": 1023
                                 }
@@ -173,7 +173,7 @@
                             "PARA_MIN": {
                               "block": {
                                 "type": "ard_number",
-                                "id": "#Y`GS2a9F_QM[:7ve3QD",
+                                "id": "9TdO)A5QD,?q_4Kla]D5",
                                 "fields": {
                                   "NUM": 0
                                 }
@@ -182,7 +182,7 @@
                             "PARA_MAX": {
                               "block": {
                                 "type": "ard_number",
-                                "id": "Lscx6S}((~#b%YUoed|d",
+                                "id": ":bPMTPwYsJuqR/j:LB]+",
                                 "fields": {
                                   "NUM": 255
                                 }
@@ -195,7 +195,7 @@
                     "next": {
                       "block": {
                         "type": "ard_analogwrite",
-                        "id": "[sZF;2%hl%8|p%~Uv3JP",
+                        "id": "yInu266;nX3P?d}}G:9r",
                         "fields": {
                           "PIN": "9"
                         },
@@ -203,10 +203,10 @@
                           "VALOR": {
                             "block": {
                               "type": "variables_get",
-                              "id": "T,{tZDX/=CESGH.;snDK",
+                              "id": "K`eIp~PI|T]sE~`X:e!5",
                               "fields": {
                                 "VAR": {
-                                  "id": "$1#^+wNhW4IQs:M64N5|"
+                                  "id": ")uLB2Q4HR,k=PnGQd60G"
                                 }
                               }
                             }
@@ -215,7 +215,7 @@
                         "next": {
                           "block": {
                             "type": "ard_serial_print",
-                            "id": "pT-+eY,0.H*(yjO0URCn",
+                            "id": "xHOcM;b!7P@OeOZ@MB4`",
                             "fields": {
                               "PORTA": "Serial"
                             },
@@ -223,7 +223,7 @@
                               "VALOR": {
                                 "block": {
                                   "type": "ard_text",
-                                  "id": ";)]H4Jq[c+jao]nc?{UL",
+                                  "id": "l$$-i+yN`=TddSWw?84p",
                                   "fields": {
                                     "TEXTO": "brilho:"
                                   }
@@ -233,7 +233,7 @@
                             "next": {
                               "block": {
                                 "type": "ard_serial_println",
-                                "id": "EN=jj+p:QolSy8{DIajx",
+                                "id": "7q{CxsPJ.BiJL[J)e^`z",
                                 "fields": {
                                   "PORTA": "Serial"
                                 },
@@ -241,10 +241,10 @@
                                   "VALOR": {
                                     "block": {
                                       "type": "variables_get",
-                                      "id": "*p9wy#DLM@M+quY,Alyq",
+                                      "id": "Hii7!#~{-Am{[EtdLxCz",
                                       "fields": {
                                         "VAR": {
-                                          "id": "$1#^+wNhW4IQs:M64N5|"
+                                          "id": ")uLB2Q4HR,k=PnGQd60G"
                                         }
                                       }
                                     }
@@ -253,12 +253,12 @@
                                 "next": {
                                   "block": {
                                     "type": "ard_delay",
-                                    "id": ".uvIL6;WNL[8idn*9%wE",
+                                    "id": "dlCv{)Edk}@3rzBazG4K",
                                     "inputs": {
                                       "MS": {
                                         "block": {
                                           "type": "ard_number",
-                                          "id": "V*oS,g1`{W`inn-doK)e",
+                                          "id": "oF(N^`tEY9p8h)61BLyP",
                                           "fields": {
                                             "NUM": 30
                                           }
@@ -283,20 +283,12 @@
     },
     "variables": [
       {
-        "name": "valor",
-        "id": "a!I?A-H+Eys^H[u@C?G)"
-      },
-      {
         "name": "leitura",
-        "id": "k4d]Ck?WUS.+7Sl`9BH3"
+        "id": "jab=ob0!HNjmuyb_OD12"
       },
       {
         "name": "brilho",
-        "id": "$1#^+wNhW4IQs:M64N5|"
-      },
-      {
-        "name": "item",
-        "id": "[1@9vXo37D0te]M8])Gq"
+        "id": ")uLB2Q4HR,k=PnGQd60G"
       }
     ]
   }

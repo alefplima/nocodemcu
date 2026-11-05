@@ -169,7 +169,7 @@ ok(R._pontos.length === 0 && R._ultimo === null, 'limpar zera rastro e ponto atu
 console.log('== projeto: salvar e abrir ==');
 
 const projects = require(path.join(RAIZ, 'src/main/projects.js'));
-const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'taskarduino-ui-'));
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'nocodemcu-ui-'));
 const arquivo = path.join(tmp, 'meu-projeto.tbk');
 
 const workspace = { blocks: { languageVersion: 0, blocks: [{ type: 'ard_setup', x: 10, y: 10 }] } };
@@ -190,6 +190,8 @@ fs.writeFileSync(path.join(tmp, 'quebrado.tbk'), 'isso não é json', 'utf8');
 const quebrado = projects.abrir(path.join(tmp, 'quebrado.tbk'));
 ok(!quebrado.ok && /JSON/.test(quebrado.erro), 'arquivo inválido devolve erro explicado', quebrado.erro);
 
+// De propósito com o identificador ANTIGO: é o teste de que um projeto salvo
+// quando o programa se chamava TaskArduino continua abrindo.
 fs.writeFileSync(path.join(tmp, 'vazio.tbk'), '{"formato":"taskarduino/1"}', 'utf8');
 const vazio = projects.abrir(path.join(tmp, 'vazio.tbk'));
 ok(!vazio.ok && /programa/.test(vazio.erro), 'arquivo sem workspace devolve erro explicado', vazio.erro);

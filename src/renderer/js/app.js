@@ -99,7 +99,7 @@
          * o canvas dos blocos não descolar do resto da interface.
          */
         temaBlockly() {
-            return Blockly.Theme.defineTheme('taskarduino-' + this.tema, {
+            return Blockly.Theme.defineTheme('nocodemcu-' + this.tema, {
                 base: Blockly.Themes.Classic,
                 componentStyles: {
                     workspaceBackgroundColour: this.cor('--bg-fundo'),
@@ -134,6 +134,13 @@
                 // CSP para deixar o renderer buscar arquivos.
                 sounds: false,
                 move: { scrollbars: true, drag: true, wheel: true }
+            });
+
+            // O botão "Criar caixa…" da categoria Guardar valores, do Modo
+            // Abstrato. Fica registrado no workspace, não na toolbox, então
+            // sobrevive aos updateToolbox() da troca de modo e de placa.
+            this.ws.registerButtonCallback('ABS_CRIAR_CAIXA', botao => {
+                Blockly.Variables.createVariableButtonHandler(botao.getTargetWorkspace());
             });
 
             this.ws.addChangeListener(e => {
@@ -761,7 +768,7 @@
         /** Rascunho local, para não perder trabalho ao fechar sem salvar. */
         salvarRascunho() {
             try {
-                localStorage.setItem('taskarduino:rascunho', JSON.stringify({
+                localStorage.setItem('nocodemcu:rascunho', JSON.stringify({
                     placa: this.placa,
                     modo: this.modo,
                     nome: this.projeto.nome,
@@ -773,7 +780,11 @@
 
         restaurarRascunho() {
             let bruto = null;
-            try { bruto = localStorage.getItem('taskarduino:rascunho'); } catch (e) { bruto = null; }
+            try { bruto = localStorage.getItem('nocodemcu:rascunho');
+                // Rascunho deixado quando o programa ainda se chamava
+                // TaskArduino: lê uma vez pela chave antiga para o trabalho
+                // não desaparecer com a troca de nome.
+                if (!bruto) bruto = localStorage.getItem('taskarduino:rascunho'); } catch (e) { bruto = null; }
             if (!bruto) { this.criarEsqueleto(); this.marcarLimpo(); return; }
             try {
                 const d = JSON.parse(bruto);

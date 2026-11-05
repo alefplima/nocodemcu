@@ -305,6 +305,17 @@ const CASOS = [
                 { t: 'abs_caso_estado', f: { ESTADO: 'LPA_T' }, s: { BODY: [{ t: 'abs_mostrar', f: { ROTULO: 'alarme' }, v: { VALOR: N(1) } }] } }
             ]
         }
+    }])],
+    // Os quatro extremos são a minoria do reticulado: sem o "nos demais estados",
+    // uma leitura intermediária não dispara nada. O par literal é o lp_senao.
+    ['analisar com o senão', programa([], [{
+        t: 'abs_quando_estado', v: { MU1: N(0.64), MU2: N(0.43) },
+        s: {
+            CASOS: [
+                { t: 'abs_caso_estado', f: { ESTADO: 'LPA_V' }, s: { BODY: [{ t: 'abs_escrita_digital', f: { PIN: '7', VALOR: 'HIGH' } }] } },
+                { t: 'abs_senao_estado', s: { BODY: [{ t: 'abs_mostrar', f: { ROTULO: 'indefinido' }, v: { VALOR: N(1) } }] } }
+            ]
+        }
     }])]
 ];
 
@@ -312,6 +323,53 @@ CASOS.forEach(([nome, specs]) => idaEVolta(nome, specs));
 
 /* servo: só nas placas com a biblioteca */
 idaEVolta('servo', programa([], [{ t: 'abs_servo', f: { PIN: '9' }, v: { ANGULO: N(90) } }]));
+
+/*
+ * Motores e página web: nenhum destes converte — cada um vale uma função no
+ * .ino, e função é recurso do Modo Literal. O que o teste cobra aqui é
+ * justamente isso: bloco que não converte tem de sair do outro lado com o
+ * arquivo intacto, e não com o programa remendado pela metade.
+ */
+idaEVolta('motores', programa(
+    [{ t: 'abs_motores_pinos', f: { E1: '2', E2: '4', D1: '18', D2: '19' } }],
+    [
+        { t: 'abs_motores', f: { MANOBRA: 'FRENTE' }, v: { VEL: N(30) } },
+        { t: 'abs_motores', f: { MANOBRA: 'PARAR' }, v: { VEL: N(0) } }
+    ]), 'esp32');
+
+idaEVolta('página web', programa(
+    [
+        { t: 'abs_wifi_rede_aberta', f: { NOME: 'emmy2' } },
+        { t: 'abs_web_servidor', f: { PORTA_REDE: 80 } }
+    ],
+    [
+        { t: 'abs_web_atender' },
+        { t: 'abs_web_mostrar', f: { ROTULO: 'esq' }, v: { VALOR: N(12) } },
+        { t: 'abs_web_reticulado', v: { MU: N(0.86), LAMBDA: N(0.28) } },
+        {
+            t: 'abs_se', v: { COND: { t: 'abs_web_botao', f: { NOME: 'frente' } } },
+            s: { ENTAO: [{ t: 'abs_escrita_digital', f: { PIN: '13', VALOR: 'HIGH' } }] }
+        },
+        { t: 'abs_web_esperar', v: { MS: N(100) } }
+    ]), 'esp32');
+
+idaEVolta('entrar na rede com IP fixo', programa(
+    [
+        { t: 'abs_wifi_ip_fixo', f: { IP: '10.140.109.222', GATEWAY: '10.140.109.95', MASCARA: '255.255.255.0' } },
+        { t: 'abs_wifi_entrar', f: { SSID: 'minha-rede', SENHA: 'senha123' } }
+    ],
+    [{ t: 'abs_web_atender' }]), 'esp32');
+
+/* E o relatório tem de dizer que eles ficaram como estavam. */
+{
+    const estado = estadoDe(programa(
+        [{ t: 'abs_web_servidor', f: { PORTA_REDE: 80 } }],
+        [{ t: 'abs_web_atender' }]));
+    const r = Converter.paraLiteral(estado);
+    ok(r.mantidos.some(m => m.tipo === 'abs_web_atender'),
+        'o bloco de página entra no relatório de não convertidos',
+        JSON.stringify(r.mantidos));
+}
 
 /* ================================================================== */
 /* 3. Os exemplos do aplicativo                                        */

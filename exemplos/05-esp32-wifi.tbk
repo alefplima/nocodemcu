@@ -1,6 +1,6 @@
 {
   "formato": "taskarduino/1",
-  "salvoEm": "2026-08-17T20:19:44.718Z",
+  "salvoEm": "2026-09-11T14:44:07.537Z",
   "placa": "esp32",
   "modo": "literal",
   "nome": "ESP32 conectando no WiFi",
@@ -10,14 +10,14 @@
       "blocks": [
         {
           "type": "ard_setup",
-          "id": "(JYahpT)Q@pf?GkvD{y3",
+          "id": "aSDQ|O}Pahn0@fqq]D_U",
           "x": 40,
           "y": 40,
           "inputs": {
             "BODY": {
               "block": {
                 "type": "ard_serial_begin",
-                "id": "ugg7Lr-co/]?/y8fsNe+",
+                "id": "hZ7.SU=LGCe)4HHnj:^V",
                 "icons": {
                   "comment": {
                     "text": "A ESP32 nao usa pino nenhum aqui: o radio WiFi e interno.\n115200 e o padrao dela — o Monitor serial precisa do mesmo valor,\nsenao a tela vem embaralhada",
@@ -33,7 +33,7 @@
                 "next": {
                   "block": {
                     "type": "ard_wifi_begin",
-                    "id": "#|y:XNw2]CZqqrecW50V",
+                    "id": "{:)++1w0M]hO?yQVoE9`",
                     "icons": {
                       "comment": {
                         "text": "troque pelo nome e senha da sua rede (2,4 GHz: a ESP32 nao ve 5 GHz)",
@@ -49,12 +49,12 @@
                     "next": {
                       "block": {
                         "type": "ard_while",
-                        "id": "_[D0j8xBJ:E$D8u;xL=d",
+                        "id": "IW0;Z*h3c~4^4~Nn4A#W",
                         "inputs": {
                           "COND": {
                             "block": {
                               "type": "logic_compare",
-                              "id": "/SGY~P*Us,J5mzmC1zQ5",
+                              "id": "z~HA^z0QO$~-YqMmf!c_",
                               "fields": {
                                 "OP": "NEQ"
                               },
@@ -62,13 +62,13 @@
                                 "A": {
                                   "block": {
                                     "type": "ard_wifi_status",
-                                    "id": ":-{R9QU7^abUoW1Mg[[U"
+                                    "id": "?C}^68V[UMvR=[~%0LWi"
                                   }
                                 },
                                 "B": {
                                   "block": {
                                     "type": "ard_const",
-                                    "id": "3oOlP/N`_zi5%SR}Tl@F",
+                                    "id": "lUW@~=hlv_U(Z8t5MzK$",
                                     "fields": {
                                       "CONST": "WL_CONNECTED"
                                     }
@@ -80,7 +80,7 @@
                           "BODY": {
                             "block": {
                               "type": "ard_serial_print",
-                              "id": "]0|IWB2R5Xb5j[Z_C=R|",
+                              "id": "HIkTrFY?nPn/=`o-9@J:",
                               "fields": {
                                 "PORTA": "Serial"
                               },
@@ -88,7 +88,7 @@
                                 "VALOR": {
                                   "block": {
                                     "type": "ard_text",
-                                    "id": "NP9{+Q7hWCJ-`|.7{j5s",
+                                    "id": "LN.(z*g@mK1{He/8`eT/",
                                     "fields": {
                                       "TEXTO": "."
                                     }
@@ -98,12 +98,12 @@
                               "next": {
                                 "block": {
                                   "type": "ard_delay",
-                                  "id": "?3RL#fo:B*SX_;IV,/)G",
+                                  "id": "?szbJS^cH1aWQmI-_8cs",
                                   "inputs": {
                                     "MS": {
                                       "block": {
                                         "type": "ard_number",
-                                        "id": "R.0Zob1_NxK;$CQM{tiy",
+                                        "id": "WC!KY{:CFr~[7LX,kbB1",
                                         "fields": {
                                           "NUM": 500
                                         }
@@ -118,7 +118,7 @@
                         "next": {
                           "block": {
                             "type": "ard_serial_println",
-                            "id": "*$#5uueP$%5#749{@HnD",
+                            "id": "85*wmXNb1Mxf!3;PNqQ;",
                             "fields": {
                               "PORTA": "Serial"
                             },
@@ -126,7 +126,7 @@
                               "VALOR": {
                                 "block": {
                                   "type": "ard_wifi_localip",
-                                  "id": "OE~IiIlvDv,[o+yotnO$"
+                                  "id": "0EF/WuV.:DkU6~cE~{p:"
                                 }
                               }
                             }
@@ -142,14 +142,14 @@
         },
         {
           "type": "ard_loop",
-          "id": "zi+)(DhPo;;fY!ixyf2(",
+          "id": "AwUZ36@%hUeq7rONjJ_Y",
           "x": 40,
           "y": 706,
           "inputs": {
             "BODY": {
               "block": {
                 "type": "ard_serial_print",
-                "id": "j)%Nt_*:n0|ezeqPKrXQ",
+                "id": "rThdKDN~S9o$gE^pZO0k",
                 "fields": {
                   "PORTA": "Serial"
                 },
@@ -157,7 +157,7 @@
                   "VALOR": {
                     "block": {
                       "type": "ard_text",
-                      "id": "v7hGP0y^?8,O.]Qxg#{;",
+                      "id": "2_zV-JGx_3Xn0)7nHgb7",
                       "fields": {
                         "TEXTO": "rssi:"
                       }
@@ -167,7 +167,7 @@
                 "next": {
                   "block": {
                     "type": "ard_serial_println",
-                    "id": "8*rQjs@;wsAX9(jvr-zo",
+                    "id": "z_I4SJWl;f]CJ7bgU:26",
                     "fields": {
                       "PORTA": "Serial"
                     },
@@ -175,19 +175,19 @@
                       "VALOR": {
                         "block": {
                           "type": "ard_wifi_rssi",
-                          "id": "zk!Y9UK.{,%15J~M8%{%"
+                          "id": "VzTdmqX~S3BmO0LN}D=V"
                         }
                       }
                     },
                     "next": {
                       "block": {
                         "type": "ard_delay",
-                        "id": "2V~dm(P{m+aIwHas=fmr",
+                        "id": "q$}R}R0qfj}C%,95mtRz",
                         "inputs": {
                           "MS": {
                             "block": {
                               "type": "ard_number",
-                              "id": "{ax2F0PK}(`Mye-xuIg6",
+                              "id": "qa(E#g]%g63F}:[%q?{i",
                               "fields": {
                                 "NUM": 2000
                               }

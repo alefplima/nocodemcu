@@ -105,7 +105,7 @@ function registrar(janela) {
             const r = await dialog.showSaveDialog(janela, {
                 title: 'Salvar projeto',
                 defaultPath: (o.nome || 'projeto') + '.tbk',
-                filters: [{ name: 'Projeto TaskArduino', extensions: ['tbk'] }]
+                filters: [{ name: 'Projeto NoCodeMCU', extensions: ['tbk'] }]
             });
             if (r.canceled) return { ok: false, cancelado: true };
             destino = r.filePath;
@@ -125,7 +125,7 @@ function registrar(janela) {
             const r = await dialog.showOpenDialog(janela, {
                 title: 'Abrir projeto',
                 properties: ['openFile'],
-                filters: [{ name: 'Projeto TaskArduino', extensions: ['tbk'] }]
+                filters: [{ name: 'Projeto NoCodeMCU', extensions: ['tbk'] }]
             });
             if (r.canceled || !r.filePaths.length) return { ok: false, cancelado: true };
             origem = r.filePaths[0];

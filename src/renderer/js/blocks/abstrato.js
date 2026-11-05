@@ -25,9 +25,18 @@
     const OP = 230;
     const VAR = 330;
     const LP = 290;    // lógica paraconsistente, mesma cor do literal
+    const REDE = 100;  // página web, mesma cor do "ESP / WiFi" do literal
 
     const LIGA = [['liga', 'HIGH'], ['desliga', 'LOW']];
     const UNIDADE = [['segundos', 's'], ['milissegundos', 'ms']];
+
+    const MANOBRAS = [
+        ['ir para frente', 'FRENTE'],
+        ['dar ré', 'RE'],
+        ['girar à esquerda', 'ESQ'],
+        ['girar à direita', 'DIR'],
+        ['parar', 'PARAR']
+    ];
 
     const ESTADOS = [
         ['V — verdadeiro', 'LPA_V'],
@@ -152,6 +161,37 @@
             tooltip: 'Toca uma nota num buzzer ligado ao pino.'
         },
 
+        /* ==================== motores ==================== */
+
+        {
+            type: 'abs_motores_pinos',
+            message0: 'motores  esquerda %1 %2  direita %3 %4',
+            args0: [
+                { type: 'field_pin_pwm', name: 'E1' },
+                { type: 'field_pin_pwm', name: 'E2' },
+                { type: 'field_pin_pwm', name: 'D1' },
+                { type: 'field_pin_pwm', name: 'D2' }
+            ],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: IO,
+            tooltip: 'Diz em que pinos está a ponte H dos dois motores. Vai uma vez ' +
+                'no "Ao iniciar"; depois disso os blocos de manobra só falam em ' +
+                'frente, ré e giro.'
+        },
+        {
+            type: 'abs_motores',
+            message0: 'motores %1 a %2 %%',
+            args0: [
+                { type: 'field_dropdown', name: 'MANOBRA', options: MANOBRAS },
+                { type: 'input_value', name: 'VEL' }
+            ],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: IO,
+            tooltip: 'Uma manobra inteira num bloco só, de 0 a 100 %. A velocidade ' +
+                'fica aqui, num lugar só: ligue a mesma caixa nas manobras que devem ' +
+                'andar igual.'
+        },
+
         /* ==================== tempo ==================== */
 
         {
@@ -209,6 +249,161 @@
             colour: MOSTRA,
             tooltip: 'Manda a anotação para a aba Reticulado, que marca o ponto em ' +
                 'tempo real.'
+        },
+
+        /* ==================== página web ==================== */
+        /*
+         * A placa serve a própria página: quem olha é um celular no navegador,
+         * sem cabo e sem instalar nada. Nenhum destes blocos pede HTML — a
+         * página se monta sozinha com os botões e valores que o programa usa.
+         */
+
+        {
+            type: 'abs_wifi_rede_aberta',
+            message0: 'criar rede WiFi aberta %1',
+            args0: [{ type: 'field_input', name: 'NOME', text: 'emmy2' }],
+            // O endereço fica escrito na face do bloco porque ele é fixo e porque
+            // quem usa o robô sem fio não tem o cabo para ler o Monitor serial.
+            message1: 'a página abre em http://192.168.4.1 %1',
+            args1: [{ type: 'input_dummy' }],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: REDE,
+            tooltip: 'A placa vira o ponto de acesso: o celular se conecta nela ' +
+                'direto, sem roteador. O endereço da página é sempre 192.168.4.1, ' +
+                'fixado pelo próprio modo ponto de acesso.'
+        },
+        {
+            type: 'abs_wifi_entrar',
+            message0: 'entrar na rede WiFi %1 senha %2',
+            args0: [
+                { type: 'field_input', name: 'SSID', text: 'minha-rede' },
+                { type: 'field_input', name: 'SENHA', text: 'senha123' }
+            ],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: REDE,
+            tooltip: 'Entra numa rede que já existe e espera até conectar. O endereço ' +
+                'da página aparece no Monitor serial.'
+        },
+        {
+            type: 'abs_wifi_ip_fixo',
+            message0: 'usar IP fixo %1  roteador %2  máscara %3',
+            args0: [
+                { type: 'field_input', name: 'IP', text: '192.168.0.50' },
+                { type: 'field_input', name: 'GATEWAY', text: '192.168.0.1' },
+                { type: 'field_input', name: 'MASCARA', text: '255.255.255.0' }
+            ],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: REDE,
+            tooltip: 'Fixa o endereço da placa na rede, antes de entrar nela. Sem ' +
+                'isto quem escolhe o endereço é o roteador, e ele muda de uma ligação ' +
+                'para outra — a página troca de lugar sem avisar.'
+        },
+        {
+            type: 'abs_web_servidor',
+            message0: 'servidor web na porta de rede %1',
+            args0: [{ type: 'field_number', name: 'PORTA_REDE', value: 80, min: 1, max: 65535, precision: 1 }],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: REDE,
+            tooltip: 'Abre a página da placa. Vai no "Ao iniciar", depois da rede. ' +
+                'Porta de rede não é pino: é o número que vem depois dos dois-pontos ' +
+                'no endereço, e 80 é o que o navegador usa sozinho.'
+        },
+        {
+            type: 'abs_web_botao',
+            message0: 'botão %1 da página apertado ?',
+            args0: [{ type: 'field_input', name: 'NOME', text: 'frente' }],
+            output: 'Boolean', inputsInline: true,
+            colour: REDE,
+            tooltip: 'Verdadeiro enquanto o dedo está no botão da página. O botão ' +
+                'aparece sozinho na tela do celular, com este nome.'
+        },
+        {
+            type: 'abs_web_mostrar',
+            message0: 'mostrar %1 %2 na página',
+            args0: [
+                { type: 'field_input', name: 'ROTULO', text: 'valor' },
+                { type: 'input_value', name: 'VALOR' }
+            ],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: REDE,
+            tooltip: 'Escreve um número na página, que se atualiza sozinha.'
+        },
+        {
+            type: 'abs_web_reticulado',
+            message0: 'mostrar o reticulado na página  μ %1  λ %2',
+            args0: [
+                { type: 'input_value', name: 'MU' },
+                { type: 'input_value', name: 'LAMBDA' }
+            ],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: REDE,
+            tooltip: 'Desenha o reticulado da LPA2v na própria página, com o rastro ' +
+                'dos últimos pontos — o mesmo QUPC da aba Reticulado, no celular.'
+        },
+        {
+            type: 'abs_web_atender',
+            message0: 'atender a página',
+            previousStatement: null, nextStatement: null,
+            colour: REDE,
+            tooltip: 'Dá uma volta no servidor: recebe os toques e responde. Vai no ' +
+                'começo do "Sempre".'
+        },
+        {
+            type: 'abs_web_esperar',
+            message0: 'esperar %1 ms atendendo a página',
+            args0: [{ type: 'input_value', name: 'MS' }],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: REDE,
+            tooltip: 'Espera sem abandonar a página: durante uma manobra longa, o ' +
+                'celular continua respondendo. É o "esperar" de quem tem servidor.'
+        },
+
+        /*
+         * Câmera. O vídeo tem servidor próprio, numa tarefa à parte: enquanto
+         * alguém assiste, o "Sempre" continua medindo e decidindo no mesmo
+         * ritmo. A página da porta 80 só diz ao celular QUANDO abrir o vídeo.
+         */
+        {
+            type: 'abs_camera_ligar',
+            message0: 'ligar a câmera  imagem %1  %2',
+            args0: [{
+                type: 'field_dropdown', name: 'TAMANHO', options: [
+                    ['640 × 480', 'FRAMESIZE_VGA'],
+                    ['320 × 240 (mais fluida)', 'FRAMESIZE_QVGA'],
+                    ['800 × 600', 'FRAMESIZE_SVGA']
+                ]
+            }, {
+                // Depende de como a câmera vai montada: a mesma placa sai de
+                // cabeça para baixo num carro e em pé no outro.
+                type: 'field_dropdown', name: 'GIRAR', options: [
+                    ['como sai da câmera', '0'],
+                    ['girada 180°', '1']
+                ]
+            }],
+            message1: 'o vídeo sai na porta 81: http://192.168.4.1:81/video %1',
+            args1: [{ type: 'input_dummy' }],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: REDE,
+            tooltip: 'Liga a câmera da placa e abre o vídeo na porta 81. Vai no ' +
+                '"Ao iniciar", depois da rede. Sozinho ele não põe o vídeo na ' +
+                'página: quem decide quando mostrar é o bloco "mostrar a câmera".'
+        },
+        {
+            type: 'abs_web_camera_mostrar',
+            message0: 'mostrar a câmera na página com o aviso %1',
+            args0: [{ type: 'field_input', name: 'AVISO', text: 'você está no controle' }],
+            previousStatement: null, nextStatement: null, inputsInline: true,
+            colour: REDE,
+            tooltip: 'O vídeo aparece no topo da página do celular, com o aviso ' +
+                'em destaque. Fica lá até o bloco "esconder a câmera".'
+        },
+        {
+            type: 'abs_web_camera_esconder',
+            message0: 'esconder a câmera da página',
+            previousStatement: null, nextStatement: null,
+            colour: REDE,
+            tooltip: 'Tira o vídeo da página. O celular fecha a conexão do vídeo ' +
+                'e a rede fica livre para o resto.'
         },
 
         /* ==================== controle ==================== */
@@ -400,6 +595,18 @@
             previousStatement: 'abs_caso_estado', nextStatement: 'abs_caso_estado',
             colour: LP,
             tooltip: 'O que fazer quando a análise cair neste estado.'
+        },
+        {
+            type: 'abs_senao_estado',
+            message0: 'nos demais estados',
+            message1: '%1',
+            args1: [{ type: 'input_statement', name: 'BODY' }],
+            previousStatement: 'abs_caso_estado', nextStatement: 'abs_caso_estado',
+            colour: LP,
+            tooltip: 'Vale para todo estado que não tem bloco próprio. Os quatro ' +
+                'estados extremos são a minoria do reticulado: sem este bloco, uma ' +
+                'leitura que caia numa região intermediária não faz nada, e o ' +
+                'equipamento fica repetindo a última ação.'
         },
         {
             type: 'abs_grau',
