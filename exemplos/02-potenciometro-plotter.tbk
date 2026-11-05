@@ -1,6 +1,6 @@
 {
   "formato": "taskarduino/1",
-  "salvoEm": "2026-08-17T20:19:44.706Z",
+  "salvoEm": "2026-09-11T14:44:07.524Z",
   "placa": "uno",
   "modo": "literal",
   "nome": "Potenciômetro no plotter",
@@ -10,14 +10,14 @@
       "blocks": [
         {
           "type": "ard_setup",
-          "id": "mJ[et]02EIXWc~,a8!(O",
+          "id": "Fe2NP`^dfoZ):i@*)g~!",
           "x": 40,
           "y": 40,
           "inputs": {
             "BODY": {
               "block": {
                 "type": "ard_serial_begin",
-                "id": "o,zJX3^QeOt-S+)K=L2h",
+                "id": "gwNJ%xtf7rm=EC#xVNpk",
                 "icons": {
                   "comment": {
                     "text": "Ligacao: pino A0 = cursor (perna do meio) do potenciometro;\nas outras duas pernas vao em 5V e GND.\nO Monitor serial tem de estar no mesmo 9600",
@@ -36,14 +36,14 @@
         },
         {
           "type": "ard_loop",
-          "id": "lBE`.ko-7b-T%X,Oyl%D",
+          "id": "O@#i!{[;lqdIojOHhJrt",
           "x": 40,
           "y": 244,
           "inputs": {
             "BODY": {
               "block": {
                 "type": "ard_serial_print",
-                "id": "8y$^fA7?@+^;?!8j6v4R",
+                "id": "1PjJzz.4+bqH`3RZ8+2f",
                 "icons": {
                   "comment": {
                     "text": "o rotulo \"nome:valor\" e o que a aba Plotter usa para nomear a curva",
@@ -59,7 +59,7 @@
                   "VALOR": {
                     "block": {
                       "type": "ard_text",
-                      "id": "hT=yl/}J?Gc0,ELJqdZQ",
+                      "id": ")Qe#GGFnh4B1?J?N(qt.",
                       "fields": {
                         "TEXTO": "pot:"
                       }
@@ -69,7 +69,7 @@
                 "next": {
                   "block": {
                     "type": "ard_serial_println",
-                    "id": "E4p;Gbf8hdC3(x3u*xTJ",
+                    "id": "B%j@UHpyic838%A~f};S",
                     "icons": {
                       "comment": {
                         "text": "analogRead devolve 0 a 1023 (0 V a 5 V)",
@@ -85,7 +85,7 @@
                       "VALOR": {
                         "block": {
                           "type": "ard_analogread",
-                          "id": "iU5,wZ(52~B6`n$kFheX",
+                          "id": "G:]X0Q]/V-9(!Af{~s#M",
                           "fields": {
                             "PIN": "A0"
                           }
@@ -95,12 +95,12 @@
                     "next": {
                       "block": {
                         "type": "ard_delay",
-                        "id": "{uQM)J1tJJ.Rh@BRnOIy",
+                        "id": "R-Rsv.mp1%{$CC!~yH-=",
                         "inputs": {
                           "MS": {
                             "block": {
                               "type": "ard_number",
-                              "id": ":*~/prfzY3T7AfX];!Ms",
+                              "id": "i6p.6VPD?W}~N43}+XPx",
                               "fields": {
                                 "NUM": 50
                               }

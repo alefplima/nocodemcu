@@ -41,7 +41,10 @@
         ard_wifi_disconnect: 'wifi',
         ard_esp_restart: 'esp',
         ard_esp_deepsleep: 'esp',
-        ard_esp_freeheap: 'esp'
+        ard_esp_freeheap: 'esp',
+        abs_camera_ligar: 'camera',
+        abs_web_camera_mostrar: 'camera',
+        abs_web_camera_esconder: 'camera'
     };
 
     const EXIGE_LIB = {
@@ -96,7 +99,7 @@
                     });
                     // porta serial
                     (input.fieldRow || []).forEach(campo => {
-                        if (campo.name === 'PORTA' && campo.getValue) {
+                        if (campo.portaSerial && campo.getValue) {
                             const p = campo.getValue();
                             if (placa.seriais.indexOf(p) === -1) {
                                 msgs.push('A ' + placa.nome + ' não tem ' + p + '.');

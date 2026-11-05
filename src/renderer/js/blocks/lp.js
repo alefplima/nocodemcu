@@ -2,7 +2,7 @@
 /**
  * Categoria LÓGICA PARACONSISTENTE — LPA2v aplicada.
  *
- * Diferente do resto do TaskArduino, estes blocos não são 1:1 com um comando
+ * Diferente do resto do NoCodeMCU, estes blocos não são 1:1 com um comando
  * da linguagem Arduino: são blocos de aplicação. A honestidade fica na saída —
  * cada um gera uma chamada a uma função C++ com nome legível (lpaGc, lpaEstado,
  * lpaMuEr…) que aparece inteira no painel de código, com as equações da LPA2v

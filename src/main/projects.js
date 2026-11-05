@@ -9,7 +9,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const FORMATO = 'taskarduino/1';
+// O identificador gravado em cada .tbk. A leitura NÃO o confere: projeto
+// salvo quando o programa se chamava TaskArduino ("taskarduino/1") continua
+// abrindo normalmente, e é por isso que renomear não invalidou nenhum arquivo.
+const FORMATO = 'nocodemcu/1';
 
 function salvar(caminho, projeto) {
     const conteudo = {
@@ -30,7 +33,7 @@ function abrir(caminho) {
     try {
         j = JSON.parse(bruto);
     } catch (e) {
-        return { ok: false, erro: 'Arquivo não é um projeto do TaskArduino (JSON inválido).' };
+        return { ok: false, erro: 'Arquivo não é um projeto do NoCodeMCU (JSON inválido).' };
     }
     if (!j || !j.workspace) {
         return { ok: false, erro: 'Arquivo não tem um programa dentro.' };

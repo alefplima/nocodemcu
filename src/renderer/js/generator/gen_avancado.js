@@ -29,6 +29,10 @@
         gen.usarInclude(arch === 'esp8266' ? 'ESP8266WiFi.h' : 'WiFi.h');
     }
 
+    // Publicada para os blocos de rede do Modo Abstrato usarem a MESMA escolha
+    // de cabeçalho: duas cópias divergiriam no dia em que uma placa nova entrar.
+    A.incluirWifi = function (gen) { incluirWifi(gen || A); };
+
     A.forBlock['ard_wifi_begin'] = function (block, gen) {
         incluirWifi(gen);
         const ssid = String(block.getFieldValue('SSID') || '').replace(/"/g, '\\"');

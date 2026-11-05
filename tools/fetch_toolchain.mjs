@@ -418,11 +418,14 @@ function podar(raizAlvo) {
     }
 
     // O core traz um pacote de bibliotecas pré-compiladas por SoC da família
-    // (esp32s3-libs, esp32c6-libs, esp32p4-libs...), ~240 MB cada. O app só
-    // oferece o DevKit clássico, então fica apenas o esp32-libs.
+    // (esp32s3-libs, esp32c6-libs, esp32p4-libs...), ~240 MB cada. O app
+    // oferece o DevKit clássico e a ESP32-S3 CAM: ficam esp32-libs e
+    // esp32s3-libs. Apagar o do S3 faz a placa da câmera parar de compilar
+    // ("bootloader_qio_80m.elf does not exist").
+    const LIBS_USADAS = ['esp32-libs', 'esp32s3-libs'];
     if (fs.existsSync(toolsEsp32)) {
         fs.readdirSync(toolsEsp32)
-            .filter(n => /^esp32.+-libs$/i.test(n) && n !== 'esp32-libs')
+            .filter(n => /^esp32.+-libs$/i.test(n) && LIBS_USADAS.indexOf(n) === -1)
             .forEach(n => apagar(path.join(toolsEsp32, n), 'libs de outro SoC'));
     }
 
@@ -443,7 +446,7 @@ function tamanho(dir) {
 /* ------------------------------------------------------------------ */
 
 async function main() {
-    log('TaskArduino — toolchain embutida');
+    log('NoCodeMCU — toolchain embutida');
     log('alvos: ' + alvos.join(', ') + '   cores: ' + familias.join(', '));
 
     for (const alvo of alvos) {

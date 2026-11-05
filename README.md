@@ -1,4 +1,4 @@
-# TaskArduino
+# NoCodeMCU
 
 Aplicação **desktop** de programação no-code para Arduino: o aluno monta o
 programa com blocos, vê o `.ino` real sendo escrito ao lado, e **grava na placa
@@ -105,8 +105,10 @@ máquina.
 Tamanhos medidos nesta máquina: **366 MB** com só AVR e **2,46 GB** com ESP32 e
 ESP8266 — depois da poda. Sem podar seriam 6,2 GB: saem o `staging/` (arquivos
 já extraídos), o toolchain RISC-V (para C3/C6/H2) e as bibliotecas
-pré-compiladas dos outros SoCs da família (`esp32s3-libs`, `esp32c6-libs`…,
-~240 MB cada), já que o app só oferece o DevKit clássico.
+pré-compiladas dos outros SoCs da família (`esp32c6-libs`, `esp32p4-libs`…,
+~240 MB cada). Ficam as do ESP32 clássico (`esp32-libs`) e as do ESP32-S3
+(`esp32s3-libs`, para a ESP32-S3 CAM), que somam ~240 MB aos 2,46 GB medidos
+antes de a S3 entrar no catálogo.
 
 Em tempo de execução o app não escreve dentro do bundle: cria um diretório de
 dados gravável no `userData` e liga `packages/` por symlink (junction no
@@ -180,6 +182,8 @@ memória — as que o catálogo já carrega:
 | `analogReadResolution`, `ledcAttach/Write/Detach` | só ESP32 |
 | `SoftwareSerial` | só AVR |
 | ADC2 (pinos 0, 2, 4, 12–15, 25–27) para de ler com o WiFi ligado | ESP32 — vira aviso no bloco `analogRead` |
+| câmera e servidor de vídeo (porta 81) | só ESP32-S3 CAM; a câmera usa o canal 7/timer 3 do LEDC para não brigar com o `analogWrite` |
+| Wire e SPI fora da lista | ESP32-S3 CAM: os pinos padrão deles (8/9, 10–13) são da câmera |
 
 ---
 

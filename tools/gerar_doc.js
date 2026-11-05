@@ -194,7 +194,7 @@ const dados = {
         nome: exemplo.nome,
         placa: Boards.get(exemplo.placa).nome,
         linhas: exemplo.codigo.split('\n').length,
-        medirSensores: trecho(exemplo.codigo, 'void medirSensores() {', 22),
+        medirSensores: trecho(exemplo.codigo, 'void medirSensores() {', 21),
         loop: trecho(exemplo.codigo, 'void loop() {', 30),
         runtimeGc: trecho(exemplo.codigo, '// Grau de Certeza\n', 2)
     },

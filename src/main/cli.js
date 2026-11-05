@@ -312,7 +312,10 @@ function gravarSketch(nome, codigo) {
 
 function caminhoBuild(fqbn) {
     const c = contexto();
-    return path.join(c.buildsDir, fqbn.replace(/[:=]/g, '_'));
+    // A vírgula também sai: as opções de menu do FQBN vêm separadas por vírgula
+    // (esp32s3:CDCOnBoot=cdc,PSRAM=opi,...) e o linker recebe o caminho dentro
+    // de um -Wl,..., que se parte nas vírgulas ("cannot find PSRAM_opi/....map").
+    return path.join(c.buildsDir, fqbn.replace(/[:=,]/g, '_'));
 }
 
 /**

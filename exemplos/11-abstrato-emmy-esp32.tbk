@@ -1,0 +1,2056 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-09-11T14:44:07.646Z",
+  "placa": "esp32",
+  "modo": "abstrato",
+  "nome": "Abstrato — Emmy no ESP32",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "abs_ao_iniciar",
+          "id": "T%pm3g6[itJEkA*9~Dg(",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_criar",
+                "id": "oR:*g|^rl_!J|pD#xKFn",
+                "icons": {
+                  "comment": {
+                    "text": "Emmy no ESP32. Sensor 1 trig/echo D26 / D27 | sensor 2 D32 / D33 |\nponte H IN1/IN2 D2 / D4 (motor esquerdo), IN3/IN4 D18 / D19 (direito).\nUniverso de Discurso: 80 cm = caminho livre, evidencia perto de 0",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "VAR": {
+                    "id": "/|IR[zXo^,O#W06KIT=l"
+                  }
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_number",
+                      "id": "YP^pq4Be`M;{$9}]Hz![",
+                      "fields": {
+                        "NUM": 80
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_criar",
+                    "id": "Q~xLR=Yu/?1nrey9{3kl",
+                    "icons": {
+                      "comment": {
+                        "text": "10 cm = obstaculo colado, evidencia perto de 1. Como este numero e\nmenor que o outro, a valoracao ja sai invertida sozinha",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "VAR": {
+                        "id": ".ycmt,eTZ6S@cQMwGiM$"
+                      }
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "6,9McZBWMc[S-,FHJ;US",
+                          "fields": {
+                            "NUM": 10
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_criar",
+                        "id": "c`9#fvSw.!V;YV@tgE4{",
+                        "fields": {
+                          "VAR": {
+                            "id": "5HANIhrO@#S^7Ddu]@Z|"
+                          }
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "#/C@g7%Q4+}Yf]R`)4oU",
+                              "fields": {
+                                "NUM": 400
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_criar",
+                            "id": "?tMhQhDv#v/aCSXf4{!V",
+                            "fields": {
+                              "VAR": {
+                                "id": "Epw.RuZ-br}HF+GuM=$u"
+                              }
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "RI1/BJbId5UpU7P8pi~V",
+                                  "fields": {
+                                    "NUM": 400
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_criar",
+                                "id": "Qhg5|uxXaHBTJ;ajckjT",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "qe/5$j5]4m3k4[b:8VB#"
+                                  }
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "ard_number",
+                                      "id": ")e)yZr7Xpcydh0H?=,LB",
+                                      "fields": {
+                                        "NUM": 0.5
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "abs_criar",
+                                    "id": ")fW(kHs)ic?L.ba,0|Ho",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "EcUWafQE@=r%G(p9=w3]"
+                                      }
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "ard_number",
+                                          "id": "S{{K^bdnPSxn}DyRg9Ze",
+                                          "fields": {
+                                            "NUM": 0.5
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_criar",
+                                        "id": "w16uB7OY{RRpN]%0H;RR",
+                                        "icons": {
+                                          "comment": {
+                                            "text": "intensidade de 0 a 100 %. 60 % = caminho livre",
+                                            "pinned": false,
+                                            "height": 80,
+                                            "width": 160
+                                          }
+                                        },
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "t~ht:XYm/dhl?gd8r:}6"
+                                          }
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "ard_number",
+                                              "id": "~JLi!51I=Va[oJwKZn0U",
+                                              "fields": {
+                                                "NUM": 60
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "abs_criar",
+                                            "id": ";nLkQYS~}`Q}r[s+6M*/",
+                                            "icons": {
+                                              "comment": {
+                                                "text": "a marcha do estado T. Abaixo de ~28 % a maioria dos motores com\nL298N nao sai do lugar: a ponte ja come de 1,5 a 2 V",
+                                                "pinned": false,
+                                                "height": 80,
+                                                "width": 160
+                                              }
+                                            },
+                                            "fields": {
+                                              "VAR": {
+                                                "id": "89uA*Ir+kBSyQw5[mUA,"
+                                              }
+                                            },
+                                            "inputs": {
+                                              "VALOR": {
+                                                "block": {
+                                                  "type": "ard_number",
+                                                  "id": ",[NEU$j!a1B:VJLT##fx",
+                                                  "fields": {
+                                                    "NUM": 43
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "abs_criar",
+                                                "id": "iYaknrBG,4[0-|)SlYwS",
+                                                "icons": {
+                                                  "comment": {
+                                                    "text": "o empurrao de 80 ms que tira o motor da inercia antes da marcha lenta",
+                                                    "pinned": false,
+                                                    "height": 80,
+                                                    "width": 160
+                                                  }
+                                                },
+                                                "fields": {
+                                                  "VAR": {
+                                                    "id": "05c$}vefx}LWD~07D?.0"
+                                                  }
+                                                },
+                                                "inputs": {
+                                                  "VALOR": {
+                                                    "block": {
+                                                      "type": "ard_number",
+                                                      "id": "Zi4mx{IVgmEN$F|_Y/Rx",
+                                                      "fields": {
+                                                        "NUM": 82
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "abs_criar",
+                                                    "id": "lt8J{PdUf(+dyG8g02Fk",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "^7}gdhc(UA0Hu]r.(?kO"
+                                                      }
+                                                    },
+                                                    "inputs": {
+                                                      "VALOR": {
+                                                        "block": {
+                                                          "type": "ard_number",
+                                                          "id": "9vj[#$w,!Dj8jzy[5kr?",
+                                                          "fields": {
+                                                            "NUM": 50
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "next": {
+                                                      "block": {
+                                                        "type": "abs_criar",
+                                                        "id": "~w*mO+[s:5XGbx1W83zG",
+                                                        "icons": {
+                                                          "comment": {
+                                                            "text": "o giro precisa vencer o atrito das duas rodas em sentidos opostos",
+                                                            "pinned": false,
+                                                            "height": 80,
+                                                            "width": 160
+                                                          }
+                                                        },
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": "xR,2K~]zO[PWbyDMU*v4"
+                                                          }
+                                                        },
+                                                        "inputs": {
+                                                          "VALOR": {
+                                                            "block": {
+                                                              "type": "ard_number",
+                                                              "id": "56@@l-_)n2_GW9vJUV%k",
+                                                              "fields": {
+                                                                "NUM": 55
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "next": {
+                                                          "block": {
+                                                            "type": "abs_escrita_analogica",
+                                                            "id": "xuSC_UEp3[K_{rxZ3VA@",
+                                                            "icons": {
+                                                              "comment": {
+                                                                "text": "IN1 2 / IN2 4 = motor esquerdo | IN3 18 / IN4 19 = motor direito.\nOs quatro em 0 %: parado",
+                                                                "pinned": false,
+                                                                "height": 80,
+                                                                "width": 160
+                                                              }
+                                                            },
+                                                            "fields": {
+                                                              "PIN": "2"
+                                                            },
+                                                            "inputs": {
+                                                              "PCT": {
+                                                                "block": {
+                                                                  "type": "ard_number",
+                                                                  "id": "k5ATgqPv(5AJrCSgCd;-",
+                                                                  "fields": {
+                                                                    "NUM": 0
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "next": {
+                                                              "block": {
+                                                                "type": "abs_escrita_analogica",
+                                                                "id": "96bV-8gRI/HADM9i+1wr",
+                                                                "fields": {
+                                                                  "PIN": "4"
+                                                                },
+                                                                "inputs": {
+                                                                  "PCT": {
+                                                                    "block": {
+                                                                      "type": "ard_number",
+                                                                      "id": "w+{Yj,xEKq0ugg35R7jK",
+                                                                      "fields": {
+                                                                        "NUM": 0
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "abs_escrita_analogica",
+                                                                    "id": "y8ypW)e`{M;@O:-]8q?i",
+                                                                    "fields": {
+                                                                      "PIN": "18"
+                                                                    },
+                                                                    "inputs": {
+                                                                      "PCT": {
+                                                                        "block": {
+                                                                          "type": "ard_number",
+                                                                          "id": "cp_XrQb[g(9T9cbR+2p]",
+                                                                          "fields": {
+                                                                            "NUM": 0
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "abs_escrita_analogica",
+                                                                        "id": "Ms4fX9)3g3Z,k;GJ;6cx",
+                                                                        "fields": {
+                                                                          "PIN": "19"
+                                                                        },
+                                                                        "inputs": {
+                                                                          "PCT": {
+                                                                            "block": {
+                                                                              "type": "ard_number",
+                                                                              "id": "$CQ@k=PjFh9Z1]ZJ{Kga",
+                                                                              "fields": {
+                                                                                "NUM": 0
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_sempre",
+          "id": ".UP!dl#P!*Ry6dH#k5O^",
+          "x": 40,
+          "y": 1462,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_definir",
+                "id": "R8ZiYaIaz)aV#c=xffS+",
+                "icons": {
+                  "comment": {
+                    "text": "sensor esquerdo (trig D26, echo D27)",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "VAR": {
+                    "id": "5HANIhrO@#S^7Ddu]@Z|"
+                  }
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "abs_distancia",
+                      "id": "R%00Kr/[(Wh?H!RDc(YF",
+                      "fields": {
+                        "TRIG": "26",
+                        "ECHO": "27"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_esperar",
+                    "id": "Edb3R;jfjp!2fd@_5~9F",
+                    "icons": {
+                      "comment": {
+                        "text": "evita o eco cruzado: o eco do primeiro sensor ainda esta no ar",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "UNI": "ms"
+                    },
+                    "inputs": {
+                      "QTD": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "M-k9|G,/xhjTd03$~eQ}",
+                          "fields": {
+                            "NUM": 60
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_definir",
+                        "id": "OY%UrnRhU]~c$WQB)4{-",
+                        "icons": {
+                          "comment": {
+                            "text": "sensor direito (trig D32, echo D33)",
+                            "pinned": false,
+                            "height": 80,
+                            "width": 160
+                          }
+                        },
+                        "fields": {
+                          "VAR": {
+                            "id": "Epw.RuZ-br}HF+GuM=$u"
+                          }
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "abs_distancia",
+                              "id": "(we{E%[M=Z@_1X$K@_St",
+                              "fields": {
+                                "TRIG": "32",
+                                "ECHO": "33"
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_mostrar",
+                            "id": "pPBuz5ifldQ-,kg4foZB",
+                            "icons": {
+                              "comment": {
+                                "text": "as duas distancias no Monitor, para conferir o alinhamento",
+                                "pinned": false,
+                                "height": 80,
+                                "width": 160
+                              }
+                            },
+                            "fields": {
+                              "ROTULO": "esq"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "abs_ler",
+                                  "id": "OnD5E`ho`Jd6MO#FB%l-",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "5HANIhrO@#S^7Ddu]@Z|"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_mostrar",
+                                "id": "A9]#XdNexx=1q*T%v7=:",
+                                "fields": {
+                                  "ROTULO": "dir"
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "abs_ler",
+                                      "id": "DN5S*vWYBRzPIfxDRnNM",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "Epw.RuZ-br}HF+GuM=$u"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "abs_definir",
+                                    "id": "$vzQ*%Q3,2muJH-:YxRL",
+                                    "icons": {
+                                      "comment": {
+                                        "text": "normaliza a distancia do sensor esquerdo no Universo de Discurso",
+                                        "pinned": false,
+                                        "height": 80,
+                                        "width": 160
+                                      }
+                                    },
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "qe/5$j5]4m3k4[b:8VB#"
+                                      }
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "abs_evidencia",
+                                          "id": "`(kAR$1YtQzh4LQp#Nh@",
+                                          "inputs": {
+                                            "X": {
+                                              "block": {
+                                                "type": "abs_ler",
+                                                "id": "uHxzSY%4mge7*.p26H.I",
+                                                "fields": {
+                                                  "VAR": {
+                                                    "id": "5HANIhrO@#S^7Ddu]@Z|"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "A1": {
+                                              "block": {
+                                                "type": "abs_ler",
+                                                "id": "vp1i0[C1W^T0rLQsc1Z)",
+                                                "fields": {
+                                                  "VAR": {
+                                                    "id": "/|IR[zXo^,O#W06KIT=l"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "A2": {
+                                              "block": {
+                                                "type": "abs_ler",
+                                                "id": "uQW`M4N.]YEkaSGKhElJ",
+                                                "fields": {
+                                                  "VAR": {
+                                                    "id": ".ycmt,eTZ6S@cQMwGiM$"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_definir",
+                                        "id": "SPA/M=I={%uY~-#IKzan",
+                                        "icons": {
+                                          "comment": {
+                                            "text": "sensor direito, mesmo Universo de Discurso",
+                                            "pinned": false,
+                                            "height": 80,
+                                            "width": 160
+                                          }
+                                        },
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "EcUWafQE@=r%G(p9=w3]"
+                                          }
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "abs_evidencia",
+                                              "id": "?:ye+}BU}Af3IFj?HW?k",
+                                              "inputs": {
+                                                "X": {
+                                                  "block": {
+                                                    "type": "abs_ler",
+                                                    "id": "UE%3D}~z+](ExEko,1@Q",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "Epw.RuZ-br}HF+GuM=$u"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "A1": {
+                                                  "block": {
+                                                    "type": "abs_ler",
+                                                    "id": "x_+/c=k-dUN(T$$lh(@^",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "/|IR[zXo^,O#W06KIT=l"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "A2": {
+                                                  "block": {
+                                                    "type": "abs_ler",
+                                                    "id": "7UaL}Z8#AOK{/62b81t!",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": ".ycmt,eTZ6S@cQMwGiM$"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "abs_mostrar_reticulado",
+                                            "id": "v]LdS~7v~T0|29A#!Ku6",
+                                            "inputs": {
+                                              "MU": {
+                                                "block": {
+                                                  "type": "abs_ler",
+                                                  "id": "_m4Tp)O=BO5vAR@aQWfo",
+                                                  "fields": {
+                                                    "VAR": {
+                                                      "id": "qe/5$j5]4m3k4[b:8VB#"
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "LAMBDA": {
+                                                "block": {
+                                                  "type": "abs_conta",
+                                                  "id": "Y_zO[,v3XBM~)jVpi|~~",
+                                                  "fields": {
+                                                    "OP": "-"
+                                                  },
+                                                  "inputs": {
+                                                    "A": {
+                                                      "block": {
+                                                        "type": "ard_number",
+                                                        "id": ")rC1=aU|cas3FnA0^52:",
+                                                        "fields": {
+                                                          "NUM": 1
+                                                        }
+                                                      }
+                                                    },
+                                                    "B": {
+                                                      "block": {
+                                                        "type": "abs_ler",
+                                                        "id": "y7vn)oph;gx@IT;p(GfD",
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": "EcUWafQE@=r%G(p9=w3]"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "abs_quando_estado",
+                                                "id": "9M#WTis!+P;VDyXt~%8$",
+                                                "icons": {
+                                                  "comment": {
+                                                    "text": "mu = sensor esquerdo, lambda = 1 - sensor direito (o bloco faz o\ncomplemento). Gc = consenso dos dois; Gct = discordancia entre eles",
+                                                    "pinned": false,
+                                                    "height": 80,
+                                                    "width": 160
+                                                  }
+                                                },
+                                                "inputs": {
+                                                  "MU1": {
+                                                    "block": {
+                                                      "type": "abs_ler",
+                                                      "id": "+{mg3%jnnWM|8YxbojFg",
+                                                      "fields": {
+                                                        "VAR": {
+                                                          "id": "qe/5$j5]4m3k4[b:8VB#"
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "MU2": {
+                                                    "block": {
+                                                      "type": "abs_ler",
+                                                      "id": "0{zYB47=x@+gH2BB4-x=",
+                                                      "fields": {
+                                                        "VAR": {
+                                                          "id": "EcUWafQE@=r%G(p9=w3]"
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "CASOS": {
+                                                    "block": {
+                                                      "type": "abs_caso_estado",
+                                                      "id": "D#ACC}2I`ekdQZ)RAbv|",
+                                                      "fields": {
+                                                        "ESTADO": "LPA_V"
+                                                      },
+                                                      "inputs": {
+                                                        "BODY": {
+                                                          "block": {
+                                                            "type": "abs_mostrar",
+                                                            "id": "JWZQo4sGW^IY:|;*5iMw",
+                                                            "icons": {
+                                                              "comment": {
+                                                                "text": "V: os dois veem obstaculo -> recua e gira 90 graus",
+                                                                "pinned": false,
+                                                                "height": 80,
+                                                                "width": 160
+                                                              }
+                                                            },
+                                                            "fields": {
+                                                              "ROTULO": "estado"
+                                                            },
+                                                            "inputs": {
+                                                              "VALOR": {
+                                                                "block": {
+                                                                  "type": "ard_number",
+                                                                  "id": "?!Lw*4V*,%WXM`RX7!.X",
+                                                                  "fields": {
+                                                                    "NUM": 1
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "next": {
+                                                              "block": {
+                                                                "type": "abs_escrita_analogica",
+                                                                "id": "r*5v[4QU$MtkI#.ZO+.f",
+                                                                "icons": {
+                                                                  "comment": {
+                                                                    "text": "IN1 2 / IN2 4 = motor esquerdo | IN3 18 / IN4 19 = motor direito.\nOs quatro em 0 %: parado",
+                                                                    "pinned": false,
+                                                                    "height": 80,
+                                                                    "width": 160
+                                                                  }
+                                                                },
+                                                                "fields": {
+                                                                  "PIN": "2"
+                                                                },
+                                                                "inputs": {
+                                                                  "PCT": {
+                                                                    "block": {
+                                                                      "type": "ard_number",
+                                                                      "id": "Jsrr6Va*]eGkuXI.ONGN",
+                                                                      "fields": {
+                                                                        "NUM": 0
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "abs_escrita_analogica",
+                                                                    "id": "r4Zzp6)YDC`w6D_(+|Do",
+                                                                    "fields": {
+                                                                      "PIN": "4"
+                                                                    },
+                                                                    "inputs": {
+                                                                      "PCT": {
+                                                                        "block": {
+                                                                          "type": "ard_number",
+                                                                          "id": "#kuG=75A;o);]p-Y/+M]",
+                                                                          "fields": {
+                                                                            "NUM": 0
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "abs_escrita_analogica",
+                                                                        "id": ",HUL0ztrWc|oK~Ng/KG?",
+                                                                        "fields": {
+                                                                          "PIN": "18"
+                                                                        },
+                                                                        "inputs": {
+                                                                          "PCT": {
+                                                                            "block": {
+                                                                              "type": "ard_number",
+                                                                              "id": "2PFP^Of:w0IL^C=8L^kG",
+                                                                              "fields": {
+                                                                                "NUM": 0
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "abs_escrita_analogica",
+                                                                            "id": "|Y(lzIVe}p?/XTM`VX0x",
+                                                                            "fields": {
+                                                                              "PIN": "19"
+                                                                            },
+                                                                            "inputs": {
+                                                                              "PCT": {
+                                                                                "block": {
+                                                                                  "type": "ard_number",
+                                                                                  "id": "KCZx0kUl+jQ$Ro+(AFct",
+                                                                                  "fields": {
+                                                                                    "NUM": 0
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "next": {
+                                                                              "block": {
+                                                                                "type": "abs_esperar",
+                                                                                "id": "c]l5hu6PuP6k[VZJ2r?Y",
+                                                                                "fields": {
+                                                                                  "UNI": "ms"
+                                                                                },
+                                                                                "inputs": {
+                                                                                  "QTD": {
+                                                                                    "block": {
+                                                                                      "type": "ard_number",
+                                                                                      "id": ",k*m4m2UH6DF:hbsxgT|",
+                                                                                      "fields": {
+                                                                                        "NUM": 200
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "next": {
+                                                                                  "block": {
+                                                                                    "type": "abs_escrita_analogica",
+                                                                                    "id": "x)4Z3=q@R2!gky7DTU?v",
+                                                                                    "icons": {
+                                                                                      "comment": {
+                                                                                        "text": "os dois lados trocados: marcha a re",
+                                                                                        "pinned": false,
+                                                                                        "height": 80,
+                                                                                        "width": 160
+                                                                                      }
+                                                                                    },
+                                                                                    "fields": {
+                                                                                      "PIN": "2"
+                                                                                    },
+                                                                                    "inputs": {
+                                                                                      "PCT": {
+                                                                                        "block": {
+                                                                                          "type": "ard_number",
+                                                                                          "id": "]/Jd]ouF/-kA~Sho$Ei`",
+                                                                                          "fields": {
+                                                                                            "NUM": 0
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    "next": {
+                                                                                      "block": {
+                                                                                        "type": "abs_escrita_analogica",
+                                                                                        "id": "}A9d`ow8LpHc%RWjZf,p",
+                                                                                        "fields": {
+                                                                                          "PIN": "4"
+                                                                                        },
+                                                                                        "inputs": {
+                                                                                          "PCT": {
+                                                                                            "block": {
+                                                                                              "type": "abs_ler",
+                                                                                              "id": "liTDQ@@(5hkg+aIap3O[",
+                                                                                              "fields": {
+                                                                                                "VAR": {
+                                                                                                  "id": "^7}gdhc(UA0Hu]r.(?kO"
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        },
+                                                                                        "next": {
+                                                                                          "block": {
+                                                                                            "type": "abs_escrita_analogica",
+                                                                                            "id": "P,I#GR;uJ95Vx,jw?S{F",
+                                                                                            "fields": {
+                                                                                              "PIN": "18"
+                                                                                            },
+                                                                                            "inputs": {
+                                                                                              "PCT": {
+                                                                                                "block": {
+                                                                                                  "type": "ard_number",
+                                                                                                  "id": "q1.K.7hzA-~A$=p0/u^K",
+                                                                                                  "fields": {
+                                                                                                    "NUM": 0
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            },
+                                                                                            "next": {
+                                                                                              "block": {
+                                                                                                "type": "abs_escrita_analogica",
+                                                                                                "id": "A7X2q*Rd,!5%S;ASyg_x",
+                                                                                                "fields": {
+                                                                                                  "PIN": "19"
+                                                                                                },
+                                                                                                "inputs": {
+                                                                                                  "PCT": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_ler",
+                                                                                                      "id": "]}sOC2[lyMM;9Vsnl5xa",
+                                                                                                      "fields": {
+                                                                                                        "VAR": {
+                                                                                                          "id": "^7}gdhc(UA0Hu]r.(?kO"
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                },
+                                                                                                "next": {
+                                                                                                  "block": {
+                                                                                                    "type": "abs_esperar",
+                                                                                                    "id": "e,tjs909Xq81b_fc[qlL",
+                                                                                                    "fields": {
+                                                                                                      "UNI": "ms"
+                                                                                                    },
+                                                                                                    "inputs": {
+                                                                                                      "QTD": {
+                                                                                                        "block": {
+                                                                                                          "type": "ard_number",
+                                                                                                          "id": "h+`SG4h{EkCESIbJ.Nr!",
+                                                                                                          "fields": {
+                                                                                                            "NUM": 500
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    },
+                                                                                                    "next": {
+                                                                                                      "block": {
+                                                                                                        "type": "abs_escrita_analogica",
+                                                                                                        "id": "[(NF@`APz2nd90F;==Q4",
+                                                                                                        "icons": {
+                                                                                                          "comment": {
+                                                                                                            "text": "esquerdo para a frente e direito para tras: gira no proprio eixo",
+                                                                                                            "pinned": false,
+                                                                                                            "height": 80,
+                                                                                                            "width": 160
+                                                                                                          }
+                                                                                                        },
+                                                                                                        "fields": {
+                                                                                                          "PIN": "2"
+                                                                                                        },
+                                                                                                        "inputs": {
+                                                                                                          "PCT": {
+                                                                                                            "block": {
+                                                                                                              "type": "abs_ler",
+                                                                                                              "id": "Cvy[Q6mh(F)ZGsx6sk{$",
+                                                                                                              "fields": {
+                                                                                                                "VAR": {
+                                                                                                                  "id": "xR,2K~]zO[PWbyDMU*v4"
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        },
+                                                                                                        "next": {
+                                                                                                          "block": {
+                                                                                                            "type": "abs_escrita_analogica",
+                                                                                                            "id": "VTX{_N~(p=l2ojW?Cvkt",
+                                                                                                            "fields": {
+                                                                                                              "PIN": "4"
+                                                                                                            },
+                                                                                                            "inputs": {
+                                                                                                              "PCT": {
+                                                                                                                "block": {
+                                                                                                                  "type": "ard_number",
+                                                                                                                  "id": "]~gt8856a]+6cGnheVtU",
+                                                                                                                  "fields": {
+                                                                                                                    "NUM": 0
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            },
+                                                                                                            "next": {
+                                                                                                              "block": {
+                                                                                                                "type": "abs_escrita_analogica",
+                                                                                                                "id": "-@%^k#kk$LhzDtD:BA#K",
+                                                                                                                "fields": {
+                                                                                                                  "PIN": "18"
+                                                                                                                },
+                                                                                                                "inputs": {
+                                                                                                                  "PCT": {
+                                                                                                                    "block": {
+                                                                                                                      "type": "ard_number",
+                                                                                                                      "id": "W`uH6}naL5qbVkWD.~?!",
+                                                                                                                      "fields": {
+                                                                                                                        "NUM": 0
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                },
+                                                                                                                "next": {
+                                                                                                                  "block": {
+                                                                                                                    "type": "abs_escrita_analogica",
+                                                                                                                    "id": "{yVZoxhrl/#+3*Km$Sp?",
+                                                                                                                    "fields": {
+                                                                                                                      "PIN": "19"
+                                                                                                                    },
+                                                                                                                    "inputs": {
+                                                                                                                      "PCT": {
+                                                                                                                        "block": {
+                                                                                                                          "type": "abs_ler",
+                                                                                                                          "id": "iS*n3Dw={-AXa1dA]yCH",
+                                                                                                                          "fields": {
+                                                                                                                            "VAR": {
+                                                                                                                              "id": "xR,2K~]zO[PWbyDMU*v4"
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    },
+                                                                                                                    "next": {
+                                                                                                                      "block": {
+                                                                                                                        "type": "abs_esperar",
+                                                                                                                        "id": "{lL.|4/4K?W|JZY|VhrJ",
+                                                                                                                        "icons": {
+                                                                                                                          "comment": {
+                                                                                                                            "text": "T3 = 2 s: o giro de 90 graus do artigo. Este tempo foi medido a\nvelocidade cheia - mexeu em VEL_GIRO, remeça o angulo",
+                                                                                                                            "pinned": false,
+                                                                                                                            "height": 80,
+                                                                                                                            "width": 160
+                                                                                                                          }
+                                                                                                                        },
+                                                                                                                        "fields": {
+                                                                                                                          "UNI": "ms"
+                                                                                                                        },
+                                                                                                                        "inputs": {
+                                                                                                                          "QTD": {
+                                                                                                                            "block": {
+                                                                                                                              "type": "ard_number",
+                                                                                                                              "id": "DTBlce8US3zKLqUoXA%p",
+                                                                                                                              "fields": {
+                                                                                                                                "NUM": 2000
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        },
+                                                                                                                        "next": {
+                                                                                                                          "block": {
+                                                                                                                            "type": "abs_escrita_analogica",
+                                                                                                                            "id": "y7bv-Kc6`|m{i(-p)R+:",
+                                                                                                                            "icons": {
+                                                                                                                              "comment": {
+                                                                                                                                "text": "IN1 2 / IN2 4 = motor esquerdo | IN3 18 / IN4 19 = motor direito.\nOs quatro em 0 %: parado",
+                                                                                                                                "pinned": false,
+                                                                                                                                "height": 80,
+                                                                                                                                "width": 160
+                                                                                                                              }
+                                                                                                                            },
+                                                                                                                            "fields": {
+                                                                                                                              "PIN": "2"
+                                                                                                                            },
+                                                                                                                            "inputs": {
+                                                                                                                              "PCT": {
+                                                                                                                                "block": {
+                                                                                                                                  "type": "ard_number",
+                                                                                                                                  "id": "aN1H]ZGO|Yz`K%54y0JR",
+                                                                                                                                  "fields": {
+                                                                                                                                    "NUM": 0
+                                                                                                                                  }
+                                                                                                                                }
+                                                                                                                              }
+                                                                                                                            },
+                                                                                                                            "next": {
+                                                                                                                              "block": {
+                                                                                                                                "type": "abs_escrita_analogica",
+                                                                                                                                "id": "7%fC2K@l2]AZ!5e0cX{-",
+                                                                                                                                "fields": {
+                                                                                                                                  "PIN": "4"
+                                                                                                                                },
+                                                                                                                                "inputs": {
+                                                                                                                                  "PCT": {
+                                                                                                                                    "block": {
+                                                                                                                                      "type": "ard_number",
+                                                                                                                                      "id": "[f5eXjfOkXlgs-Y]z#5w",
+                                                                                                                                      "fields": {
+                                                                                                                                        "NUM": 0
+                                                                                                                                      }
+                                                                                                                                    }
+                                                                                                                                  }
+                                                                                                                                },
+                                                                                                                                "next": {
+                                                                                                                                  "block": {
+                                                                                                                                    "type": "abs_escrita_analogica",
+                                                                                                                                    "id": "%[}(Kz7bA@{^v:`1HBS.",
+                                                                                                                                    "fields": {
+                                                                                                                                      "PIN": "18"
+                                                                                                                                    },
+                                                                                                                                    "inputs": {
+                                                                                                                                      "PCT": {
+                                                                                                                                        "block": {
+                                                                                                                                          "type": "ard_number",
+                                                                                                                                          "id": "fpxY48U[WZ-YdS#1#OQ(",
+                                                                                                                                          "fields": {
+                                                                                                                                            "NUM": 0
+                                                                                                                                          }
+                                                                                                                                        }
+                                                                                                                                      }
+                                                                                                                                    },
+                                                                                                                                    "next": {
+                                                                                                                                      "block": {
+                                                                                                                                        "type": "abs_escrita_analogica",
+                                                                                                                                        "id": "ZX3e4O:Z3N;!H9Q9!4kF",
+                                                                                                                                        "fields": {
+                                                                                                                                          "PIN": "19"
+                                                                                                                                        },
+                                                                                                                                        "inputs": {
+                                                                                                                                          "PCT": {
+                                                                                                                                            "block": {
+                                                                                                                                              "type": "ard_number",
+                                                                                                                                              "id": "pKmo,ZDSMv@:0:`q3q|*",
+                                                                                                                                              "fields": {
+                                                                                                                                                "NUM": 0
+                                                                                                                                              }
+                                                                                                                                            }
+                                                                                                                                          }
+                                                                                                                                        }
+                                                                                                                                      }
+                                                                                                                                    }
+                                                                                                                                  }
+                                                                                                                                }
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "next": {
+                                                        "block": {
+                                                          "type": "abs_caso_estado",
+                                                          "id": "7q@;@al%PP68n[=SF$Zk",
+                                                          "fields": {
+                                                            "ESTADO": "LPA_F"
+                                                          },
+                                                          "inputs": {
+                                                            "BODY": {
+                                                              "block": {
+                                                                "type": "abs_mostrar",
+                                                                "id": "jJ!AgrTT3:nXpl{[y}ep",
+                                                                "icons": {
+                                                                  "comment": {
+                                                                    "text": "F: os dois veem caminho livre -> toca em frente",
+                                                                    "pinned": false,
+                                                                    "height": 80,
+                                                                    "width": 160
+                                                                  }
+                                                                },
+                                                                "fields": {
+                                                                  "ROTULO": "estado"
+                                                                },
+                                                                "inputs": {
+                                                                  "VALOR": {
+                                                                    "block": {
+                                                                      "type": "ard_number",
+                                                                      "id": "xKQ@@55$Bc}O5ur0v%[l",
+                                                                      "fields": {
+                                                                        "NUM": 0
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "abs_escrita_analogica",
+                                                                    "id": "/x[P/8H8]yy-=mSmqr;.",
+                                                                    "icons": {
+                                                                      "comment": {
+                                                                        "text": "IN1 com intensidade e IN2 em zero (e IN3/IN4 igual): os dois motores\npara a frente, na velocidade da caixa VEL_FRENTE",
+                                                                        "pinned": false,
+                                                                        "height": 80,
+                                                                        "width": 160
+                                                                      }
+                                                                    },
+                                                                    "fields": {
+                                                                      "PIN": "2"
+                                                                    },
+                                                                    "inputs": {
+                                                                      "PCT": {
+                                                                        "block": {
+                                                                          "type": "abs_ler",
+                                                                          "id": "a(DyK}zIGoi2/8BfA!,y",
+                                                                          "fields": {
+                                                                            "VAR": {
+                                                                              "id": "t~ht:XYm/dhl?gd8r:}6"
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "abs_escrita_analogica",
+                                                                        "id": "txUIJc9:(,:!xgZy!.Jg",
+                                                                        "fields": {
+                                                                          "PIN": "4"
+                                                                        },
+                                                                        "inputs": {
+                                                                          "PCT": {
+                                                                            "block": {
+                                                                              "type": "ard_number",
+                                                                              "id": "Bx|Gc?v|Mk)wKld#1uG#",
+                                                                              "fields": {
+                                                                                "NUM": 0
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "abs_escrita_analogica",
+                                                                            "id": "iUzS74bFst6u;SN)DIN3",
+                                                                            "fields": {
+                                                                              "PIN": "18"
+                                                                            },
+                                                                            "inputs": {
+                                                                              "PCT": {
+                                                                                "block": {
+                                                                                  "type": "abs_ler",
+                                                                                  "id": "aJHQI`=81|DkH7Y2-m7p",
+                                                                                  "fields": {
+                                                                                    "VAR": {
+                                                                                      "id": "t~ht:XYm/dhl?gd8r:}6"
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "next": {
+                                                                              "block": {
+                                                                                "type": "abs_escrita_analogica",
+                                                                                "id": "=dvWaSC;z4VjC{B5aW+6",
+                                                                                "fields": {
+                                                                                  "PIN": "19"
+                                                                                },
+                                                                                "inputs": {
+                                                                                  "PCT": {
+                                                                                    "block": {
+                                                                                      "type": "ard_number",
+                                                                                      "id": "Dyt,OUZ9/#YKru%i1oCG",
+                                                                                      "fields": {
+                                                                                        "NUM": 0
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "next": {
+                                                            "block": {
+                                                              "type": "abs_caso_estado",
+                                                              "id": "M:LE7rK5yfgKV!1S8S?6",
+                                                              "fields": {
+                                                                "ESTADO": "LPA_T"
+                                                              },
+                                                              "inputs": {
+                                                                "BODY": {
+                                                                  "block": {
+                                                                    "type": "abs_mostrar",
+                                                                    "id": "T{k)V+pX*3n~wZdfBPf_",
+                                                                    "icons": {
+                                                                      "comment": {
+                                                                        "text": "T: contradicao -> avanca devagar para as leituras desempatarem",
+                                                                        "pinned": false,
+                                                                        "height": 80,
+                                                                        "width": 160
+                                                                      }
+                                                                    },
+                                                                    "fields": {
+                                                                      "ROTULO": "estado"
+                                                                    },
+                                                                    "inputs": {
+                                                                      "VALOR": {
+                                                                        "block": {
+                                                                          "type": "ard_number",
+                                                                          "id": "_$CB{f]DnD?n[D2$/Kpu",
+                                                                          "fields": {
+                                                                            "NUM": 2
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "abs_escrita_analogica",
+                                                                        "id": "f:ZqeHE^J@ggc^qg=_TT",
+                                                                        "icons": {
+                                                                          "comment": {
+                                                                            "text": "o empurrao: tira o motor da inercia antes de assentar na marcha lenta",
+                                                                            "pinned": false,
+                                                                            "height": 80,
+                                                                            "width": 160
+                                                                          }
+                                                                        },
+                                                                        "fields": {
+                                                                          "PIN": "2"
+                                                                        },
+                                                                        "inputs": {
+                                                                          "PCT": {
+                                                                            "block": {
+                                                                              "type": "abs_ler",
+                                                                              "id": "_}SZ_Sum_Fye#VE^$`Q9",
+                                                                              "fields": {
+                                                                                "VAR": {
+                                                                                  "id": "05c$}vefx}LWD~07D?.0"
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "abs_escrita_analogica",
+                                                                            "id": "kfiX8#en]/5IF;_`}l*]",
+                                                                            "fields": {
+                                                                              "PIN": "4"
+                                                                            },
+                                                                            "inputs": {
+                                                                              "PCT": {
+                                                                                "block": {
+                                                                                  "type": "ard_number",
+                                                                                  "id": "wE3U70!_LV%?97m_b|@!",
+                                                                                  "fields": {
+                                                                                    "NUM": 0
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "next": {
+                                                                              "block": {
+                                                                                "type": "abs_escrita_analogica",
+                                                                                "id": "$HFla0hM5u*u7N:fI_!K",
+                                                                                "fields": {
+                                                                                  "PIN": "18"
+                                                                                },
+                                                                                "inputs": {
+                                                                                  "PCT": {
+                                                                                    "block": {
+                                                                                      "type": "abs_ler",
+                                                                                      "id": "B8}m3E#*@tNEA/2vuT72",
+                                                                                      "fields": {
+                                                                                        "VAR": {
+                                                                                          "id": "05c$}vefx}LWD~07D?.0"
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "next": {
+                                                                                  "block": {
+                                                                                    "type": "abs_escrita_analogica",
+                                                                                    "id": "P8]s2(UPYXzHFvg$L?(D",
+                                                                                    "fields": {
+                                                                                      "PIN": "19"
+                                                                                    },
+                                                                                    "inputs": {
+                                                                                      "PCT": {
+                                                                                        "block": {
+                                                                                          "type": "ard_number",
+                                                                                          "id": "w.^g2rm:QAKaAQJ1``.u",
+                                                                                          "fields": {
+                                                                                            "NUM": 0
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    "next": {
+                                                                                      "block": {
+                                                                                        "type": "abs_esperar",
+                                                                                        "id": "hamyOYUKW?jWb_m$xczh",
+                                                                                        "fields": {
+                                                                                          "UNI": "ms"
+                                                                                        },
+                                                                                        "inputs": {
+                                                                                          "QTD": {
+                                                                                            "block": {
+                                                                                              "type": "ard_number",
+                                                                                              "id": "t?;|^-SK3d:k=y-XL#|~",
+                                                                                              "fields": {
+                                                                                                "NUM": 80
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        },
+                                                                                        "next": {
+                                                                                          "block": {
+                                                                                            "type": "abs_escrita_analogica",
+                                                                                            "id": ".}Q104a5GCUt//!#u*zj",
+                                                                                            "icons": {
+                                                                                              "comment": {
+                                                                                                "text": "assenta na marcha lenta: e assim que se dilui contradicao",
+                                                                                                "pinned": false,
+                                                                                                "height": 80,
+                                                                                                "width": 160
+                                                                                              }
+                                                                                            },
+                                                                                            "fields": {
+                                                                                              "PIN": "2"
+                                                                                            },
+                                                                                            "inputs": {
+                                                                                              "PCT": {
+                                                                                                "block": {
+                                                                                                  "type": "abs_ler",
+                                                                                                  "id": "1FQcXYp:[x$@z}[klr?f",
+                                                                                                  "fields": {
+                                                                                                    "VAR": {
+                                                                                                      "id": "89uA*Ir+kBSyQw5[mUA,"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            },
+                                                                                            "next": {
+                                                                                              "block": {
+                                                                                                "type": "abs_escrita_analogica",
+                                                                                                "id": "oo*xFF#?$C:d|Qs|$f,7",
+                                                                                                "fields": {
+                                                                                                  "PIN": "4"
+                                                                                                },
+                                                                                                "inputs": {
+                                                                                                  "PCT": {
+                                                                                                    "block": {
+                                                                                                      "type": "ard_number",
+                                                                                                      "id": "K,b|TCB#?FC3skR^zRI|",
+                                                                                                      "fields": {
+                                                                                                        "NUM": 0
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                },
+                                                                                                "next": {
+                                                                                                  "block": {
+                                                                                                    "type": "abs_escrita_analogica",
+                                                                                                    "id": "[L*?$W9[`rAkeGjx?S34",
+                                                                                                    "fields": {
+                                                                                                      "PIN": "18"
+                                                                                                    },
+                                                                                                    "inputs": {
+                                                                                                      "PCT": {
+                                                                                                        "block": {
+                                                                                                          "type": "abs_ler",
+                                                                                                          "id": "+jYr-%K(oP8BNR|/psN?",
+                                                                                                          "fields": {
+                                                                                                            "VAR": {
+                                                                                                              "id": "89uA*Ir+kBSyQw5[mUA,"
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    },
+                                                                                                    "next": {
+                                                                                                      "block": {
+                                                                                                        "type": "abs_escrita_analogica",
+                                                                                                        "id": "WVM$h^Cndxu*OH-{ML2@",
+                                                                                                        "fields": {
+                                                                                                          "PIN": "19"
+                                                                                                        },
+                                                                                                        "inputs": {
+                                                                                                          "PCT": {
+                                                                                                            "block": {
+                                                                                                              "type": "ard_number",
+                                                                                                              "id": "y#2h,T-S5+(oa?#6P`qg",
+                                                                                                              "fields": {
+                                                                                                                "NUM": 0
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        },
+                                                                                                        "next": {
+                                                                                                          "block": {
+                                                                                                            "type": "abs_esperar",
+                                                                                                            "id": "q0q{Lz1GU*)*o(mSd~B@",
+                                                                                                            "icons": {
+                                                                                                              "comment": {
+                                                                                                                "text": "T1 = 0,75 s",
+                                                                                                                "pinned": false,
+                                                                                                                "height": 80,
+                                                                                                                "width": 160
+                                                                                                              }
+                                                                                                            },
+                                                                                                            "fields": {
+                                                                                                              "UNI": "ms"
+                                                                                                            },
+                                                                                                            "inputs": {
+                                                                                                              "QTD": {
+                                                                                                                "block": {
+                                                                                                                  "type": "ard_number",
+                                                                                                                  "id": "N}a4KE`.I=Gt[o(E%C=M",
+                                                                                                                  "fields": {
+                                                                                                                    "NUM": 750
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              },
+                                                              "next": {
+                                                                "block": {
+                                                                  "type": "abs_caso_estado",
+                                                                  "id": "S9KU+:sGiq77GgF-zG|5",
+                                                                  "fields": {
+                                                                    "ESTADO": "LPA_PC"
+                                                                  },
+                                                                  "inputs": {
+                                                                    "BODY": {
+                                                                      "block": {
+                                                                        "type": "abs_mostrar",
+                                                                        "id": "2$.zQwLXWkwy{l4?Z}Ne",
+                                                                        "icons": {
+                                                                          "comment": {
+                                                                            "text": "perpendicular: um ve obstaculo e o outro ve livre. Um dos dois esta\nerrado. Parar aqui era uma decisao que NAO mudava a evidencia:\nparado, os sensores repetiam a mesma discordancia e o robo ficava\nali para sempre. Meia manobra muda a geometria e permite remedir",
+                                                                            "pinned": false,
+                                                                            "height": 80,
+                                                                            "width": 160
+                                                                          }
+                                                                        },
+                                                                        "fields": {
+                                                                          "ROTULO": "estado"
+                                                                        },
+                                                                        "inputs": {
+                                                                          "VALOR": {
+                                                                            "block": {
+                                                                              "type": "ard_number",
+                                                                              "id": "6:%9ljPA=y?K6A,KC-#x",
+                                                                              "fields": {
+                                                                                "NUM": 3
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "abs_escrita_analogica",
+                                                                            "id": "m+^@EJZ)Nd:M=I1=u4cU",
+                                                                            "icons": {
+                                                                              "comment": {
+                                                                                "text": "os dois lados trocados: marcha a re",
+                                                                                "pinned": false,
+                                                                                "height": 80,
+                                                                                "width": 160
+                                                                              }
+                                                                            },
+                                                                            "fields": {
+                                                                              "PIN": "2"
+                                                                            },
+                                                                            "inputs": {
+                                                                              "PCT": {
+                                                                                "block": {
+                                                                                  "type": "ard_number",
+                                                                                  "id": "0~S/^@YHO`DL}({7f_Nz",
+                                                                                  "fields": {
+                                                                                    "NUM": 0
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "next": {
+                                                                              "block": {
+                                                                                "type": "abs_escrita_analogica",
+                                                                                "id": "R^4}|tn~t=oLTDuD6(:B",
+                                                                                "fields": {
+                                                                                  "PIN": "4"
+                                                                                },
+                                                                                "inputs": {
+                                                                                  "PCT": {
+                                                                                    "block": {
+                                                                                      "type": "abs_ler",
+                                                                                      "id": "4jB.+Pz^/Z0g2ht(p8X6",
+                                                                                      "fields": {
+                                                                                        "VAR": {
+                                                                                          "id": "^7}gdhc(UA0Hu]r.(?kO"
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "next": {
+                                                                                  "block": {
+                                                                                    "type": "abs_escrita_analogica",
+                                                                                    "id": "H-]bwW?9d,R/rP|[14}o",
+                                                                                    "fields": {
+                                                                                      "PIN": "18"
+                                                                                    },
+                                                                                    "inputs": {
+                                                                                      "PCT": {
+                                                                                        "block": {
+                                                                                          "type": "ard_number",
+                                                                                          "id": "K;)H}^q9bdElR0xk{Zfa",
+                                                                                          "fields": {
+                                                                                            "NUM": 0
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    "next": {
+                                                                                      "block": {
+                                                                                        "type": "abs_escrita_analogica",
+                                                                                        "id": "#t{$7-SE#J6:|bM=1KG]",
+                                                                                        "fields": {
+                                                                                          "PIN": "19"
+                                                                                        },
+                                                                                        "inputs": {
+                                                                                          "PCT": {
+                                                                                            "block": {
+                                                                                              "type": "abs_ler",
+                                                                                              "id": "T-n]b.A_-Mo|KS_dmM|v",
+                                                                                              "fields": {
+                                                                                                "VAR": {
+                                                                                                  "id": "^7}gdhc(UA0Hu]r.(?kO"
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        },
+                                                                                        "next": {
+                                                                                          "block": {
+                                                                                            "type": "abs_esperar",
+                                                                                            "id": "^Rye%n5+D5x3:d8DysPu",
+                                                                                            "fields": {
+                                                                                              "UNI": "ms"
+                                                                                            },
+                                                                                            "inputs": {
+                                                                                              "QTD": {
+                                                                                                "block": {
+                                                                                                  "type": "ard_number",
+                                                                                                  "id": "8]|iIgZD{$Kv$BHwX8*v",
+                                                                                                  "fields": {
+                                                                                                    "NUM": 300
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            },
+                                                                                            "next": {
+                                                                                              "block": {
+                                                                                                "type": "abs_escrita_analogica",
+                                                                                                "id": "r[[(F{QHhwE?gkPCtkCu",
+                                                                                                "icons": {
+                                                                                                  "comment": {
+                                                                                                    "text": "esquerdo para a frente e direito para tras: gira no proprio eixo",
+                                                                                                    "pinned": false,
+                                                                                                    "height": 80,
+                                                                                                    "width": 160
+                                                                                                  }
+                                                                                                },
+                                                                                                "fields": {
+                                                                                                  "PIN": "2"
+                                                                                                },
+                                                                                                "inputs": {
+                                                                                                  "PCT": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_ler",
+                                                                                                      "id": "8{C5iiypJ{,xXq;]6LH.",
+                                                                                                      "fields": {
+                                                                                                        "VAR": {
+                                                                                                          "id": "xR,2K~]zO[PWbyDMU*v4"
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                },
+                                                                                                "next": {
+                                                                                                  "block": {
+                                                                                                    "type": "abs_escrita_analogica",
+                                                                                                    "id": "U4vU]hJIrja:j/{+fr5[",
+                                                                                                    "fields": {
+                                                                                                      "PIN": "4"
+                                                                                                    },
+                                                                                                    "inputs": {
+                                                                                                      "PCT": {
+                                                                                                        "block": {
+                                                                                                          "type": "ard_number",
+                                                                                                          "id": "+0f;ztdJ!_8kQ0[%|BPa",
+                                                                                                          "fields": {
+                                                                                                            "NUM": 0
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    },
+                                                                                                    "next": {
+                                                                                                      "block": {
+                                                                                                        "type": "abs_escrita_analogica",
+                                                                                                        "id": "ngt,0dX;lf-cewjl@b?o",
+                                                                                                        "fields": {
+                                                                                                          "PIN": "18"
+                                                                                                        },
+                                                                                                        "inputs": {
+                                                                                                          "PCT": {
+                                                                                                            "block": {
+                                                                                                              "type": "ard_number",
+                                                                                                              "id": "JT4lbA#TZdUcZ9qkG8xc",
+                                                                                                              "fields": {
+                                                                                                                "NUM": 0
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        },
+                                                                                                        "next": {
+                                                                                                          "block": {
+                                                                                                            "type": "abs_escrita_analogica",
+                                                                                                            "id": "%%InvzU5h9a*8;rC74QO",
+                                                                                                            "fields": {
+                                                                                                              "PIN": "19"
+                                                                                                            },
+                                                                                                            "inputs": {
+                                                                                                              "PCT": {
+                                                                                                                "block": {
+                                                                                                                  "type": "abs_ler",
+                                                                                                                  "id": "x}c}06L[![-YG|L)t|~_",
+                                                                                                                  "fields": {
+                                                                                                                    "VAR": {
+                                                                                                                      "id": "xR,2K~]zO[PWbyDMU*v4"
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            },
+                                                                                                            "next": {
+                                                                                                              "block": {
+                                                                                                                "type": "abs_esperar",
+                                                                                                                "id": "GHk$SgjXq1#9`;0X}TxY",
+                                                                                                                "fields": {
+                                                                                                                  "UNI": "ms"
+                                                                                                                },
+                                                                                                                "inputs": {
+                                                                                                                  "QTD": {
+                                                                                                                    "block": {
+                                                                                                                      "type": "ard_number",
+                                                                                                                      "id": "K.XrFb$DpV{^~roB*/vB",
+                                                                                                                      "fields": {
+                                                                                                                        "NUM": 600
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                },
+                                                                                                                "next": {
+                                                                                                                  "block": {
+                                                                                                                    "type": "abs_escrita_analogica",
+                                                                                                                    "id": "8{H@ZGSn8o|Z(%BF]7X|",
+                                                                                                                    "icons": {
+                                                                                                                      "comment": {
+                                                                                                                        "text": "IN1 2 / IN2 4 = motor esquerdo | IN3 18 / IN4 19 = motor direito.\nOs quatro em 0 %: parado",
+                                                                                                                        "pinned": false,
+                                                                                                                        "height": 80,
+                                                                                                                        "width": 160
+                                                                                                                      }
+                                                                                                                    },
+                                                                                                                    "fields": {
+                                                                                                                      "PIN": "2"
+                                                                                                                    },
+                                                                                                                    "inputs": {
+                                                                                                                      "PCT": {
+                                                                                                                        "block": {
+                                                                                                                          "type": "ard_number",
+                                                                                                                          "id": "9%,)PKKc]m+HAPCho)t2",
+                                                                                                                          "fields": {
+                                                                                                                            "NUM": 0
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    },
+                                                                                                                    "next": {
+                                                                                                                      "block": {
+                                                                                                                        "type": "abs_escrita_analogica",
+                                                                                                                        "id": "~xl%SiGQjPMYemn6*}5E",
+                                                                                                                        "fields": {
+                                                                                                                          "PIN": "4"
+                                                                                                                        },
+                                                                                                                        "inputs": {
+                                                                                                                          "PCT": {
+                                                                                                                            "block": {
+                                                                                                                              "type": "ard_number",
+                                                                                                                              "id": "DWziF2{BzOE7w5^J6MhR",
+                                                                                                                              "fields": {
+                                                                                                                                "NUM": 0
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        },
+                                                                                                                        "next": {
+                                                                                                                          "block": {
+                                                                                                                            "type": "abs_escrita_analogica",
+                                                                                                                            "id": "wPDJ,N@Nd$=jyz2Ly|,W",
+                                                                                                                            "fields": {
+                                                                                                                              "PIN": "18"
+                                                                                                                            },
+                                                                                                                            "inputs": {
+                                                                                                                              "PCT": {
+                                                                                                                                "block": {
+                                                                                                                                  "type": "ard_number",
+                                                                                                                                  "id": "2/Tr9OnuXA2|3S?ou@t9",
+                                                                                                                                  "fields": {
+                                                                                                                                    "NUM": 0
+                                                                                                                                  }
+                                                                                                                                }
+                                                                                                                              }
+                                                                                                                            },
+                                                                                                                            "next": {
+                                                                                                                              "block": {
+                                                                                                                                "type": "abs_escrita_analogica",
+                                                                                                                                "id": "TNxrY,H#z#MNQqpC#,7N",
+                                                                                                                                "fields": {
+                                                                                                                                  "PIN": "19"
+                                                                                                                                },
+                                                                                                                                "inputs": {
+                                                                                                                                  "PCT": {
+                                                                                                                                    "block": {
+                                                                                                                                      "type": "ard_number",
+                                                                                                                                      "id": "!=V|$iM)O6~CPkcS?:6+",
+                                                                                                                                      "fields": {
+                                                                                                                                        "NUM": 0
+                                                                                                                                      }
+                                                                                                                                    }
+                                                                                                                                  }
+                                                                                                                                }
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "abs_esperar",
+                                                    "id": "DEC0UP$D_7gX/{@L#|N@",
+                                                    "icons": {
+                                                      "comment": {
+                                                        "text": "respiro entre disparos do ultrassom",
+                                                        "pinned": false,
+                                                        "height": 80,
+                                                        "width": 160
+                                                      }
+                                                    },
+                                                    "fields": {
+                                                      "UNI": "ms"
+                                                    },
+                                                    "inputs": {
+                                                      "QTD": {
+                                                        "block": {
+                                                          "type": "ard_number",
+                                                          "id": "vY|]B2ovmKpTO-$E~h,Y",
+                                                          "fields": {
+                                                            "NUM": 100
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "variables": [
+      {
+        "name": "UD_LONGE",
+        "id": "/|IR[zXo^,O#W06KIT=l"
+      },
+      {
+        "name": "UD_PERTO",
+        "id": ".ycmt,eTZ6S@cQMwGiM$"
+      },
+      {
+        "name": "distEsq",
+        "id": "5HANIhrO@#S^7Ddu]@Z|"
+      },
+      {
+        "name": "distDir",
+        "id": "Epw.RuZ-br}HF+GuM=$u"
+      },
+      {
+        "name": "evidEsq",
+        "id": "qe/5$j5]4m3k4[b:8VB#"
+      },
+      {
+        "name": "evidDir",
+        "id": "EcUWafQE@=r%G(p9=w3]"
+      },
+      {
+        "name": "VEL_FRENTE",
+        "id": "t~ht:XYm/dhl?gd8r:}6"
+      },
+      {
+        "name": "VEL_LENTA",
+        "id": "89uA*Ir+kBSyQw5[mUA,"
+      },
+      {
+        "name": "VEL_ARRANQUE",
+        "id": "05c$}vefx}LWD~07D?.0"
+      },
+      {
+        "name": "VEL_RE",
+        "id": "^7}gdhc(UA0Hu]r.(?kO"
+      },
+      {
+        "name": "VEL_GIRO",
+        "id": "xR,2K~]zO[PWbyDMU*v4"
+      }
+    ]
+  }
+}

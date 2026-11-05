@@ -331,6 +331,8 @@
             ];
             if (temLib('Servo')) io.push(b('abs_servo', { inputs: { ANGULO: num(90) } }));
             if (tem('tone')) io.push(b('abs_nota', { inputs: { FREQ: num(440), DUR: num(200) } }));
+            io.push(b('abs_motores_pinos'));
+            io.push(b('abs_motores', { inputs: { VEL: num(30) } }));
             cats.push({ kind: 'category', name: 'Sensores e atuadores', colour: '20', contents: io });
 
             cats.push({
@@ -347,6 +349,27 @@
                     b('abs_mostrar_reticulado', { inputs: { MU: num(0.5), LAMBDA: num(0.5) } })
                 ]
             });
+
+            // A página é servida pela própria placa: só existe onde há rádio.
+            if (tem('wifi')) {
+                cats.push({
+                    kind: 'category', name: 'Página web', colour: '100', contents: [
+                        b('abs_wifi_rede_aberta'),
+                        b('abs_wifi_entrar'),
+                        b('abs_wifi_ip_fixo'),
+                        b('abs_web_servidor'),
+                        b('abs_web_botao'),
+                        b('abs_web_mostrar', { inputs: { VALOR: num(0) } }),
+                        b('abs_web_reticulado', { inputs: { MU: num(0.5), LAMBDA: num(0.5) } }),
+                        b('abs_web_atender'),
+                        b('abs_web_esperar', { inputs: { MS: num(100) } })
+                    ].concat(tem('camera') ? [
+                        b('abs_camera_ligar'),
+                        b('abs_web_camera_mostrar'),
+                        b('abs_web_camera_esconder')
+                    ] : [])
+                });
+            }
 
             cats.push({
                 kind: 'category', name: 'Decidir e repetir', colour: '210', contents: [
@@ -374,6 +397,12 @@
 
             cats.push({
                 kind: 'category', name: 'Guardar valores', colour: '330', contents: [
+                    // O Modo Literal usa a categoria dinâmica do Blockly
+                    // (custom: 'VARIABLE'), que já traz o botão de criar. Aqui a
+                    // lista é estática, para oferecer os blocos "caixa" em vez dos
+                    // variables_* padrão — e sem este botão o aluno ficava preso à
+                    // única variável que o campo cria sozinho.
+                    { kind: 'button', text: 'Criar caixa…', callbackKey: 'ABS_CRIAR_CAIXA' },
                     b('abs_criar', { inputs: { VALOR: num(0) } }),
                     b('abs_definir', { inputs: { VALOR: num(0) } }),
                     b('abs_ler')
@@ -385,6 +414,7 @@
                     b('abs_evidencia', { inputs: { X: num(0), A1: num(0), A2: num(1023) } }),
                     b('abs_quando_estado', { inputs: { MU1: num(0.5), MU2: num(0.5) } }),
                     b('abs_caso_estado'),
+                    b('abs_senao_estado'),
                     b('abs_grau', { inputs: { MU1: num(0.5), MU2: num(0.5) } }),
                     b('abs_contradicao', { inputs: { MU1: num(0.5), MU2: num(0.5) } }),
                     b('abs_combinar', { inputs: { A: num(0.5), B: num(0.5) } })

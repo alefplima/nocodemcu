@@ -1,6 +1,6 @@
 {
   "formato": "taskarduino/1",
-  "salvoEm": "2026-08-17T20:19:44.710Z",
+  "salvoEm": "2026-09-11T14:44:07.527Z",
   "placa": "uno",
   "modo": "literal",
   "nome": "Botão com pull-up interno",
@@ -10,14 +10,14 @@
       "blocks": [
         {
           "type": "ard_setup",
-          "id": "l06gk*LzGx?056[;+tpq",
+          "id": "!?s5EaianwClGRtWsWj%",
           "x": 40,
           "y": 40,
           "inputs": {
             "BODY": {
               "block": {
                 "type": "ard_serial_begin",
-                "id": "^GQXP!K8Efmbc]Ud|n!K",
+                "id": "`q4U-6[_6iVh4NtYa_7.",
                 "fields": {
                   "PORTA": "Serial",
                   "BAUD": "9600"
@@ -25,7 +25,7 @@
                 "next": {
                   "block": {
                     "type": "ard_pinmode",
-                    "id": "onb)uJS{l7nwq6IxvfZf",
+                    "id": "O?=fwZ~4W0w,.AMiyHP/",
                     "icons": {
                       "comment": {
                         "text": "pino 2 = botao, ligado entre o pino e o GND (so dois fios).\nINPUT_PULLUP usa o resistor de dentro do chip, entao a leitura\nfica invertida: solto le HIGH, apertado le LOW",
@@ -41,7 +41,7 @@
                     "next": {
                       "block": {
                         "type": "ard_pinmode",
-                        "id": "W+*gn@HvV7|i*nC3fW{{",
+                        "id": "lwc#1SYtoZmLP~d!qA55",
                         "icons": {
                           "comment": {
                             "text": "pino 13 = LED da placa",
@@ -64,19 +64,19 @@
         },
         {
           "type": "ard_loop",
-          "id": "9phT{#YFgIlFo=3zg;/@",
+          "id": "3sv.l2cQHiI9R**kilCR",
           "x": 40,
           "y": 328,
           "inputs": {
             "BODY": {
               "block": {
                 "type": "controls_if",
-                "id": "N9}wQ-6VE=RV(Y.=G7GI",
+                "id": ".9S2};X`1(0N2u.,AkFF",
                 "inputs": {
                   "IF0": {
                     "block": {
                       "type": "logic_compare",
-                      "id": "^!1zJO:mF)E,`H5;R#Ts",
+                      "id": "Yy]O$=(b]/123N?F!F,D",
                       "fields": {
                         "OP": "EQ"
                       },
@@ -84,7 +84,7 @@
                         "A": {
                           "block": {
                             "type": "ard_digitalread",
-                            "id": "Hh+}Z?QyyM67]!yT4cRJ",
+                            "id": "adC|;vG:7E!$VmrqAWRz",
                             "fields": {
                               "PIN": "2"
                             }
@@ -93,7 +93,7 @@
                         "B": {
                           "block": {
                             "type": "ard_const",
-                            "id": "^4i{NS7UM!(K8dW!789~",
+                            "id": "P-syUr6!;s:CsYhChTob",
                             "fields": {
                               "CONST": "LOW"
                             }
@@ -105,7 +105,7 @@
                   "DO0": {
                     "block": {
                       "type": "ard_digitalwrite",
-                      "id": "33]R{Tfoij]H!=l,K0q~",
+                      "id": "u5)){Sg;`sDK]p?_Rm2f",
                       "fields": {
                         "PIN": "13"
                       },
@@ -113,7 +113,7 @@
                         "VALOR": {
                           "block": {
                             "type": "ard_const",
-                            "id": "5hT@a%r%qKit1gN:ZPru",
+                            "id": "s$saJGEJ?{#;h;|G$-6}",
                             "fields": {
                               "CONST": "HIGH"
                             }
@@ -123,7 +123,7 @@
                       "next": {
                         "block": {
                           "type": "ard_serial_println",
-                          "id": "pq2-V?RqJW6/w1p7UHC1",
+                          "id": "*lt#oFd)^Ii+HooB1x9l",
                           "fields": {
                             "PORTA": "Serial"
                           },
@@ -131,7 +131,7 @@
                             "VALOR": {
                               "block": {
                                 "type": "ard_text",
-                                "id": "]H#(7W6;-U*y|2*#BVnP",
+                                "id": "|g6|/onR4%$x69I0jwQz",
                                 "fields": {
                                   "TEXTO": "apertado"
                                 }

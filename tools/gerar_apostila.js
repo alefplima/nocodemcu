@@ -394,7 +394,7 @@ const dados = {
     grupos: grupos,
     cenarios: cenarios,
     sketch: {
-        medirSensores: trecho('void medirSensores() {', 22),
+        medirSensores: trecho('void medirSensores() {', 21),
         loop: trecho('void loop() {', 30),
         depositar: trecho('void depositar() {', 16)
     }

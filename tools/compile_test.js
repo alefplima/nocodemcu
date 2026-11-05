@@ -520,6 +520,130 @@ const FIXTURES = [
         ],
         pino: 'LED',
         pinoAnalog: 'ADC'
+    },
+
+    // Modo Abstrato com página web: o servidor, o HTML e o JavaScript do
+    // reticulado saem inteiros do gerador, e são a maior porção de C++ que um
+    // bloco só produz no projeto. Rádio e String de sobra: só nas placas com
+    // WiFi.
+    {
+        nome: 'abstrato com página web',
+        placas: ['esp32', 'esp32s3cam', 'esp8266'],
+        specs: [
+            {
+                t: 'abs_ao_iniciar', s: {
+                    BODY: [
+                        { t: 'abs_motores_pinos', f: { E1: 'PWM', E2: 'PWM', D1: 'PWM', D2: 'PWM' } },
+                        { t: 'abs_criar', f: { VAR: 'velocidade' }, v: { VALOR: N(29) } },
+                        { t: 'abs_wifi_rede_aberta', f: { NOME: 'emmy2' } },
+                        { t: 'abs_web_servidor', f: { PORTA_REDE: 80 } }
+                    ]
+                }
+            },
+            {
+                t: 'abs_sempre', s: {
+                    BODY: [
+                        { t: 'abs_web_atender' },
+                        {
+                            t: 'abs_web_mostrar', f: { ROTULO: 'esq' },
+                            v: { VALOR: { t: 'abs_distancia', f: { TRIG: 'LED', ECHO: 'LED' } } }
+                        },
+                        {
+                            t: 'abs_web_reticulado',
+                            v: {
+                                MU: { t: 'abs_evidencia', v: { X: N(13), A1: N(25), A2: N(12) } },
+                                LAMBDA: N(0.2)
+                            }
+                        },
+                        {
+                            t: 'abs_se', v: { COND: { t: 'abs_web_botao', f: { NOME: 'frente' } } },
+                            s: {
+                                ENTAO: [{
+                                    t: 'abs_motores', f: { MANOBRA: 'FRENTE' },
+                                    v: { VEL: { t: 'abs_ler', f: { VAR: 'velocidade' } } }
+                                }]
+                            }
+                        },
+                        {
+                            t: 'abs_se', v: { COND: { t: 'abs_web_botao', f: { NOME: 'tras' } } },
+                            s: { ENTAO: [{ t: 'abs_motores', f: { MANOBRA: 'RE' }, v: { VEL: N(35) } }] }
+                        },
+                        { t: 'abs_motores', f: { MANOBRA: 'PARAR' }, v: { VEL: N(0) } },
+                        { t: 'abs_web_esperar', v: { MS: N(100) } }
+                    ]
+                }
+            }
+        ],
+        pino: 'LED',
+        pinoPwm: 'PWM'
+    },
+
+    // O outro jeito de entrar na rede: em vez de criar a própria, entrar numa
+    // que já existe. Muda o setup inteiro, então compila à parte.
+    // Câmera na ESP32-S3 CAM: o servidor do vídeo (esp_http_server, porta
+    // 81) e a câmera no canal 7 do LEDC, ao lado dos motores no analogWrite.
+    // A página tem JavaScript dentro de string crua do C++, que o ctags do
+    // Arduino lê mal: esta fixture é a que pega um protótipo inventado.
+    {
+        nome: 'abstrato com câmera',
+        placas: ['esp32s3cam'],
+        specs: [
+            {
+                t: 'abs_ao_iniciar', s: {
+                    BODY: [
+                        { t: 'abs_motores_pinos', f: { E1: '1', E2: '2', D1: '42', D2: '41' } },
+                        { t: 'abs_wifi_rede_aberta', f: { NOME: 'carro4x4' } },
+                        { t: 'abs_web_servidor', f: { PORTA_REDE: 80 } },
+                        { t: 'abs_camera_ligar', f: { TAMANHO: 'FRAMESIZE_QVGA', GIRAR: '1' } }
+                    ]
+                }
+            },
+            {
+                t: 'abs_sempre', s: {
+                    BODY: [
+                        { t: 'abs_web_atender' },
+                        {
+                            t: 'abs_se', v: { COND: { t: 'abs_web_botao', f: { NOME: 'ver' } } },
+                            s: { ENTAO: [{ t: 'abs_web_camera_mostrar', f: { AVISO: 'olhando' } }] }
+                        },
+                        {
+                            t: 'abs_se', v: { COND: { t: 'abs_web_botao', f: { NOME: 'fechar' } } },
+                            s: { ENTAO: [{ t: 'abs_web_camera_esconder' }] }
+                        },
+                        { t: 'abs_motores', f: { MANOBRA: 'PARAR' }, v: { VEL: N(0) } },
+                        { t: 'abs_web_esperar', v: { MS: N(100) } }
+                    ]
+                }
+            }
+        ]
+    },
+
+    {
+        nome: 'abstrato entrando numa rede',
+        placas: ['esp32', 'esp32s3cam', 'esp8266'],
+        specs: [
+            {
+                t: 'abs_ao_iniciar', s: {
+                    BODY: [
+                        {
+                            t: 'abs_wifi_ip_fixo',
+                            f: { IP: '10.140.109.222', GATEWAY: '10.140.109.95', MASCARA: '255.255.255.0' }
+                        },
+                        { t: 'abs_wifi_entrar', f: { SSID: 'minha-rede', SENHA: 'senha123' } },
+                        { t: 'abs_web_servidor', f: { PORTA_REDE: 8080 } }
+                    ]
+                }
+            },
+            {
+                t: 'abs_sempre', s: {
+                    BODY: [
+                        { t: 'abs_web_atender' },
+                        { t: 'abs_web_mostrar', f: { ROTULO: 'ciclo' }, v: { VALOR: N(1) } }
+                    ]
+                }
+            }
+        ],
+        pino: 'LED'
     }
 ];
 
@@ -594,7 +718,7 @@ function coresInstalados() {
     }
 }
 
-const tmpRaiz = fs.mkdtempSync(path.join(os.tmpdir(), 'taskarduino-compile-'));
+const tmpRaiz = fs.mkdtempSync(path.join(os.tmpdir(), 'nocodemcu-compile-'));
 const buildRaiz = path.join(tmpRaiz, 'build');
 
 function compilar(nomeSketch, codigo, fqbn) {
@@ -602,7 +726,8 @@ function compilar(nomeSketch, codigo, fqbn) {
     fs.mkdirSync(pasta, { recursive: true });
     fs.writeFileSync(path.join(pasta, nomeSketch + '.ino'), codigo, 'utf8');
 
-    const build = path.join(buildRaiz, fqbn.replace(/[:=]/g, '_'));
+    // Sem vírgula: ver caminhoBuild() em src/main/cli.js.
+    const build = path.join(buildRaiz, fqbn.replace(/[:=,]/g, '_'));
     fs.mkdirSync(build, { recursive: true });
 
     const r = spawnSync(bin, [
@@ -615,7 +740,7 @@ function compilar(nomeSketch, codigo, fqbn) {
 /* ------------------------------------------------------------------ */
 
 const instalados = coresInstalados();
-console.log('\nTaskArduino — compilação real com arduino-cli');
+console.log('\nNoCodeMCU — compilação real com arduino-cli');
 console.log('cores instalados: ' + (instalados.join(', ') || 'nenhum'));
 
 let passou = 0, falhou = 0, pulado = 0;

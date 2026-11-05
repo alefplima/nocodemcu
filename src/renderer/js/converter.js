@@ -77,7 +77,41 @@
         abs_distancia: 'medir distância é uma sequência de comandos; no Modo ' +
             'Literal ela se escreve dentro de uma função',
         abs_servo: 'a forma literal mudaria a posição da declaração do servo no ' +
-            'arquivo gerado; o bloco continua funcionando como está'
+            'arquivo gerado; o bloco continua funcionando como está',
+
+        // Motores e página web: cada um vale uma função inteira no .ino, e
+        // função é recurso do Modo Literal. A manobra que aqui é um bloco lá
+        // são quatro analogWrite dentro de uma função escrita à mão — mesmo
+        // programa, arquivo diferente. Ficam como estão, funcionando, e entram
+        // no relatório.
+        abs_motores_pinos: 'os motores viram uma função no arquivo gerado, e ' +
+            'função é recurso do Modo Literal',
+        abs_motores: 'a manobra vira uma chamada de função; no Modo Literal ela ' +
+            'se escreve como quatro escritas analógicas dentro de uma função',
+        abs_wifi_rede_aberta: 'criar a rede é uma sequência de comandos no início ' +
+            'do programa; no Modo Literal ela se escreve linha a linha',
+        abs_wifi_entrar: 'entrar na rede é uma sequência de comandos; no Modo ' +
+            'Literal ela se escreve linha a linha, com a espera na mão',
+        abs_wifi_ip_fixo: 'fixar o endereço é uma sequência de comandos no início ' +
+            'do programa; no Modo Literal ela se escreve linha a linha',
+        abs_web_servidor: 'o servidor da página é um bloco de funções no arquivo ' +
+            'gerado; no Modo Literal ele se escreve em código livre',
+        abs_web_botao: 'o botão da página depende do servidor, que no Modo ' +
+            'Literal se escreve em código livre',
+        abs_web_mostrar: 'mostrar na página depende do servidor, que no Modo ' +
+            'Literal se escreve em código livre',
+        abs_web_reticulado: 'o reticulado da página depende do servidor, que no ' +
+            'Modo Literal se escreve em código livre',
+        abs_web_atender: 'atender a página depende do servidor, que no Modo ' +
+            'Literal se escreve em código livre',
+        abs_web_esperar: 'esperar atendendo depende do servidor, que no Modo ' +
+            'Literal se escreve em código livre',
+        abs_camera_ligar: 'ligar a câmera e abrir o vídeo é um bloco de funções ' +
+            'no arquivo gerado; no Modo Literal ele se escreve em código livre',
+        abs_web_camera_mostrar: 'a câmera na página depende do servidor, que no ' +
+            'Modo Literal se escreve em código livre',
+        abs_web_camera_esconder: 'a câmera na página depende do servidor, que no ' +
+            'Modo Literal se escreve em código livre'
     };
 
     /* ------------------------------------------------------------------ */
@@ -470,14 +504,25 @@
         return { type: 'lp_complemento', inputs: { MU: { block: alvo } } };
     }
 
-    /** Troca abs_caso_estado ↔ lp_caso na corrente de casos. */
+    /**
+     * Troca a corrente de casos entre os dois modos, aos pares:
+     * abs_caso_estado ↔ lp_caso  e  abs_senao_estado ↔ lp_senao.
+     */
+    const PAR_CASOS = {
+        abs_caso_estado: 'lp_caso',
+        abs_senao_estado: 'lp_senao',
+        lp_caso: 'abs_caso_estado',
+        lp_senao: 'abs_senao_estado'
+    };
+
     function converterCasos(primeiro, destino) {
-        const de = destino === 'lp_caso' ? 'abs_caso_estado' : 'abs_caso_estado';
+        const paraLiteral = destino === 'lp_caso';
         const lista = corrente(primeiro).map(c => {
             const novo = clonar(c);
-            if (c.type === 'abs_caso_estado' && destino === 'lp_caso') novo.type = 'lp_caso';
-            else if (c.type === 'lp_caso' && destino === de) novo.type = 'abs_caso_estado';
-            else if (c.type === 'lp_senao') novo.type = 'lp_senao';
+            const eAbstrato = String(c.type).indexOf('abs_') === 0;
+            if (eAbstrato === paraLiteral && PAR_CASOS[c.type]) {
+                novo.type = PAR_CASOS[c.type];
+            }
             delete novo.next;
             return novo;
         });

@@ -19,7 +19,7 @@ function criarJanela() {
         height: (prefs.janela && prefs.janela.altura) || 800,
         minWidth: 1024,
         minHeight: 640,
-        title: 'TaskArduino',
+        title: 'NoCodeMCU',
         backgroundColor: '#11151c',
         webPreferences: {
             preload: path.join(__dirname, '..', 'preload', 'preload.js'),
