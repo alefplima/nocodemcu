@@ -155,6 +155,8 @@
         this.objetosDeclarados_ = new Set();
         this.varsDeclaradas_ = new Set();
         this.varsUsadas_ = new Map();
+        this.absMotores_ = null;
+        this.tarefasGeradas_ = new Set();
 
         if (!this.nameDB_) {
             this.nameDB_ = new Blockly.Names(this.RESERVED_WORDS_);

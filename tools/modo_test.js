@@ -337,6 +337,57 @@ idaEVolta('motores', programa(
         { t: 'abs_motores', f: { MANOBRA: 'PARAR' }, v: { VEL: N(0) } }
     ]), 'esp32');
 
+idaEVolta('tarefas', programa([], [
+    { t: 'abs_fazer_tarefa', f: { NOME: 'piscar' } },
+    { t: 'abs_esperar', f: { UNI: 'ms' }, v: { QTD: N(500) } }
+]).concat([{
+    t: 'abs_tarefa', f: { NOME: 'piscar' },
+    s: { BODY: [{ t: 'abs_escrita_digital', f: { PIN: '13', VALOR: 'HIGH' } }] }
+}]));
+
+/* A tarefa fica acima do "Ao iniciar" e é gerada antes dele: os pinos dos
+   motores ainda têm de ser os do bloco de configuração, não os da bancada. */
+idaEVolta('tarefa com motores antes do Ao iniciar', [{
+    t: 'abs_tarefa', f: { NOME: 'avançar' },
+    s: { BODY: [{ t: 'abs_motores', f: { MANOBRA: 'FRENTE' }, v: { VEL: N(40) } }] }
+}].concat(programa(
+    [{ t: 'abs_motores_pinos', f: { E1: '5', E2: '6', D1: '7', D2: '8' } }],
+    [{ t: 'abs_fazer_tarefa', f: { NOME: 'avançar' } }])), 'esp32');
+
+{
+    Boards.selecionar('esp32');
+    const ws = novoWorkspace(Bk, [{
+        t: 'abs_tarefa', f: { NOME: 'avançar' },
+        s: { BODY: [{ t: 'abs_motores', f: { MANOBRA: 'FRENTE' }, v: { VEL: N(40) } }] }
+    }].concat(programa(
+        [{ t: 'abs_motores_pinos', f: { E1: '5', E2: '6', D1: '7', D2: '8' } }],
+        [{ t: 'abs_fazer_tarefa', f: { NOME: 'avançar' } }])));
+    const code = Gen.workspaceToCode(ws);
+    ws.dispose();
+    ok(code.indexOf('void avancar() {\n  absMotores(5, 6, 7, 8, ABS_FRENTE, 40);\n}') !== -1,
+        'a tarefa gerada antes do Ao iniciar usa os pinos configurados', code);
+    ok(/void loop\(\) \{\n  avancar\(\);\n\}/.test(code), 'o Sempre chama a tarefa', code);
+}
+
+/* Uma função literal void sem parâmetros vira tarefa; com parâmetro, não. */
+{
+    const original = estadoDe([
+        { t: 'ard_setup', s: { BODY: [] } },
+        { t: 'ard_loop', s: { BODY: [{ t: 'ard_call', f: { NOME: 'piscar' } }, { t: 'ard_call', f: { NOME: 'somar' } }] } },
+        { t: 'ard_function_def', f: { TIPO: 'void', NOME: 'piscar', PARAMS: '' }, s: { BODY: [] } },
+        { t: 'ard_function_def', f: { TIPO: 'void', NOME: 'somar', PARAMS: 'int a' }, s: { BODY: [] } }
+    ]);
+    const r = Converter.paraAbstrato(original);
+    const tipos = JSON.stringify(r.estado.blocks.blocks.map(b => b.type));
+    ok(tipos === JSON.stringify(['abs_ao_iniciar', 'abs_sempre', 'abs_tarefa', 'ard_function_def']),
+        'só a função void sem parâmetros vira tarefa', tipos);
+    const loop = r.estado.blocks.blocks[1].inputs.BODY.block;
+    ok(loop.type === 'abs_fazer_tarefa' && loop.next.block.type === 'ard_call',
+        'só a chamada da tarefa vira "fazer a tarefa"', JSON.stringify(loop));
+    ok(mesmoCodigo(codigoDe(original).code, codigoDe(r.estado).code),
+        'e o C++ não muda');
+}
+
 idaEVolta('página web', programa(
     [
         { t: 'abs_wifi_rede_aberta', f: { NOME: 'emmy2' } },

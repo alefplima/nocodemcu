@@ -46,9 +46,11 @@
         ard_attachinterrupt: 'interrupções são recurso do Modo Literal',
         ard_detachinterrupt: 'interrupções são recurso do Modo Literal',
         ard_interrupts: 'interrupções são recurso do Modo Literal',
-        ard_function_def: 'funções próprias são recurso do Modo Literal',
+        ard_function_def: 'função com tipo de retorno ou parâmetros é recurso do Modo ' +
+            'Literal; só a void sem parâmetros vira tarefa',
         ard_return: 'funções próprias são recurso do Modo Literal',
-        ard_call: 'funções próprias são recurso do Modo Literal',
+        ard_call: 'chamada com argumentos, ou de função que não é tarefa, é recurso do ' +
+            'Modo Literal',
         ard_call_value: 'funções próprias são recurso do Modo Literal',
         ard_include: 'incluir biblioteca à mão é recurso do Modo Literal',
         ard_define: '#define é recurso do Modo Literal',
@@ -203,6 +205,12 @@
         const mover = k => (ent[k] && (ent[k].block || ent[k].shadow)) || null;
 
         switch (b.type) {
+
+            case 'abs_fazer_tarefa':
+                return {
+                    setup: [],
+                    corpo: [{ type: 'ard_call', fields: { NOME: f.NOME } }]
+                };
 
             case 'abs_escrita_digital':
                 return {
@@ -556,6 +564,16 @@
             return v && v.type === 'ard_const' ? v.fields.CONST : null;
         }
 
+        // Só vira "fazer a tarefa" a chamada sem argumentos de uma função que
+        // também virou tarefa; chamar outra coisa continua sendo literal.
+        if (b.type === 'ard_call' && !dentro('ARG0') && !dentro('ARG1') && !dentro('ARG2') &&
+            setupChaves['tarefa:' + String(f.NOME || '').trim()]) {
+            return {
+                bloco: { type: 'abs_fazer_tarefa', fields: { NOME: f.NOME } },
+                consumidos: 1, consome: []
+            };
+        }
+
         if (b.type === 'ard_digitalwrite') {
             const nivel = valorConst('VALOR');
             if (nivel !== 'HIGH' && nivel !== 'LOW') return null;
@@ -776,8 +794,18 @@
             return null;
         }
 
+        /* Função void sem parâmetros é exatamente uma tarefa. */
+        const eTarefaLiteral = t => t.type === 'ard_function_def' &&
+            ((t.fields && t.fields.TIPO) || 'void') === 'void' &&
+            !String((t.fields && t.fields.PARAMS) || '').trim();
+
         const setupChaves = {};
         if (destino === 'abstrato') {
+            blocos.forEach(t => {
+                if (eTarefaLiteral(t)) {
+                    setupChaves['tarefa:' + String(t.fields.NOME || '').trim()] = true;
+                }
+            });
             blocos.forEach(t => {
                 if (t.type !== 'ard_setup') return;
                 const corpo = t.inputs && t.inputs.BODY && t.inputs.BODY.block;
@@ -885,6 +913,15 @@
             const copia = clonar(t);
             const alvo = TOPO[copia.type];
             if (alvo) copia.type = alvo;
+            if (destino === 'literal' && copia.type === 'abs_tarefa') {
+                copia.type = 'ard_function_def';
+                copia.fields = { TIPO: 'void', NOME: (copia.fields || {}).NOME, PARAMS: '' };
+                convertidos++;
+            } else if (destino === 'abstrato' && eTarefaLiteral(copia)) {
+                copia.type = 'abs_tarefa';
+                copia.fields = { NOME: copia.fields.NOME };
+                convertidos++;
+            }
             const nomeCorpo = 'BODY';
             if (copia.inputs && copia.inputs[nomeCorpo] && copia.inputs[nomeCorpo].block) {
                 copia.inputs[nomeCorpo].block = pilha(copia.inputs[nomeCorpo].block);

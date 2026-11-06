@@ -18,6 +18,7 @@
     if (typeof Blockly === 'undefined') return;
 
     const EST = 260;   // estrutura, mesma cor do literal
+    const TAREFA = 160;
     const IO = 20;     // entradas e saídas
     const TEMPO = 120;
     const MOSTRA = 195;
@@ -72,6 +73,32 @@
             args1: [{ type: 'input_statement', name: 'BODY' }],
             colour: EST,
             tooltip: 'Repete para sempre, enquanto a placa estiver ligada. É o void loop().'
+        },
+
+        /* ==================== tarefas ==================== */
+        /*
+         * Um pedaço do programa com nome, chamado de onde for preciso. É a
+         * função void sem parâmetros do Modo Literal: as caixas são todas
+         * globais, então a tarefa enxerga e altera as mesmas que o resto.
+         */
+
+        {
+            type: 'abs_tarefa',
+            message0: 'tarefa %1',
+            args0: [{ type: 'field_input', name: 'NOME', text: 'minha tarefa' }],
+            message1: '%1',
+            args1: [{ type: 'input_statement', name: 'BODY' }],
+            colour: TAREFA,
+            tooltip: 'Dá nome a um pedaço do programa. Ele só roda quando um bloco ' +
+                '"fazer a tarefa" com o mesmo nome é alcançado.'
+        },
+        {
+            type: 'abs_fazer_tarefa',
+            message0: 'fazer a tarefa %1',
+            args0: [{ type: 'field_input', name: 'NOME', text: 'minha tarefa' }],
+            previousStatement: null, nextStatement: null,
+            colour: TAREFA,
+            tooltip: 'Roda a tarefa com este nome e volta para o bloco seguinte.'
         },
 
         /* ==================== entradas e saídas ==================== */
