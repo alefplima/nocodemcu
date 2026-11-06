@@ -2,7 +2,118 @@
 
 Aplicação **desktop** de programação no-code para Arduino: o aluno monta o
 programa com blocos, vê o `.ino` real sendo escrito ao lado, e **grava na placa
-física pela USB** — Uno, Nano, Mega, Leonardo, ESP32 e ESP8266.
+física pela USB** — Uno, Nano, Mega, Leonardo, ESP32, ESP32-S3 CAM e ESP8266.
+
+## Instalação (Linux)
+
+O instalador já traz tudo: o aplicativo, o `arduino-cli` e os compiladores das
+placas. Não precisa instalar a IDE do Arduino nem baixar nada depois.
+
+1. Baixe um dos dois arquivos da última versão em
+   **[Releases](https://github.com/alefplima/nocodemcu/releases/latest)**:
+   - `nocodemcu_0.1.0_amd64.deb`, para Ubuntu, Debian, Mint e derivados;
+   - `NoCodeMCU-0.1.0.AppImage`, para qualquer Linux de 64 bits, sem instalar.
+2. Instale:
+   - **.deb:** `sudo apt install ./nocodemcu_0.1.0_amd64.deb`. O NoCodeMCU
+     aparece no menu de aplicativos.
+   - **AppImage:** `chmod +x NoCodeMCU-0.1.0.AppImage` e depois
+     `./NoCodeMCU-0.1.0.AppImage`. No Ubuntu 22.04 ou mais novo, se não abrir,
+     instale antes `sudo apt install libfuse2`.
+3. Dê permissão de acesso à USB (uma vez só):
+   `sudo usermod -aG dialout $USER`. Depois **saia e entre de novo na sessão**;
+   sem isso a placa aparece, mas a gravação falha com "permissão negada".
+
+## Exemplo: carro 4x4 com ESP32-S3 CAM
+
+O exemplo 15 (**Carro 4x4 — LPA2v com câmera e operador**) é um carro de tração
+nas quatro rodas que anda sozinho desviando de obstáculos pela Lógica
+Paraconsistente Anotada (LPA2v). Quando ele desvia três vezes seguidas sem
+achar caminho livre, entende que está preso: para, abre a câmera no celular e
+passa o controle para o operador. O operador dirige pelo analógico da página e
+devolve o carro à LPA2v com o botão **Liberar**.
+
+### Material
+
+| peça | quantidade |
+|---|---|
+| ESP32-S3 CAM (ESP32-S3-WROOM-1 N16R8, câmera OV5640 ou OV2640) | 1 |
+| Chassi 4x4 com 4 motores DC | 1 |
+| Ponte H L298N | 1 |
+| Sensor ultrassônico HC-SR04 | 2 |
+| Resistores de 1 kΩ e de 2 kΩ (ou 2,2 kΩ) | 2 de cada |
+| Bateria para os motores (7 V ou mais, por causa do regulador do L298N) | 1 |
+
+### Ligações
+
+| ligação | GPIO da ESP32-S3 CAM |
+|---|---|
+| L298N **IN1 / IN2** (lado direito: OUT1/OUT2) | **1 / 2** |
+| L298N **IN3 / IN4** (lado esquerdo: OUT3/OUT4) | **42 / 41** |
+| HC-SR04 esquerdo **TRIG / ECHO** | **14 / 21** |
+| HC-SR04 direito **TRIG / ECHO** | **47 / 40** |
+
+- Os dois motores de cada lado vão **em paralelo** no mesmo canal do L298N.
+- **ENA** e **ENB** do L298N ficam com o jumper.
+- O **GND** do L298N, dos sensores e da placa vão todos juntos.
+- Os sensores são alimentados com **5 V**.
+- **O ECHO precisa de divisor de tensão.** O HC-SR04 responde em 5 V e o
+  ESP32-S3 só aguenta 3,3 V:
+
+  ```
+   HC-SR04 ECHO ──[ 1 kΩ ]──┬── GPIO da placa (21 ou 40)
+                            │
+                         [ 2 kΩ ]
+                            │
+                           GND
+  ```
+
+  O TRIG vai direto, sem resistor. Com sensores **HC-SR04P** ou **RCWL-1601**,
+  que funcionam em 3,3 V, o divisor não é necessário (o VCC deles vai no 3,3 V).
+- Se o giro sair invertido (o analógico para a esquerda vira o carro para a
+  direita), troque os pares no bloco **motores**: 42/41 ↔ 1/2.
+
+### Gravando
+
+1. Ligue a placa no computador pelo USB.
+2. No NoCodeMCU: **Arquivo → Exemplos → Carro 4x4 — LPA2v com câmera e
+   operador**. A placa (**ESP32-S3 CAM**) e o Modo Abstrato vêm junto com o
+   exemplo.
+3. Escolha a porta (no Linux, `/dev/ttyACM0`) e use **Placa → Compilar e
+   gravar** (Ctrl+U). A primeira compilação demora alguns minutos.
+4. **Só na primeira gravação**, se a placa ainda tiver o programa de fábrica e
+   a gravação não começar: segure o botão **BOOT**, aperte e solte o **RST**,
+   solte o **BOOT** e grave de novo. Depois disso as gravações são automáticas.
+
+### Usando
+
+1. Com o carro ligado na bateria, conecte o celular na rede Wi-Fi **carro4x4**
+   (aberta, sem senha).
+2. Abra **http://192.168.4.1** no navegador do celular.
+3. Enquanto a LPA2v dirige, a página mostra o reticulado com o estado da análise
+   (V, F, T e ⊥ em quatro cores) e as distâncias dos dois sensores.
+4. Quando o carro fica preso, o vídeo aparece no alto com o aviso
+   **PRESO**. Dirija pelo **analógico** e toque **Liberar** para devolver o
+   carro à LPA2v.
+5. O botão **Assumir** faz o mesmo a qualquer momento, sem esperar o carro
+   ficar preso.
+
+Detalhes:
+
+- **A câmera dorme** enquanto o vídeo não está na página: o OV5640 esquenta
+  muito filmando à toa. Ela acorda no **Assumir** e volta a dormir no
+  **Liberar**.
+- **Vídeo de cabeça para baixo?** No bloco **ligar a câmera**, troque para
+  **girada 180°** ou volte para **como sai da câmera**, conforme a montagem.
+- **Vídeo preto ou travado?** Toque no vídeo para reconectar. Se acontecer com
+  frequência, é quase sempre a bateria. A queda de tensão quando os quatro
+  motores arrancam chega à placa e à câmera. Um capacitor de 470–1000 µF entre
+  5 V e GND perto da placa ajuda; o mais firme é alimentar a placa separada dos
+  motores (por exemplo, um power bank no USB), com os GNDs juntos.
+- **Velocidades e tempo de giro** (`VELOCIDADE`, `VEL_GIRO`, `TEMPO_GIRO`) são
+  um ponto de partida: ajuste-os no bloco **Ao iniciar** para o seu piso e a sua
+  bateria.
+
+---
 
 Nasceu ao lado do módulo `iot/` do TaskAI, mas com uma premissa oposta: lá os
 blocos são abstrações de dispositivo (*"piscar LED vermelho"*, com o pino 13
