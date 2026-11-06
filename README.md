@@ -4,10 +4,21 @@ Aplicação **desktop** de programação no-code para Arduino: o aluno monta o
 programa com blocos, vê o `.ino` real sendo escrito ao lado, e **grava na placa
 física pela USB** — Uno, Nano, Mega, Leonardo, ESP32, ESP32-S3 CAM e ESP8266.
 
-## Instalação (Linux)
-
 O instalador já traz tudo: o aplicativo, o `arduino-cli` e os compiladores das
 placas. Não precisa instalar a IDE do Arduino nem baixar nada depois.
+
+## Instalação (Windows)
+
+1. Baixe o instalador
+   **[NoCodeMCU-Setup-0.1.0.exe](https://github.com/alefplima/nocodemcu/releases/download/v0.1.0/NoCodeMCU-Setup-0.1.0.exe)**
+   (Windows 10 ou 11, 64 bits).
+2. Execute e escolha a pasta de instalação. Se o Windows mostrar "O Windows
+   protegeu o computador", clique em **Mais informações** e depois em
+   **Executar assim mesmo**.
+3. Abra o NoCodeMCU pelo menu Iniciar, ligue a placa na USB e escolha a porta
+   `COM` dela no aplicativo.
+
+## Instalação (Linux)
 
 1. Baixe um dos dois arquivos da última versão em
    **[Releases](https://github.com/alefplima/nocodemcu/releases/latest)**:
