@@ -9,7 +9,7 @@
     "email": "alessandrofpl@gmail.com"
   },
   "homepage": "https://taskai.keycorp.com.br",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "src/main/main.js",
   "scripts": {
     "start": "electron .",
