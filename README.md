@@ -354,3 +354,13 @@ plugada, o roteiro é:
 Abrir um projeto restaura o programa **e** a placa em que ele foi feito.
 Há também um rascunho automático no `localStorage`, para não perder trabalho
 quando a janela fecha sem salvar.
+
+## Licença
+
+O código do NoCodeMCU é distribuído sob a [licença MIT](LICENSE) —
+Copyright (c) 2026 Alessandro Ferreira Paz Lima.
+
+Os instaladores também levam ferramentas de terceiros, que seguem as licenças
+dos seus próprios projetos: o [arduino-cli](https://github.com/arduino/arduino-cli)
+(GPL-3.0), os cores das placas (Arduino AVR, [Espressif ESP32](https://github.com/espressif/arduino-esp32),
+ESP8266) e o [Blockly](https://github.com/google/blockly) (Apache-2.0).
