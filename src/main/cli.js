@@ -60,7 +60,24 @@ function localizarDadosEmbutidos(raizApp, empacotado) {
  * Prepara um diretório de dados gravável apontando para os cores embutidos.
  * Symlink/junction evita copiar gigabytes na primeira execução.
  */
+function gravavel(dir) {
+    const teste = path.join(dir, '.nocodemcu-gravavel');
+    try {
+        fs.writeFileSync(teste, '');
+        fs.unlinkSync(teste);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
 function prepararDados(dirUsuario, dadosEmbutidos) {
+    // O arduino-cli do Windows (Go 1.23+) não segue junction: com o packages
+    // ligado assim ele lista "0 core(s)". O instalador é por usuário, então a
+    // pasta embutida é gravável e serve direto; se não for, copia.
+    const windows = process.platform === 'win32';
+    if (windows && dadosEmbutidos && gravavel(dadosEmbutidos)) return dadosEmbutidos;
+
     const dados = path.join(dirUsuario, 'arduino-data');
     fs.mkdirSync(dados, { recursive: true });
 
@@ -75,7 +92,9 @@ function prepararDados(dirUsuario, dadosEmbutidos) {
         // árvore de cores vazia. O sintoma é "0 core(s)" com tudo instalado.
         try {
             const st = fs.lstatSync(destino);
-            if (st.isSymbolicLink()) {
+            if (st.isSymbolicLink() && windows) {
+                fs.unlinkSync(destino);
+            } else if (st.isSymbolicLink()) {
                 let alvo = null;
                 try { alvo = fs.realpathSync(destino); } catch (e) { /* quebrado */ }
                 const esperado = fs.existsSync(origem) ? fs.realpathSync(origem) : origem;
@@ -85,7 +104,8 @@ function prepararDados(dirUsuario, dadosEmbutidos) {
 
         if (fs.existsSync(origem) && !fs.existsSync(destino)) {
             try {
-                fs.symlinkSync(origem, destino, process.platform === 'win32' ? 'junction' : 'dir');
+                if (windows) throw new Error('junction não serve ao arduino-cli');
+                fs.symlinkSync(origem, destino, 'dir');
             } catch (e) {
                 // Sem permissão de symlink (Windows sem modo desenvolvedor): copia.
                 fs.cpSync(origem, destino, { recursive: true });

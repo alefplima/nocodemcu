@@ -321,6 +321,13 @@
                 ]
             });
 
+            cats.push({
+                kind: 'category', name: 'Tarefas', colour: '160', contents: [
+                    b('abs_tarefa'),
+                    b('abs_fazer_tarefa')
+                ]
+            });
+
             const io = [
                 b('abs_escrita_digital'),
                 b('abs_leitura_digital'),

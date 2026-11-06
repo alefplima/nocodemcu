@@ -39,6 +39,59 @@
     };
 
     /* ------------------------------------------------------------------ */
+    /* Tarefas                                                             */
+    /* ------------------------------------------------------------------ */
+
+    /*
+     * O C++ é o mesmo do ard_function_def void sem parâmetros e do ard_call
+     * sem argumentos, inclusive o nome padrão: é o que deixa converter.js
+     * trocar um pelo outro sem mudar o arquivo.
+     */
+    function nomeTarefa(block, gen) {
+        return gen.identificador(block.getFieldValue('NOME'), 'minhaFuncao');
+    }
+
+    /** Nomes de função definidos no workspace, nos dois modos. */
+    function tarefasDefinidas(block, gen) {
+        const nomes = new Set();
+        if (!block.workspace) return nomes;
+        block.workspace.getTopBlocks(false).forEach(b => {
+            if (!b.isEnabled()) return;
+            if (b.type === 'abs_tarefa' || b.type === 'ard_function_def') {
+                nomes.add(gen.identificador(b.getFieldValue('NOME'), 'minhaFuncao'));
+            }
+        });
+        return nomes;
+    }
+
+    A.forBlock['abs_tarefa'] = function (block, gen) {
+        const nome = nomeTarefa(block, gen);
+        if (nome === 'setup' || nome === 'loop') {
+            gen.aviso('A tarefa não pode se chamar "' + nome + '": esse nome já é do ' +
+                (nome === 'setup' ? '"Ao iniciar"' : '"Sempre"') + '.', block.id);
+        }
+        if (gen.tarefasGeradas_.has(nome)) {
+            gen.aviso('Existem duas tarefas chamadas "' + block.getFieldValue('NOME') +
+                '"; o programa não compila assim.', block.id);
+        }
+        gen.tarefasGeradas_.add(nome);
+
+        const corpo = gen.statementToCode(block, 'BODY');
+        const assinatura = 'void ' + nome + '()';
+        gen.usarPrototipo(nome, assinatura + ';');
+        gen.funcoes_.push(assinatura + ' {\n' + corpo + '}');
+        return '';
+    };
+
+    A.forBlock['abs_fazer_tarefa'] = function (block, gen) {
+        const nome = nomeTarefa(block, gen);
+        if (!tarefasDefinidas(block, gen).has(nome)) {
+            gen.aviso('Não existe tarefa chamada "' + block.getFieldValue('NOME') + '".', block.id);
+        }
+        return nome + '();\n';
+    };
+
+    /* ------------------------------------------------------------------ */
     /* Entradas e saídas                                                   */
     /* ------------------------------------------------------------------ */
 
@@ -655,6 +708,18 @@
 
     A.forBlock['abs_motores'] = function (block, gen) {
         motorRuntime(gen);
+        // Dentro de uma tarefa, este bloco pode ser gerado antes do "Ao iniciar"
+        // que configura os pinos: a configuração é buscada no workspace.
+        if (!gen.absMotores_ && block.workspace) {
+            const cfg = block.workspace.getAllBlocks(false)
+                .find(b => b.type === 'abs_motores_pinos' && b.isEnabled());
+            if (cfg) {
+                gen.absMotores_ = {
+                    E1: cfg.getFieldValue('E1'), E2: cfg.getFieldValue('E2'),
+                    D1: cfg.getFieldValue('D1'), D2: cfg.getFieldValue('D2')
+                };
+            }
+        }
         if (!gen.absMotores_) {
             gen.aviso('Falta o bloco que diz em que pinos estão os motores; ' +
                 'estou usando os da bancada (2, 4, 18, 19).', block.id);

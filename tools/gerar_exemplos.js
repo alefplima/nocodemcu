@@ -300,6 +300,161 @@ const lpa4x4 = () => [{
     ]
 }];
 
+/* ======================================================================
+ * Carro 4x4 em tarefas (exemplo 16).
+ *
+ * O programa do exemplo 15, o mesmo comportamento, partido em tarefas com
+ * nome: o "Sempre" fica com uma linha por etapa do ciclo, e cada etapa cabe
+ * numa tela. Sem os comentários do 15, que lá explicam a calibração e aqui
+ * só tirariam espaço das figuras do artigo.
+ * ====================================================================== */
+
+/** Tira os comentários de uma árvore de specs. */
+const semComentario = spec => {
+    if (Array.isArray(spec)) return spec.map(semComentario);
+    if (!spec || typeof spec !== 'object') return spec;
+    const out = {};
+    Object.keys(spec).forEach(k => {
+        if (k === 'c') return;
+        const v = spec[k];
+        if (k === 's' || k === 'v') {
+            out[k] = {};
+            Object.keys(v).forEach(n => { out[k][n] = semComentario(v[n]); });
+        } else if (k === 'next') {
+            out[k] = semComentario(v);
+        } else {
+            out[k] = v;
+        }
+    });
+    return out;
+};
+
+const fazer = nome => ({ t: 'abs_fazer_tarefa', f: { NOME: nome } });
+const tarefa = (nome, corpo) => ({ t: 'abs_tarefa', f: { NOME: nome }, s: { BODY: corpo } });
+const somar1 = caixa => ({
+    t: 'abs_definir', f: { VAR: caixa },
+    v: { VALOR: { t: 'abs_conta', f: { OP: '+' }, v: { A: L(caixa), B: N(1) } } }
+});
+const parar = () => ({ t: 'abs_motores', f: { MANOBRA: 'PARAR' }, v: { VEL: N(0) } });
+
+const TAREFAS_4X4 = [
+    tarefa('ligar a rede e a câmera', [
+        { t: 'abs_wifi_rede_aberta', f: { NOME: 'carro4x4' } },
+        { t: 'abs_web_servidor', f: { PORTA_REDE: 80 } },
+        { t: 'abs_camera_ligar', f: { TAMANHO: 'FRAMESIZE_VGA', GIRAR: '1' } }
+    ]),
+    tarefa('medir as distâncias', [
+        { t: 'abs_definir', f: { VAR: 'distEsq' }, v: { VALOR: { t: 'abs_distancia', f: { TRIG: '14', ECHO: '21' } } } },
+        { t: 'abs_web_esperar', v: { MS: N(60) } },
+        { t: 'abs_definir', f: { VAR: 'distDir' }, v: { VALOR: { t: 'abs_distancia', f: { TRIG: '47', ECHO: '40' } } } },
+        { t: 'abs_web_mostrar', f: { ROTULO: 'esq' }, v: { VALOR: L('distEsq') } },
+        { t: 'abs_web_mostrar', f: { ROTULO: 'dir' }, v: { VALOR: L('distDir') } }
+    ]),
+    tarefa('calcular as evidências', [
+        {
+            t: 'abs_definir', f: { VAR: 'evidEsq' },
+            v: { VALOR: { t: 'abs_evidencia', v: { X: L('distEsq'), A1: L('UD_LONGE'), A2: L('UD_PERTO') } } }
+        },
+        {
+            t: 'abs_definir', f: { VAR: 'evidDir' },
+            v: { VALOR: { t: 'abs_evidencia', v: { X: L('distDir'), A1: L('UD_LONGE'), A2: L('UD_PERTO') } } }
+        },
+        {
+            t: 'abs_web_reticulado',
+            v: { MU: L('evidEsq'), LAMBDA: { t: 'abs_conta', f: { OP: '-' }, v: { A: N(1), B: L('evidDir') } } }
+        }
+    ]),
+    tarefa('dirigir pela LPA2v', [{
+        t: 'abs_quando_estado',
+        v: { MU1: L('evidEsq'), MU2: L('evidDir') },
+        s: {
+            CASOS: [
+                {
+                    t: 'abs_caso_estado', f: { ESTADO: 'LPA_V' }, s: {
+                        BODY: [{ t: 'abs_definir', f: { VAR: 'semDecidir' }, v: { VALOR: N(0) } }, fazer('desviar')]
+                    }
+                },
+                {
+                    t: 'abs_caso_estado', f: { ESTADO: 'LPA_QVT' }, s: {
+                        BODY: [
+                            { t: 'abs_motores', f: { MANOBRA: 'DIR' }, v: { VEL: L('VEL_GIRO') } },
+                            { t: 'abs_web_esperar', v: { MS: N(400) } },
+                            parar()
+                        ]
+                    }
+                },
+                {
+                    t: 'abs_caso_estado', f: { ESTADO: 'LPA_F' }, s: {
+                        BODY: [
+                            { t: 'abs_definir', f: { VAR: 'semDecidir' }, v: { VALOR: N(0) } },
+                            { t: 'abs_definir', f: { VAR: 'desvios' }, v: { VALOR: N(0) } },
+                            { t: 'abs_motores', f: { MANOBRA: 'FRENTE' }, v: { VEL: L('VELOCIDADE') } }
+                        ]
+                    }
+                },
+                {
+                    t: 'abs_caso_estado', f: { ESTADO: 'LPA_T' }, s: {
+                        BODY: [fazer('arrancar devagar'), { t: 'abs_web_esperar', v: { MS: N(500) } }]
+                    }
+                },
+                {
+                    t: 'abs_caso_estado', f: { ESTADO: 'LPA_PC' }, s: {
+                        BODY: [
+                            somar1('desvios'),
+                            { t: 'abs_motores', f: { MANOBRA: 'RE' }, v: { VEL: L('VEL_RE') } },
+                            { t: 'abs_web_esperar', v: { MS: N(300) } },
+                            { t: 'abs_motores', f: { MANOBRA: 'DIR' }, v: { VEL: L('VEL_GIRO') } },
+                            { t: 'abs_web_esperar', v: { MS: N(400) } },
+                            parar()
+                        ]
+                    }
+                },
+                {
+                    t: 'abs_senao_estado', s: {
+                        BODY: [fazer('arrancar devagar'), { t: 'abs_web_esperar', v: { MS: N(200) } }]
+                    }
+                }
+            ]
+        }
+    }]),
+    tarefa('conferir se está preso', [
+        {
+            t: 'abs_se',
+            v: { COND: { t: 'abs_comparar', f: { OP: 'GTE' }, v: { A: L('semDecidir'), B: L('LIMITE_TRAVA') } } },
+            s: { ENTAO: [fazer('desviar'), { t: 'abs_definir', f: { VAR: 'semDecidir' }, v: { VALOR: N(0) } }] }
+        },
+        somar1('semDecidir'),
+        {
+            t: 'abs_se',
+            v: { COND: { t: 'abs_comparar', f: { OP: 'GTE' }, v: { A: L('desvios'), B: L('LIMITE_PRESO') } } },
+            s: {
+                ENTAO: [
+                    parar(),
+                    { t: 'abs_definir', f: { VAR: 'preso' }, v: { VALOR: N(1) } },
+                    { t: 'abs_web_camera_mostrar', f: { AVISO: 'PRESO: dirija pelos botoes e toque liberar' } }
+                ]
+            }
+        }
+    ]),
+    tarefa('desviar', semComentario(desviar4x4(null))),
+    tarefa('arrancar devagar', semComentario(arrancarAbs(null))),
+    tarefa('dirigir pelo operador', semComentario(operador4x4())),
+    tarefa('ver se o operador assumiu', [{
+        t: 'abs_se',
+        v: { COND: { t: 'abs_web_botao', f: { NOME: 'assumir' } } },
+        s: {
+            ENTAO: [
+                { t: 'abs_definir', f: { VAR: 'preso' }, v: { VALOR: N(1) } },
+                { t: 'abs_web_camera_mostrar', f: { AVISO: 'controle manual: toque liberar para devolver' } }
+            ]
+        }
+    }]),
+    tarefa('mostrar o estado na página', [
+        { t: 'abs_web_mostrar', f: { ROTULO: 'desvios' }, v: { VALOR: L('desvios') } },
+        { t: 'abs_web_mostrar', f: { ROTULO: 'preso' }, v: { VALOR: L('preso') } }
+    ])
+];
+
 const motorAbs = (in1, in2, in3, in4, comentario) => [
     { t: 'abs_escrita_analogica', f: { PIN: '2' }, v: { PCT: in1 }, c: comentario },
     { t: 'abs_escrita_analogica', f: { PIN: '4' }, v: { PCT: in2 } },
@@ -3743,6 +3898,43 @@ const EXEMPLOS = [
         ]
     }
 ];
+
+{
+    // Os parâmetros saem do exemplo 15, para os dois carros não divergirem.
+    const inicio15 = EXEMPLOS.find(ex => ex.arquivo.indexOf('15-') === 0).specs[0].s.BODY;
+    const parametros = semComentario(inicio15.filter(b =>
+        b.t === 'abs_motores_pinos' || b.t === 'abs_criar'));
+
+    EXEMPLOS.push({
+        arquivo: '16-abstrato-carro4x4-tarefas.tbk',
+        nome: 'Carro 4x4 — LPA2v em tarefas',
+        placa: 'esp32s3cam',
+        modo: 'abstrato',
+        specs: [
+            { t: 'abs_ao_iniciar', s: { BODY: parametros.concat([fazer('ligar a rede e a câmera')]) } },
+            {
+                t: 'abs_sempre', s: {
+                    BODY: [
+                        { t: 'abs_web_atender' },
+                        fazer('medir as distâncias'),
+                        fazer('calcular as evidências'),
+                        {
+                            t: 'abs_se_senao',
+                            v: { COND: { t: 'abs_comparar', f: { OP: 'EQ' }, v: { A: L('preso'), B: N(1) } } },
+                            s: {
+                                ENTAO: [fazer('dirigir pelo operador')],
+                                SENAO: [fazer('dirigir pela LPA2v'), fazer('conferir se está preso')]
+                            }
+                        },
+                        fazer('ver se o operador assumiu'),
+                        fazer('mostrar o estado na página'),
+                        { t: 'abs_web_esperar', v: { MS: N(60) } }
+                    ]
+                }
+            }
+        ].concat(TAREFAS_4X4)
+    });
+}
 
 const destino = path.join(RAIZ, 'exemplos');
 fs.mkdirSync(destino, { recursive: true });

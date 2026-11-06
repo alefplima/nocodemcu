@@ -144,6 +144,10 @@
             });
 
             this.ws.addChangeListener(e => {
+                if (e.type === Blockly.Events.FINISHED_LOADING) {
+                    this.esperandoCarga_ = false;
+                    return;
+                }
                 if (e.isUiEvent) return;
                 this.marcarSujo();
                 this.agendarAtualizacao();
@@ -745,15 +749,21 @@
             this.status(r.ok ? 'sketch exportado' : 'falha ao exportar', r.ok ? 'ok' : 'erro');
         },
 
-        /** Carregar blocos dispara eventos de mudança; isso não é edição do usuário. */
+        /**
+         * Carregar blocos dispara eventos de mudança; isso não é edição do
+         * usuário. O Blockly entrega esses eventos depois, em lote, terminando
+         * no FINISHED_LOADING — até ele chegar, mudança não suja o projeto.
+         */
         marcarLimpo() {
-            setTimeout(() => {
-                this.projeto.sujo = false;
-                this.atualizarNome();
-            }, 0);
+            this.esperandoCarga_ = true;
+            clearTimeout(this.timerCarga_);
+            this.timerCarga_ = setTimeout(() => { this.esperandoCarga_ = false; }, 3000);
+            this.projeto.sujo = false;
+            this.atualizarNome();
         },
 
         marcarSujo() {
+            if (this.esperandoCarga_) return;
             if (this.projeto.sujo) return;
             this.projeto.sujo = true;
             this.atualizarNome();
