@@ -18,7 +18,7 @@ generated code and the examples (in `exemplos/en/`) are in English too.
 ## Installation (Windows)
 
 1. Download the installer
-   **[NoCodeMCU-Setup-0.1.0.exe](https://github.com/alefplima/nocodemcu/releases/download/v0.1.0/NoCodeMCU-Setup-0.1.0.exe)**
+   **[NoCodeMCU-Setup-0.2.0.exe](https://github.com/alefplima/nocodemcu/releases/download/v0.2.0/NoCodeMCU-Setup-0.2.0.exe)**
    (Windows 10 or 11, 64-bit).
 2. Run it and choose the install folder. If Windows shows "Windows protected
    your PC", click **More info** and then **Run anyway**.
@@ -28,8 +28,10 @@ generated code and the examples (in `exemplos/en/`) are in English too.
 
 ## Installation (Linux)
 
-1. Download one of the two files from the latest version at
-   **[Releases](https://github.com/alefplima/nocodemcu/releases/latest)**:
+1. Download one of the two files from version 0.1.0 at
+   **[Releases](https://github.com/alefplima/nocodemcu/releases/tag/v0.1.0)**
+   (the 0.2.0 Linux packages, with the English language, are still to come;
+   version 0.1.0 is in Portuguese only):
    - `nocodemcu_0.1.0_amd64.deb`, for Ubuntu, Debian, Mint and derivatives;
    - `NoCodeMCU-0.1.0.AppImage`, for any 64-bit Linux, with no installation.
 2. Install:

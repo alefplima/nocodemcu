@@ -2,7 +2,7 @@
   "name": "nocodemcu",
   "productName": "NoCodeMCU",
   "desktopName": "nocodemcu.desktop",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Programação no-code de Arduino com blocos 1:1 e gravação real via USB",
   "author": {
     "name": "TaskAI",
