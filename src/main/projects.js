@@ -8,6 +8,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { L } = require('./idioma');
 
 // O identificador gravado em cada .tbk. A leitura NÃO o confere: projeto
 // salvo quando o programa se chamava TaskArduino ("taskarduino/1") continua
@@ -33,10 +34,11 @@ function abrir(caminho) {
     try {
         j = JSON.parse(bruto);
     } catch (e) {
-        return { ok: false, erro: 'Arquivo não é um projeto do NoCodeMCU (JSON inválido).' };
+        return { ok: false, erro: L('Arquivo não é um projeto do NoCodeMCU (JSON inválido).',
+            'The file is not a NoCodeMCU project (invalid JSON).') };
     }
     if (!j || !j.workspace) {
-        return { ok: false, erro: 'Arquivo não tem um programa dentro.' };
+        return { ok: false, erro: L('Arquivo não tem um programa dentro.', 'The file has no program in it.') };
     }
     return {
         ok: true,

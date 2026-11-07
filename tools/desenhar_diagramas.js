@@ -2,9 +2,10 @@
 /**
  * Diagramas e ilustração do artigo do carro 4x4, em SVG e PNG (2x).
  *
- *   npx electron tools/desenhar_diagramas.js
+ *   npx electron tools/desenhar_diagramas.js          # português
+ *   npx electron tools/desenhar_diagramas.js --en     # inglês
  *
- * Saída em docs/img_artigo_tarefas/:
+ * Saída em docs/img_artigo_tarefas/ (ou docs/img_artigo_tarefas_en/, com --en):
  *   diag-contexto       visão de alto nível: quem programa, a placa, o ambiente,
  *                       a rede e o operador;
  *   diag-lpa2v          a função de que o carro depende para andar sozinho,
@@ -18,8 +19,155 @@ const { app, BrowserWindow } = require('electron');
 const fs = require('fs');
 const path = require('path');
 
-const SAIDA = path.join(__dirname, '..', 'docs', 'img_artigo_tarefas');
+const INGLES = process.argv.includes('--en');
+const SAIDA = path.join(__dirname, '..', 'docs', INGLES ? 'img_artigo_tarefas_en' : 'img_artigo_tarefas');
 const FONTE = 'Segoe UI, Arial, Helvetica, sans-serif';
+
+/*
+ * Textos em inglês. Os desenhos são escritos em português e todo texto passa
+ * por tr() na hora de virar SVG; com --en, o que estiver aqui é trocado. Os
+ * nomes de tarefas e caixas são os do exemplo traduzido (exemplos/en/16-...).
+ */
+const EN = {
+    // contexto
+    'DESENVOLVIMENTO · no computador, sem digitar código': 'DEVELOPMENT · on the computer, without typing code',
+    'Projetista': 'Designer',
+    'NoCodeMCU · Modo Abstrato': 'NoCodeMCU · Abstract Mode',
+    'blocos só com parâmetros': 'blocks with parameters only',
+    'tarefas com nome:': 'named tasks:',
+    '“tarefa” e “fazer a tarefa”': '“task” and “do the task”',
+    'Gerador de código': 'Code generator',
+    'cada tarefa → uma função void': 'each task → a void function',
+    'C++ completo, ao vivo': 'complete C++, live',
+    'no painel ao lado': 'in the side panel',
+    'arduino-cli embutido': 'bundled arduino-cli',
+    'compila para a ESP32-S3': 'compiles for the ESP32-S3',
+    'grava pela USB': 'uploads over USB',
+    'sem instalar a IDE do Arduino': 'no Arduino IDE needed',
+    'ESP32-S3 CAM · programa do exemplo 16': 'ESP32-S3 CAM · example 16 program',
+    'USB · gravação': 'USB · upload',
+    'Ao iniciar': 'On start',
+    'pinos da ponte H': 'H-bridge pins',
+    'parâmetros (caixas)': 'parameters (boxes)',
+    'ligar rede e câmera': 'start network and camera',
+    '10 tarefas': '10 tasks',
+    '230 blocos': '230 blocks',
+    '“Sempre” com 7 linhas': '“Forever” with 7 lines',
+    'Sempre · um ciclo a cada ~60 ms': 'Forever · one cycle every ~60 ms',
+    '1 · Perceber': '1 · Perceive',
+    'medir as distâncias': 'measure the distances',
+    'calcular as evidências': 'compute the evidence',
+    '2 · Decidir': '2 · Decide',
+    'dirigir pela LPA2v': 'drive by PAL2v',
+    'ou pelo operador': 'or by operator',
+    'conferir se está preso': 'check if stuck',
+    '3 · Agir': '3 · Act',
+    'frente, ré, giro': 'forward, reverse, turn',
+    'ou parar': 'or stop',
+    '4 · Informar': '4 · Inform',
+    'reticulado e valores': 'lattice and values',
+    'na página; câmera': 'on the page; camera',
+    'quando preso': 'when stuck',
+    'esquerdo: disparo 14, eco 21': 'left: trigger 14, echo 21',
+    'direito: disparo 47, eco 40': 'right: trigger 47, echo 40',
+    'eco com divisor 1k/2k': 'echo via 1k/2k divider',
+    'Trajeto': 'Course',
+    'paredes e obstáculos': 'walls and obstacles',
+    'barreira à frente': 'barrier ahead',
+    'eco ultrassônico': 'ultrasonic echo',
+    'distância (cm)': 'distance (cm)',
+    'L298N + 4 motores': 'L298N + 4 motors',
+    'tração 4x4 (skid steer)': '4x4 drive (skid steer)',
+    'IN 1/2 direita · 42/41 esquerda': 'IN 1/2 right · 42/41 left',
+    'Câmera OV5640': 'OV5640 camera',
+    'dorme enquanto a LPA2v dirige': 'sleeps while PAL2v drives',
+    'vídeo só quando preso': 'video only when stuck',
+    'manobra + %': 'maneuver + %',
+    'acorda / dorme': 'wake / sleep',
+    'o carro se move e muda o que os sensores medem': 'the car moves and changes what the sensors measure',
+    'Rede WiFi aberta “carro4x4”': 'Open WiFi network “car4x4”',
+    'ponto de acesso na própria placa': 'access point on the board itself',
+    'página: http://192.168.4.1': 'page: http://192.168.4.1',
+    'vídeo: porta 81': 'video: port 81',
+    'Celular · navegador': 'Phone · browser',
+    'reticulado ao vivo': 'live lattice',
+    'assumir / liberar': 'take over / release',
+    'analógico e vídeo': 'joystick and video',
+    'Operador': 'Operator',
+    'toques': 'taps',
+    'Cores das categorias de blocos da IDE': 'Colors of the IDE block categories',
+    'estrutura do programa': 'program structure',
+    'percepção': 'perception',
+    'decisão (LPA2v)': 'decision (PAL2v)',
+    'sensores e atuadores': 'sensors and actuators',
+    'rede, página e câmera': 'network, page and camera',
+    'operador e interface': 'operator and interface',
+    // dirigir pela LPA2v
+    'Sensor esquerdo': 'Left sensor',
+    'distEsq (cm)': 'distLeft (cm)',
+    'Sensor direito': 'Right sensor',
+    'distDir (cm)': 'distRight (cm)',
+    'Grau de evidência μ1': 'Evidence degree μ1',
+    'Grau de evidência μ2': 'Evidence degree μ2',
+    '80 cm ou mais → 0 (livre)': '80 cm or more → 0 (free)',
+    '15 cm ou menos → 1 (obstáculo)': '15 cm or less → 1 (obstacle)',
+    'Para-Analisador · bloco “analisar”': 'Para-Analyzer · “analyze” block',
+    'estado lógico': 'logical state',
+    'no reticulado': 'on the lattice',
+    'ponto (Gc, Gct)': 'point (Gc, Gct)',
+    'Regras do bloco (Vscc = Vscct = 0,5)': 'Block rules (Vscc = Vscct = 0.5)',
+    'reticulado: Gc na horizontal, Gct na vertical': 'lattice: Gc horizontal, Gct vertical',
+    'Gc ≥ 0,5': 'Gc ≥ 0.5',
+    'Gc ≤ −0,5': 'Gc ≤ −0.5',
+    'Gct ≥ 0,5': 'Gct ≥ 0.5',
+    'Gct ≤ −0,5': 'Gct ≤ −0.5',
+    'senão': 'else',
+    'estados quase (Qv→T, …)': 'quasi states (Qv→T, …)',
+    'demais': 'others',
+    'obstáculo dos dois lados': 'obstacle on both sides',
+    'semDecidir = 0': 'undecided = 0',
+    'fazer: desviar': 'do: swerve',
+    '(conta, ré, gira)': '(count, reverse, turn)',
+    'quase V, divergindo': 'quasi V, diverging',
+    'girar à direita': 'turn right',
+    'parar': 'stop',
+    'caminho livre': 'free path',
+    'zera os desvios': 'reset swerves',
+    'frente a': 'forward at',
+    'VELOCIDADE': 'SPEED',
+    'sensores discordam': 'sensors disagree',
+    'fazer: arrancar': 'do: start',
+    'devagar': 'slowly',
+    'esperar 500 ms': 'wait 500 ms',
+    'evidência fraca': 'weak evidence',
+    'desvios + 1': 'swerves + 1',
+    'ré 300 ms': 'reverse 300 ms',
+    'giro 400 ms': 'turn 400 ms',
+    'regiões intermediárias': 'intermediate regions',
+    'esperar 200 ms': 'wait 200 ms',
+    'tarefa “conferir se está preso”': 'task “check if stuck”',
+    'semDecidir ≥ 8 → desviar · semDecidir + 1': 'undecided ≥ 8 → swerve · undecided + 1',
+    'desvios ≥ 3 ?': 'swerves ≥ 3 ?',
+    'Preso': 'Stuck',
+    'parar · preso = 1': 'stop · stuck = 1',
+    'câmera na página → operador dirige': 'camera on the page → operator drives',
+    'sim': 'yes',
+    'não': 'no',
+    'Próximo ciclo do “Sempre”': 'Next “Forever” cycle',
+    'a LPA2v continua dirigindo': 'PAL2v keeps driving',
+    // ilustração
+    'parede': 'wall',
+    'barreira': 'barrier',
+    'três desvios sem caminho livre': 'three swerves without a free path',
+    'PRESO · o operador assume': 'STUCK · the operator takes over',
+    'WiFi “carro4x4” · ponto de acesso na placa': 'WiFi “car4x4” · access point on the board',
+    'página http://192.168.4.1 · vídeo na porta 81': 'page http://192.168.4.1 · video on port 81',
+    'operador': 'operator',
+    'PRESO: dirija e toque liberar': 'STUCK: drive and tap release',
+    'Liberar': 'Release',
+    'μ 1.00 λ 0.00 · desvios 3 · preso 1': 'μ 1.00 λ 0.00 · swerves 3 · stuck 1'
+};
+const tr = s => (INGLES && Object.prototype.hasOwnProperty.call(EN, s) ? EN[s] : s);
 
 /* ------------------------------------------------------------------ */
 /* Cores                                                               */
@@ -62,6 +210,7 @@ class Svg {
 
     texto(x, y, s, o = {}) {
         const { tam = 18, peso = 400, cor = COR.texto, ancora = 'middle', italico = false } = o;
+        s = tr(s);
         return this.add(`<text x="${x}" y="${y}" text-anchor="${ancora}" font-family="${FONTE}" ` +
             `font-size="${tam}" font-weight="${peso}"${italico ? ' font-style="italic"' : ''} fill="${cor}">${esc(s)}</text>`);
     }
@@ -96,6 +245,7 @@ class Svg {
 
     /** Texto sobre fundo branco, para cruzar linhas sem sumir. */
     rotulo(x, y, s, ancora = 'middle', tam = 15) {
+        s = tr(s);
         const w = s.length * tam * 0.52 + 14;
         const x0 = ancora === 'middle' ? x - w / 2 : ancora === 'start' ? x - 7 : x - w + 7;
         this.add(`<rect x="${x0}" y="${y - tam}" width="${w}" height="${tam + 9}" rx="5" fill="#ffffff" fill-opacity="0.92"/>`);

@@ -1,0 +1,153 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-11-07T15:37:09.341Z",
+  "placa": "uno",
+  "modo": "literal",
+  "nome": "Button with internal pull-up",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "ard_setup",
+          "id": "!?s5EaianwClGRtWsWj%",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_serial_begin",
+                "id": "`q4U-6[_6iVh4NtYa_7.",
+                "fields": {
+                  "PORTA": "Serial",
+                  "BAUD": "9600"
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_pinmode",
+                    "id": "O?=fwZ~4W0w,.AMiyHP/",
+                    "icons": {
+                      "comment": {
+                        "text": "pin 2 = button, wired between the pin and GND (just two wires).\nINPUT_PULLUP uses the resistor inside the chip, so the reading is\ninverted: released reads HIGH, pressed reads LOW",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "PIN": "2",
+                      "MODO": "INPUT_PULLUP"
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_pinmode",
+                        "id": "lwc#1SYtoZmLP~d!qA55",
+                        "icons": {
+                          "comment": {
+                            "text": "pin 13 = on-board LED",
+                            "pinned": false,
+                            "height": 80,
+                            "width": 160
+                          }
+                        },
+                        "fields": {
+                          "PIN": "13",
+                          "MODO": "OUTPUT"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_loop",
+          "id": "3sv.l2cQHiI9R**kilCR",
+          "x": 40,
+          "y": 328,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "controls_if",
+                "id": ".9S2};X`1(0N2u.,AkFF",
+                "inputs": {
+                  "IF0": {
+                    "block": {
+                      "type": "logic_compare",
+                      "id": "Yy]O$=(b]/123N?F!F,D",
+                      "fields": {
+                        "OP": "EQ"
+                      },
+                      "inputs": {
+                        "A": {
+                          "block": {
+                            "type": "ard_digitalread",
+                            "id": "adC|;vG:7E!$VmrqAWRz",
+                            "fields": {
+                              "PIN": "2"
+                            }
+                          }
+                        },
+                        "B": {
+                          "block": {
+                            "type": "ard_const",
+                            "id": "P-syUr6!;s:CsYhChTob",
+                            "fields": {
+                              "CONST": "LOW"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "DO0": {
+                    "block": {
+                      "type": "ard_digitalwrite",
+                      "id": "u5)){Sg;`sDK]p?_Rm2f",
+                      "fields": {
+                        "PIN": "13"
+                      },
+                      "inputs": {
+                        "VALOR": {
+                          "block": {
+                            "type": "ard_const",
+                            "id": "s$saJGEJ?{#;h;|G$-6}",
+                            "fields": {
+                              "CONST": "HIGH"
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "ard_serial_println",
+                          "id": "*lt#oFd)^Ii+HooB1x9l",
+                          "fields": {
+                            "PORTA": "Serial"
+                          },
+                          "inputs": {
+                            "VALOR": {
+                              "block": {
+                                "type": "ard_text",
+                                "id": "|g6|/onR4%$x69I0jwQz",
+                                "fields": {
+                                  "TEXTO": "pressed"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

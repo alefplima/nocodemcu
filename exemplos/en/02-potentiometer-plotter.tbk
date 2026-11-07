@@ -1,0 +1,121 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-11-07T15:37:08.932Z",
+  "placa": "uno",
+  "modo": "literal",
+  "nome": "Potentiometer on the plotter",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "ard_setup",
+          "id": "Fe2NP`^dfoZ):i@*)g~!",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_serial_begin",
+                "id": "gwNJ%xtf7rm=EC#xVNpk",
+                "icons": {
+                  "comment": {
+                    "text": "Wiring: pin A0 = potentiometer wiper (middle leg); the other two legs\ngo to 5V and GND. The Serial monitor must be set to the same 9600",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PORTA": "Serial",
+                  "BAUD": "9600"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_loop",
+          "id": "O@#i!{[;lqdIojOHhJrt",
+          "x": 40,
+          "y": 244,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_serial_print",
+                "id": "1PjJzz.4+bqH`3RZ8+2f",
+                "icons": {
+                  "comment": {
+                    "text": "the \"name:value\" label is what the Plotter tab uses to name the curve",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PORTA": "Serial"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_text",
+                      "id": ")Qe#GGFnh4B1?J?N(qt.",
+                      "fields": {
+                        "TEXTO": "pot:"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_serial_println",
+                    "id": "B%j@UHpyic838%A~f};S",
+                    "icons": {
+                      "comment": {
+                        "text": "analogRead returns 0 to 1023 (0 V to 5 V)",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "PORTA": "Serial"
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_analogread",
+                          "id": "G:]X0Q]/V-9(!Af{~s#M",
+                          "fields": {
+                            "PIN": "A0"
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_delay",
+                        "id": "R-Rsv.mp1%{$CC!~yH-=",
+                        "inputs": {
+                          "MS": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "i6p.6VPD?W}~N43}+XPx",
+                              "fields": {
+                                "NUM": 50
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

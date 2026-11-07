@@ -8,6 +8,8 @@ const cli = require('./cli');
 const settings = require('./settings');
 const ipc = require('./ipc');
 const serial = require('./serial');
+const idioma = require('./idioma');
+const { L } = idioma;
 
 let janela = null;
 
@@ -29,7 +31,7 @@ function criarJanela() {
         }
     });
 
-    janela.loadFile(path.join(__dirname, '..', 'renderer', 'index.html'));
+    carregarPagina();
 
     // Modo de verificação: TA_DEBUG espelha o console do renderer no terminal e
     // TA_SMOKE=<ms> fecha o app sozinho — é assim que tools/app_test.js roda.
@@ -76,25 +78,20 @@ function criarJanela() {
 }
 
 /**
- * Itens do submenu "Exemplos", lidos da pasta exemplos/ em tempo de execução.
- * O rótulo vem do campo "nome" de dentro do .tbk, não do arquivo — é ele que o
- * aluno vê na barra de título depois de abrir.
+ * Itens de exemplos de uma pasta, lidos em tempo de execução. O rótulo vem do
+ * campo "nome" de dentro do .tbk, não do arquivo — é ele que o aluno vê na
+ * barra de título depois de abrir.
  *
  * Vale tanto em desenvolvimento quanto no app instalado: os dois resolvem para
  * a raiz do pacote, e o electron-builder leva exemplos/ junto (ver "files" no
  * package.json). Sem a pasta, o submenu fica desabilitado em vez de sumir —
  * some é pior, porque parece defeito.
  */
-function itensDeExemplos() {
-    const dir = path.join(__dirname, '..', '..', 'exemplos');
+function exemplosDe(dir) {
     let arquivos = [];
     try {
         arquivos = fs.readdirSync(dir).filter(f => /\.tbk$/i.test(f)).sort();
     } catch (e) { /* pasta ausente */ }
-
-    if (!arquivos.length) {
-        return [{ label: '(nenhum exemplo instalado)', enabled: false }];
-    }
 
     return arquivos.map(arquivo => {
         const caminho = path.join(dir, arquivo);
@@ -108,6 +105,26 @@ function itensDeExemplos() {
             click: () => janela && janela.webContents.send('app:abrir-arquivo', { caminho: caminho })
         };
     });
+}
+
+/**
+ * Submenu "Exemplos". Em inglês vêm primeiro os exemplos traduzidos
+ * (exemplos/en/), e os em português ficam num submenu à parte.
+ */
+function itensDeExemplos() {
+    const dir = path.join(__dirname, '..', '..', 'exemplos');
+    const pt = exemplosDe(dir);
+    const vazio = [{ label: L('(nenhum exemplo instalado)', '(no examples installed)'), enabled: false }];
+
+    if (idioma.atual() !== 'en') return pt.length ? pt : vazio;
+
+    const en = exemplosDe(path.join(dir, 'en'));
+    const itens = en.slice();
+    if (pt.length) {
+        if (itens.length) itens.push({ type: 'separator' });
+        itens.push({ label: 'In Portuguese', submenu: pt });
+    }
+    return itens.length ? itens : vazio;
 }
 
 /**
@@ -129,87 +146,128 @@ function trocarModo(nome) {
     if (janela) janela.webContents.send('menu:modo', { modo: nome });
 }
 
+/**
+ * Os blocos são definidos uma vez, quando a página carrega; trocar o idioma
+ * recarrega a janela. O renderer salva o rascunho no beforeunload, então o
+ * programa aberto volta igual, só com os blocos no outro idioma.
+ */
+function trocarIdioma(nome) {
+    if (nome === idioma.atual()) return;
+    settings.definir('idioma', nome);
+    montarMenu();
+    if (janela) carregarPagina();
+}
+
+function carregarPagina() {
+    janela.loadFile(path.join(__dirname, '..', 'renderer', 'index.html'),
+        { query: { lang: idioma.atual() } });
+}
+
 function montarMenu() {
     const enviar = canal => () => janela && janela.webContents.send(canal);
+    const prefs = settings.tudo();
 
     const template = [
         {
-            label: 'Arquivo',
+            label: L('Arquivo', 'File'),
             submenu: [
-                { label: 'Novo', accelerator: 'CmdOrCtrl+N', click: enviar('menu:novo') },
-                { label: 'Abrir…', accelerator: 'CmdOrCtrl+O', click: enviar('menu:abrir') },
-                { label: 'Exemplos', submenu: itensDeExemplos() },
-                { label: 'Salvar', accelerator: 'CmdOrCtrl+S', click: enviar('menu:salvar') },
-                { label: 'Salvar como…', accelerator: 'CmdOrCtrl+Shift+S', click: enviar('menu:salvar-como') },
+                { label: L('Novo', 'New'), accelerator: 'CmdOrCtrl+N', click: enviar('menu:novo') },
+                { label: L('Abrir…', 'Open…'), accelerator: 'CmdOrCtrl+O', click: enviar('menu:abrir') },
+                { label: L('Exemplos', 'Examples'), submenu: itensDeExemplos() },
+                { label: L('Salvar', 'Save'), accelerator: 'CmdOrCtrl+S', click: enviar('menu:salvar') },
+                { label: L('Salvar como…', 'Save as…'), accelerator: 'CmdOrCtrl+Shift+S', click: enviar('menu:salvar-como') },
                 { type: 'separator' },
-                { label: 'Exportar .ino…', click: enviar('menu:exportar') },
+                { label: L('Exportar .ino…', 'Export .ino…'), click: enviar('menu:exportar') },
                 { type: 'separator' },
-                { role: 'quit', label: 'Sair' }
+                { role: 'quit', label: L('Sair', 'Quit') }
             ]
         },
         {
-            label: 'Placa',
+            label: L('Placa', 'Board'),
             submenu: [
-                { label: 'Compilar', accelerator: 'CmdOrCtrl+R', click: enviar('menu:compilar') },
-                { label: 'Compilar e gravar', accelerator: 'CmdOrCtrl+U', click: enviar('menu:gravar') },
+                { label: L('Compilar', 'Compile'), accelerator: 'CmdOrCtrl+R', click: enviar('menu:compilar') },
+                { label: L('Compilar e gravar', 'Compile and upload'), accelerator: 'CmdOrCtrl+U', click: enviar('menu:gravar') },
                 { type: 'separator' },
-                { label: 'Atualizar lista de portas', accelerator: 'F5', click: enviar('menu:portas') },
-                { label: 'Abrir monitor serial', accelerator: 'CmdOrCtrl+M', click: enviar('menu:monitor') }
+                { label: L('Atualizar lista de portas', 'Refresh port list'), accelerator: 'F5', click: enviar('menu:portas') },
+                { label: L('Abrir monitor serial', 'Open serial monitor'), accelerator: 'CmdOrCtrl+M', click: enviar('menu:monitor') }
             ]
         },
         {
-            label: 'Exibir',
+            label: L('Exibir', 'View'),
             submenu: [
                 {
-                    label: 'Modo',
+                    label: L('Modo', 'Mode'),
                     submenu: [
                         {
-                            label: 'Literal — um bloco, um comando', type: 'radio',
-                            checked: settings.tudo().modo !== 'abstrato',
+                            label: L('Literal — um bloco, um comando', 'Literal — one block, one command'), type: 'radio',
+                            checked: prefs.modo !== 'abstrato',
                             click: () => trocarModo('literal')
                         },
                         {
-                            label: 'Abstrato — blocos simplificados', type: 'radio',
-                            checked: settings.tudo().modo === 'abstrato',
+                            label: L('Abstrato — blocos simplificados', 'Abstract — simplified blocks'), type: 'radio',
+                            checked: prefs.modo === 'abstrato',
                             click: () => trocarModo('abstrato')
                         }
                     ]
                 },
                 { type: 'separator' },
                 {
-                    label: 'Tema',
+                    label: L('Tema', 'Theme'),
                     submenu: [
                         {
-                            label: 'Escuro', type: 'radio',
-                            checked: settings.tudo().tema !== 'claro',
+                            label: L('Escuro', 'Dark'), type: 'radio',
+                            checked: prefs.tema !== 'claro',
                             click: () => trocarTema('escuro')
                         },
                         {
-                            label: 'Claro', type: 'radio',
-                            checked: settings.tudo().tema === 'claro',
+                            label: L('Claro', 'Light'), type: 'radio',
+                            checked: prefs.tema === 'claro',
                             click: () => trocarTema('claro')
                         }
                     ]
                 },
                 { type: 'separator' },
-                { role: 'reload', label: 'Recarregar' },
-                { role: 'toggleDevTools', label: 'Ferramentas de desenvolvedor' },
+                { role: 'reload', label: L('Recarregar', 'Reload') },
+                { role: 'toggleDevTools', label: L('Ferramentas de desenvolvedor', 'Developer tools') },
                 { type: 'separator' },
-                { role: 'resetZoom', label: 'Zoom normal' },
-                { role: 'zoomIn', label: 'Aumentar zoom' },
-                { role: 'zoomOut', label: 'Diminuir zoom' },
+                { role: 'resetZoom', label: L('Zoom normal', 'Actual size') },
+                { role: 'zoomIn', label: L('Aumentar zoom', 'Zoom in') },
+                { role: 'zoomOut', label: L('Diminuir zoom', 'Zoom out') },
                 { type: 'separator' },
-                { role: 'togglefullscreen', label: 'Tela cheia' }
+                { role: 'togglefullscreen', label: L('Tela cheia', 'Full screen') }
             ]
         },
         {
-            label: 'Ajuda',
+            label: L('Opções', 'Options'),
             submenu: [
                 {
-                    label: 'Referência da linguagem Arduino',
-                    click: () => shell.openExternal('https://www.arduino.cc/reference/pt/')
+                    // O nome de cada idioma fica na própria língua, e o título
+                    // nas duas: quem caiu no idioma errado acha o caminho de volta.
+                    label: L('Idioma / Language', 'Language / Idioma'),
+                    submenu: [
+                        {
+                            label: 'Português', type: 'radio',
+                            checked: idioma.atual() === 'pt',
+                            click: () => trocarIdioma('pt')
+                        },
+                        {
+                            label: 'English', type: 'radio',
+                            checked: idioma.atual() === 'en',
+                            click: () => trocarIdioma('en')
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            label: L('Ajuda', 'Help'),
+            submenu: [
+                {
+                    label: L('Referência da linguagem Arduino', 'Arduino language reference'),
+                    click: () => shell.openExternal(L('https://www.arduino.cc/reference/pt/',
+                        'https://www.arduino.cc/reference/en/'))
                 },
-                { label: 'Diagnóstico da toolchain', click: enviar('menu:diagnostico') }
+                { label: L('Diagnóstico da toolchain', 'Toolchain diagnostics'), click: enviar('menu:diagnostico') }
             ]
         }
     ];

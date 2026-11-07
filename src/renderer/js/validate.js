@@ -196,6 +196,7 @@
                         'do Modo Literal. Troque o modo em Exibir → Modo para editá-lo.');
                 }
 
+                if (global.I18N) msgs.forEach((m, i) => { msgs[i] = global.I18N.t(m); });
                 if (bloco.setWarningText) {
                     bloco.setWarningText(msgs.length ? msgs.join('\n') : null);
                 }

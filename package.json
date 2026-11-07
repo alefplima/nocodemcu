@@ -46,6 +46,7 @@
     "files": [
       "src/**/*",
       "exemplos/*.tbk",
+      "exemplos/en/*.tbk",
       "package.json"
     ],
     "extraResources": [

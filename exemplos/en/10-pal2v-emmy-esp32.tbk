@@ -1,0 +1,2286 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-11-07T15:37:12.594Z",
+  "placa": "esp32",
+  "modo": "literal",
+  "nome": "PAL2v — Emmy on the ESP32 (two HC-SR04 and H-bridge)",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "ard_var_global",
+          "id": "7{o~!$x0-zp~47Ts.B4S",
+          "x": 40,
+          "y": 40,
+          "fields": {
+            "QUAL": "",
+            "TIPO": "float",
+            "VAR": {
+              "id": "*U:j*cSm3QZ#(!.uH[gZ"
+            }
+          },
+          "inputs": {
+            "VALOR": {
+              "block": {
+                "type": "ard_number",
+                "id": "ujJ%CevsIMZ?6l3b3{1W",
+                "fields": {
+                  "NUM": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_var_global",
+          "id": "34X8*[enPTO_NWfoq{C5",
+          "x": 40,
+          "y": 110,
+          "fields": {
+            "QUAL": "",
+            "TIPO": "float",
+            "VAR": {
+              "id": "P:igl:iZTLjDtE?.5H@W"
+            }
+          },
+          "inputs": {
+            "VALOR": {
+              "block": {
+                "type": "ard_number",
+                "id": ";XoJxwd^AWa-[*hrKnO1",
+                "fields": {
+                  "NUM": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_var_global",
+          "id": "ZJu8nOy_nUQ7/@Lk-pUZ",
+          "x": 40,
+          "y": 180,
+          "icons": {
+            "comment": {
+              "text": "PWM from 0 to 255. 150 = ~60 percent of the range: free path",
+              "pinned": false,
+              "height": 80,
+              "width": 160
+            }
+          },
+          "fields": {
+            "QUAL": "const",
+            "TIPO": "byte",
+            "VAR": {
+              "id": "O~eY}$t7(f$S#OjQm$}M"
+            }
+          },
+          "inputs": {
+            "VALOR": {
+              "block": {
+                "type": "ard_number",
+                "id": ".0AJ}FSFF5${ySY*znIb",
+                "fields": {
+                  "NUM": 150
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_var_global",
+          "id": "y6x9{$}V(R@fpO7d~*M;",
+          "x": 40,
+          "y": 250,
+          "icons": {
+            "comment": {
+              "text": "the speed for state T. Below ~70 the L298N cannot get the motor moving",
+              "pinned": false,
+              "height": 80,
+              "width": 160
+            }
+          },
+          "fields": {
+            "QUAL": "const",
+            "TIPO": "byte",
+            "VAR": {
+              "id": "JUl!2AYag%^DJjp:ihKl"
+            }
+          },
+          "inputs": {
+            "VALOR": {
+              "block": {
+                "type": "ard_number",
+                "id": "bF}la!)};-IcW1lAp6a~",
+                "fields": {
+                  "NUM": 110
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_var_global",
+          "id": "R9E#[QEBwLk|TR)/:];x",
+          "x": 40,
+          "y": 320,
+          "icons": {
+            "comment": {
+              "text": "the 80 ms kick that gets the motor out of inertia before the slow speed",
+              "pinned": false,
+              "height": 80,
+              "width": 160
+            }
+          },
+          "fields": {
+            "QUAL": "const",
+            "TIPO": "byte",
+            "VAR": {
+              "id": "@P5iA?K:OC0JC~hT?#H]"
+            }
+          },
+          "inputs": {
+            "VALOR": {
+              "block": {
+                "type": "ard_number",
+                "id": "$_~%UMfOHHB@,Ifv.T!f",
+                "fields": {
+                  "NUM": 210
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_var_global",
+          "id": "HX7(p2Spo,KiGB`vhi3F",
+          "x": 40,
+          "y": 390,
+          "fields": {
+            "QUAL": "const",
+            "TIPO": "byte",
+            "VAR": {
+              "id": "E}*/p7_P-SHxWK4ftsMB"
+            }
+          },
+          "inputs": {
+            "VALOR": {
+              "block": {
+                "type": "ard_number",
+                "id": "I19-r~%V#0R{gdjQmrdo",
+                "fields": {
+                  "NUM": 130
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_var_global",
+          "id": "AG)a0r?Cv%)ITB=D_D84",
+          "x": 40,
+          "y": 460,
+          "icons": {
+            "comment": {
+              "text": "turning has to overcome the friction of the two wheels in opposite directions",
+              "pinned": false,
+              "height": 80,
+              "width": 160
+            }
+          },
+          "fields": {
+            "QUAL": "const",
+            "TIPO": "byte",
+            "VAR": {
+              "id": "%~5Wv:rcii37la-]ruy+"
+            }
+          },
+          "inputs": {
+            "VALOR": {
+              "block": {
+                "type": "ard_number",
+                "id": "-17fc92*bD-,g*]MnTnO",
+                "fields": {
+                  "NUM": 140
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_function_def",
+          "id": "tJre2WWn9c~M9S@IGqy^",
+          "x": 40,
+          "y": 530,
+          "fields": {
+            "TIPO": "void",
+            "NOME": "readSensors",
+            "PARAMS": ""
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_digitalwrite",
+                "id": "oc8)qqJo[|1)xhcmHwhQ",
+                "icons": {
+                  "comment": {
+                    "text": "left sensor: 10 us pulse on the trigger (D26), echo on D27",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PIN": "26"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_const",
+                      "id": "m]^Df)D%{{M|$E/?}GuT",
+                      "fields": {
+                        "CONST": "LOW"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_delaymicroseconds",
+                    "id": "Rn3pp62S3XYC!|Sm4*sd",
+                    "inputs": {
+                      "US": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "GcK#jmqb31+*rs9y3FW~",
+                          "fields": {
+                            "NUM": 2
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_digitalwrite",
+                        "id": "0K3,)dzdDE)5TV@|M1c$",
+                        "fields": {
+                          "PIN": "26"
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_const",
+                              "id": "$8{xS|ZaRs%Ss$mPjUtW",
+                              "fields": {
+                                "CONST": "HIGH"
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_delaymicroseconds",
+                            "id": "j!v|c[1Hu5]$2!ArcE6S",
+                            "inputs": {
+                              "US": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "$uE`d)#KM}^/[1+8Q?8_",
+                                  "fields": {
+                                    "NUM": 10
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "ard_digitalwrite",
+                                "id": "*EJGyxcB5TwQLT4.wr#=",
+                                "fields": {
+                                  "PIN": "26"
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "ard_const",
+                                      "id": "/x$UFNd_F9c|A+:{KZQX",
+                                      "fields": {
+                                        "CONST": "LOW"
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "variables_set",
+                                    "id": "4rbY^fA4vL|.jA*Q4k;e",
+                                    "icons": {
+                                      "comment": {
+                                        "text": "sound round trip: 58 us per centimeter. The cast avoids integer division",
+                                        "pinned": false,
+                                        "height": 80,
+                                        "width": 160
+                                      }
+                                    },
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "*U:j*cSm3QZ#(!.uH[gZ"
+                                      }
+                                    },
+                                    "inputs": {
+                                      "VALUE": {
+                                        "block": {
+                                          "type": "ard_arith",
+                                          "id": "AA_+r`M(RK(k*qH%Q3Z.",
+                                          "fields": {
+                                            "OP": "/"
+                                          },
+                                          "inputs": {
+                                            "A": {
+                                              "block": {
+                                                "type": "ard_cast",
+                                                "id": "v!$q;Q7gVVwA1DpP=IRC",
+                                                "fields": {
+                                                  "TIPO": "float"
+                                                },
+                                                "inputs": {
+                                                  "VALOR": {
+                                                    "block": {
+                                                      "type": "ard_pulsein",
+                                                      "id": "_`Jl89x5N`o]SFK3-U+m",
+                                                      "fields": {
+                                                        "PIN": "27",
+                                                        "NIVEL": "HIGH"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "B": {
+                                              "block": {
+                                                "type": "ard_number",
+                                                "id": "p)~ShQA.[e^QjkuF~bq-",
+                                                "fields": {
+                                                  "NUM": 58
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "ard_delay",
+                                        "id": "l:#bR%s5~rY*3lvf#P1`",
+                                        "icons": {
+                                          "comment": {
+                                            "text": "the echo from sensor 1 is still traveling when sensor 2 fires: without\nthis pause the second sensor times the echo of the first",
+                                            "pinned": false,
+                                            "height": 80,
+                                            "width": 160
+                                          }
+                                        },
+                                        "inputs": {
+                                          "MS": {
+                                            "block": {
+                                              "type": "ard_number",
+                                              "id": "Mn%.kdSFNDvYSx6B2(fH",
+                                              "fields": {
+                                                "NUM": 60
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "ard_digitalwrite",
+                                            "id": "1%v*$XWQQ+mj]eoS|%]~",
+                                            "icons": {
+                                              "comment": {
+                                                "text": "right sensor: trigger on D32, echo on D33",
+                                                "pinned": false,
+                                                "height": 80,
+                                                "width": 160
+                                              }
+                                            },
+                                            "fields": {
+                                              "PIN": "32"
+                                            },
+                                            "inputs": {
+                                              "VALOR": {
+                                                "block": {
+                                                  "type": "ard_const",
+                                                  "id": ".G)_3GsvJ-rXQ?e(nIe?",
+                                                  "fields": {
+                                                    "CONST": "LOW"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "ard_delaymicroseconds",
+                                                "id": "mRxV;f_vp/7eB3:@F!%h",
+                                                "inputs": {
+                                                  "US": {
+                                                    "block": {
+                                                      "type": "ard_number",
+                                                      "id": "rE-R!2aPY{rhfFsD-Y),",
+                                                      "fields": {
+                                                        "NUM": 2
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "ard_digitalwrite",
+                                                    "id": "6kUG*?s*N%_+Iu[sh4=o",
+                                                    "fields": {
+                                                      "PIN": "32"
+                                                    },
+                                                    "inputs": {
+                                                      "VALOR": {
+                                                        "block": {
+                                                          "type": "ard_const",
+                                                          "id": "(,#UgZTOoPT^j#sZR_xm",
+                                                          "fields": {
+                                                            "CONST": "HIGH"
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "next": {
+                                                      "block": {
+                                                        "type": "ard_delaymicroseconds",
+                                                        "id": "kDl@:YyrqX$n8c$rhdf7",
+                                                        "inputs": {
+                                                          "US": {
+                                                            "block": {
+                                                              "type": "ard_number",
+                                                              "id": ";i{NN/qb)t?j9ONIq:X3",
+                                                              "fields": {
+                                                                "NUM": 10
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "next": {
+                                                          "block": {
+                                                            "type": "ard_digitalwrite",
+                                                            "id": "m?zt$oAg`qR=0KWP%zR;",
+                                                            "fields": {
+                                                              "PIN": "32"
+                                                            },
+                                                            "inputs": {
+                                                              "VALOR": {
+                                                                "block": {
+                                                                  "type": "ard_const",
+                                                                  "id": "R}u`f5=UjZ~t$-:6|ZJP",
+                                                                  "fields": {
+                                                                    "CONST": "LOW"
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "next": {
+                                                              "block": {
+                                                                "type": "variables_set",
+                                                                "id": "Sj:)]zr]f}D2/WK!9knO",
+                                                                "fields": {
+                                                                  "VAR": {
+                                                                    "id": "P:igl:iZTLjDtE?.5H@W"
+                                                                  }
+                                                                },
+                                                                "inputs": {
+                                                                  "VALUE": {
+                                                                    "block": {
+                                                                      "type": "ard_arith",
+                                                                      "id": "oo?#SC3+/[u+oQrx}u]E",
+                                                                      "fields": {
+                                                                        "OP": "/"
+                                                                      },
+                                                                      "inputs": {
+                                                                        "A": {
+                                                                          "block": {
+                                                                            "type": "ard_cast",
+                                                                            "id": "dS+J-G0`D,b7qG@B^x@0",
+                                                                            "fields": {
+                                                                              "TIPO": "float"
+                                                                            },
+                                                                            "inputs": {
+                                                                              "VALOR": {
+                                                                                "block": {
+                                                                                  "type": "ard_pulsein",
+                                                                                  "id": "#E4d,$a@FA|krOrw~9h9",
+                                                                                  "fields": {
+                                                                                    "PIN": "33",
+                                                                                    "NIVEL": "HIGH"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "B": {
+                                                                          "block": {
+                                                                            "type": "ard_number",
+                                                                            "id": "|Fb2Kh/@m~4B~3Djk^qj",
+                                                                            "fields": {
+                                                                              "NUM": 58
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "controls_if",
+                                                                    "id": "4gOvsGlTEIq-QpQk!L*{",
+                                                                    "icons": {
+                                                                      "comment": {
+                                                                        "text": "with no echo pulseIn returns 0. Zero centimeters would mean \"obstacle\ntouching\" - the opposite of what happened. It becomes 400 cm, which is\nthe sensor maximum range and means \"nothing there\"",
+                                                                        "pinned": false,
+                                                                        "height": 80,
+                                                                        "width": 160
+                                                                      }
+                                                                    },
+                                                                    "inputs": {
+                                                                      "IF0": {
+                                                                        "block": {
+                                                                          "type": "logic_compare",
+                                                                          "id": "{b5_(1*4q|pL,5@W@%*F",
+                                                                          "fields": {
+                                                                            "OP": "EQ"
+                                                                          },
+                                                                          "inputs": {
+                                                                            "A": {
+                                                                              "block": {
+                                                                                "type": "variables_get",
+                                                                                "id": "2H%tGMpP+C{y7@Q*%WAE",
+                                                                                "fields": {
+                                                                                  "VAR": {
+                                                                                    "id": "*U:j*cSm3QZ#(!.uH[gZ"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "B": {
+                                                                              "block": {
+                                                                                "type": "ard_number",
+                                                                                "id": "z|ZoANr+=V[Lg]L^3I[`",
+                                                                                "fields": {
+                                                                                  "NUM": 0
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "DO0": {
+                                                                        "block": {
+                                                                          "type": "variables_set",
+                                                                          "id": "w#d0oGI.Q}Zr)CF|I-{(",
+                                                                          "fields": {
+                                                                            "VAR": {
+                                                                              "id": "*U:j*cSm3QZ#(!.uH[gZ"
+                                                                            }
+                                                                          },
+                                                                          "inputs": {
+                                                                            "VALUE": {
+                                                                              "block": {
+                                                                                "type": "ard_number",
+                                                                                "id": "i!_i3{?{jBp.|`}M1Z-?",
+                                                                                "fields": {
+                                                                                  "NUM": 400
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "controls_if",
+                                                                        "id": "l-VjGf_)tTK[ww2!rm{j",
+                                                                        "inputs": {
+                                                                          "IF0": {
+                                                                            "block": {
+                                                                              "type": "logic_compare",
+                                                                              "id": "Z`daX%P`0K,%{aU``}n2",
+                                                                              "fields": {
+                                                                                "OP": "EQ"
+                                                                              },
+                                                                              "inputs": {
+                                                                                "A": {
+                                                                                  "block": {
+                                                                                    "type": "variables_get",
+                                                                                    "id": "imC9V:+i=kyms1OtD:O%",
+                                                                                    "fields": {
+                                                                                      "VAR": {
+                                                                                        "id": "P:igl:iZTLjDtE?.5H@W"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "B": {
+                                                                                  "block": {
+                                                                                    "type": "ard_number",
+                                                                                    "id": "DIT$$McH#TtuG5=~5O]G",
+                                                                                    "fields": {
+                                                                                      "NUM": 0
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          "DO0": {
+                                                                            "block": {
+                                                                              "type": "variables_set",
+                                                                              "id": "`v;lyT(ndg$-M!h*$=cM",
+                                                                              "fields": {
+                                                                                "VAR": {
+                                                                                  "id": "P:igl:iZTLjDtE?.5H@W"
+                                                                                }
+                                                                              },
+                                                                              "inputs": {
+                                                                                "VALUE": {
+                                                                                  "block": {
+                                                                                    "type": "ard_number",
+                                                                                    "id": "/c7Mq;ui=9nA332*rH2C",
+                                                                                    "fields": {
+                                                                                      "NUM": 400
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_function_def",
+          "id": "[20a%y;;L1*Umks4Hv3l",
+          "x": 40,
+          "y": 2540,
+          "fields": {
+            "TIPO": "void",
+            "NOME": "stopMotors",
+            "PARAMS": ""
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_analogwrite",
+                "id": "2|PGI~M*jH)$AF7#CsLA",
+                "icons": {
+                  "comment": {
+                    "text": "IN1 D2 / IN2 D4 = left motor | IN3 D18 / IN4 D19 = right. ENA and ENB\nare on the 5 V jumpers, always enabled: the speed comes from the\ndirection pin itself. All four at 0: stopped. Always analogWrite on\nthese pins, never digitalWrite - on the ESP32 analogWrite ties the pin\nto the LEDC and a digital write would not take",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PIN": "2"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_number",
+                      "id": "FBi7N819RwI/}q7|`dg=",
+                      "fields": {
+                        "NUM": 0
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_analogwrite",
+                    "id": "1{mOC3$D$f9iz-h?p{~m",
+                    "fields": {
+                      "PIN": "4"
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "O.mwb(6xSW4vqQov,Rh)",
+                          "fields": {
+                            "NUM": 0
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_analogwrite",
+                        "id": "?l[vZV3R@Mry:ug$ngL}",
+                        "fields": {
+                          "PIN": "18"
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "ooOXId.1j4gW`.0^;.n0",
+                              "fields": {
+                                "NUM": 0
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_analogwrite",
+                            "id": "5!{QExvs42l)it6zi4+)",
+                            "fields": {
+                              "PIN": "19"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "3]O*$C7*sGqBoOgL{9eN",
+                                  "fields": {
+                                    "NUM": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_function_def",
+          "id": "*jiczTKeoV|2nFdF`yjA",
+          "x": 40,
+          "y": 3038,
+          "fields": {
+            "TIPO": "void",
+            "NOME": "driveForward",
+            "PARAMS": ""
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_analogwrite",
+                "id": "{tzDGXtK(+uZNsdz3H3S",
+                "icons": {
+                  "comment": {
+                    "text": "left motor: IN1 with PWM and IN2 at zero = forward, at FORWARD_SPEED.\nSwapping their roles reverses the direction",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PIN": "2"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "variables_get",
+                      "id": "dq+Zq16B;X:+#.MXm@JZ",
+                      "fields": {
+                        "VAR": {
+                          "id": "O~eY}$t7(f$S#OjQm$}M"
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_analogwrite",
+                    "id": "_E4W5:psE.evIiu7vm3+",
+                    "fields": {
+                      "PIN": "4"
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "Ft%PzT`*]$rxJ3M6ZHIc",
+                          "fields": {
+                            "NUM": 0
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_analogwrite",
+                        "id": "rit;6ytGyv/nT0NyVC:S",
+                        "icons": {
+                          "comment": {
+                            "text": "right motor: IN3 with PWM and IN4 at zero",
+                            "pinned": false,
+                            "height": 80,
+                            "width": 160
+                          }
+                        },
+                        "fields": {
+                          "PIN": "18"
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "variables_get",
+                              "id": "~2haTJ+b:H0ufH1t~*Gu",
+                              "fields": {
+                                "VAR": {
+                                  "id": "O~eY}$t7(f$S#OjQm$}M"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_analogwrite",
+                            "id": "29Bk@-g,7MD,g+axWI)W",
+                            "fields": {
+                              "PIN": "19"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "aD|*wUUk3w.,@zYmk:`M",
+                                  "fields": {
+                                    "NUM": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_function_def",
+          "id": "a#;k0[S:DN?$KI3x6E6c",
+          "x": 40,
+          "y": 3536,
+          "fields": {
+            "TIPO": "void",
+            "NOME": "backUp",
+            "PARAMS": ""
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_analogwrite",
+                "id": "rr=TaS[zNXiX.!eLo;[i",
+                "icons": {
+                  "comment": {
+                    "text": "both sides swapped: the PWM goes to IN2 and IN4",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PIN": "2"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_number",
+                      "id": "j4n4L6,M4NOul]CYBD6b",
+                      "fields": {
+                        "NUM": 0
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_analogwrite",
+                    "id": "{MFcn,|zAn|ec61@w=HQ",
+                    "fields": {
+                      "PIN": "4"
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "variables_get",
+                          "id": "W)M}KRUKeGl|,R39FBML",
+                          "fields": {
+                            "VAR": {
+                              "id": "E}*/p7_P-SHxWK4ftsMB"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_analogwrite",
+                        "id": "bZL.V9|wHNT_K;OE}2%;",
+                        "fields": {
+                          "PIN": "18"
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "tsCN}P#s^3E*7}lEj`hB",
+                              "fields": {
+                                "NUM": 0
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_analogwrite",
+                            "id": "st%-CXUE4rmY9uNZOt0~",
+                            "fields": {
+                              "PIN": "19"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "variables_get",
+                                  "id": "*F!FeG`U:bK`A,XL8W]4",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "E}*/p7_P-SHxWK4ftsMB"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_function_def",
+          "id": "C[GAeLa+jF?(YM^JDei+",
+          "x": 40,
+          "y": 4034,
+          "fields": {
+            "TIPO": "void",
+            "NOME": "turnRight",
+            "PARAMS": ""
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_analogwrite",
+                "id": "udrlOjbIHWm^`V1A$Kug",
+                "icons": {
+                  "comment": {
+                    "text": "left forward and right backward: the cart spins on its own axis. With\na caster wheel at the front there is nothing to steer, so turning is\nthe difference between the two rear wheels",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PIN": "2"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "variables_get",
+                      "id": "S}qE(G#?IYXrW=]havM$",
+                      "fields": {
+                        "VAR": {
+                          "id": "%~5Wv:rcii37la-]ruy+"
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_analogwrite",
+                    "id": "4)Lh-:2XnD;GlppaHA?9",
+                    "fields": {
+                      "PIN": "4"
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "`lTud5KM!O*Wz,;L$1@l",
+                          "fields": {
+                            "NUM": 0
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_analogwrite",
+                        "id": "a,4FFB,Lx-Qg^=jk0CAU",
+                        "fields": {
+                          "PIN": "18"
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "IqW]5W#2f.AWBjoaNtI4",
+                              "fields": {
+                                "NUM": 0
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_analogwrite",
+                            "id": "W)yiDo}`[GhaR!0OZEWV",
+                            "fields": {
+                              "PIN": "19"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "variables_get",
+                                  "id": "fc-NEa^n.x.^[*bq_^GG",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "%~5Wv:rcii37la-]ruy+"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_function_def",
+          "id": "L!neyWPdsUi!2bq/T1)x",
+          "x": 40,
+          "y": 4532,
+          "fields": {
+            "TIPO": "void",
+            "NOME": "driveSlowly",
+            "PARAMS": ""
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_analogwrite",
+                "id": ")xE%tuTRxIFYEIalx[3H",
+                "icons": {
+                  "comment": {
+                    "text": "the kick: starting from zero takes more torque than keeping moving.\nWithout these 80 ms the motor only hummed at SLOW_SPEED and the robot\nseemed to freeze whenever the analysis gave T",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PIN": "2"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "variables_get",
+                      "id": "W6G%]993~ouQ7tC9OoZY",
+                      "fields": {
+                        "VAR": {
+                          "id": "@P5iA?K:OC0JC~hT?#H]"
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_analogwrite",
+                    "id": "Q{5{S-06vzf3E,+@(,Rb",
+                    "fields": {
+                      "PIN": "4"
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "QEa99u0nbiE4XvQvsJ.z",
+                          "fields": {
+                            "NUM": 0
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_analogwrite",
+                        "id": "0c9J:`g4+N^Yq+MJb}iA",
+                        "fields": {
+                          "PIN": "18"
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "variables_get",
+                              "id": "QAxv:|QOMA=jJggta:55",
+                              "fields": {
+                                "VAR": {
+                                  "id": "@P5iA?K:OC0JC~hT?#H]"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_analogwrite",
+                            "id": "vV2rStd/N2WBgY78]AqJ",
+                            "fields": {
+                              "PIN": "19"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "=mPWlN[[N=o=-3y*y`%)",
+                                  "fields": {
+                                    "NUM": 0
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "ard_delay",
+                                "id": "955Qa^``=A~Uwma[j:8o",
+                                "inputs": {
+                                  "MS": {
+                                    "block": {
+                                      "type": "ard_number",
+                                      "id": "VL?U:4BF:X,mExD?)CuR",
+                                      "fields": {
+                                        "NUM": 80
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "ard_analogwrite",
+                                    "id": "!Al(e;I5OV7Ip)C!CU0n",
+                                    "icons": {
+                                      "comment": {
+                                        "text": "settle at the slow speed: this is how contradiction is diluted -\napproaching slowly until the two readings break the tie",
+                                        "pinned": false,
+                                        "height": 80,
+                                        "width": 160
+                                      }
+                                    },
+                                    "fields": {
+                                      "PIN": "2"
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "variables_get",
+                                          "id": "l$59|}^p_#@qD(?y8f0t",
+                                          "fields": {
+                                            "VAR": {
+                                              "id": "JUl!2AYag%^DJjp:ihKl"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "ard_analogwrite",
+                                        "id": ",#u%YeS#OWke{9qq=.8v",
+                                        "fields": {
+                                          "PIN": "18"
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "id": "Svh[EJn[6u12-[p@M=]|",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "JUl!2AYag%^DJjp:ihKl"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_setup",
+          "id": "2;)+(=C#RwN%AQ9.UNEu",
+          "x": 40,
+          "y": 5282,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_serial_begin",
+                "id": "bSemOn,uuDN8Ll/)P1C+",
+                "fields": {
+                  "PORTA": "Serial",
+                  "BAUD": "115200"
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_pinmode",
+                    "id": ".$;UD2O9~$`^%PkenI:=",
+                    "icons": {
+                      "comment": {
+                        "text": "Adapted Emmy robot (Da Silva Filho) on the ESP32 DevKit. Proposition:\n\"there is an obstacle ahead\". Sensor 1 trig/echo D26 / D27 | sensor 2\ntrig/echo D32 / D33. H-bridge: IN1/IN2 D2 / D4 (left), IN3/IN4 D18 /\nD19 (right). The HC-SR04 echo is 5 V and the ESP32 is 3.3 V: resistive\ndivider or level shifter on D27 and D33. Power the motors from the\nH-bridge supply, not from the ESP32",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "PIN": "26",
+                      "MODO": "OUTPUT"
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_pinmode",
+                        "id": "]95[m1;D1*h*K`?h@9ax",
+                        "fields": {
+                          "PIN": "27",
+                          "MODO": "INPUT"
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_pinmode",
+                            "id": "=*9t1:FhL__MkLxo_j/T",
+                            "fields": {
+                              "PIN": "32",
+                              "MODO": "OUTPUT"
+                            },
+                            "next": {
+                              "block": {
+                                "type": "ard_pinmode",
+                                "id": "VjE_h@g--n5^pIK]h]ME",
+                                "fields": {
+                                  "PIN": "33",
+                                  "MODO": "INPUT"
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "ard_pinmode",
+                                    "id": "u^144ID,`uN{KU!y($a:",
+                                    "fields": {
+                                      "PIN": "2",
+                                      "MODO": "OUTPUT"
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "ard_pinmode",
+                                        "id": "GT2[@PC9B=Gt+11(2Efd",
+                                        "fields": {
+                                          "PIN": "4",
+                                          "MODO": "OUTPUT"
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "ard_pinmode",
+                                            "id": "to7,B0h3`9/)bV6r,%b+",
+                                            "fields": {
+                                              "PIN": "18",
+                                              "MODO": "OUTPUT"
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "ard_pinmode",
+                                                "id": ":uas)97}h~vS0Ta1S-|G",
+                                                "fields": {
+                                                  "PIN": "19",
+                                                  "MODO": "OUTPUT"
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "ard_call",
+                                                    "id": "5Z.HXAmkT2JCHdydFy26",
+                                                    "icons": {
+                                                      "comment": {
+                                                        "text": "starts stopped",
+                                                        "pinned": false,
+                                                        "height": 80,
+                                                        "width": 160
+                                                      }
+                                                    },
+                                                    "fields": {
+                                                      "NOME": "stopMotors"
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_loop",
+          "id": "g(Tw9?v%L`us{OW~YVl?",
+          "x": 40,
+          "y": 5864,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_call",
+                "id": "GRgWeV2{]9IQ3nkC2cVv",
+                "fields": {
+                  "NOME": "readSensors"
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_serial_print",
+                    "id": "BH^ws#W*@pyZ!`n]-qWw",
+                    "icons": {
+                      "comment": {
+                        "text": "both distances on the Monitor, to check the sensor alignment",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "PORTA": "Serial"
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_text",
+                          "id": "qf!]p^|edT7Uqs#sqvtG",
+                          "fields": {
+                            "TEXTO": "left:"
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_serial_print",
+                        "id": "cL$:Ty.7a6`.hNz]]$E*",
+                        "fields": {
+                          "PORTA": "Serial"
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "variables_get",
+                              "id": "R|e_pRI]w,?:,Cr2q+G[",
+                              "fields": {
+                                "VAR": {
+                                  "id": "*U:j*cSm3QZ#(!.uH[gZ"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_serial_print",
+                            "id": "XCa=cVao7l-Ne]Rr0E~#",
+                            "fields": {
+                              "PORTA": "Serial"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_text",
+                                  "id": "6c4q$9fW`yC%}?UA!gUm",
+                                  "fields": {
+                                    "TEXTO": " right:"
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "ard_serial_println",
+                                "id": "to36AR[1HY!:c;|l(=|X",
+                                "fields": {
+                                  "PORTA": "Serial"
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "variables_get",
+                                      "id": "J[oR~X8]Z]`nm%fo{uzp",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "P:igl:iZTLjDtE?.5H@W"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "ard_serial_print",
+                                    "id": "n^D^/3D;l48g;@pmB[.y",
+                                    "icons": {
+                                      "comment": {
+                                        "text": "The SAME annotation the Para-Analyzer uses right below, sent to the\nLattice tab: mu = evidence from the left sensor, lambda = complement\nof the evidence from the right one. These are calculations on the\ndistances already stored, so the sensors are not fired again and the\nplotted point is exactly what decides the movement",
+                                        "pinned": false,
+                                        "height": 80,
+                                        "width": 160
+                                      }
+                                    },
+                                    "fields": {
+                                      "PORTA": "Serial"
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "ard_text",
+                                          "id": "`?Xzhla*,@bW,;9/Q*K1",
+                                          "fields": {
+                                            "TEXTO": "mu:"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "ard_serial_print",
+                                        "id": "@7$/wPo9`5dK!Eu3;]d@",
+                                        "fields": {
+                                          "PORTA": "Serial"
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "lp_evidencia",
+                                              "id": "neUv`4IyWeEaG49?FHj*",
+                                              "fields": {
+                                                "FUNC": "LIN"
+                                              },
+                                              "inputs": {
+                                                "X": {
+                                                  "block": {
+                                                    "type": "variables_get",
+                                                    "id": "kAql*^o8@4a![FQ:Wer#",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "*U:j*cSm3QZ#(!.uH[gZ"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "A1": {
+                                                  "block": {
+                                                    "type": "ard_number",
+                                                    "id": "DK*YU/dVqnjSnTi7r6ka",
+                                                    "fields": {
+                                                      "NUM": 80
+                                                    }
+                                                  }
+                                                },
+                                                "A2": {
+                                                  "block": {
+                                                    "type": "ard_number",
+                                                    "id": ",|#yq@?MO}Zg$0EzQ]LV",
+                                                    "fields": {
+                                                      "NUM": 10
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "ard_serial_print",
+                                            "id": "#@yB8ku-?~$82r5@8ZF.",
+                                            "fields": {
+                                              "PORTA": "Serial"
+                                            },
+                                            "inputs": {
+                                              "VALOR": {
+                                                "block": {
+                                                  "type": "ard_text",
+                                                  "id": "l1Q3arBP^E-)F/+5d_Dy",
+                                                  "fields": {
+                                                    "TEXTO": " lambda:"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "ard_serial_println",
+                                                "id": "UJE$3~cvOb^9UO$]{B}}",
+                                                "fields": {
+                                                  "PORTA": "Serial"
+                                                },
+                                                "inputs": {
+                                                  "VALOR": {
+                                                    "block": {
+                                                      "type": "lp_complemento",
+                                                      "id": "bm2TC),ty]QKfuY/Tk*m",
+                                                      "inputs": {
+                                                        "MU": {
+                                                          "block": {
+                                                            "type": "lp_evidencia",
+                                                            "id": "UQD`iQ|:hvQ@@Ok7y?v5",
+                                                            "fields": {
+                                                              "FUNC": "LIN"
+                                                            },
+                                                            "inputs": {
+                                                              "X": {
+                                                                "block": {
+                                                                  "type": "variables_get",
+                                                                  "id": "olj+chyA1[sccv[}%8D7",
+                                                                  "fields": {
+                                                                    "VAR": {
+                                                                      "id": "P:igl:iZTLjDtE?.5H@W"
+                                                                    }
+                                                                  }
+                                                                }
+                                                              },
+                                                              "A1": {
+                                                                "block": {
+                                                                  "type": "ard_number",
+                                                                  "id": "}rIFd~kHP9TIkUogz0=9",
+                                                                  "fields": {
+                                                                    "NUM": 80
+                                                                  }
+                                                                }
+                                                              },
+                                                              "A2": {
+                                                                "block": {
+                                                                  "type": "ard_number",
+                                                                  "id": "p#y^/,gJw-)1@[iYaXiE",
+                                                                  "fields": {
+                                                                    "NUM": 10
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "lp_para_analisador_simples",
+                                                    "id": "aZ?j}8jH=UE2GA!=4D+?",
+                                                    "icons": {
+                                                      "comment": {
+                                                        "text": "Universe of Discourse inverted on purpose: 80 cm (far, no evidence) to\n10 cm (touching, full evidence). Since a2 < a1, the valuation comes\nout inverted by itself - near becomes high evidence",
+                                                        "pinned": false,
+                                                        "height": 80,
+                                                        "width": 160
+                                                      }
+                                                    },
+                                                    "fields": {
+                                                      "RES": "12"
+                                                    },
+                                                    "inputs": {
+                                                      "S1": {
+                                                        "block": {
+                                                          "type": "variables_get",
+                                                          "id": ",[ceCSK:9g;GBB5wd%{6",
+                                                          "fields": {
+                                                            "VAR": {
+                                                              "id": "*U:j*cSm3QZ#(!.uH[gZ"
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "S2": {
+                                                        "block": {
+                                                          "type": "variables_get",
+                                                          "id": "ME_pQc:Ut9w=(.s9lC_a",
+                                                          "fields": {
+                                                            "VAR": {
+                                                              "id": "P:igl:iZTLjDtE?.5H@W"
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "A1": {
+                                                        "block": {
+                                                          "type": "ard_number",
+                                                          "id": "3/9G*:ZbIJ2]CPFKCeBK",
+                                                          "fields": {
+                                                            "NUM": 80
+                                                          }
+                                                        }
+                                                      },
+                                                      "A2": {
+                                                        "block": {
+                                                          "type": "ard_number",
+                                                          "id": "pBlXH^s~AIVt_mk[^r}u",
+                                                          "fields": {
+                                                            "NUM": 10
+                                                          }
+                                                        }
+                                                      },
+                                                      "CASOS": {
+                                                        "block": {
+                                                          "type": "lp_caso",
+                                                          "id": "rX9Sqc?ICXDaymYY^3|o",
+                                                          "fields": {
+                                                            "ESTADO": "LPA_V"
+                                                          },
+                                                          "inputs": {
+                                                            "BODY": {
+                                                              "block": {
+                                                                "type": "ard_serial_println",
+                                                                "id": "MkB:7ti]`CFhlxyV.}[9",
+                                                                "icons": {
+                                                                  "comment": {
+                                                                    "text": "both sensors agree there is an obstacle: back up and spin in place",
+                                                                    "pinned": false,
+                                                                    "height": 80,
+                                                                    "width": 160
+                                                                  }
+                                                                },
+                                                                "fields": {
+                                                                  "PORTA": "Serial"
+                                                                },
+                                                                "inputs": {
+                                                                  "VALOR": {
+                                                                    "block": {
+                                                                      "type": "ard_text",
+                                                                      "id": "0J1I+|BSsoAn#lW0(A;N",
+                                                                      "fields": {
+                                                                        "TEXTO": "V: obstacle — back up and turn 90"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "ard_call",
+                                                                    "id": "Y(K%Ahp7rwRerMT=]1q@",
+                                                                    "fields": {
+                                                                      "NOME": "stopMotors"
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "ard_delay",
+                                                                        "id": "r.tA;5|U4@7Vb+0$NJIE",
+                                                                        "inputs": {
+                                                                          "MS": {
+                                                                            "block": {
+                                                                              "type": "ard_number",
+                                                                              "id": "tM8/8xE#L+7n~yyw2zYo",
+                                                                              "fields": {
+                                                                                "NUM": 200
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "ard_call",
+                                                                            "id": "}SCxH?Wp!F_TVA*m_PDS",
+                                                                            "fields": {
+                                                                              "NOME": "backUp"
+                                                                            },
+                                                                            "next": {
+                                                                              "block": {
+                                                                                "type": "ard_delay",
+                                                                                "id": "e~G3)miZ=WsSoPhLzg#C",
+                                                                                "inputs": {
+                                                                                  "MS": {
+                                                                                    "block": {
+                                                                                      "type": "ard_number",
+                                                                                      "id": "pOihx*/tWgmch?])]th]",
+                                                                                      "fields": {
+                                                                                        "NUM": 500
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "next": {
+                                                                                  "block": {
+                                                                                    "type": "ard_call",
+                                                                                    "id": "X5tWzPG-YqLoe50|#dNK",
+                                                                                    "fields": {
+                                                                                      "NOME": "turnRight"
+                                                                                    },
+                                                                                    "next": {
+                                                                                      "block": {
+                                                                                        "type": "ard_delay",
+                                                                                        "id": "H%0opsQ_w5{Lzyyqcz%T",
+                                                                                        "icons": {
+                                                                                          "comment": {
+                                                                                            "text": "T3 = 2 s: the 90 degree turn from the paper. This time was measured at\nfull speed - if you change TURN_SPEED, measure the angle again",
+                                                                                            "pinned": false,
+                                                                                            "height": 80,
+                                                                                            "width": 160
+                                                                                          }
+                                                                                        },
+                                                                                        "inputs": {
+                                                                                          "MS": {
+                                                                                            "block": {
+                                                                                              "type": "ard_number",
+                                                                                              "id": "h[hoUA0IT{)b6Ww!1RTq",
+                                                                                              "fields": {
+                                                                                                "NUM": 2000
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        },
+                                                                                        "next": {
+                                                                                          "block": {
+                                                                                            "type": "ard_call",
+                                                                                            "id": "Ra][..cuylX_~/mh(Nr,",
+                                                                                            "fields": {
+                                                                                              "NOME": "stopMotors"
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "next": {
+                                                            "block": {
+                                                              "type": "lp_caso",
+                                                              "id": "Ol/qfmr.=2tE{7Gmwm=L",
+                                                              "fields": {
+                                                                "ESTADO": "LPA_QVT"
+                                                              },
+                                                              "inputs": {
+                                                                "BODY": {
+                                                                  "block": {
+                                                                    "type": "ard_serial_println",
+                                                                    "id": "RZ*QOP3KIg_6QoO./xa+",
+                                                                    "icons": {
+                                                                      "comment": {
+                                                                        "text": "high evidence but with disagreement: partial swerve instead of 90 degrees",
+                                                                        "pinned": false,
+                                                                        "height": 80,
+                                                                        "width": 160
+                                                                      }
+                                                                    },
+                                                                    "fields": {
+                                                                      "PORTA": "Serial"
+                                                                    },
+                                                                    "inputs": {
+                                                                      "VALOR": {
+                                                                        "block": {
+                                                                          "type": "ard_text",
+                                                                          "id": "b6fc18mFV$FbcO^/PsK@",
+                                                                          "fields": {
+                                                                            "TEXTO": "Qv->T: likely obstacle — turn 45"
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "ard_call",
+                                                                        "id": "!i*uAVoJ(4lgGR-zlN]S",
+                                                                        "fields": {
+                                                                          "NOME": "turnRight"
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "ard_delay",
+                                                                            "id": "j#wos%r,nT0n*ELcpWuF",
+                                                                            "icons": {
+                                                                              "comment": {
+                                                                                "text": "T2 = 1.5 s: half turn, ~45 degrees",
+                                                                                "pinned": false,
+                                                                                "height": 80,
+                                                                                "width": 160
+                                                                              }
+                                                                            },
+                                                                            "inputs": {
+                                                                              "MS": {
+                                                                                "block": {
+                                                                                  "type": "ard_number",
+                                                                                  "id": ":F2O|XqNiOil?2b)~_8_",
+                                                                                  "fields": {
+                                                                                    "NUM": 1500
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "next": {
+                                                                              "block": {
+                                                                                "type": "ard_call",
+                                                                                "id": "@#ejdz{,FAOSpsu^,.n5",
+                                                                                "fields": {
+                                                                                  "NOME": "stopMotors"
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              },
+                                                              "next": {
+                                                                "block": {
+                                                                  "type": "lp_caso",
+                                                                  "id": "E`JAu}l76yzU%}7P.U0G",
+                                                                  "fields": {
+                                                                    "ESTADO": "LPA_F"
+                                                                  },
+                                                                  "inputs": {
+                                                                    "BODY": {
+                                                                      "block": {
+                                                                        "type": "ard_serial_println",
+                                                                        "id": "E%n.^:=q9?gqY1J7M{`_",
+                                                                        "icons": {
+                                                                          "comment": {
+                                                                            "text": "both agree there is nothing: keep going",
+                                                                            "pinned": false,
+                                                                            "height": 80,
+                                                                            "width": 160
+                                                                          }
+                                                                        },
+                                                                        "fields": {
+                                                                          "PORTA": "Serial"
+                                                                        },
+                                                                        "inputs": {
+                                                                          "VALOR": {
+                                                                            "block": {
+                                                                              "type": "ard_text",
+                                                                              "id": "!+;vV@3WzJ.ZFCB`EltI",
+                                                                              "fields": {
+                                                                                "TEXTO": "F: clear — go forward"
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "ard_call",
+                                                                            "id": "*.eV@9@57hvYr~Owgo[A",
+                                                                            "fields": {
+                                                                              "NOME": "driveForward"
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  "next": {
+                                                                    "block": {
+                                                                      "type": "lp_caso",
+                                                                      "id": "?Wi7A_#]:AGw9`x5ZJI)",
+                                                                      "fields": {
+                                                                        "ESTADO": "LPA_T"
+                                                                      },
+                                                                      "inputs": {
+                                                                        "BODY": {
+                                                                          "block": {
+                                                                            "type": "ard_serial_println",
+                                                                            "id": "-z4PRuYM;#3|$/s[[bo4",
+                                                                            "icons": {
+                                                                              "comment": {
+                                                                                "text": "the two see incompatible things. High contradiction does not mean\nstop: it means dilute the contradiction, moving slowly so the next\nreadings get closer and break the tie",
+                                                                                "pinned": false,
+                                                                                "height": 80,
+                                                                                "width": 160
+                                                                              }
+                                                                            },
+                                                                            "fields": {
+                                                                              "PORTA": "Serial"
+                                                                            },
+                                                                            "inputs": {
+                                                                              "VALOR": {
+                                                                                "block": {
+                                                                                  "type": "ard_text",
+                                                                                  "id": "7G|I/lO|e1W?L6}YZAZq",
+                                                                                  "fields": {
+                                                                                    "TEXTO": "T: contradiction — go forward slowly"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "next": {
+                                                                              "block": {
+                                                                                "type": "ard_call",
+                                                                                "id": "e(]uB.rb1n+SFf5G1T_W",
+                                                                                "fields": {
+                                                                                  "NOME": "driveSlowly"
+                                                                                },
+                                                                                "next": {
+                                                                                  "block": {
+                                                                                    "type": "ard_delay",
+                                                                                    "id": "@%Q)Pc;KO.$cb|oK5R82",
+                                                                                    "icons": {
+                                                                                      "comment": {
+                                                                                        "text": "T1 = 0.75 s",
+                                                                                        "pinned": false,
+                                                                                        "height": 80,
+                                                                                        "width": 160
+                                                                                      }
+                                                                                    },
+                                                                                    "inputs": {
+                                                                                      "MS": {
+                                                                                        "block": {
+                                                                                          "type": "ard_number",
+                                                                                          "id": "kQg%49b)Cx`VqhdzSu8n",
+                                                                                          "fields": {
+                                                                                            "NUM": 750
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "next": {
+                                                                        "block": {
+                                                                          "type": "lp_caso",
+                                                                          "id": "wXI;1p[JH]1;`D~AHW!L",
+                                                                          "fields": {
+                                                                            "ESTADO": "LPA_PC"
+                                                                          },
+                                                                          "inputs": {
+                                                                            "BODY": {
+                                                                              "block": {
+                                                                                "type": "ard_serial_println",
+                                                                                "id": "$*w7MC!1BF:`YgwVJh9t",
+                                                                                "icons": {
+                                                                                  "comment": {
+                                                                                    "text": "perpendicular is the mirrored contradiction of T (Gct = mu1 - mu2),\nnot a missing reading: one sensor sees an obstacle and the other sees\na free path. One of the two is wrong. Stopping here was a decision\nthat did NOT change the evidence: stopped, the sensors repeated the\nsame disagreement, the next cycle fell into perpendicular again and\nthe robot stayed there forever. A half maneuver changes the geometry\nand allows measuring again",
+                                                                                    "pinned": false,
+                                                                                    "height": 80,
+                                                                                    "width": 160
+                                                                                  }
+                                                                                },
+                                                                                "fields": {
+                                                                                  "PORTA": "Serial"
+                                                                                },
+                                                                                "inputs": {
+                                                                                  "VALOR": {
+                                                                                    "block": {
+                                                                                      "type": "ard_text",
+                                                                                      "id": "PiGGyFQ+l4!XGJgFQaHp",
+                                                                                      "fields": {
+                                                                                        "TEXTO": "perp: conflict — back up and measure again"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "next": {
+                                                                                  "block": {
+                                                                                    "type": "ard_call",
+                                                                                    "id": "/=EYZ~:pi6.AAS~tl5f2",
+                                                                                    "fields": {
+                                                                                      "NOME": "backUp"
+                                                                                    },
+                                                                                    "next": {
+                                                                                      "block": {
+                                                                                        "type": "ard_delay",
+                                                                                        "id": ",KoshA`/P}H[:WEfP%tC",
+                                                                                        "inputs": {
+                                                                                          "MS": {
+                                                                                            "block": {
+                                                                                              "type": "ard_number",
+                                                                                              "id": "qChz0j5++^;,Ijqfx0n)",
+                                                                                              "fields": {
+                                                                                                "NUM": 300
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        },
+                                                                                        "next": {
+                                                                                          "block": {
+                                                                                            "type": "ard_call",
+                                                                                            "id": "2+6=4MEJXq^JtaTGH}X+",
+                                                                                            "fields": {
+                                                                                              "NOME": "turnRight"
+                                                                                            },
+                                                                                            "next": {
+                                                                                              "block": {
+                                                                                                "type": "ard_delay",
+                                                                                                "id": "/q]nG]w3~51^2_?kdV^}",
+                                                                                                "inputs": {
+                                                                                                  "MS": {
+                                                                                                    "block": {
+                                                                                                      "type": "ard_number",
+                                                                                                      "id": "Oz`@|q|eIje;7];89|[y",
+                                                                                                      "fields": {
+                                                                                                        "NUM": 600
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                },
+                                                                                                "next": {
+                                                                                                  "block": {
+                                                                                                    "type": "ard_call",
+                                                                                                    "id": "LRqqe|yRaC78!6@STeCZ",
+                                                                                                    "fields": {
+                                                                                                      "NOME": "stopMotors"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          "next": {
+                                                                            "block": {
+                                                                              "type": "lp_senao",
+                                                                              "id": "}0C(OY|83^GQh^pUiSV5",
+                                                                              "inputs": {
+                                                                                "BODY": {
+                                                                                  "block": {
+                                                                                    "type": "ard_serial_println",
+                                                                                    "id": "-wtl}HuWOM01[rxee=W+",
+                                                                                    "icons": {
+                                                                                      "comment": {
+                                                                                        "text": "the other 7 lattice states: evidence too weak to decide, so move\nslowly and measure again",
+                                                                                        "pinned": false,
+                                                                                        "height": 80,
+                                                                                        "width": 160
+                                                                                      }
+                                                                                    },
+                                                                                    "fields": {
+                                                                                      "PORTA": "Serial"
+                                                                                    },
+                                                                                    "inputs": {
+                                                                                      "VALOR": {
+                                                                                        "block": {
+                                                                                          "type": "ard_text",
+                                                                                          "id": "s0YW#=Ne%U6uwLo{J,jI",
+                                                                                          "fields": {
+                                                                                            "TEXTO": "other states — go forward slowly"
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    "next": {
+                                                                                      "block": {
+                                                                                        "type": "ard_call",
+                                                                                        "id": "((nA6(Y5?/m]|uYqs;jA",
+                                                                                        "fields": {
+                                                                                          "NOME": "driveSlowly"
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "next": {
+                                                      "block": {
+                                                        "type": "ard_delay",
+                                                        "id": "$|TzR=H:Mg|9EzJ4w|My",
+                                                        "icons": {
+                                                          "comment": {
+                                                            "text": "pause between ultrasonic pings",
+                                                            "pinned": false,
+                                                            "height": 80,
+                                                            "width": 160
+                                                          }
+                                                        },
+                                                        "inputs": {
+                                                          "MS": {
+                                                            "block": {
+                                                              "type": "ard_number",
+                                                              "id": "xoN`3*Gpg*w;HU0Vywcx",
+                                                              "fields": {
+                                                                "NUM": 100
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "variables": [
+      {
+        "name": "distLeft",
+        "id": "*U:j*cSm3QZ#(!.uH[gZ"
+      },
+      {
+        "name": "distRight",
+        "id": "P:igl:iZTLjDtE?.5H@W"
+      },
+      {
+        "name": "FORWARD_SPEED",
+        "id": "O~eY}$t7(f$S#OjQm$}M"
+      },
+      {
+        "name": "SLOW_SPEED",
+        "id": "JUl!2AYag%^DJjp:ihKl"
+      },
+      {
+        "name": "START_SPEED",
+        "id": "@P5iA?K:OC0JC~hT?#H]"
+      },
+      {
+        "name": "REVERSE_SPEED",
+        "id": "E}*/p7_P-SHxWK4ftsMB"
+      },
+      {
+        "name": "TURN_SPEED",
+        "id": "%~5Wv:rcii37la-]ruy+"
+      }
+    ]
+  }
+}

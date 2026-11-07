@@ -6,6 +6,8 @@
 (function () {
 
     const $ = id => document.getElementById(id);
+    /** Texto no idioma da interface (i18n.js); sem o módulo, fica o português. */
+    const T = s => (window.I18N ? window.I18N.t(s) : s);
 
     /** Nome de arquivo seguro sem perder as letras: "sem título" → "sem_titulo". */
     function nomeArquivo(texto) {
@@ -23,7 +25,7 @@
         placa: 'uno',
         porta: null,
         prefs: {},
-        projeto: { caminho: null, nome: 'sem título', sujo: false },
+        projeto: { caminho: null, nome: T('sem título'), sujo: false },
         compilando: false,
 
         /* ============================================================ */
@@ -31,6 +33,7 @@
         /* ============================================================ */
 
         async iniciar() {
+            if (window.I18N) window.I18N.traduzirDom(document.body);
             this.prefs = await window.tb.prefs.ler();
             this.placa = this.prefs.placa || 'uno';
             Boards.selecionar(this.placa);
@@ -71,7 +74,7 @@
             Boards.lista().forEach(p => {
                 const o = document.createElement('option');
                 o.value = p.id;
-                o.textContent = p.nome;
+                o.textContent = T(p.nome);
                 sp.appendChild(o);
             });
             sp.value = this.placa;
@@ -289,13 +292,13 @@
                 lateral.classList.add('recolhido');
                 divisor.classList.add('travado');
                 $('btn-recolher').textContent = '❮';
-                $('btn-recolher').title = 'Mostrar o painel';
+                $('btn-recolher').title = T('Mostrar o painel');
             } else {
                 lateral.classList.remove('recolhido');
                 divisor.classList.remove('travado');
                 if (this._larguraLateral) lateral.style.flexBasis = this._larguraLateral;
                 $('btn-recolher').textContent = '❯';
-                $('btn-recolher').title = 'Recolher o painel';
+                $('btn-recolher').title = T('Recolher o painel');
             }
 
             Blockly.svgResize(this.ws);
@@ -329,7 +332,7 @@
             this.atualizarCodigo();
             this.marcarSujo();
 
-            this.status('modo ' + (novo === 'abstrato' ? 'abstrato' : 'literal'), 'ok');
+            this.status(novo === 'abstrato' ? 'modo abstrato' : 'modo literal', 'ok');
             this.relatarConversao(novo, r);
             if (salvar !== false) window.tb.prefs.gravar({ modo: novo });
         },
@@ -346,7 +349,7 @@
             r.mantidos.forEach(m => { porTipo[m.tipo] = m.motivo; });
             this.logSaida('  ficaram no formato anterior (o código gerado não mudou):');
             Object.keys(porTipo).sort().forEach(t => {
-                this.logSaida('    ' + t + ' — ' + porTipo[t]);
+                this.logSaida('    ' + t + ' — ' + T(porTipo[t]));
             });
             this.abrirAba('saida');
         },
@@ -387,7 +390,7 @@
             try {
                 this.codigo = ArduinoGen.workspaceToCode(this.ws);
             } catch (e) {
-                this.codigo = '// erro ao gerar o código: ' + e.message + '\n';
+                this.codigo = T('// erro ao gerar o código: ' + e.message) + '\n';
             }
             $('codigo').textContent = this.codigo;
             $('rotulo-ino').textContent = nomeArquivo(this.projeto.nome) + '.ino';
@@ -402,7 +405,7 @@
 
             const total = problemas.length + avisosGen.length;
             const el = $('status-avisos');
-            el.textContent = total ? total + (total === 1 ? ' aviso' : ' avisos') : '';
+            el.textContent = total ? total + ' ' + T(total === 1 ? 'aviso' : 'avisos') : '';
             el.className = 'status-item ' + (problemas.length ? 'erro' : total ? 'aviso' : '');
             el.title = problemas.concat(avisosGen).map(p => p.mensagem).join('\n');
 
@@ -432,7 +435,7 @@
                 el.title = cores.map(c => c.id + ' ' + c.instalado).join('\n');
                 this._cores = cores;
             } else {
-                el.textContent = 'arduino-cli não encontrado';
+                el.textContent = T('arduino-cli não encontrado');
                 el.className = 'status-item erro';
                 el.title = v.erro || '';
                 this._cores = [];
@@ -451,7 +454,7 @@
             if (!r.portas.length) {
                 const o = document.createElement('option');
                 o.value = '';
-                o.textContent = 'nenhuma placa detectada';
+                o.textContent = T('nenhuma placa detectada');
                 sel.appendChild(o);
                 this.porta = null;
                 return;
@@ -535,9 +538,10 @@
             }
 
             if (r.tamanho && r.tamanho.length) {
+                const local = window.I18N && window.I18N.lang === 'en' ? 'en-US' : 'pt-BR';
                 const texto = r.tamanho.map(s =>
-                    s.nome + ': ' + s.usado.toLocaleString('pt-BR') +
-                    (s.max ? ' de ' + s.max.toLocaleString('pt-BR') + ' bytes (' + s.pct + '%)' : ' bytes')
+                    s.nome + ': ' + s.usado.toLocaleString(local) +
+                    (s.max ? T(' de ') + s.max.toLocaleString(local) + ' bytes (' + s.pct + '%)' : ' bytes')
                 ).join('  ·  ');
                 this.logSaida('  ' + texto, 'info');
             }
@@ -574,7 +578,7 @@
                 const bloco = this.ws.getBlockById(id);
                 if (!bloco) return;
                 const anterior = bloco.warning && bloco.warning.getText();
-                bloco.setWarningText([anterior, (p.nivel === 'erro' ? 'Erro: ' : 'Aviso: ') + p.mensagem]
+                bloco.setWarningText([anterior, T(p.nivel === 'erro' ? 'Erro: ' : 'Aviso: ') + p.mensagem]
                     .filter(Boolean).join('\n'));
                 if (p.nivel === 'erro' && !primeiro) primeiro = id;
             });
@@ -615,7 +619,7 @@
             const div = document.createElement('div');
             div.className = canal === 'erro' || canal === 'err' ? 'l-erro'
                 : canal === 'ok' ? 'l-ok' : canal === 'info' ? 'l-info' : '';
-            div.textContent = linha;
+            div.textContent = T(linha);
             box.appendChild(div);
             box.scrollTop = box.scrollHeight;
         },
@@ -636,7 +640,7 @@
             const baud = Number($('sel-baud').value);
             const r = await window.tb.serial.abrir(this.porta, baud);
             if (!r.ok) {
-                UISerial.linha('não foi possível abrir ' + this.porta + ': ' + r.erro, 'l-erro');
+                UISerial.linha(T('não foi possível abrir ' + this.porta + ': ' + r.erro), 'l-erro');
                 this.status('falha ao abrir a porta', 'erro');
             }
         },
@@ -648,13 +652,13 @@
 
         refletirSerial(estado) {
             UISerial.conectada = !!estado.aberta;
-            $('btn-serial-abrir').textContent = estado.aberta ? 'Desconectar' : 'Conectar';
+            $('btn-serial-abrir').textContent = T(estado.aberta ? 'Desconectar' : 'Conectar');
             $('entrada-serial').disabled = !estado.aberta;
             $('btn-serial-enviar').disabled = !estado.aberta;
             if (estado.aberta) {
-                UISerial.linha('— conectado em ' + estado.porta + ' a ' + estado.baud + ' baud —', 'l-ok');
+                UISerial.linha(T('— conectado em ' + estado.porta + ' a ' + estado.baud + ' baud —'), 'l-ok');
             } else {
-                UISerial.linha('— desconectado —', 'l-info');
+                UISerial.linha(T('— desconectado —'), 'l-info');
             }
         },
 
@@ -667,7 +671,7 @@
                 UISerial.linha('» ' + texto, 'l-info');
                 campo.value = '';
             } else {
-                UISerial.linha('falha ao enviar: ' + r.erro, 'l-erro');
+                UISerial.linha(T('falha ao enviar: ' + r.erro), 'l-erro');
             }
         },
 
@@ -677,7 +681,7 @@
 
         novo() {
             this.ws.clear();
-            this.projeto = { caminho: null, nome: 'sem título', sujo: false };
+            this.projeto = { caminho: null, nome: T('sem título'), sujo: false };
             this.criarEsqueleto();
             this.marcarLimpo();
             this.atualizarCodigo();
@@ -805,7 +809,7 @@
                     this.ws.updateToolbox(Toolbox.construir());
                 }
                 Blockly.serialization.workspaces.load(d.workspace, this.ws);
-                this.projeto = { caminho: d.caminho || null, nome: d.nome || 'sem título', sujo: false };
+                this.projeto = { caminho: d.caminho || null, nome: d.nome || T('sem título'), sujo: false };
             } catch (e) {
                 this.criarEsqueleto();
             }
@@ -822,7 +826,7 @@
 
         status(texto, tipo) {
             const el = $('status-mensagem');
-            el.textContent = texto;
+            el.textContent = T(texto);
             el.className = 'status-item ' + (tipo || '');
         },
 
@@ -831,7 +835,7 @@
             const v = await window.tb.cli.versao();
             this.logSaida('— diagnóstico da toolchain —', 'info');
             this.logSaida('binário: ' + v.caminho + (v.embutido ? ' (embutido)' : ' (do sistema)'));
-            this.logSaida('versão: ' + (v.versao || 'não respondeu'));
+            this.logSaida('versão: ' + (v.versao || T('não respondeu')));
             if (!v.disponivel) this.logSaida('erro: ' + v.erro, 'erro');
             const cores = await window.tb.cli.cores();
             this.logSaida('cores instalados: ' + (cores.length ? '' : 'nenhum'), cores.length ? '' : 'erro');

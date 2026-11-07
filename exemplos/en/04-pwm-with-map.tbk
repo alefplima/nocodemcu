@@ -1,0 +1,295 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-11-07T15:37:09.755Z",
+  "placa": "uno",
+  "modo": "literal",
+  "nome": "PWM controlled by a potentiometer",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "ard_var_global",
+          "id": "5G%JXWMNFq[m1lX{-h{P",
+          "x": 40,
+          "y": 40,
+          "fields": {
+            "QUAL": "",
+            "TIPO": "int",
+            "VAR": {
+              "id": "jab=ob0!HNjmuyb_OD12"
+            }
+          },
+          "inputs": {
+            "VALOR": {
+              "block": {
+                "type": "ard_number",
+                "id": "6vhWttl89u/OCN}K$0bn",
+                "fields": {
+                  "NUM": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_var_global",
+          "id": "U2uv|F;ttZ:OiA_A9bj/",
+          "x": 40,
+          "y": 110,
+          "fields": {
+            "QUAL": "",
+            "TIPO": "int",
+            "VAR": {
+              "id": ")uLB2Q4HR,k=PnGQd60G"
+            }
+          },
+          "inputs": {
+            "VALOR": {
+              "block": {
+                "type": "ard_number",
+                "id": "eL*TIq#,_CZ1vAP:Xw^Y",
+                "fields": {
+                  "NUM": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_setup",
+          "id": "9.N94f.q6[Kd9B3rSfek",
+          "x": 40,
+          "y": 180,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_serial_begin",
+                "id": "cT]`K=eqCoZ+aX^.M,*K",
+                "fields": {
+                  "PORTA": "Serial",
+                  "BAUD": "9600"
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_pinmode",
+                    "id": "A7kyn{vN4z6cWu|_O}32",
+                    "icons": {
+                      "comment": {
+                        "text": "Wiring: A0 = potentiometer wiper | pin 9 = LED with a 220 ohm resistor\nto GND. Pin 9 is one of the pins marked ~ on the board, the only ones\nthat accept analogWrite (PWM) on the Uno: 3, 5, 6, 9, 10 and 11",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "PIN": "9",
+                      "MODO": "OUTPUT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_loop",
+          "id": "AjX`9_Ps0SG;`%*+)0I|",
+          "x": 40,
+          "y": 426,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "variables_set",
+                "id": "7D3M=ZTli!Mj1+JJLneq",
+                "fields": {
+                  "VAR": {
+                    "id": "jab=ob0!HNjmuyb_OD12"
+                  }
+                },
+                "inputs": {
+                  "VALUE": {
+                    "block": {
+                      "type": "ard_analogread",
+                      "id": "HYAO8ti7IBLLefI0]nlO",
+                      "fields": {
+                        "PIN": "A0"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "variables_set",
+                    "id": "7gl@tGLuy37Iakvo0kbC",
+                    "icons": {
+                      "comment": {
+                        "text": "the potentiometer gives 0..1023, PWM takes 0..255: map converts",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "VAR": {
+                        "id": ")uLB2Q4HR,k=PnGQd60G"
+                      }
+                    },
+                    "inputs": {
+                      "VALUE": {
+                        "block": {
+                          "type": "ard_map",
+                          "id": "(DNV@vNn0ccS:7uq^F51",
+                          "inputs": {
+                            "VALOR": {
+                              "block": {
+                                "type": "variables_get",
+                                "id": "2Beg8e;0WSiUv$(f6}0^",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "jab=ob0!HNjmuyb_OD12"
+                                  }
+                                }
+                              }
+                            },
+                            "DE_MIN": {
+                              "block": {
+                                "type": "ard_number",
+                                "id": "?q4e[4{8,MlTW5O*Q1`o",
+                                "fields": {
+                                  "NUM": 0
+                                }
+                              }
+                            },
+                            "DE_MAX": {
+                              "block": {
+                                "type": "ard_number",
+                                "id": "rLb_sf~^T)?)1uD4@HvC",
+                                "fields": {
+                                  "NUM": 1023
+                                }
+                              }
+                            },
+                            "PARA_MIN": {
+                              "block": {
+                                "type": "ard_number",
+                                "id": "9TdO)A5QD,?q_4Kla]D5",
+                                "fields": {
+                                  "NUM": 0
+                                }
+                              }
+                            },
+                            "PARA_MAX": {
+                              "block": {
+                                "type": "ard_number",
+                                "id": ":bPMTPwYsJuqR/j:LB]+",
+                                "fields": {
+                                  "NUM": 255
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_analogwrite",
+                        "id": "yInu266;nX3P?d}}G:9r",
+                        "fields": {
+                          "PIN": "9"
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "variables_get",
+                              "id": "K`eIp~PI|T]sE~`X:e!5",
+                              "fields": {
+                                "VAR": {
+                                  "id": ")uLB2Q4HR,k=PnGQd60G"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_serial_print",
+                            "id": "xHOcM;b!7P@OeOZ@MB4`",
+                            "fields": {
+                              "PORTA": "Serial"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_text",
+                                  "id": "l$$-i+yN`=TddSWw?84p",
+                                  "fields": {
+                                    "TEXTO": "brightness:"
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "ard_serial_println",
+                                "id": "7q{CxsPJ.BiJL[J)e^`z",
+                                "fields": {
+                                  "PORTA": "Serial"
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "variables_get",
+                                      "id": "Hii7!#~{-Am{[EtdLxCz",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": ")uLB2Q4HR,k=PnGQd60G"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "ard_delay",
+                                    "id": "dlCv{)Edk}@3rzBazG4K",
+                                    "inputs": {
+                                      "MS": {
+                                        "block": {
+                                          "type": "ard_number",
+                                          "id": "oF(N^`tEY9p8h)61BLyP",
+                                          "fields": {
+                                            "NUM": 30
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "variables": [
+      {
+        "name": "reading",
+        "id": "jab=ob0!HNjmuyb_OD12"
+      },
+      {
+        "name": "brightness",
+        "id": ")uLB2Q4HR,k=PnGQd60G"
+      }
+    ]
+  }
+}

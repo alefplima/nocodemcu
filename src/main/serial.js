@@ -8,6 +8,7 @@
  */
 const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
+const { L } = require('./idioma');
 
 let porta = null;
 let atual = null;      // {caminho, baud}
@@ -60,8 +61,10 @@ function abrir(caminho, baud) {
                 let msg = String(err.message);
                 if (/access denied|permission/i.test(msg)) {
                     msg += process.platform === 'linux'
-                        ? ' — no Linux o usuário precisa estar no grupo dialout (sudo usermod -aG dialout $USER, depois sair e entrar de novo).'
-                        : ' — feche a IDE do Arduino ou outro programa que esteja usando a porta.';
+                        ? L(' — no Linux o usuário precisa estar no grupo dialout (sudo usermod -aG dialout $USER, depois sair e entrar de novo).',
+                            ' — on Linux the user must be in the dialout group (sudo usermod -aG dialout $USER, then log out and back in).')
+                        : L(' — feche a IDE do Arduino ou outro programa que esteja usando a porta.',
+                            ' — close the Arduino IDE or any other program using the port.');
                 }
                 resolve({ ok: false, erro: msg });
                 return;
@@ -99,7 +102,7 @@ function fechar() {
 
 function enviar(texto, terminador) {
     return new Promise(resolve => {
-        if (!porta || !porta.isOpen) { resolve({ ok: false, erro: 'porta fechada' }); return; }
+        if (!porta || !porta.isOpen) { resolve({ ok: false, erro: L('porta fechada', 'port closed') }); return; }
         const fim = terminador === 'nl' ? '\n' : terminador === 'cr' ? '\r'
             : terminador === 'crnl' ? '\r\n' : '';
         porta.write(String(texto) + fim, err => {
@@ -121,7 +124,7 @@ async function suspender() {
 
 /** Reabre o que suspender() fechou. */
 async function retomar() {
-    if (!suspenso) return { ok: false, erro: 'nada a retomar' };
+    if (!suspenso) return { ok: false, erro: L('nada a retomar', 'nothing to resume') };
     const cfg = suspenso;
     suspenso = null;
     // A placa reinicia depois da gravação; um respiro evita abrir no meio do reset.

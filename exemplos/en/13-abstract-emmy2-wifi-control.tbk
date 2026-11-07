@@ -1,0 +1,2114 @@
+{
+  "formato": "nocodemcu/1",
+  "salvoEm": "2026-11-07T15:37:14.171Z",
+  "placa": "esp32",
+  "modo": "abstrato",
+  "nome": "Emmy 2 robot — WiFi with remote control",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "abs_ao_iniciar",
+          "id": "zMP^eet2)~@b;3[f+iM^",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_motores_pinos",
+                "id": "S`mWcOn;$Eb{(RF94=F+",
+                "icons": {
+                  "comment": {
+                    "text": "Emmy 2. Sensor 1 trig/echo D26 / D27 | sensor 2 D32 / D33 | H-bridge\nIN1/IN2 D2 / D4 (left motor), IN3/IN4 D18 / D19 (right). This block\nsays it once; after that it is only forward, reverse and turn",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "E1": "2",
+                  "E2": "4",
+                  "D1": "18",
+                  "D2": "19"
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_criar",
+                    "id": "{/m%cHcM=~0/j;4^%m_6",
+                    "icons": {
+                      "comment": {
+                        "text": "Universe of Discourse: 80 cm = free path, evidence near 0",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "VAR": {
+                        "id": "P^G2ET0_Zj8gz@}rRmk("
+                      }
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "lqHh]ZopeTB80*6LA(`$",
+                          "fields": {
+                            "NUM": 80
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_criar",
+                        "id": "}EJMsQend:9y^O1n{EqR",
+                        "icons": {
+                          "comment": {
+                            "text": "10 cm = obstacle touching, evidence near 1. Since this number is\nsmaller than the other, the valuation comes out inverted by itself",
+                            "pinned": false,
+                            "height": 80,
+                            "width": 160
+                          }
+                        },
+                        "fields": {
+                          "VAR": {
+                            "id": "_MNwI[H;}p6dhjY(_lje"
+                          }
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "OZ=}jeR_ynK];rvi]tU1",
+                              "fields": {
+                                "NUM": 10
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_criar",
+                            "id": "obW[j8$|l`$M$!h*u]G*",
+                            "fields": {
+                              "VAR": {
+                                "id": "Gd8rl|gUxCdGSZ|6QsWM"
+                              }
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "^mEc{olZ$[8lRGE8mhfu",
+                                  "fields": {
+                                    "NUM": 400
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_criar",
+                                "id": "M}/{mq{PvkDMZ0V)BloL",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "#Z2bN8F?(Ffn~7u0p2?g"
+                                  }
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "ard_number",
+                                      "id": "Dc{Gxfy`pXR/N=/.sZl(",
+                                      "fields": {
+                                        "NUM": 400
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "abs_criar",
+                                    "id": "J4SP(vyN*1Y]]Kzkvv#@",
+                                    "icons": {
+                                      "comment": {
+                                        "text": "0.5 is the \"no information\" value in PAL2v: before the first\nmeasurement both boxes already hold exactly what not knowing means",
+                                        "pinned": false,
+                                        "height": 80,
+                                        "width": 160
+                                      }
+                                    },
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "C0fquIMdx3|LPt2B.m]O"
+                                      }
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "ard_number",
+                                          "id": "RsSKGal8aC^n=1Ux;#sY",
+                                          "fields": {
+                                            "NUM": 0.5
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_criar",
+                                        "id": "s30KoNeng*h,f2ZiH_Fz",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "6rGOWDrkkGf+F#~?mNo?"
+                                          }
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "ard_number",
+                                              "id": "h;Mr?A{vdGy)g`k$AHEY",
+                                              "fields": {
+                                                "NUM": 0.5
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "abs_criar",
+                                            "id": "K@f[@,Zd!@H0lD4XGGS2",
+                                            "icons": {
+                                              "comment": {
+                                                "text": "consecutive cycles without reaching V or F. Past STALL_LIMIT, the\nrobot swerves on its own: it is the safeguard against any corner of\nthe lattice we did not foresee",
+                                                "pinned": false,
+                                                "height": 80,
+                                                "width": 160
+                                              }
+                                            },
+                                            "fields": {
+                                              "VAR": {
+                                                "id": ".?9@I?#mAH]+{djNM~au"
+                                              }
+                                            },
+                                            "inputs": {
+                                              "VALOR": {
+                                                "block": {
+                                                  "type": "ard_number",
+                                                  "id": "#-u;#cg{e}w:),Ds$EZK",
+                                                  "fields": {
+                                                    "NUM": 0
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "abs_criar",
+                                                "id": "K1zMf;.9z4-9Yt]/#SWh",
+                                                "fields": {
+                                                  "VAR": {
+                                                    "id": "N0::U0yeOamM3U~)PXlZ"
+                                                  }
+                                                },
+                                                "inputs": {
+                                                  "VALOR": {
+                                                    "block": {
+                                                      "type": "ard_number",
+                                                      "id": "/{cI`l{cBCMm/^+}fr__",
+                                                      "fields": {
+                                                        "NUM": 8
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "abs_criar",
+                                                    "id": "!:1#(9Oju,Oh;kPFhn2i",
+                                                    "icons": {
+                                                      "comment": {
+                                                        "text": "is 1 in the cycle when some page button is pressed. It is what puts\nthe finger ahead of the automatic decision",
+                                                        "pinned": false,
+                                                        "height": 80,
+                                                        "width": 160
+                                                      }
+                                                    },
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": ":h`%zW3Dg[F^(l![vq+H"
+                                                      }
+                                                    },
+                                                    "inputs": {
+                                                      "VALOR": {
+                                                        "block": {
+                                                          "type": "ard_number",
+                                                          "id": "cwUZoAez,JEHr97;8PRb",
+                                                          "fields": {
+                                                            "NUM": 0
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "next": {
+                                                      "block": {
+                                                        "type": "abs_criar",
+                                                        "id": ".=pj_YP};!EepJX*Jix}",
+                                                        "icons": {
+                                                          "comment": {
+                                                            "text": "intensity from 0 to 100 %. ONE box for how the robot moves: the same\nspeed for the forward button and for the slow speed of state T. On the\ntest bench both ended up at the same number: 29.4 % = 75 of 255",
+                                                            "pinned": false,
+                                                            "height": 80,
+                                                            "width": 160
+                                                          }
+                                                        },
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": "7ie0z_mp9CE`A(SanZp^"
+                                                          }
+                                                        },
+                                                        "inputs": {
+                                                          "VALOR": {
+                                                            "block": {
+                                                              "type": "ard_number",
+                                                              "id": "qm$Z!)!K~TD77e/^lH_k",
+                                                              "fields": {
+                                                                "NUM": 29.4
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "next": {
+                                                          "block": {
+                                                            "type": "abs_criar",
+                                                            "id": "Xb_XBp{Hz5~I,Ate+3%v",
+                                                            "icons": {
+                                                              "comment": {
+                                                                "text": "43.1 % = 110 of 255. The 80 ms kick that gets the motor out of\ninertia: below ~100 the L298N cannot overcome static friction. EVERY\nstart goes through here - without it the robot just hums in place when\nthe previous cycle ended with the motors stopped",
+                                                                "pinned": false,
+                                                                "height": 80,
+                                                                "width": 160
+                                                              }
+                                                            },
+                                                            "fields": {
+                                                              "VAR": {
+                                                                "id": "]M#{Mt)1VrJ$*kJd__9`"
+                                                              }
+                                                            },
+                                                            "inputs": {
+                                                              "VALOR": {
+                                                                "block": {
+                                                                  "type": "ard_number",
+                                                                  "id": "tYo.{pKM*ewbCe%~_(~0",
+                                                                  "fields": {
+                                                                    "NUM": 43.1
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "next": {
+                                                              "block": {
+                                                                "type": "abs_criar",
+                                                                "id": "gyjsQ^VNnTPJf(B[W{.u",
+                                                                "fields": {
+                                                                  "VAR": {
+                                                                    "id": "T3v)PqNEk;LxE7*x-w;q"
+                                                                  }
+                                                                },
+                                                                "inputs": {
+                                                                  "VALOR": {
+                                                                    "block": {
+                                                                      "type": "ard_number",
+                                                                      "id": "AW4Vs6=D`0Hb5m$yw4+8",
+                                                                      "fields": {
+                                                                        "NUM": 35.3
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "abs_criar",
+                                                                    "id": "P`-.K*{fFCu^w$Gq8Mr4",
+                                                                    "icons": {
+                                                                      "comment": {
+                                                                        "text": "turning has to overcome the friction of the two wheels in opposite directions",
+                                                                        "pinned": false,
+                                                                        "height": 80,
+                                                                        "width": 160
+                                                                      }
+                                                                    },
+                                                                    "fields": {
+                                                                      "VAR": {
+                                                                        "id": "S|:E!Zpg`m#fei#eu)u6"
+                                                                      }
+                                                                    },
+                                                                    "inputs": {
+                                                                      "VALOR": {
+                                                                        "block": {
+                                                                          "type": "ard_number",
+                                                                          "id": "h+(r3z~%;I^-pgLp]Ki.",
+                                                                          "fields": {
+                                                                            "NUM": 19.6
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "abs_wifi_rede_aberta",
+                                                                        "id": "hnvjwZgP}jskm%?Ev_f{",
+                                                                        "icons": {
+                                                                          "comment": {
+                                                                            "text": "the board creates its own network, open and with no password, called\n\"emmy2\". On the phone: join the emmy2 network and open\nhttp://192.168.4.1 That address does not change - it is the access\npoint mode default, so there is no IP to find out or to configure\nhere. No router in between, and the robot can go far from the bench",
+                                                                            "pinned": false,
+                                                                            "height": 80,
+                                                                            "width": 160
+                                                                          }
+                                                                        },
+                                                                        "fields": {
+                                                                          "NOME": "emmy2"
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "abs_web_servidor",
+                                                                            "id": "IkEAO}ev5bjhoxBCw%MC",
+                                                                            "fields": {
+                                                                              "PORTA_REDE": 80
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_sempre",
+          "id": "A{mJt5a#3h-vrVxD%;.S",
+          "x": 40,
+          "y": 1420,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_web_atender",
+                "id": "TnqO^6mUoTc9?~=+lzs#",
+                "icons": {
+                  "comment": {
+                    "text": "first thing in the cycle: take the touches and answer the phone",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_definir",
+                    "id": "+|I(oWtAGr]}s+PSuFFJ",
+                    "icons": {
+                      "comment": {
+                        "text": "left sensor (trig D26, echo D27)",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "VAR": {
+                        "id": "Gd8rl|gUxCdGSZ|6QsWM"
+                      }
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "abs_distancia",
+                          "id": "}3o@DjSzaahoh;mS`Q@t",
+                          "fields": {
+                            "TRIG": "26",
+                            "ECHO": "27"
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_web_esperar",
+                        "id": "MeH|Rl0;mh5RD,3[94/]",
+                        "icons": {
+                          "comment": {
+                            "text": "avoids cross-echo: the echo from the first sensor is still in the air.\nWaiting \"while serving\" is what keeps the page alive during the wait",
+                            "pinned": false,
+                            "height": 80,
+                            "width": 160
+                          }
+                        },
+                        "inputs": {
+                          "MS": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "Tep0_+F6[P#s+?[/$LfV",
+                              "fields": {
+                                "NUM": 60
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_definir",
+                            "id": "LV5|VYHHZx0MWD:R+rSB",
+                            "icons": {
+                              "comment": {
+                                "text": "right sensor (trig D32, echo D33)",
+                                "pinned": false,
+                                "height": 80,
+                                "width": 160
+                              }
+                            },
+                            "fields": {
+                              "VAR": {
+                                "id": "#Z2bN8F?(Ffn~7u0p2?g"
+                              }
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "abs_distancia",
+                                  "id": "~b1,WmV#88qrUr6F8{!v",
+                                  "fields": {
+                                    "TRIG": "32",
+                                    "ECHO": "33"
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_web_mostrar",
+                                "id": "@Yh}_vdw4Ljvu7LiCG.q",
+                                "icons": {
+                                  "comment": {
+                                    "text": "both distances on the phone, to check the alignment",
+                                    "pinned": false,
+                                    "height": 80,
+                                    "width": 160
+                                  }
+                                },
+                                "fields": {
+                                  "ROTULO": "left"
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "abs_ler",
+                                      "id": "6Dp[R*WXms?r5ND(FY!r",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "Gd8rl|gUxCdGSZ|6QsWM"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "abs_web_mostrar",
+                                    "id": "s4]pCixwMF5h{^Aq8L`j",
+                                    "fields": {
+                                      "ROTULO": "right"
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "abs_ler",
+                                          "id": "V`4-I9U}5-7cnDK8`J=_",
+                                          "fields": {
+                                            "VAR": {
+                                              "id": "#Z2bN8F?(Ffn~7u0p2?g"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_definir",
+                                        "id": "|F=qpSc:A+bHBPETt:Qz",
+                                        "icons": {
+                                          "comment": {
+                                            "text": "normalize the left sensor distance over the Universe of Discourse",
+                                            "pinned": false,
+                                            "height": 80,
+                                            "width": 160
+                                          }
+                                        },
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "C0fquIMdx3|LPt2B.m]O"
+                                          }
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "abs_evidencia",
+                                              "id": "kNJmi;TSko`O,+s`+T7h",
+                                              "inputs": {
+                                                "X": {
+                                                  "block": {
+                                                    "type": "abs_ler",
+                                                    "id": "87w]$0R^9[:*C%8yQI)}",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "Gd8rl|gUxCdGSZ|6QsWM"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "A1": {
+                                                  "block": {
+                                                    "type": "abs_ler",
+                                                    "id": "egZZuV|y2IzJ{}S)Yqwp",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "P^G2ET0_Zj8gz@}rRmk("
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "A2": {
+                                                  "block": {
+                                                    "type": "abs_ler",
+                                                    "id": "WHa3~rkr9,b)HrXfBOPL",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "_MNwI[H;}p6dhjY(_lje"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "abs_definir",
+                                            "id": "Fs.vxA4P_pN9L7NFs.%F",
+                                            "icons": {
+                                              "comment": {
+                                                "text": "right sensor, same Universe of Discourse",
+                                                "pinned": false,
+                                                "height": 80,
+                                                "width": 160
+                                              }
+                                            },
+                                            "fields": {
+                                              "VAR": {
+                                                "id": "6rGOWDrkkGf+F#~?mNo?"
+                                              }
+                                            },
+                                            "inputs": {
+                                              "VALOR": {
+                                                "block": {
+                                                  "type": "abs_evidencia",
+                                                  "id": "ZLbN@bn!Vcajpz6xX;g)",
+                                                  "inputs": {
+                                                    "X": {
+                                                      "block": {
+                                                        "type": "abs_ler",
+                                                        "id": "X)`+G]Wq5-tOzQ)2iPhN",
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": "#Z2bN8F?(Ffn~7u0p2?g"
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "A1": {
+                                                      "block": {
+                                                        "type": "abs_ler",
+                                                        "id": "yr!hLZ$mikZFk^0O;#]9",
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": "P^G2ET0_Zj8gz@}rRmk("
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "A2": {
+                                                      "block": {
+                                                        "type": "abs_ler",
+                                                        "id": "XB0Op$,vY1pHoZM`!NmG",
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": "_MNwI[H;}p6dhjY(_lje"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "abs_web_reticulado",
+                                                "id": "^X%lu@Vd-[5s;{B0n(TH",
+                                                "icons": {
+                                                  "comment": {
+                                                    "text": "the point shown on the phone is the SAME one that decides right below:\nit comes from these boxes. Here lambda is explicit (1 - evidRight); in\nthe analysis block the complement is done inside",
+                                                    "pinned": false,
+                                                    "height": 80,
+                                                    "width": 160
+                                                  }
+                                                },
+                                                "inputs": {
+                                                  "MU": {
+                                                    "block": {
+                                                      "type": "abs_ler",
+                                                      "id": "CW1-`U#K?MvLn{Q~Ruch",
+                                                      "fields": {
+                                                        "VAR": {
+                                                          "id": "C0fquIMdx3|LPt2B.m]O"
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "LAMBDA": {
+                                                    "block": {
+                                                      "type": "abs_conta",
+                                                      "id": "*.M[t9o1?uI1l*O8eE?`",
+                                                      "fields": {
+                                                        "OP": "-"
+                                                      },
+                                                      "inputs": {
+                                                        "A": {
+                                                          "block": {
+                                                            "type": "ard_number",
+                                                            "id": "(`vADO9h?O1N@KKXTD5-",
+                                                            "fields": {
+                                                              "NUM": 1
+                                                            }
+                                                          }
+                                                        },
+                                                        "B": {
+                                                          "block": {
+                                                            "type": "abs_ler",
+                                                            "id": "5v*Qe{c#-PwugJ^mi*(G",
+                                                            "fields": {
+                                                              "VAR": {
+                                                                "id": "6rGOWDrkkGf+F#~?mNo?"
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "abs_definir",
+                                                    "id": "V?lP~3Yy]^uR2KXrQz@D",
+                                                    "icons": {
+                                                      "comment": {
+                                                        "text": "nobody pressed anything until proven otherwise",
+                                                        "pinned": false,
+                                                        "height": 80,
+                                                        "width": 160
+                                                      }
+                                                    },
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": ":h`%zW3Dg[F^(l![vq+H"
+                                                      }
+                                                    },
+                                                    "inputs": {
+                                                      "VALOR": {
+                                                        "block": {
+                                                          "type": "ard_number",
+                                                          "id": "vkn1Ou8$a/4`=%q9gC2T",
+                                                          "fields": {
+                                                            "NUM": 0
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "next": {
+                                                      "block": {
+                                                        "type": "abs_se",
+                                                        "id": "}*[U|JBwAS=;0hHsgK!z",
+                                                        "icons": {
+                                                          "comment": {
+                                                            "text": "the four page buttons. Each one holds while the finger is on it: let\ngo, and PAL2v is back in charge on the next cycle",
+                                                            "pinned": false,
+                                                            "height": 80,
+                                                            "width": 160
+                                                          }
+                                                        },
+                                                        "inputs": {
+                                                          "COND": {
+                                                            "block": {
+                                                              "type": "abs_web_botao",
+                                                              "id": "(=mlToxZUDi6nA1$7z|_",
+                                                              "fields": {
+                                                                "NOME": "forward"
+                                                              }
+                                                            }
+                                                          },
+                                                          "ENTAO": {
+                                                            "block": {
+                                                              "type": "abs_motores",
+                                                              "id": "j.2}:wTc}D0tI.Wb4E(S",
+                                                              "fields": {
+                                                                "MANOBRA": "FRENTE"
+                                                              },
+                                                              "inputs": {
+                                                                "VEL": {
+                                                                  "block": {
+                                                                    "type": "abs_ler",
+                                                                    "id": "Q,#M`bDiO~~r%E|CyaYO",
+                                                                    "fields": {
+                                                                      "VAR": {
+                                                                        "id": "7ie0z_mp9CE`A(SanZp^"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              },
+                                                              "next": {
+                                                                "block": {
+                                                                  "type": "abs_definir",
+                                                                  "id": "u^@M_?_~EZL}xIHsanS-",
+                                                                  "fields": {
+                                                                    "VAR": {
+                                                                      "id": ":h`%zW3Dg[F^(l![vq+H"
+                                                                    }
+                                                                  },
+                                                                  "inputs": {
+                                                                    "VALOR": {
+                                                                      "block": {
+                                                                        "type": "ard_number",
+                                                                        "id": "p3Zv)T3MW?T.1:^(uL0i",
+                                                                        "fields": {
+                                                                          "NUM": 1
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "next": {
+                                                          "block": {
+                                                            "type": "abs_se",
+                                                            "id": "Ky`vQ#gAL64)/]Ym2Bqg",
+                                                            "inputs": {
+                                                              "COND": {
+                                                                "block": {
+                                                                  "type": "abs_web_botao",
+                                                                  "id": "6OF/fEQ_k#6CSHZf+@5[",
+                                                                  "fields": {
+                                                                    "NOME": "back"
+                                                                  }
+                                                                }
+                                                              },
+                                                              "ENTAO": {
+                                                                "block": {
+                                                                  "type": "abs_motores",
+                                                                  "id": "1ACTxvi!b=l8qxxm747,",
+                                                                  "fields": {
+                                                                    "MANOBRA": "RE"
+                                                                  },
+                                                                  "inputs": {
+                                                                    "VEL": {
+                                                                      "block": {
+                                                                        "type": "abs_ler",
+                                                                        "id": "S?|AkoRz-gc3feSLuH@@",
+                                                                        "fields": {
+                                                                          "VAR": {
+                                                                            "id": "T3v)PqNEk;LxE7*x-w;q"
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  "next": {
+                                                                    "block": {
+                                                                      "type": "abs_definir",
+                                                                      "id": "KccfK8_Xn{:kJmTApMGx",
+                                                                      "fields": {
+                                                                        "VAR": {
+                                                                          "id": ":h`%zW3Dg[F^(l![vq+H"
+                                                                        }
+                                                                      },
+                                                                      "inputs": {
+                                                                        "VALOR": {
+                                                                          "block": {
+                                                                            "type": "ard_number",
+                                                                            "id": "*#Sky!$]|c6F~AD7/WC|",
+                                                                            "fields": {
+                                                                              "NUM": 1
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "next": {
+                                                              "block": {
+                                                                "type": "abs_se",
+                                                                "id": "Tx^$#XN.DwvzWP~F{4q+",
+                                                                "inputs": {
+                                                                  "COND": {
+                                                                    "block": {
+                                                                      "type": "abs_web_botao",
+                                                                      "id": "?kdb1S_Fo{IqVpGox@FY",
+                                                                      "fields": {
+                                                                        "NOME": "left"
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  "ENTAO": {
+                                                                    "block": {
+                                                                      "type": "abs_motores",
+                                                                      "id": "5{I=nK8hiBG,NAi_r:+P",
+                                                                      "fields": {
+                                                                        "MANOBRA": "ESQ"
+                                                                      },
+                                                                      "inputs": {
+                                                                        "VEL": {
+                                                                          "block": {
+                                                                            "type": "abs_ler",
+                                                                            "id": "!?@?,.wW0)K_Kt%0eDRG",
+                                                                            "fields": {
+                                                                              "VAR": {
+                                                                                "id": "S|:E!Zpg`m#fei#eu)u6"
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "next": {
+                                                                        "block": {
+                                                                          "type": "abs_definir",
+                                                                          "id": ")m*rj}3mG;eg?*M-Q!e,",
+                                                                          "fields": {
+                                                                            "VAR": {
+                                                                              "id": ":h`%zW3Dg[F^(l![vq+H"
+                                                                            }
+                                                                          },
+                                                                          "inputs": {
+                                                                            "VALOR": {
+                                                                              "block": {
+                                                                                "type": "ard_number",
+                                                                                "id": "4V6a;lcHfqC9iBQDc5(v",
+                                                                                "fields": {
+                                                                                  "NUM": 1
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "abs_se",
+                                                                    "id": "yXs_Ew7tV:QyeAhFdZjw",
+                                                                    "inputs": {
+                                                                      "COND": {
+                                                                        "block": {
+                                                                          "type": "abs_web_botao",
+                                                                          "id": ");:!}di__x!ta0[A[veP",
+                                                                          "fields": {
+                                                                            "NOME": "right"
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "ENTAO": {
+                                                                        "block": {
+                                                                          "type": "abs_motores",
+                                                                          "id": "dagmBd[$vKp4OP$YMf]|",
+                                                                          "fields": {
+                                                                            "MANOBRA": "DIR"
+                                                                          },
+                                                                          "inputs": {
+                                                                            "VEL": {
+                                                                              "block": {
+                                                                                "type": "abs_ler",
+                                                                                "id": ".yWg0:$ST+fEE`D6?_M1",
+                                                                                "fields": {
+                                                                                  "VAR": {
+                                                                                    "id": "S|:E!Zpg`m#fei#eu)u6"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          "next": {
+                                                                            "block": {
+                                                                              "type": "abs_definir",
+                                                                              "id": "N;n,}(djD-b1dJMKpi$.",
+                                                                              "fields": {
+                                                                                "VAR": {
+                                                                                  "id": ":h`%zW3Dg[F^(l![vq+H"
+                                                                                }
+                                                                              },
+                                                                              "inputs": {
+                                                                                "VALOR": {
+                                                                                  "block": {
+                                                                                    "type": "ard_number",
+                                                                                    "id": "WklBy{a!R$t;T9dHp9IM",
+                                                                                    "fields": {
+                                                                                      "NUM": 1
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "abs_se",
+                                                                        "id": "pVEA`1`1Y(G4:q=muqtG",
+                                                                        "icons": {
+                                                                          "comment": {
+                                                                            "text": "only when nobody has a finger on the screen does the analysis decide",
+                                                                            "pinned": false,
+                                                                            "height": 80,
+                                                                            "width": 160
+                                                                          }
+                                                                        },
+                                                                        "inputs": {
+                                                                          "COND": {
+                                                                            "block": {
+                                                                              "type": "abs_comparar",
+                                                                              "id": ".`{fzxERJr/dq9*4+9!5",
+                                                                              "fields": {
+                                                                                "OP": "EQ"
+                                                                              },
+                                                                              "inputs": {
+                                                                                "A": {
+                                                                                  "block": {
+                                                                                    "type": "abs_ler",
+                                                                                    "id": "LmHWBU(?tZ9ahjy}R-R(",
+                                                                                    "fields": {
+                                                                                      "VAR": {
+                                                                                        "id": ":h`%zW3Dg[F^(l![vq+H"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "B": {
+                                                                                  "block": {
+                                                                                    "type": "ard_number",
+                                                                                    "id": "b3H?R0=k%1.hPzq[Z(@!",
+                                                                                    "fields": {
+                                                                                      "NUM": 0
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          "ENTAO": {
+                                                                            "block": {
+                                                                              "type": "abs_quando_estado",
+                                                                              "id": "e%@u08LC$7N!A)`2@kPU",
+                                                                              "icons": {
+                                                                                "comment": {
+                                                                                  "text": "mu = left sensor, lambda = 1 - right sensor (the block takes the\ncomplement). Gc = consensus of the two; Gct = disagreement between\nthem",
+                                                                                  "pinned": false,
+                                                                                  "height": 80,
+                                                                                  "width": 160
+                                                                                }
+                                                                              },
+                                                                              "inputs": {
+                                                                                "MU1": {
+                                                                                  "block": {
+                                                                                    "type": "abs_ler",
+                                                                                    "id": "T77$rC~3R_{kHx#S,@TC",
+                                                                                    "fields": {
+                                                                                      "VAR": {
+                                                                                        "id": "C0fquIMdx3|LPt2B.m]O"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "MU2": {
+                                                                                  "block": {
+                                                                                    "type": "abs_ler",
+                                                                                    "id": "nned{bMPkcjs3k$]rISY",
+                                                                                    "fields": {
+                                                                                      "VAR": {
+                                                                                        "id": "6rGOWDrkkGf+F#~?mNo?"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "CASOS": {
+                                                                                  "block": {
+                                                                                    "type": "abs_caso_estado",
+                                                                                    "id": "uqloavhs}ww$/EbNno]v",
+                                                                                    "fields": {
+                                                                                      "ESTADO": "LPA_V"
+                                                                                    },
+                                                                                    "inputs": {
+                                                                                      "BODY": {
+                                                                                        "block": {
+                                                                                          "type": "abs_definir",
+                                                                                          "id": "OuEyA,84@r@H3{zwM2*@",
+                                                                                          "icons": {
+                                                                                            "comment": {
+                                                                                              "text": "V and F are the states where the robot DECIDES: they reset the counter",
+                                                                                              "pinned": false,
+                                                                                              "height": 80,
+                                                                                              "width": 160
+                                                                                            }
+                                                                                          },
+                                                                                          "fields": {
+                                                                                            "VAR": {
+                                                                                              "id": ".?9@I?#mAH]+{djNM~au"
+                                                                                            }
+                                                                                          },
+                                                                                          "inputs": {
+                                                                                            "VALOR": {
+                                                                                              "block": {
+                                                                                                "type": "ard_number",
+                                                                                                "id": "5(hpAV*Fv}G=K+6lQiIu",
+                                                                                                "fields": {
+                                                                                                  "NUM": 0
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          "next": {
+                                                                                            "block": {
+                                                                                              "type": "abs_motores",
+                                                                                              "id": "h9I*KB85co%6y@EYO{Ro",
+                                                                                              "icons": {
+                                                                                                "comment": {
+                                                                                                  "text": "V: both see an obstacle -> back up and turn 90 degrees",
+                                                                                                  "pinned": false,
+                                                                                                  "height": 80,
+                                                                                                  "width": 160
+                                                                                                }
+                                                                                              },
+                                                                                              "fields": {
+                                                                                                "MANOBRA": "PARAR"
+                                                                                              },
+                                                                                              "inputs": {
+                                                                                                "VEL": {
+                                                                                                  "block": {
+                                                                                                    "type": "ard_number",
+                                                                                                    "id": "-JxUH=)gGs=?TU11@-~A",
+                                                                                                    "fields": {
+                                                                                                      "NUM": 0
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              },
+                                                                                              "next": {
+                                                                                                "block": {
+                                                                                                  "type": "abs_web_esperar",
+                                                                                                  "id": "k!CQj,pt9=dZ{K+m3}CT",
+                                                                                                  "inputs": {
+                                                                                                    "MS": {
+                                                                                                      "block": {
+                                                                                                        "type": "ard_number",
+                                                                                                        "id": ";;`s:L5;Y%c2`ZYH)Ju)",
+                                                                                                        "fields": {
+                                                                                                          "NUM": 200
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "next": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_motores",
+                                                                                                      "id": "A4vvM{({MxfL!s[`b:IY",
+                                                                                                      "fields": {
+                                                                                                        "MANOBRA": "RE"
+                                                                                                      },
+                                                                                                      "inputs": {
+                                                                                                        "VEL": {
+                                                                                                          "block": {
+                                                                                                            "type": "abs_ler",
+                                                                                                            "id": "v)^Na?vSl;48}ykx-i%!",
+                                                                                                            "fields": {
+                                                                                                              "VAR": {
+                                                                                                                "id": "T3v)PqNEk;LxE7*x-w;q"
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "next": {
+                                                                                                        "block": {
+                                                                                                          "type": "abs_web_esperar",
+                                                                                                          "id": "Q?ZSU!(6QX]QUZ0zkDFO",
+                                                                                                          "inputs": {
+                                                                                                            "MS": {
+                                                                                                              "block": {
+                                                                                                                "type": "ard_number",
+                                                                                                                "id": "o6R1LoY2QQtG5L^/qMEk",
+                                                                                                                "fields": {
+                                                                                                                  "NUM": 500
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          },
+                                                                                                          "next": {
+                                                                                                            "block": {
+                                                                                                              "type": "abs_motores",
+                                                                                                              "id": "I*+4Qrq2n/bv2U@srX$Z",
+                                                                                                              "fields": {
+                                                                                                                "MANOBRA": "DIR"
+                                                                                                              },
+                                                                                                              "inputs": {
+                                                                                                                "VEL": {
+                                                                                                                  "block": {
+                                                                                                                    "type": "abs_ler",
+                                                                                                                    "id": "nGGAk_b@[qQcIOTmmG%8",
+                                                                                                                    "fields": {
+                                                                                                                      "VAR": {
+                                                                                                                        "id": "S|:E!Zpg`m#fei#eu)u6"
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              },
+                                                                                                              "next": {
+                                                                                                                "block": {
+                                                                                                                  "type": "abs_web_esperar",
+                                                                                                                  "id": "|{G~tcIb]GeVxWN%bVA[",
+                                                                                                                  "icons": {
+                                                                                                                    "comment": {
+                                                                                                                      "text": "T3 = 2 s: the 90 degree turn from the paper. This time was measured\nwith TURN_SPEED on this bench - if you change the speed, measure the\nangle again",
+                                                                                                                      "pinned": false,
+                                                                                                                      "height": 80,
+                                                                                                                      "width": 160
+                                                                                                                    }
+                                                                                                                  },
+                                                                                                                  "inputs": {
+                                                                                                                    "MS": {
+                                                                                                                      "block": {
+                                                                                                                        "type": "ard_number",
+                                                                                                                        "id": "mU1(dqe08s1)Lc]/rI2]",
+                                                                                                                        "fields": {
+                                                                                                                          "NUM": 2000
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  },
+                                                                                                                  "next": {
+                                                                                                                    "block": {
+                                                                                                                      "type": "abs_motores",
+                                                                                                                      "id": "Wo8C]vXNAd*91S.zIZPg",
+                                                                                                                      "fields": {
+                                                                                                                        "MANOBRA": "PARAR"
+                                                                                                                      },
+                                                                                                                      "inputs": {
+                                                                                                                        "VEL": {
+                                                                                                                          "block": {
+                                                                                                                            "type": "ard_number",
+                                                                                                                            "id": ")+nFb:1{=Zlb)C5C0uTC",
+                                                                                                                            "fields": {
+                                                                                                                              "NUM": 0
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    "next": {
+                                                                                      "block": {
+                                                                                        "type": "abs_caso_estado",
+                                                                                        "id": "@on.bbiyW56E}fh-bV:C",
+                                                                                        "fields": {
+                                                                                          "ESTADO": "LPA_QVT"
+                                                                                        },
+                                                                                        "inputs": {
+                                                                                          "BODY": {
+                                                                                            "block": {
+                                                                                              "type": "abs_motores",
+                                                                                              "id": "z0[qM[(Tc*M?{/VJ6ixg",
+                                                                                              "icons": {
+                                                                                                "comment": {
+                                                                                                  "text": "quasi-true starting to diverge: there is already an obstacle, but the\nsources started to disagree. A half turn solves it before it becomes\ncontradiction - the same treatment as example 12",
+                                                                                                  "pinned": false,
+                                                                                                  "height": 80,
+                                                                                                  "width": 160
+                                                                                                }
+                                                                                              },
+                                                                                              "fields": {
+                                                                                                "MANOBRA": "DIR"
+                                                                                              },
+                                                                                              "inputs": {
+                                                                                                "VEL": {
+                                                                                                  "block": {
+                                                                                                    "type": "abs_ler",
+                                                                                                    "id": "9j`vPbotS*R/tisSwCoA",
+                                                                                                    "fields": {
+                                                                                                      "VAR": {
+                                                                                                        "id": "S|:E!Zpg`m#fei#eu)u6"
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              },
+                                                                                              "next": {
+                                                                                                "block": {
+                                                                                                  "type": "abs_web_esperar",
+                                                                                                  "id": "-R!$Q8fE-xZOXa/cul7=",
+                                                                                                  "inputs": {
+                                                                                                    "MS": {
+                                                                                                      "block": {
+                                                                                                        "type": "ard_number",
+                                                                                                        "id": "p?8%XPG~7{6OH|fC5IF9",
+                                                                                                        "fields": {
+                                                                                                          "NUM": 1500
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "next": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_motores",
+                                                                                                      "id": "`%{D_Q+%~z^jcgz%|G{s",
+                                                                                                      "fields": {
+                                                                                                        "MANOBRA": "PARAR"
+                                                                                                      },
+                                                                                                      "inputs": {
+                                                                                                        "VEL": {
+                                                                                                          "block": {
+                                                                                                            "type": "ard_number",
+                                                                                                            "id": "QgO_F*UMz1~)2NlTTtb1",
+                                                                                                            "fields": {
+                                                                                                              "NUM": 0
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        },
+                                                                                        "next": {
+                                                                                          "block": {
+                                                                                            "type": "abs_caso_estado",
+                                                                                            "id": "fI#94U.7d,hg(2y=lQ2X",
+                                                                                            "fields": {
+                                                                                              "ESTADO": "LPA_F"
+                                                                                            },
+                                                                                            "inputs": {
+                                                                                              "BODY": {
+                                                                                                "block": {
+                                                                                                  "type": "abs_definir",
+                                                                                                  "id": ")]YOL+f!fD`x?zps)M;V",
+                                                                                                  "fields": {
+                                                                                                    "VAR": {
+                                                                                                      "id": ".?9@I?#mAH]+{djNM~au"
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "inputs": {
+                                                                                                    "VALOR": {
+                                                                                                      "block": {
+                                                                                                        "type": "ard_number",
+                                                                                                        "id": "vM#wjr(RG{O6{-F=MvZw",
+                                                                                                        "fields": {
+                                                                                                          "NUM": 0
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "next": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_motores",
+                                                                                                      "id": ":=sXAO3F($%r$0%p/I!V",
+                                                                                                      "icons": {
+                                                                                                        "comment": {
+                                                                                                          "text": "F: both see a free path -> keep going. NO kick: this is the state most\nof the time, and repeating the kick every cycle would make the car\njerk. Turn on the PWM and let it roll; the kick is for starting from\nzero, in the states below",
+                                                                                                          "pinned": false,
+                                                                                                          "height": 80,
+                                                                                                          "width": 160
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "fields": {
+                                                                                                        "MANOBRA": "FRENTE"
+                                                                                                      },
+                                                                                                      "inputs": {
+                                                                                                        "VEL": {
+                                                                                                          "block": {
+                                                                                                            "type": "abs_ler",
+                                                                                                            "id": "hU!_mgYWxC6#8$BI)7WA",
+                                                                                                            "fields": {
+                                                                                                              "VAR": {
+                                                                                                                "id": "7ie0z_mp9CE`A(SanZp^"
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            },
+                                                                                            "next": {
+                                                                                              "block": {
+                                                                                                "type": "abs_caso_estado",
+                                                                                                "id": "Yl:/(aZE+Q8dBWDZ4)@E",
+                                                                                                "fields": {
+                                                                                                  "ESTADO": "LPA_T"
+                                                                                                },
+                                                                                                "inputs": {
+                                                                                                  "BODY": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_motores",
+                                                                                                      "id": ";SjN^PuwHK^bSN$|GtUc",
+                                                                                                      "icons": {
+                                                                                                        "comment": {
+                                                                                                          "text": "T: contradiction -> move forward slowly so the readings break the tie.\nSame start as F, and it settles at the same SPEED: a single box",
+                                                                                                          "pinned": false,
+                                                                                                          "height": 80,
+                                                                                                          "width": 160
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "fields": {
+                                                                                                        "MANOBRA": "FRENTE"
+                                                                                                      },
+                                                                                                      "inputs": {
+                                                                                                        "VEL": {
+                                                                                                          "block": {
+                                                                                                            "type": "abs_ler",
+                                                                                                            "id": "v=bt/r1QL8w=T]KoHUhJ",
+                                                                                                            "fields": {
+                                                                                                              "VAR": {
+                                                                                                                "id": "]M#{Mt)1VrJ$*kJd__9`"
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "next": {
+                                                                                                        "block": {
+                                                                                                          "type": "abs_web_esperar",
+                                                                                                          "id": "Fa$Xltod9;P+N[%XKn3[",
+                                                                                                          "inputs": {
+                                                                                                            "MS": {
+                                                                                                              "block": {
+                                                                                                                "type": "ard_number",
+                                                                                                                "id": "n66}dibAC9K)olhzzQgb",
+                                                                                                                "fields": {
+                                                                                                                  "NUM": 80
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          },
+                                                                                                          "next": {
+                                                                                                            "block": {
+                                                                                                              "type": "abs_motores",
+                                                                                                              "id": "^.q+uU+mCR9ulWl!G5|b",
+                                                                                                              "fields": {
+                                                                                                                "MANOBRA": "FRENTE"
+                                                                                                              },
+                                                                                                              "inputs": {
+                                                                                                                "VEL": {
+                                                                                                                  "block": {
+                                                                                                                    "type": "abs_ler",
+                                                                                                                    "id": "pP(1)$KcV2BJzT4JuS1L",
+                                                                                                                    "fields": {
+                                                                                                                      "VAR": {
+                                                                                                                        "id": "7ie0z_mp9CE`A(SanZp^"
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              },
+                                                                                                              "next": {
+                                                                                                                "block": {
+                                                                                                                  "type": "abs_web_esperar",
+                                                                                                                  "id": "k[?SrB~VI@5:$W9_#-y9",
+                                                                                                                  "icons": {
+                                                                                                                    "comment": {
+                                                                                                                      "text": "T1 = 0.75 s",
+                                                                                                                      "pinned": false,
+                                                                                                                      "height": 80,
+                                                                                                                      "width": 160
+                                                                                                                    }
+                                                                                                                  },
+                                                                                                                  "inputs": {
+                                                                                                                    "MS": {
+                                                                                                                      "block": {
+                                                                                                                        "type": "ard_number",
+                                                                                                                        "id": "=MlHxzUhDA8=0N[.pN7!",
+                                                                                                                        "fields": {
+                                                                                                                          "NUM": 750
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                },
+                                                                                                "next": {
+                                                                                                  "block": {
+                                                                                                    "type": "abs_caso_estado",
+                                                                                                    "id": "8zhXQSv%YpAgV{E+35pV",
+                                                                                                    "fields": {
+                                                                                                      "ESTADO": "LPA_PC"
+                                                                                                    },
+                                                                                                    "inputs": {
+                                                                                                      "BODY": {
+                                                                                                        "block": {
+                                                                                                          "type": "abs_motores",
+                                                                                                          "id": "6@EjE,hm|+6t^-7JfTv:",
+                                                                                                          "icons": {
+                                                                                                            "comment": {
+                                                                                                              "text": "perpendicular: one sees an obstacle and the other sees it clear. One\nof the two is wrong. Stopping here was a decision that did NOT change\nthe evidence: stopped, the sensors repeated the same disagreement. A\nhalf maneuver changes the geometry and allows measuring again",
+                                                                                                              "pinned": false,
+                                                                                                              "height": 80,
+                                                                                                              "width": 160
+                                                                                                            }
+                                                                                                          },
+                                                                                                          "fields": {
+                                                                                                            "MANOBRA": "RE"
+                                                                                                          },
+                                                                                                          "inputs": {
+                                                                                                            "VEL": {
+                                                                                                              "block": {
+                                                                                                                "type": "abs_ler",
+                                                                                                                "id": "|~}IoT.w94Nj(.eVU2fk",
+                                                                                                                "fields": {
+                                                                                                                  "VAR": {
+                                                                                                                    "id": "T3v)PqNEk;LxE7*x-w;q"
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          },
+                                                                                                          "next": {
+                                                                                                            "block": {
+                                                                                                              "type": "abs_web_esperar",
+                                                                                                              "id": "b*d`/QzBzaNtP^)tCndc",
+                                                                                                              "inputs": {
+                                                                                                                "MS": {
+                                                                                                                  "block": {
+                                                                                                                    "type": "ard_number",
+                                                                                                                    "id": "3M6`,DNG$mv?c8n=Ompw",
+                                                                                                                    "fields": {
+                                                                                                                      "NUM": 300
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              },
+                                                                                                              "next": {
+                                                                                                                "block": {
+                                                                                                                  "type": "abs_motores",
+                                                                                                                  "id": "r]=zUe`Ecj4;sJMb.m]a",
+                                                                                                                  "fields": {
+                                                                                                                    "MANOBRA": "DIR"
+                                                                                                                  },
+                                                                                                                  "inputs": {
+                                                                                                                    "VEL": {
+                                                                                                                      "block": {
+                                                                                                                        "type": "abs_ler",
+                                                                                                                        "id": "McO*#%d5=`~ZD(:+AQB+",
+                                                                                                                        "fields": {
+                                                                                                                          "VAR": {
+                                                                                                                            "id": "S|:E!Zpg`m#fei#eu)u6"
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  },
+                                                                                                                  "next": {
+                                                                                                                    "block": {
+                                                                                                                      "type": "abs_web_esperar",
+                                                                                                                      "id": "D}YQ^z0WqTNmRJs,I+j5",
+                                                                                                                      "inputs": {
+                                                                                                                        "MS": {
+                                                                                                                          "block": {
+                                                                                                                            "type": "ard_number",
+                                                                                                                            "id": "aP%.m5ePzi#/?l=CIZi;",
+                                                                                                                            "fields": {
+                                                                                                                              "NUM": 600
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      },
+                                                                                                                      "next": {
+                                                                                                                        "block": {
+                                                                                                                          "type": "abs_motores",
+                                                                                                                          "id": "Up$i(HqMZ3L}aJc.7=TZ",
+                                                                                                                          "fields": {
+                                                                                                                            "MANOBRA": "PARAR"
+                                                                                                                          },
+                                                                                                                          "inputs": {
+                                                                                                                            "VEL": {
+                                                                                                                              "block": {
+                                                                                                                                "type": "ard_number",
+                                                                                                                                "id": "C+MiF_:N2NIb*r$bRCPL",
+                                                                                                                                "fields": {
+                                                                                                                                  "NUM": 0
+                                                                                                                                }
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    },
+                                                                                                    "next": {
+                                                                                                      "block": {
+                                                                                                        "type": "abs_senao_estado",
+                                                                                                        "id": "(|KZhm~}m_%Zy:r1#nzn",
+                                                                                                        "inputs": {
+                                                                                                          "BODY": {
+                                                                                                            "block": {
+                                                                                                              "type": "abs_motores",
+                                                                                                              "id": "IQD]W*/m:NZ!bo;?i~%@",
+                                                                                                              "icons": {
+                                                                                                                "comment": {
+                                                                                                                  "text": "the four states above are the EXTREMES of the lattice, and with the\ncuts at 0.5 they are the minority of readings. A measurement like 35\ncm on one side and 50 on the other falls into Qv->T or T->v, an\nintermediate region: without this branch the robot would stand still.\nThe action is the one PAL2v indicates for unresolved contradiction: go\non slowly and measure again - with a kick, to get out of inertia",
+                                                                                                                  "pinned": false,
+                                                                                                                  "height": 80,
+                                                                                                                  "width": 160
+                                                                                                                }
+                                                                                                              },
+                                                                                                              "fields": {
+                                                                                                                "MANOBRA": "FRENTE"
+                                                                                                              },
+                                                                                                              "inputs": {
+                                                                                                                "VEL": {
+                                                                                                                  "block": {
+                                                                                                                    "type": "abs_ler",
+                                                                                                                    "id": "9|Sq`QMG8^:2cQgy*|^=",
+                                                                                                                    "fields": {
+                                                                                                                      "VAR": {
+                                                                                                                        "id": "]M#{Mt)1VrJ$*kJd__9`"
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              },
+                                                                                                              "next": {
+                                                                                                                "block": {
+                                                                                                                  "type": "abs_web_esperar",
+                                                                                                                  "id": "]oa[4g6mZ[bq;acrPJBt",
+                                                                                                                  "inputs": {
+                                                                                                                    "MS": {
+                                                                                                                      "block": {
+                                                                                                                        "type": "ard_number",
+                                                                                                                        "id": "lb[|@.MOX$u8{vaX{=WO",
+                                                                                                                        "fields": {
+                                                                                                                          "NUM": 80
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  },
+                                                                                                                  "next": {
+                                                                                                                    "block": {
+                                                                                                                      "type": "abs_motores",
+                                                                                                                      "id": "e+w4{K.G5n~,kn%Wp:/!",
+                                                                                                                      "fields": {
+                                                                                                                        "MANOBRA": "FRENTE"
+                                                                                                                      },
+                                                                                                                      "inputs": {
+                                                                                                                        "VEL": {
+                                                                                                                          "block": {
+                                                                                                                            "type": "abs_ler",
+                                                                                                                            "id": "J^T;F~jp*t+D+!j}OLIL",
+                                                                                                                            "fields": {
+                                                                                                                              "VAR": {
+                                                                                                                                "id": "7ie0z_mp9CE`A(SanZp^"
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      },
+                                                                                                                      "next": {
+                                                                                                                        "block": {
+                                                                                                                          "type": "abs_web_esperar",
+                                                                                                                          "id": "A8c5SH,LyEOO$!q[4}_O",
+                                                                                                                          "inputs": {
+                                                                                                                            "MS": {
+                                                                                                                              "block": {
+                                                                                                                                "type": "ard_number",
+                                                                                                                                "id": ".nYXN)IMYbsR/!MTyCg%",
+                                                                                                                                "fields": {
+                                                                                                                                  "NUM": 200
+                                                                                                                                }
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              "next": {
+                                                                                "block": {
+                                                                                  "type": "abs_se",
+                                                                                  "id": "yA%co*D#krxR84`Gg^2s",
+                                                                                  "icons": {
+                                                                                    "comment": {
+                                                                                      "text": "the safeguard: too many cycles without deciding anything, swerve and start over",
+                                                                                      "pinned": false,
+                                                                                      "height": 80,
+                                                                                      "width": 160
+                                                                                    }
+                                                                                  },
+                                                                                  "inputs": {
+                                                                                    "COND": {
+                                                                                      "block": {
+                                                                                        "type": "abs_comparar",
+                                                                                        "id": ",s]+BUi?{{AYI]uxGPdA",
+                                                                                        "fields": {
+                                                                                          "OP": "GTE"
+                                                                                        },
+                                                                                        "inputs": {
+                                                                                          "A": {
+                                                                                            "block": {
+                                                                                              "type": "abs_ler",
+                                                                                              "id": "0}dPXI5j5jp`0Zgw;k,X",
+                                                                                              "fields": {
+                                                                                                "VAR": {
+                                                                                                  "id": ".?9@I?#mAH]+{djNM~au"
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          "B": {
+                                                                                            "block": {
+                                                                                              "type": "abs_ler",
+                                                                                              "id": "|`js{gfb.gPiFlx?b|w@",
+                                                                                              "fields": {
+                                                                                                "VAR": {
+                                                                                                  "id": "N0::U0yeOamM3U~)PXlZ"
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    "ENTAO": {
+                                                                                      "block": {
+                                                                                        "type": "abs_motores",
+                                                                                        "id": "7+)#b8][;NRmUO^E)@B:",
+                                                                                        "fields": {
+                                                                                          "MANOBRA": "PARAR"
+                                                                                        },
+                                                                                        "inputs": {
+                                                                                          "VEL": {
+                                                                                            "block": {
+                                                                                              "type": "ard_number",
+                                                                                              "id": "98.:Q?+.^2zR(IQ=n)rU",
+                                                                                              "fields": {
+                                                                                                "NUM": 0
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        },
+                                                                                        "next": {
+                                                                                          "block": {
+                                                                                            "type": "abs_web_esperar",
+                                                                                            "id": "|meLfX1aWJF:zIBe/{*6",
+                                                                                            "inputs": {
+                                                                                              "MS": {
+                                                                                                "block": {
+                                                                                                  "type": "ard_number",
+                                                                                                  "id": "~p$F,p8u,E;O|g]_ehR-",
+                                                                                                  "fields": {
+                                                                                                    "NUM": 200
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            },
+                                                                                            "next": {
+                                                                                              "block": {
+                                                                                                "type": "abs_motores",
+                                                                                                "id": "7ib_#Pp,^z:bjBCXPu-j",
+                                                                                                "fields": {
+                                                                                                  "MANOBRA": "RE"
+                                                                                                },
+                                                                                                "inputs": {
+                                                                                                  "VEL": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_ler",
+                                                                                                      "id": "5dE)ycRyV}{0{4L6K`hg",
+                                                                                                      "fields": {
+                                                                                                        "VAR": {
+                                                                                                          "id": "T3v)PqNEk;LxE7*x-w;q"
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                },
+                                                                                                "next": {
+                                                                                                  "block": {
+                                                                                                    "type": "abs_web_esperar",
+                                                                                                    "id": "1LOUtTN~,KDVuad8MOQ5",
+                                                                                                    "inputs": {
+                                                                                                      "MS": {
+                                                                                                        "block": {
+                                                                                                          "type": "ard_number",
+                                                                                                          "id": "6yD8h+Qx%XA0$^!]iT*b",
+                                                                                                          "fields": {
+                                                                                                            "NUM": 500
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    },
+                                                                                                    "next": {
+                                                                                                      "block": {
+                                                                                                        "type": "abs_motores",
+                                                                                                        "id": "[zOhoKPmx8tWIAdTOZx?",
+                                                                                                        "fields": {
+                                                                                                          "MANOBRA": "DIR"
+                                                                                                        },
+                                                                                                        "inputs": {
+                                                                                                          "VEL": {
+                                                                                                            "block": {
+                                                                                                              "type": "abs_ler",
+                                                                                                              "id": "Kb)po)8MtleFi+H=x@/x",
+                                                                                                              "fields": {
+                                                                                                                "VAR": {
+                                                                                                                  "id": "S|:E!Zpg`m#fei#eu)u6"
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        },
+                                                                                                        "next": {
+                                                                                                          "block": {
+                                                                                                            "type": "abs_web_esperar",
+                                                                                                            "id": ";G2N4_F7cj#98djP925-",
+                                                                                                            "icons": {
+                                                                                                              "comment": {
+                                                                                                                "text": "T3 = 2 s: the 90 degree turn from the paper. This time was measured\nwith TURN_SPEED on this bench - if you change the speed, measure the\nangle again",
+                                                                                                                "pinned": false,
+                                                                                                                "height": 80,
+                                                                                                                "width": 160
+                                                                                                              }
+                                                                                                            },
+                                                                                                            "inputs": {
+                                                                                                              "MS": {
+                                                                                                                "block": {
+                                                                                                                  "type": "ard_number",
+                                                                                                                  "id": "IAW#E*%;?oe{vLvvFm2V",
+                                                                                                                  "fields": {
+                                                                                                                    "NUM": 2000
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            },
+                                                                                                            "next": {
+                                                                                                              "block": {
+                                                                                                                "type": "abs_motores",
+                                                                                                                "id": "lC.V5(UGS@]#IqR^yYpD",
+                                                                                                                "fields": {
+                                                                                                                  "MANOBRA": "PARAR"
+                                                                                                                },
+                                                                                                                "inputs": {
+                                                                                                                  "VEL": {
+                                                                                                                    "block": {
+                                                                                                                      "type": "ard_number",
+                                                                                                                      "id": "r@6Gm8*6jv(ZaZ^(3c}Z",
+                                                                                                                      "fields": {
+                                                                                                                        "NUM": 0
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                },
+                                                                                                                "next": {
+                                                                                                                  "block": {
+                                                                                                                    "type": "abs_definir",
+                                                                                                                    "id": "tUAOs2k[~=2~Oj{3-5Za",
+                                                                                                                    "fields": {
+                                                                                                                      "VAR": {
+                                                                                                                        "id": ".?9@I?#mAH]+{djNM~au"
+                                                                                                                      }
+                                                                                                                    },
+                                                                                                                    "inputs": {
+                                                                                                                      "VALOR": {
+                                                                                                                        "block": {
+                                                                                                                          "type": "ard_number",
+                                                                                                                          "id": "Js.Rz~CY/[%ej{!]||2s",
+                                                                                                                          "fields": {
+                                                                                                                            "NUM": 0
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "next": {
+                                                                                    "block": {
+                                                                                      "type": "abs_definir",
+                                                                                      "id": "Ry3F%ZPQD+F0HOPB0~Yd",
+                                                                                      "fields": {
+                                                                                        "VAR": {
+                                                                                          "id": ".?9@I?#mAH]+{djNM~au"
+                                                                                        }
+                                                                                      },
+                                                                                      "inputs": {
+                                                                                        "VALOR": {
+                                                                                          "block": {
+                                                                                            "type": "abs_conta",
+                                                                                            "id": "Q|DN2=W[]V:W[29w.3=~",
+                                                                                            "fields": {
+                                                                                              "OP": "+"
+                                                                                            },
+                                                                                            "inputs": {
+                                                                                              "A": {
+                                                                                                "block": {
+                                                                                                  "type": "abs_ler",
+                                                                                                  "id": "Wx8Zte3JA;Fd^.bqJA/O",
+                                                                                                  "fields": {
+                                                                                                    "VAR": {
+                                                                                                      "id": ".?9@I?#mAH]+{djNM~au"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              },
+                                                                                              "B": {
+                                                                                                "block": {
+                                                                                                  "type": "ard_number",
+                                                                                                  "id": "IpN9_,6ou(8ZFJ9EY;?s",
+                                                                                                  "fields": {
+                                                                                                    "NUM": 1
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "abs_web_esperar",
+                                                                            "id": "eA$7s9~C$Qyt-GO-k.XZ",
+                                                                            "icons": {
+                                                                              "comment": {
+                                                                                "text": "pause between ultrasonic pings, without leaving the page",
+                                                                                "pinned": false,
+                                                                                "height": 80,
+                                                                                "width": 160
+                                                                              }
+                                                                            },
+                                                                            "inputs": {
+                                                                              "MS": {
+                                                                                "block": {
+                                                                                  "type": "ard_number",
+                                                                                  "id": "^T8$UZl9P1YRB$c,%W`5",
+                                                                                  "fields": {
+                                                                                    "NUM": 100
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "variables": [
+      {
+        "name": "UD_FAR",
+        "id": "P^G2ET0_Zj8gz@}rRmk("
+      },
+      {
+        "name": "UD_NEAR",
+        "id": "_MNwI[H;}p6dhjY(_lje"
+      },
+      {
+        "name": "distLeft",
+        "id": "Gd8rl|gUxCdGSZ|6QsWM"
+      },
+      {
+        "name": "distRight",
+        "id": "#Z2bN8F?(Ffn~7u0p2?g"
+      },
+      {
+        "name": "evidLeft",
+        "id": "C0fquIMdx3|LPt2B.m]O"
+      },
+      {
+        "name": "evidRight",
+        "id": "6rGOWDrkkGf+F#~?mNo?"
+      },
+      {
+        "name": "undecided",
+        "id": ".?9@I?#mAH]+{djNM~au"
+      },
+      {
+        "name": "STALL_LIMIT",
+        "id": "N0::U0yeOamM3U~)PXlZ"
+      },
+      {
+        "name": "manual",
+        "id": ":h`%zW3Dg[F^(l![vq+H"
+      },
+      {
+        "name": "SPEED",
+        "id": "7ie0z_mp9CE`A(SanZp^"
+      },
+      {
+        "name": "START_SPEED",
+        "id": "]M#{Mt)1VrJ$*kJd__9`"
+      },
+      {
+        "name": "REVERSE_SPEED",
+        "id": "T3v)PqNEk;LxE7*x-w;q"
+      },
+      {
+        "name": "TURN_SPEED",
+        "id": "S|:E!Zpg`m#fei#eu)u6"
+      }
+    ]
+  }
+}

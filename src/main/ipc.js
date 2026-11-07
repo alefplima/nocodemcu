@@ -10,6 +10,7 @@ const cli = require('./cli');
 const serial = require('./serial');
 const settings = require('./settings');
 const projects = require('./projects');
+const { L } = require('./idioma');
 
 function registrar(janela) {
 
@@ -57,12 +58,12 @@ function registrar(janela) {
     /* ---------- compilar e gravar ---------- */
 
     ipcMain.handle('build:compilar', async (e, opcoes) => {
-        enviarUI('build:log', { linha: '> compilando para ' + opcoes.fqbn, canal: 'info' });
+        enviarUI('build:log', { linha: L('> compilando para ', '> compiling for ') + opcoes.fqbn, canal: 'info' });
         const r = await cli.compilar(opcoes, (linha, canal) => {
             enviarUI('build:log', { linha: linha, canal: canal });
         });
         enviarUI('build:log', {
-            linha: r.ok ? '> compilação concluída' : '> compilação falhou',
+            linha: r.ok ? L('> compilação concluída', '> compilation finished') : L('> compilação falhou', '> compilation failed'),
             canal: r.ok ? 'ok' : 'erro'
         });
         return r;
@@ -70,21 +71,21 @@ function registrar(janela) {
 
     ipcMain.handle('build:gravar', async (e, opcoes) => {
         const estavaAberta = await serial.suspender();
-        enviarUI('build:log', { linha: '> gravando em ' + opcoes.porta, canal: 'info' });
+        enviarUI('build:log', { linha: L('> gravando em ', '> uploading to ') + opcoes.porta, canal: 'info' });
 
         const r = await cli.gravar(opcoes, (linha, canal) => {
             enviarUI('build:log', { linha: linha, canal: canal });
         });
 
         enviarUI('build:log', {
-            linha: r.ok ? '> gravação concluída' : '> gravação falhou',
+            linha: r.ok ? L('> gravação concluída', '> upload finished') : L('> gravação falhou', '> upload failed'),
             canal: r.ok ? 'ok' : 'erro'
         });
 
         if (estavaAberta) {
             const reaberta = await serial.retomar();
             if (!reaberta.ok) {
-                enviarUI('build:log', { linha: '> monitor serial não reabriu: ' + reaberta.erro, canal: 'erro' });
+                enviarUI('build:log', { linha: L('> monitor serial não reabriu: ', '> serial monitor did not reopen: ') + reaberta.erro, canal: 'erro' });
             }
         }
         return r;
@@ -103,9 +104,9 @@ function registrar(janela) {
         let destino = o.caminho;
         if (!destino) {
             const r = await dialog.showSaveDialog(janela, {
-                title: 'Salvar projeto',
+                title: L('Salvar projeto', 'Save project'),
                 defaultPath: (o.nome || 'projeto') + '.tbk',
-                filters: [{ name: 'Projeto NoCodeMCU', extensions: ['tbk'] }]
+                filters: [{ name: L('Projeto NoCodeMCU', 'NoCodeMCU project'), extensions: ['tbk'] }]
             });
             if (r.canceled) return { ok: false, cancelado: true };
             destino = r.filePath;
@@ -123,9 +124,9 @@ function registrar(janela) {
         let origem = o && o.caminho;
         if (!origem) {
             const r = await dialog.showOpenDialog(janela, {
-                title: 'Abrir projeto',
+                title: L('Abrir projeto', 'Open project'),
                 properties: ['openFile'],
-                filters: [{ name: 'Projeto NoCodeMCU', extensions: ['tbk'] }]
+                filters: [{ name: L('Projeto NoCodeMCU', 'NoCodeMCU project'), extensions: ['tbk'] }]
             });
             if (r.canceled || !r.filePaths.length) return { ok: false, cancelado: true };
             origem = r.filePaths[0];
@@ -141,9 +142,9 @@ function registrar(janela) {
 
     ipcMain.handle('projeto:exportar-ino', async (e, o) => {
         const r = await dialog.showSaveDialog(janela, {
-            title: 'Exportar sketch',
+            title: L('Exportar sketch', 'Export sketch'),
             defaultPath: (o.nome || 'sketch') + '.ino',
-            filters: [{ name: 'Sketch Arduino', extensions: ['ino'] }]
+            filters: [{ name: L('Sketch Arduino', 'Arduino sketch'), extensions: ['ino'] }]
         });
         if (r.canceled) return { ok: false, cancelado: true };
         try {
@@ -155,9 +156,9 @@ function registrar(janela) {
 
     ipcMain.handle('serial:exportar-log', async (e, o) => {
         const r = await dialog.showSaveDialog(janela, {
-            title: 'Exportar log serial',
+            title: L('Exportar log serial', 'Export serial log'),
             defaultPath: 'serial.txt',
-            filters: [{ name: 'Texto', extensions: ['txt'] }]
+            filters: [{ name: L('Texto', 'Text'), extensions: ['txt'] }]
         });
         if (r.canceled) return { ok: false, cancelado: true };
         try {

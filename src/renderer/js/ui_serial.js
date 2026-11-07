@@ -76,7 +76,8 @@
                 }
                 if (/^-?\d+(?:\.\d+)?$/.test(parte)) {
                     anonimos++;
-                    saida.push({ nome: 'série ' + anonimos, valor: Number(parte) });
+                    const serie = 'série ' + anonimos;
+                    saida.push({ nome: global.I18N ? global.I18N.t(serie) : serie, valor: Number(parte) });
                 }
             });
             return saida;

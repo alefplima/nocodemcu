@@ -14,6 +14,7 @@ const PADRAO = {
     autoScroll: true,
     tema: 'escuro',
     modo: 'literal',
+    idioma: 'pt',
     lateralRecolhida: false,
     janela: { largura: 1280, altura: 800 },
     ultimoProjeto: null

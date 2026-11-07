@@ -1,0 +1,640 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-11-07T15:37:10.550Z",
+  "placa": "uno",
+  "modo": "literal",
+  "nome": "PAL2v — part sorting",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "ard_setup",
+          "id": "K,L*,Zdv9NrWdGST-(H7",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_serial_begin",
+                "id": "GO7.9uB[%x[sAm*W2@!u",
+                "fields": {
+                  "PORTA": "Serial",
+                  "BAUD": "9600"
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_pinmode",
+                    "id": ":W5y?=Cx+v+YF0Qzi67K",
+                    "icons": {
+                      "comment": {
+                        "text": "Wiring: A0 and A1 = two height sensors with ANALOG OUTPUT (0-5 V),\nmeasuring the SAME part - and because they measure the same thing, the\ndisagreement between them is contradiction, not noise. The 0..1023\nreading becomes millimeters through map; the Universe of Discourse\ngoes from 20 mm to 60 mm. Outputs: pin 7 = diverter to destination A",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "PIN": "7",
+                      "MODO": "OUTPUT"
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_pinmode",
+                        "id": "c^{QAGWfYUVSrZJ7V%FE",
+                        "icons": {
+                          "comment": {
+                            "text": "pin 8 = diverter to destination B",
+                            "pinned": false,
+                            "height": 80,
+                            "width": 160
+                          }
+                        },
+                        "fields": {
+                          "PIN": "8",
+                          "MODO": "OUTPUT"
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_pinmode",
+                            "id": "tWNOX3V:#B?xNUoSy_C@",
+                            "icons": {
+                              "comment": {
+                                "text": "pin 9 = reject (part out of spec)",
+                                "pinned": false,
+                                "height": 80,
+                                "width": 160
+                              }
+                            },
+                            "fields": {
+                              "PIN": "9",
+                              "MODO": "OUTPUT"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_loop",
+          "id": "Iusua/?o!G.]%dY{t|*?",
+          "x": 40,
+          "y": 370,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "lp_para_analisador_simples",
+                "id": "m|6Pqd^]b$I`T)8XedmZ",
+                "fields": {
+                  "RES": "12"
+                },
+                "inputs": {
+                  "S1": {
+                    "block": {
+                      "type": "ard_map",
+                      "id": "-2o[3=ChIni|]m)R%vet",
+                      "inputs": {
+                        "VALOR": {
+                          "block": {
+                            "type": "ard_analogread",
+                            "id": "m32)Q`)(!!h0~8uSUFky",
+                            "fields": {
+                              "PIN": "A0"
+                            }
+                          }
+                        },
+                        "DE_MIN": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "Zbq|ow!RpDo`7,E%/ZgO",
+                            "fields": {
+                              "NUM": 0
+                            }
+                          }
+                        },
+                        "DE_MAX": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "BfPA1|=WM(rpWJ]}si@J",
+                            "fields": {
+                              "NUM": 1023
+                            }
+                          }
+                        },
+                        "PARA_MIN": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "x;AFw=_B`Ssn1J77^Zqn",
+                            "fields": {
+                              "NUM": 0
+                            }
+                          }
+                        },
+                        "PARA_MAX": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "gv/5+J+*d$/m^xmzreEb",
+                            "fields": {
+                              "NUM": 100
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "S2": {
+                    "block": {
+                      "type": "ard_map",
+                      "id": "e.@i:MQ3)6t+WJ;#xVZ4",
+                      "inputs": {
+                        "VALOR": {
+                          "block": {
+                            "type": "ard_analogread",
+                            "id": "/G%s+k9k@?$mSNhs^$}8",
+                            "fields": {
+                              "PIN": "A1"
+                            }
+                          }
+                        },
+                        "DE_MIN": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "2q}ax-Kzl9Y2;]?)tXX[",
+                            "fields": {
+                              "NUM": 0
+                            }
+                          }
+                        },
+                        "DE_MAX": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "br?tjJ/`!{-1M$KXVMS5",
+                            "fields": {
+                              "NUM": 1023
+                            }
+                          }
+                        },
+                        "PARA_MIN": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "$.L@9g*z=WP#Vle,xz#M",
+                            "fields": {
+                              "NUM": 0
+                            }
+                          }
+                        },
+                        "PARA_MAX": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "Ncek`0?PI}mKO?-(*/P2",
+                            "fields": {
+                              "NUM": 100
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "A1": {
+                    "block": {
+                      "type": "ard_number",
+                      "id": "MhcjcoU0:T+w8@i|U0aM",
+                      "fields": {
+                        "NUM": 20
+                      }
+                    }
+                  },
+                  "A2": {
+                    "block": {
+                      "type": "ard_number",
+                      "id": "=e1Uj6JtBGm1%Hskj}A$",
+                      "fields": {
+                        "NUM": 60
+                      }
+                    }
+                  },
+                  "CASOS": {
+                    "block": {
+                      "type": "lp_caso",
+                      "id": "+Z0|s|col(?P1X4yqG=X",
+                      "fields": {
+                        "ESTADO": "LPA_V"
+                      },
+                      "inputs": {
+                        "BODY": {
+                          "block": {
+                            "type": "ard_serial_println",
+                            "id": "NMFX1oHhzux%C~eQ)B@y",
+                            "fields": {
+                              "PORTA": "Serial"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_text",
+                                  "id": "Dr}obdzvmLRD`^!FyKn}",
+                                  "fields": {
+                                    "TEXTO": "type A"
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "ard_digitalwrite",
+                                "id": "GPqRUwXA7XzWzw}jqqP-",
+                                "fields": {
+                                  "PIN": "7"
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "ard_const",
+                                      "id": "rheK$W_L4WGkCE]Ppm~#",
+                                      "fields": {
+                                        "CONST": "HIGH"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "lp_caso",
+                          "id": "-[OoxrMA1,]P@V:1UlQr",
+                          "fields": {
+                            "ESTADO": "LPA_QVT"
+                          },
+                          "inputs": {
+                            "BODY": {
+                              "block": {
+                                "type": "ard_serial_println",
+                                "id": "^z(6@6@@0Nx#x@[`TAnG",
+                                "fields": {
+                                  "PORTA": "Serial"
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "ard_text",
+                                      "id": "f1;o2X-upzj3u7INlrV`",
+                                      "fields": {
+                                        "TEXTO": "type A (slight disagreement)"
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "ard_digitalwrite",
+                                    "id": "*/]m+mVE(|T7%|$=$,z;",
+                                    "fields": {
+                                      "PIN": "7"
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "ard_const",
+                                          "id": "D#T.h(jB[#NnvlL@.E1c",
+                                          "fields": {
+                                            "CONST": "HIGH"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "lp_caso",
+                              "id": "KE#-o$oKE/2,3FX^6Zt3",
+                              "fields": {
+                                "ESTADO": "LPA_F"
+                              },
+                              "inputs": {
+                                "BODY": {
+                                  "block": {
+                                    "type": "ard_serial_println",
+                                    "id": "5]]=29iMt?;)(EBmERE5",
+                                    "fields": {
+                                      "PORTA": "Serial"
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "ard_text",
+                                          "id": "EMVhke{.%pMN.l,I[s;:",
+                                          "fields": {
+                                            "TEXTO": "type B"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "ard_digitalwrite",
+                                        "id": "jBEb7.$@,OD~{#gjM2|W",
+                                        "fields": {
+                                          "PIN": "8"
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "ard_const",
+                                              "id": "1_HegBzuNEyt~;Jr8mnm",
+                                              "fields": {
+                                                "CONST": "HIGH"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "lp_caso",
+                                  "id": "S|!3^!,pTECm,$@{90m{",
+                                  "fields": {
+                                    "ESTADO": "LPA_QFPC"
+                                  },
+                                  "inputs": {
+                                    "BODY": {
+                                      "block": {
+                                        "type": "ard_serial_println",
+                                        "id": "Gc}gjg9jq.isd6i#$2s7",
+                                        "fields": {
+                                          "PORTA": "Serial"
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "ard_text",
+                                              "id": "%PEw]NU{qyWa{g^@qig-",
+                                              "fields": {
+                                                "TEXTO": "type B (weak evidence)"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "ard_digitalwrite",
+                                            "id": "_O7NiBgc}IJUTN|+ne*L",
+                                            "fields": {
+                                              "PIN": "8"
+                                            },
+                                            "inputs": {
+                                              "VALOR": {
+                                                "block": {
+                                                  "type": "ard_const",
+                                                  "id": "^Y`^RHaWL#nc_o:O6f=j",
+                                                  "fields": {
+                                                    "CONST": "HIGH"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "next": {
+                                    "block": {
+                                      "type": "lp_caso",
+                                      "id": "/`tBOUaf5w@L[SLsPSk:",
+                                      "fields": {
+                                        "ESTADO": "LPA_T"
+                                      },
+                                      "inputs": {
+                                        "BODY": {
+                                          "block": {
+                                            "type": "ard_serial_println",
+                                            "id": "Ng?:v)}+5NO-oCHBu%t.",
+                                            "fields": {
+                                              "PORTA": "Serial"
+                                            },
+                                            "inputs": {
+                                              "VALOR": {
+                                                "block": {
+                                                  "type": "ard_text",
+                                                  "id": "/PGE)!M8Dt3*b}n7]n$z",
+                                                  "fields": {
+                                                    "TEXTO": "ALARM: sensors in contradiction"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "ard_digitalwrite",
+                                                "id": "G/Z4A%[lXcWW!*-jpGh]",
+                                                "fields": {
+                                                  "PIN": "9"
+                                                },
+                                                "inputs": {
+                                                  "VALOR": {
+                                                    "block": {
+                                                      "type": "ard_const",
+                                                      "id": "6}w0jnCq+pS;Z(e{5cw=",
+                                                      "fields": {
+                                                        "CONST": "HIGH"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "next": {
+                                        "block": {
+                                          "type": "lp_caso",
+                                          "id": "lX:G);;{88zen;=im]/W",
+                                          "fields": {
+                                            "ESTADO": "LPA_PC"
+                                          },
+                                          "inputs": {
+                                            "BODY": {
+                                              "block": {
+                                                "type": "ard_serial_println",
+                                                "id": "NuUiZtL`~_l3gNrI5l9T",
+                                                "fields": {
+                                                  "PORTA": "Serial"
+                                                },
+                                                "inputs": {
+                                                  "VALOR": {
+                                                    "block": {
+                                                      "type": "ard_text",
+                                                      "id": "4qdf[Thnf@cPkdrwd7%q",
+                                                      "fields": {
+                                                        "TEXTO": "ALARM: inverted contradiction"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "ard_digitalwrite",
+                                                    "id": "PBk}i3|g?I9jQDGSl[(m",
+                                                    "fields": {
+                                                      "PIN": "9"
+                                                    },
+                                                    "inputs": {
+                                                      "VALOR": {
+                                                        "block": {
+                                                          "type": "ard_const",
+                                                          "id": "gJZcrKE8!CH(s:RR0.C.",
+                                                          "fields": {
+                                                            "CONST": "HIGH"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "next": {
+                                            "block": {
+                                              "type": "lp_senao",
+                                              "id": "e3KX=Hx6=Gga7OUVWp=C",
+                                              "inputs": {
+                                                "BODY": {
+                                                  "block": {
+                                                    "type": "ard_serial_println",
+                                                    "id": "h^#iw_8f2LYcKZXb8FZ/",
+                                                    "fields": {
+                                                      "PORTA": "Serial"
+                                                    },
+                                                    "inputs": {
+                                                      "VALOR": {
+                                                        "block": {
+                                                          "type": "ard_text",
+                                                          "id": "e^7WKV)5n;[OXT_+GXY`",
+                                                          "fields": {
+                                                            "TEXTO": "undefined — measure again"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_delay",
+                    "id": "2zQ*b)`,hN|Jx3P:3C*A",
+                    "inputs": {
+                      "MS": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "WxHF_`t)eV)]vJitzkj/",
+                          "fields": {
+                            "NUM": 200
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_digitalwrite",
+                        "id": "vD@6ga1tkQG5_-mlNC14",
+                        "fields": {
+                          "PIN": "7"
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_const",
+                              "id": "!q^*(~;=+!7TrzCo!=~p",
+                              "fields": {
+                                "CONST": "LOW"
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_digitalwrite",
+                            "id": "/yJUWX*2n975D8AJ:TG9",
+                            "fields": {
+                              "PIN": "8"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_const",
+                                  "id": "//u!UO|{lv1Os9^@^p!m",
+                                  "fields": {
+                                    "CONST": "LOW"
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "ard_digitalwrite",
+                                "id": ")TgHsM|yW*g~SfE`Rvqj",
+                                "fields": {
+                                  "PIN": "9"
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "ard_const",
+                                      "id": "jf#V/@Gct8Ne@^K941Y]",
+                                      "fields": {
+                                        "CONST": "LOW"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

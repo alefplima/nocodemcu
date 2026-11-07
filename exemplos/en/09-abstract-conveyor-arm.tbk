@@ -1,0 +1,1530 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-11-07T15:37:12.100Z",
+  "placa": "uno",
+  "modo": "abstrato",
+  "nome": "Abstract — conveyor, ultrasonic sensors and arm",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "abs_ao_iniciar",
+          "id": "jc.l5)O*Sn8H`iyR|^,t",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_mostrar",
+                "id": "Hl9OA!r7mzHsNos+pytY",
+                "icons": {
+                  "comment": {
+                    "text": "Wiring: pin 7 = conveyor relay | 2/3 = ultrasonic 1 (trig/echo) | 4/8\n= ultrasonic 2 | 9 = base servo | 10 = gripper servo",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "ROTULO": "conveyor"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_number",
+                      "id": "e8Mx4Gz.MWNFdHgo)C(p",
+                      "fields": {
+                        "NUM": 1
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_escrita_digital",
+                    "id": "tGfNa)CLS]v3,j3lxM]W",
+                    "icons": {
+                      "comment": {
+                        "text": "start the conveyor",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "PIN": "7",
+                      "VALOR": "HIGH"
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_criar",
+                        "id": "`(EW]p`C2W29_%!chhGb",
+                        "icons": {
+                          "comment": {
+                            "text": "below 9 cm there is a part; above it is the conveyor belt, at 10 cm",
+                            "pinned": false,
+                            "height": 80,
+                            "width": 160
+                          }
+                        },
+                        "fields": {
+                          "VAR": {
+                            "id": "P_]_SfW;7BQV@MTaqqZ@"
+                          }
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "LEZYv2)i5}hPXcv0s(V`",
+                              "fields": {
+                                "NUM": 9
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_criar",
+                            "id": "Z,yQqez;TU(7cMKjuAuQ",
+                            "icons": {
+                              "comment": {
+                                "text": "Universe of Discourse: 8.5 cm = shallow part, evidence near 0",
+                                "pinned": false,
+                                "height": 80,
+                                "width": 160
+                              }
+                            },
+                            "fields": {
+                              "VAR": {
+                                "id": "{tnoC;K9E=m{m{t~)Z7#"
+                              }
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "vVc{,L=u**LAe*s,?huv",
+                                  "fields": {
+                                    "NUM": 8.5
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_criar",
+                                "id": "X0x@t12`|!=S;;^PKg`9",
+                                "icons": {
+                                  "comment": {
+                                    "text": "5.5 cm = tall part, evidence near 1. Taller means closer",
+                                    "pinned": false,
+                                    "height": 80,
+                                    "width": 160
+                                  }
+                                },
+                                "fields": {
+                                  "VAR": {
+                                    "id": "-W1(BX5LCD`~QyYYO=9a"
+                                  }
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "ard_number",
+                                      "id": "S|3^=wz;BTs}.q.Pjd3U",
+                                      "fields": {
+                                        "NUM": 5.5
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "abs_criar",
+                                    "id": "a?%H3#l%L1Y-ldd!v^A@",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "^u=nX6P+;5LjZDn%7LzS"
+                                      }
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "ard_number",
+                                          "id": "j,Bb+Z%-wr?V%eA`z8Xl",
+                                          "fields": {
+                                            "NUM": 100
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_criar",
+                                        "id": "zkW/AK;Od;QFj8dmd83l",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "`@qlt82zO)3U@bxtgd_%"
+                                          }
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "ard_number",
+                                              "id": "~awl^SMQq9Ka{g%sKHNY",
+                                              "fields": {
+                                                "NUM": 100
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "abs_criar",
+                                            "id": "$3Li3bg:RSk:]T_k/[-x",
+                                            "fields": {
+                                              "VAR": {
+                                                "id": ")GoUxwxkiG=5{l`HF~nP"
+                                              }
+                                            },
+                                            "inputs": {
+                                              "VALOR": {
+                                                "block": {
+                                                  "type": "ard_number",
+                                                  "id": "$nO]m?=GHBiFetMt9/||",
+                                                  "fields": {
+                                                    "NUM": 0.5
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "abs_criar",
+                                                "id": "}h%kDiKvdoI^n7R_r,Dd",
+                                                "fields": {
+                                                  "VAR": {
+                                                    "id": "0dfHB:[KZ,FS#=J|Sz`q"
+                                                  }
+                                                },
+                                                "inputs": {
+                                                  "VALOR": {
+                                                    "block": {
+                                                      "type": "ard_number",
+                                                      "id": "79XI_mUEA8*4r=_[{$3$",
+                                                      "fields": {
+                                                        "NUM": 0.5
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_sempre",
+          "id": ",?b(Mx`~~uA-WX5N^)5)",
+          "x": 40,
+          "y": 916,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_definir",
+                "id": "9rqkQ:fcycB{@L0Q88l`",
+                "icons": {
+                  "comment": {
+                    "text": "sensor 1 (trig 2, echo 3): only to see whether a part arrived",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "VAR": {
+                    "id": "^u=nX6P+;5LjZDn%7LzS"
+                  }
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "abs_distancia",
+                      "id": "$ck3ZF_@0d^1edZPh1_[",
+                      "fields": {
+                        "TRIG": "2",
+                        "ECHO": "3"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_se",
+                    "id": "T%pV7$3imX^^e@Hkvj)}",
+                    "icons": {
+                      "comment": {
+                        "text": "only analyze when there is a part: an empty conveyor would give F (shallow part)",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "inputs": {
+                      "COND": {
+                        "block": {
+                          "type": "abs_comparar",
+                          "id": "_Y:MvHN8z9`I(|C5X|6J",
+                          "fields": {
+                            "OP": "LT"
+                          },
+                          "inputs": {
+                            "A": {
+                              "block": {
+                                "type": "abs_ler",
+                                "id": "_]5bxL}XT@Jc:)SAjhO?",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "^u=nX6P+;5LjZDn%7LzS"
+                                  }
+                                }
+                              }
+                            },
+                            "B": {
+                              "block": {
+                                "type": "abs_ler",
+                                "id": "pZIhKiEy~;*]y*.B62,4",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "P_]_SfW;7BQV@MTaqqZ@"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "ENTAO": {
+                        "block": {
+                          "type": "abs_escrita_digital",
+                          "id": "Z~Y!Y4I=BgyF.[%ulw[i",
+                          "icons": {
+                            "comment": {
+                              "text": "pin 7 = relay. Stop the conveyor before measuring and before the gripper comes down",
+                              "pinned": false,
+                              "height": 80,
+                              "width": 160
+                            }
+                          },
+                          "fields": {
+                            "PIN": "7",
+                            "VALOR": "LOW"
+                          },
+                          "next": {
+                            "block": {
+                              "type": "abs_esperar",
+                              "id": "LZ$C~r~w:LpfT(QZ(5e.",
+                              "icons": {
+                                "comment": {
+                                  "text": "let the part settle",
+                                  "pinned": false,
+                                  "height": 80,
+                                  "width": 160
+                                }
+                              },
+                              "fields": {
+                                "UNI": "ms"
+                              },
+                              "inputs": {
+                                "QTD": {
+                                  "block": {
+                                    "type": "ard_number",
+                                    "id": "~+PCs7g=!kVevAEYSjiK",
+                                    "fields": {
+                                      "NUM": 300
+                                    }
+                                  }
+                                }
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "abs_definir",
+                                  "id": "2n)zIlMfai~!Gf$%}6D?",
+                                  "icons": {
+                                    "comment": {
+                                      "text": "measure again while stopped: this is the reading that counts",
+                                      "pinned": false,
+                                      "height": 80,
+                                      "width": 160
+                                    }
+                                  },
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "^u=nX6P+;5LjZDn%7LzS"
+                                    }
+                                  },
+                                  "inputs": {
+                                    "VALOR": {
+                                      "block": {
+                                        "type": "abs_distancia",
+                                        "id": "1?/hlN)5D^[mow)`}]Ce",
+                                        "fields": {
+                                          "TRIG": "2",
+                                          "ECHO": "3"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "next": {
+                                    "block": {
+                                      "type": "abs_esperar",
+                                      "id": "TDiw`4_CC~ie?{ob$(0C",
+                                      "icons": {
+                                        "comment": {
+                                          "text": "avoids cross-echo between the two sensors",
+                                          "pinned": false,
+                                          "height": 80,
+                                          "width": 160
+                                        }
+                                      },
+                                      "fields": {
+                                        "UNI": "ms"
+                                      },
+                                      "inputs": {
+                                        "QTD": {
+                                          "block": {
+                                            "type": "ard_number",
+                                            "id": "EK9u[zSEGw#K,50-+3K6",
+                                            "fields": {
+                                              "NUM": 60
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "next": {
+                                        "block": {
+                                          "type": "abs_definir",
+                                          "id": "#yzst7fStveURiG,I$bB",
+                                          "icons": {
+                                            "comment": {
+                                              "text": "sensor 2 (trig 4, echo 8), half a centimeter ahead of sensor 1",
+                                              "pinned": false,
+                                              "height": 80,
+                                              "width": 160
+                                            }
+                                          },
+                                          "fields": {
+                                            "VAR": {
+                                              "id": "`@qlt82zO)3U@bxtgd_%"
+                                            }
+                                          },
+                                          "inputs": {
+                                            "VALOR": {
+                                              "block": {
+                                                "type": "abs_distancia",
+                                                "id": "#c$L%f^=FF]14#!UNQ5i",
+                                                "fields": {
+                                                  "TRIG": "4",
+                                                  "ECHO": "8"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "next": {
+                                            "block": {
+                                              "type": "abs_definir",
+                                              "id": "(GtKu#l.l$ajBZI$yx2D",
+                                              "icons": {
+                                                "comment": {
+                                                  "text": "normalize the sensor 1 distance over the Universe of Discourse",
+                                                  "pinned": false,
+                                                  "height": 80,
+                                                  "width": 160
+                                                }
+                                              },
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": ")GoUxwxkiG=5{l`HF~nP"
+                                                }
+                                              },
+                                              "inputs": {
+                                                "VALOR": {
+                                                  "block": {
+                                                    "type": "abs_evidencia",
+                                                    "id": "fWGfcha{JC?NSD.x%4QN",
+                                                    "inputs": {
+                                                      "X": {
+                                                        "block": {
+                                                          "type": "abs_ler",
+                                                          "id": "sl3TeWCCAUblav=x;GkM",
+                                                          "fields": {
+                                                            "VAR": {
+                                                              "id": "^u=nX6P+;5LjZDn%7LzS"
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "A1": {
+                                                        "block": {
+                                                          "type": "abs_ler",
+                                                          "id": "xuvLT1-*]_lgxo$83~{9",
+                                                          "fields": {
+                                                            "VAR": {
+                                                              "id": "{tnoC;K9E=m{m{t~)Z7#"
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "A2": {
+                                                        "block": {
+                                                          "type": "abs_ler",
+                                                          "id": "Q37T`q#2g28.@UM:5-88",
+                                                          "fields": {
+                                                            "VAR": {
+                                                              "id": "-W1(BX5LCD`~QyYYO=9a"
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "next": {
+                                                "block": {
+                                                  "type": "abs_definir",
+                                                  "id": "$G$~:N[cp3c@8~lMmVaf",
+                                                  "icons": {
+                                                    "comment": {
+                                                      "text": "sensor 2, same Universe of Discourse",
+                                                      "pinned": false,
+                                                      "height": 80,
+                                                      "width": 160
+                                                    }
+                                                  },
+                                                  "fields": {
+                                                    "VAR": {
+                                                      "id": "0dfHB:[KZ,FS#=J|Sz`q"
+                                                    }
+                                                  },
+                                                  "inputs": {
+                                                    "VALOR": {
+                                                      "block": {
+                                                        "type": "abs_evidencia",
+                                                        "id": "p5p-i*-{eAy*3:5M`=/9",
+                                                        "inputs": {
+                                                          "X": {
+                                                            "block": {
+                                                              "type": "abs_ler",
+                                                              "id": "=H}l8VfS4+%#OxS/x,Pa",
+                                                              "fields": {
+                                                                "VAR": {
+                                                                  "id": "`@qlt82zO)3U@bxtgd_%"
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "A1": {
+                                                            "block": {
+                                                              "type": "abs_ler",
+                                                              "id": "]qKNtG]M$=Z=EWA)oD^f",
+                                                              "fields": {
+                                                                "VAR": {
+                                                                  "id": "{tnoC;K9E=m{m{t~)Z7#"
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "A2": {
+                                                            "block": {
+                                                              "type": "abs_ler",
+                                                              "id": "!d%cLqvbW|}_A6SqQa;d",
+                                                              "fields": {
+                                                                "VAR": {
+                                                                  "id": "-W1(BX5LCD`~QyYYO=9a"
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "next": {
+                                                    "block": {
+                                                      "type": "abs_mostrar_reticulado",
+                                                      "id": "]B_}O=*v%EQHdhMbd]Lg",
+                                                      "inputs": {
+                                                        "MU": {
+                                                          "block": {
+                                                            "type": "abs_ler",
+                                                            "id": "!do3S0!Ex|;wV@(]F??r",
+                                                            "fields": {
+                                                              "VAR": {
+                                                                "id": ")GoUxwxkiG=5{l`HF~nP"
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "LAMBDA": {
+                                                          "block": {
+                                                            "type": "abs_conta",
+                                                            "id": "-/4uDuv:v?VYlC$f*~|A",
+                                                            "fields": {
+                                                              "OP": "-"
+                                                            },
+                                                            "inputs": {
+                                                              "A": {
+                                                                "block": {
+                                                                  "type": "ard_number",
+                                                                  "id": "{zK1dg4[%B8L3b+aYds`",
+                                                                  "fields": {
+                                                                    "NUM": 1
+                                                                  }
+                                                                }
+                                                              },
+                                                              "B": {
+                                                                "block": {
+                                                                  "type": "abs_ler",
+                                                                  "id": "]!IF;v[8xx8R{8Q6iEbx",
+                                                                  "fields": {
+                                                                    "VAR": {
+                                                                      "id": "0dfHB:[KZ,FS#=J|Sz`q"
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "next": {
+                                                        "block": {
+                                                          "type": "abs_quando_estado",
+                                                          "id": "hdF/JXaQD/ScTo:lac0A",
+                                                          "icons": {
+                                                            "comment": {
+                                                              "text": "mu = sensor 1, lambda = 1 - sensor 2 (the block takes the complement)",
+                                                              "pinned": false,
+                                                              "height": 80,
+                                                              "width": 160
+                                                            }
+                                                          },
+                                                          "inputs": {
+                                                            "MU1": {
+                                                              "block": {
+                                                                "type": "abs_ler",
+                                                                "id": "P0(#O/J0tJE_F]7bD`P[",
+                                                                "fields": {
+                                                                  "VAR": {
+                                                                    "id": ")GoUxwxkiG=5{l`HF~nP"
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "MU2": {
+                                                              "block": {
+                                                                "type": "abs_ler",
+                                                                "id": "BYij-A;*z_Z1[iyxJ$Z(",
+                                                                "fields": {
+                                                                  "VAR": {
+                                                                    "id": "0dfHB:[KZ,FS#=J|Sz`q"
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "CASOS": {
+                                                              "block": {
+                                                                "type": "abs_caso_estado",
+                                                                "id": "?rSTq83;8Z$C)^7bMar|",
+                                                                "fields": {
+                                                                  "ESTADO": "LPA_V"
+                                                                },
+                                                                "inputs": {
+                                                                  "BODY": {
+                                                                    "block": {
+                                                                      "type": "abs_mostrar",
+                                                                      "id": "UBdqoZ1F:CX%`sD!_apD",
+                                                                      "icons": {
+                                                                        "comment": {
+                                                                          "text": "V: both sensors see a tall part -> left",
+                                                                          "pinned": false,
+                                                                          "height": 80,
+                                                                          "width": 160
+                                                                        }
+                                                                      },
+                                                                      "fields": {
+                                                                        "ROTULO": "part"
+                                                                      },
+                                                                      "inputs": {
+                                                                        "VALOR": {
+                                                                          "block": {
+                                                                            "type": "ard_number",
+                                                                            "id": "^FNyIcAkLDclxO{hp;Y5",
+                                                                            "fields": {
+                                                                              "NUM": 1
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "next": {
+                                                                        "block": {
+                                                                          "type": "abs_servo",
+                                                                          "id": "|kTYI@VdAcdMV{T6h~uF",
+                                                                          "icons": {
+                                                                            "comment": {
+                                                                              "text": "pin 10 = gripper. 60 degrees = open",
+                                                                              "pinned": false,
+                                                                              "height": 80,
+                                                                              "width": 160
+                                                                            }
+                                                                          },
+                                                                          "fields": {
+                                                                            "PIN": "10"
+                                                                          },
+                                                                          "inputs": {
+                                                                            "ANGULO": {
+                                                                              "block": {
+                                                                                "type": "ard_number",
+                                                                                "id": ",OzddnMh8.3Wc!m1^s7,",
+                                                                                "fields": {
+                                                                                  "NUM": 60
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          "next": {
+                                                                            "block": {
+                                                                              "type": "abs_esperar",
+                                                                              "id": "uxTG_FI1:7^mHa+vW;oC",
+                                                                              "fields": {
+                                                                                "UNI": "ms"
+                                                                              },
+                                                                              "inputs": {
+                                                                                "QTD": {
+                                                                                  "block": {
+                                                                                    "type": "ard_number",
+                                                                                    "id": "q2@l~On310]lcL[6(oL7",
+                                                                                    "fields": {
+                                                                                      "NUM": 400
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              "next": {
+                                                                                "block": {
+                                                                                  "type": "abs_servo",
+                                                                                  "id": "pwrTruA(obGViENlfuYW",
+                                                                                  "icons": {
+                                                                                    "comment": {
+                                                                                      "text": "pin 9 = base. 90 degrees = center, over the conveyor",
+                                                                                      "pinned": false,
+                                                                                      "height": 80,
+                                                                                      "width": 160
+                                                                                    }
+                                                                                  },
+                                                                                  "fields": {
+                                                                                    "PIN": "9"
+                                                                                  },
+                                                                                  "inputs": {
+                                                                                    "ANGULO": {
+                                                                                      "block": {
+                                                                                        "type": "ard_number",
+                                                                                        "id": "l5!qze.=u/j16)yAI+91",
+                                                                                        "fields": {
+                                                                                          "NUM": 90
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "next": {
+                                                                                    "block": {
+                                                                                      "type": "abs_esperar",
+                                                                                      "id": "C8sN/Y,3s*-`TMbGv7N}",
+                                                                                      "fields": {
+                                                                                        "UNI": "ms"
+                                                                                      },
+                                                                                      "inputs": {
+                                                                                        "QTD": {
+                                                                                          "block": {
+                                                                                            "type": "ard_number",
+                                                                                            "id": "lWEW2vSCHKyp}o9]I!cB",
+                                                                                            "fields": {
+                                                                                              "NUM": 600
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      },
+                                                                                      "next": {
+                                                                                        "block": {
+                                                                                          "type": "abs_servo",
+                                                                                          "id": "GG6jMLJfi*9]gB*F^S@`",
+                                                                                          "icons": {
+                                                                                            "comment": {
+                                                                                              "text": "15 degrees = closed: it grabbed the part",
+                                                                                              "pinned": false,
+                                                                                              "height": 80,
+                                                                                              "width": 160
+                                                                                            }
+                                                                                          },
+                                                                                          "fields": {
+                                                                                            "PIN": "10"
+                                                                                          },
+                                                                                          "inputs": {
+                                                                                            "ANGULO": {
+                                                                                              "block": {
+                                                                                                "type": "ard_number",
+                                                                                                "id": "n:L??30~|5^}Q69EZdnJ",
+                                                                                                "fields": {
+                                                                                                  "NUM": 15
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          "next": {
+                                                                                            "block": {
+                                                                                              "type": "abs_esperar",
+                                                                                              "id": "/=YN!Q}8h=2q8+Ly*2@M",
+                                                                                              "fields": {
+                                                                                                "UNI": "ms"
+                                                                                              },
+                                                                                              "inputs": {
+                                                                                                "QTD": {
+                                                                                                  "block": {
+                                                                                                    "type": "ard_number",
+                                                                                                    "id": "ARg}!mpluw7EZg=^,2Ud",
+                                                                                                    "fields": {
+                                                                                                      "NUM": 500
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              },
+                                                                                              "next": {
+                                                                                                "block": {
+                                                                                                  "type": "abs_servo",
+                                                                                                  "id": "P=B$m+.gvvonBXzAppIk",
+                                                                                                  "icons": {
+                                                                                                    "comment": {
+                                                                                                      "text": "turn to the left (170 degrees)",
+                                                                                                      "pinned": false,
+                                                                                                      "height": 80,
+                                                                                                      "width": 160
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "fields": {
+                                                                                                    "PIN": "9"
+                                                                                                  },
+                                                                                                  "inputs": {
+                                                                                                    "ANGULO": {
+                                                                                                      "block": {
+                                                                                                        "type": "ard_number",
+                                                                                                        "id": "-hB]2pYXONP1nTxw$xg]",
+                                                                                                        "fields": {
+                                                                                                          "NUM": 170
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "next": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_esperar",
+                                                                                                      "id": "BA`]#1TO;g!Y*HAN..WX",
+                                                                                                      "fields": {
+                                                                                                        "UNI": "ms"
+                                                                                                      },
+                                                                                                      "inputs": {
+                                                                                                        "QTD": {
+                                                                                                          "block": {
+                                                                                                            "type": "ard_number",
+                                                                                                            "id": "D{(h2O|0c82;c7De~;^@",
+                                                                                                            "fields": {
+                                                                                                              "NUM": 800
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "next": {
+                                                                                                        "block": {
+                                                                                                          "type": "abs_servo",
+                                                                                                          "id": "j?WrYu2(LF/,w3Ox]tG{",
+                                                                                                          "icons": {
+                                                                                                            "comment": {
+                                                                                                              "text": "open: released the part at the destination",
+                                                                                                              "pinned": false,
+                                                                                                              "height": 80,
+                                                                                                              "width": 160
+                                                                                                            }
+                                                                                                          },
+                                                                                                          "fields": {
+                                                                                                            "PIN": "10"
+                                                                                                          },
+                                                                                                          "inputs": {
+                                                                                                            "ANGULO": {
+                                                                                                              "block": {
+                                                                                                                "type": "ard_number",
+                                                                                                                "id": "nwauhl;N5=k2d8%K9Yo=",
+                                                                                                                "fields": {
+                                                                                                                  "NUM": 60
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          },
+                                                                                                          "next": {
+                                                                                                            "block": {
+                                                                                                              "type": "abs_esperar",
+                                                                                                              "id": "lcLaY2?:j;haSfh!P92{",
+                                                                                                              "fields": {
+                                                                                                                "UNI": "ms"
+                                                                                                              },
+                                                                                                              "inputs": {
+                                                                                                                "QTD": {
+                                                                                                                  "block": {
+                                                                                                                    "type": "ard_number",
+                                                                                                                    "id": "mxFOY)WIi;fxi|efDn{B",
+                                                                                                                    "fields": {
+                                                                                                                      "NUM": 400
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              },
+                                                                                                              "next": {
+                                                                                                                "block": {
+                                                                                                                  "type": "abs_servo",
+                                                                                                                  "id": "!k*$HY~l~(.#XBXRa%|x",
+                                                                                                                  "icons": {
+                                                                                                                    "comment": {
+                                                                                                                      "text": "back to the center for the next cycle",
+                                                                                                                      "pinned": false,
+                                                                                                                      "height": 80,
+                                                                                                                      "width": 160
+                                                                                                                    }
+                                                                                                                  },
+                                                                                                                  "fields": {
+                                                                                                                    "PIN": "9"
+                                                                                                                  },
+                                                                                                                  "inputs": {
+                                                                                                                    "ANGULO": {
+                                                                                                                      "block": {
+                                                                                                                        "type": "ard_number",
+                                                                                                                        "id": "XJjUC82nEmr(^+_z,SBd",
+                                                                                                                        "fields": {
+                                                                                                                          "NUM": 90
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  },
+                                                                                                                  "next": {
+                                                                                                                    "block": {
+                                                                                                                      "type": "abs_esperar",
+                                                                                                                      "id": "mU+:MYx{[N(5aGE|iZS]",
+                                                                                                                      "fields": {
+                                                                                                                        "UNI": "ms"
+                                                                                                                      },
+                                                                                                                      "inputs": {
+                                                                                                                        "QTD": {
+                                                                                                                          "block": {
+                                                                                                                            "type": "ard_number",
+                                                                                                                            "id": "T:j?JE2*+*Nf%V4K(aD[",
+                                                                                                                            "fields": {
+                                                                                                                              "NUM": 600
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "abs_caso_estado",
+                                                                    "id": "Tb-fRnlI-R$46DDuBrGU",
+                                                                    "fields": {
+                                                                      "ESTADO": "LPA_F"
+                                                                    },
+                                                                    "inputs": {
+                                                                      "BODY": {
+                                                                        "block": {
+                                                                          "type": "abs_mostrar",
+                                                                          "id": "(6:*;HaC~vmdL3q%n?sr",
+                                                                          "icons": {
+                                                                            "comment": {
+                                                                              "text": "F: both see a shallow part -> right",
+                                                                              "pinned": false,
+                                                                              "height": 80,
+                                                                              "width": 160
+                                                                            }
+                                                                          },
+                                                                          "fields": {
+                                                                            "ROTULO": "part"
+                                                                          },
+                                                                          "inputs": {
+                                                                            "VALOR": {
+                                                                              "block": {
+                                                                                "type": "ard_number",
+                                                                                "id": "?tye=PSoYwaAS,f)S-%L",
+                                                                                "fields": {
+                                                                                  "NUM": 0
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          "next": {
+                                                                            "block": {
+                                                                              "type": "abs_servo",
+                                                                              "id": "P+v4fT(0TUybH~BQk_!$",
+                                                                              "icons": {
+                                                                                "comment": {
+                                                                                  "text": "pin 10 = gripper. 60 degrees = open",
+                                                                                  "pinned": false,
+                                                                                  "height": 80,
+                                                                                  "width": 160
+                                                                                }
+                                                                              },
+                                                                              "fields": {
+                                                                                "PIN": "10"
+                                                                              },
+                                                                              "inputs": {
+                                                                                "ANGULO": {
+                                                                                  "block": {
+                                                                                    "type": "ard_number",
+                                                                                    "id": "fXXb]SyeIk+~nxJX;|G%",
+                                                                                    "fields": {
+                                                                                      "NUM": 60
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              "next": {
+                                                                                "block": {
+                                                                                  "type": "abs_esperar",
+                                                                                  "id": "AD:[jc!4FK`GQAxC|Ib5",
+                                                                                  "fields": {
+                                                                                    "UNI": "ms"
+                                                                                  },
+                                                                                  "inputs": {
+                                                                                    "QTD": {
+                                                                                      "block": {
+                                                                                        "type": "ard_number",
+                                                                                        "id": "A]zw~Q;qWt%L%~]S%msl",
+                                                                                        "fields": {
+                                                                                          "NUM": 400
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "next": {
+                                                                                    "block": {
+                                                                                      "type": "abs_servo",
+                                                                                      "id": ")9o`u]X.efZ6`%@eim)p",
+                                                                                      "icons": {
+                                                                                        "comment": {
+                                                                                          "text": "pin 9 = base. 90 degrees = center, over the conveyor",
+                                                                                          "pinned": false,
+                                                                                          "height": 80,
+                                                                                          "width": 160
+                                                                                        }
+                                                                                      },
+                                                                                      "fields": {
+                                                                                        "PIN": "9"
+                                                                                      },
+                                                                                      "inputs": {
+                                                                                        "ANGULO": {
+                                                                                          "block": {
+                                                                                            "type": "ard_number",
+                                                                                            "id": "9zn/vFmu{+-,OFlwv|O?",
+                                                                                            "fields": {
+                                                                                              "NUM": 90
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      },
+                                                                                      "next": {
+                                                                                        "block": {
+                                                                                          "type": "abs_esperar",
+                                                                                          "id": "PjLyQsU95Ao1^G2Uay$A",
+                                                                                          "fields": {
+                                                                                            "UNI": "ms"
+                                                                                          },
+                                                                                          "inputs": {
+                                                                                            "QTD": {
+                                                                                              "block": {
+                                                                                                "type": "ard_number",
+                                                                                                "id": "){S_ZR)y$d/:7pgLH7bT",
+                                                                                                "fields": {
+                                                                                                  "NUM": 600
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          "next": {
+                                                                                            "block": {
+                                                                                              "type": "abs_servo",
+                                                                                              "id": "d=*:~j(7Y4gkSGP.}1dk",
+                                                                                              "icons": {
+                                                                                                "comment": {
+                                                                                                  "text": "15 degrees = closed: it grabbed the part",
+                                                                                                  "pinned": false,
+                                                                                                  "height": 80,
+                                                                                                  "width": 160
+                                                                                                }
+                                                                                              },
+                                                                                              "fields": {
+                                                                                                "PIN": "10"
+                                                                                              },
+                                                                                              "inputs": {
+                                                                                                "ANGULO": {
+                                                                                                  "block": {
+                                                                                                    "type": "ard_number",
+                                                                                                    "id": "PfJS_|9wKKmL;2^BkXG*",
+                                                                                                    "fields": {
+                                                                                                      "NUM": 15
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              },
+                                                                                              "next": {
+                                                                                                "block": {
+                                                                                                  "type": "abs_esperar",
+                                                                                                  "id": "09k+jP|RUp*F7]fWDoe[",
+                                                                                                  "fields": {
+                                                                                                    "UNI": "ms"
+                                                                                                  },
+                                                                                                  "inputs": {
+                                                                                                    "QTD": {
+                                                                                                      "block": {
+                                                                                                        "type": "ard_number",
+                                                                                                        "id": "!44sp+U1|vw+_~RxX4=G",
+                                                                                                        "fields": {
+                                                                                                          "NUM": 500
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "next": {
+                                                                                                    "block": {
+                                                                                                      "type": "abs_servo",
+                                                                                                      "id": "43wZ|(-TfHaHMRz(2QZ4",
+                                                                                                      "icons": {
+                                                                                                        "comment": {
+                                                                                                          "text": "turn to the right (10 degrees)",
+                                                                                                          "pinned": false,
+                                                                                                          "height": 80,
+                                                                                                          "width": 160
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "fields": {
+                                                                                                        "PIN": "9"
+                                                                                                      },
+                                                                                                      "inputs": {
+                                                                                                        "ANGULO": {
+                                                                                                          "block": {
+                                                                                                            "type": "ard_number",
+                                                                                                            "id": "*+j#8ZZFGarh?xye+Um5",
+                                                                                                            "fields": {
+                                                                                                              "NUM": 10
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "next": {
+                                                                                                        "block": {
+                                                                                                          "type": "abs_esperar",
+                                                                                                          "id": "QA}^M){[+GhD4E?uEfu_",
+                                                                                                          "fields": {
+                                                                                                            "UNI": "ms"
+                                                                                                          },
+                                                                                                          "inputs": {
+                                                                                                            "QTD": {
+                                                                                                              "block": {
+                                                                                                                "type": "ard_number",
+                                                                                                                "id": "JENv?L{7DH`C9aQF@vJF",
+                                                                                                                "fields": {
+                                                                                                                  "NUM": 800
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          },
+                                                                                                          "next": {
+                                                                                                            "block": {
+                                                                                                              "type": "abs_servo",
+                                                                                                              "id": "E*n9I|XUIsm.eD~kc.xC",
+                                                                                                              "icons": {
+                                                                                                                "comment": {
+                                                                                                                  "text": "open: released the part at the destination",
+                                                                                                                  "pinned": false,
+                                                                                                                  "height": 80,
+                                                                                                                  "width": 160
+                                                                                                                }
+                                                                                                              },
+                                                                                                              "fields": {
+                                                                                                                "PIN": "10"
+                                                                                                              },
+                                                                                                              "inputs": {
+                                                                                                                "ANGULO": {
+                                                                                                                  "block": {
+                                                                                                                    "type": "ard_number",
+                                                                                                                    "id": ":i)bWzlPW:?M096c,EEb",
+                                                                                                                    "fields": {
+                                                                                                                      "NUM": 60
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              },
+                                                                                                              "next": {
+                                                                                                                "block": {
+                                                                                                                  "type": "abs_esperar",
+                                                                                                                  "id": "r]uHkHUq(eh*)P$Sx38D",
+                                                                                                                  "fields": {
+                                                                                                                    "UNI": "ms"
+                                                                                                                  },
+                                                                                                                  "inputs": {
+                                                                                                                    "QTD": {
+                                                                                                                      "block": {
+                                                                                                                        "type": "ard_number",
+                                                                                                                        "id": "kz|qa}VPwyR_Oz+mrmL~",
+                                                                                                                        "fields": {
+                                                                                                                          "NUM": 400
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  },
+                                                                                                                  "next": {
+                                                                                                                    "block": {
+                                                                                                                      "type": "abs_servo",
+                                                                                                                      "id": "d|@k5V@KRF8?1G0R[Wvi",
+                                                                                                                      "icons": {
+                                                                                                                        "comment": {
+                                                                                                                          "text": "back to the center for the next cycle",
+                                                                                                                          "pinned": false,
+                                                                                                                          "height": 80,
+                                                                                                                          "width": 160
+                                                                                                                        }
+                                                                                                                      },
+                                                                                                                      "fields": {
+                                                                                                                        "PIN": "9"
+                                                                                                                      },
+                                                                                                                      "inputs": {
+                                                                                                                        "ANGULO": {
+                                                                                                                          "block": {
+                                                                                                                            "type": "ard_number",
+                                                                                                                            "id": "}C=O*2ljcDWf3X=xOi/!",
+                                                                                                                            "fields": {
+                                                                                                                              "NUM": 90
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      },
+                                                                                                                      "next": {
+                                                                                                                        "block": {
+                                                                                                                          "type": "abs_esperar",
+                                                                                                                          "id": "X#b7_DuG_yOkH=g19fFH",
+                                                                                                                          "fields": {
+                                                                                                                            "UNI": "ms"
+                                                                                                                          },
+                                                                                                                          "inputs": {
+                                                                                                                            "QTD": {
+                                                                                                                              "block": {
+                                                                                                                                "type": "ard_number",
+                                                                                                                                "id": "=[-YZB]tAMvm{R/6ycps",
+                                                                                                                                "fields": {
+                                                                                                                                  "NUM": 600
+                                                                                                                                }
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "abs_caso_estado",
+                                                                        "id": "f~`,CO|A]FTwzN3=)4c|",
+                                                                        "fields": {
+                                                                          "ESTADO": "LPA_T"
+                                                                        },
+                                                                        "inputs": {
+                                                                          "BODY": {
+                                                                            "block": {
+                                                                              "type": "abs_mostrar",
+                                                                              "id": "chSmCOQ11PG62?#fHK|`",
+                                                                              "fields": {
+                                                                                "ROTULO": "alarm"
+                                                                              },
+                                                                              "inputs": {
+                                                                                "VALOR": {
+                                                                                  "block": {
+                                                                                    "type": "ard_number",
+                                                                                    "id": "Ul)S1]EY+Xez=4kh=_:y",
+                                                                                    "fields": {
+                                                                                      "NUM": 1
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              "next": {
+                                                                                "block": {
+                                                                                  "type": "abs_esperar",
+                                                                                  "id": "D?6,X3L?8;mJW1gj)jm!",
+                                                                                  "icons": {
+                                                                                    "comment": {
+                                                                                      "text": "the conveyor is already stopped: hold 3 s for the operator to look",
+                                                                                      "pinned": false,
+                                                                                      "height": 80,
+                                                                                      "width": 160
+                                                                                    }
+                                                                                  },
+                                                                                  "fields": {
+                                                                                    "UNI": "s"
+                                                                                  },
+                                                                                  "inputs": {
+                                                                                    "QTD": {
+                                                                                      "block": {
+                                                                                        "type": "ard_number",
+                                                                                        "id": "b-1o*-?n*Ix!RptuFO;f",
+                                                                                        "fields": {
+                                                                                          "NUM": 3
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "abs_caso_estado",
+                                                                            "id": "d@Lj6!hsS%S(b[@Bj!fm",
+                                                                            "fields": {
+                                                                              "ESTADO": "LPA_PC"
+                                                                            },
+                                                                            "inputs": {
+                                                                              "BODY": {
+                                                                                "block": {
+                                                                                  "type": "abs_mostrar",
+                                                                                  "id": "HMpMN=87xbojxvk#AJ4B",
+                                                                                  "fields": {
+                                                                                    "ROTULO": "alarm"
+                                                                                  },
+                                                                                  "inputs": {
+                                                                                    "VALOR": {
+                                                                                      "block": {
+                                                                                        "type": "ard_number",
+                                                                                        "id": "hx5;7-m*haAL?]~IKc*I",
+                                                                                        "fields": {
+                                                                                          "NUM": 2
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "next": {
+                                                                                    "block": {
+                                                                                      "type": "abs_esperar",
+                                                                                      "id": "9wbg(~=[?F^h#U3yq_h|",
+                                                                                      "icons": {
+                                                                                        "comment": {
+                                                                                          "text": "the conveyor is already stopped: hold 3 s for the operator to look",
+                                                                                          "pinned": false,
+                                                                                          "height": 80,
+                                                                                          "width": 160
+                                                                                        }
+                                                                                      },
+                                                                                      "fields": {
+                                                                                        "UNI": "s"
+                                                                                      },
+                                                                                      "inputs": {
+                                                                                        "QTD": {
+                                                                                          "block": {
+                                                                                            "type": "ard_number",
+                                                                                            "id": ";;Osk{,KztOh/8{=y5=%",
+                                                                                            "fields": {
+                                                                                              "NUM": 3
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "next": {
+                                                            "block": {
+                                                              "type": "abs_escrita_digital",
+                                                              "id": "EJpjoDfx/0K0N00=c2vv",
+                                                              "icons": {
+                                                                "comment": {
+                                                                  "text": "restart the conveyor, whatever the state was",
+                                                                  "pinned": false,
+                                                                  "height": 80,
+                                                                  "width": 160
+                                                                }
+                                                              },
+                                                              "fields": {
+                                                                "PIN": "7",
+                                                                "VALOR": "HIGH"
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_esperar",
+                        "id": "/gnK,I$|alhfrK)WS+y*",
+                        "icons": {
+                          "comment": {
+                            "text": "pause between ultrasonic readings",
+                            "pinned": false,
+                            "height": 80,
+                            "width": 160
+                          }
+                        },
+                        "fields": {
+                          "UNI": "ms"
+                        },
+                        "inputs": {
+                          "QTD": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "vWI(d?Vggz,eJEF`WK|L",
+                              "fields": {
+                                "NUM": 150
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "variables": [
+      {
+        "name": "PART_LIMIT",
+        "id": "P_]_SfW;7BQV@MTaqqZ@"
+      },
+      {
+        "name": "UD_SHALLOW",
+        "id": "{tnoC;K9E=m{m{t~)Z7#"
+      },
+      {
+        "name": "UD_TALL",
+        "id": "-W1(BX5LCD`~QyYYO=9a"
+      },
+      {
+        "name": "dist1",
+        "id": "^u=nX6P+;5LjZDn%7LzS"
+      },
+      {
+        "name": "dist2",
+        "id": "`@qlt82zO)3U@bxtgd_%"
+      },
+      {
+        "name": "evidence1",
+        "id": ")GoUxwxkiG=5{l`HF~nP"
+      },
+      {
+        "name": "evidence2",
+        "id": "0dfHB:[KZ,FS#=J|Sz`q"
+      }
+    ]
+  }
+}

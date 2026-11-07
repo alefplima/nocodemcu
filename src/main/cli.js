@@ -12,6 +12,7 @@ const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const { L } = require('./idioma');
 
 let ctx = null;
 
@@ -280,7 +281,7 @@ async function versao() {
         versao: j && (j.VersionString || j.version) || null,
         caminho: contexto().bin,
         embutido: contexto().embutido,
-        erro: r.ok ? null : (r.stderr || r.stdout || 'arduino-cli não encontrado')
+        erro: r.ok ? null : (r.stderr || r.stdout || L('arduino-cli não encontrado', 'arduino-cli not found'))
     };
 }
 
@@ -415,7 +416,7 @@ async function gravar(opcoes, aoVivo) {
     return {
         ok: r.ok,
         saida: (r.stdout || '') + '\n' + (r.stderr || ''),
-        erro: r.ok ? null : (r.stderr || r.stdout || 'falha na gravação')
+        erro: r.ok ? null : (r.stderr || r.stdout || L('falha na gravação', 'upload failed'))
     };
 }
 

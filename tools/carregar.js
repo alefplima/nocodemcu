@@ -12,6 +12,8 @@ const path = require('path');
 const RAIZ = path.join(__dirname, '..');
 
 const ARQUIVOS = [
+    'src/renderer/js/i18n_codigo.js',
+    'src/renderer/js/i18n.js',
     'src/renderer/js/boards.js',
     'src/renderer/js/fields.js',
     'src/renderer/js/blocks/estrutura.js',
@@ -46,7 +48,9 @@ function carregar() {
     require(path.join(RAIZ, 'src/renderer/vendor/blockly/blocks_compressed.js'));
 
     // Sem as mensagens, os blocos nativos (variables_set etc.) não interpolam.
-    const msgs = require(path.join(RAIZ, 'src/renderer/vendor/blockly/msg/pt-br.js'));
+    // O idioma vem de NOCODEMCU_LANG (ver src/renderer/js/i18n.js); o padrão é português.
+    const ingles = (global.NOCODEMCU_LANG || process.env.NOCODEMCU_LANG) === 'en';
+    const msgs = require(path.join(RAIZ, 'src/renderer/vendor/blockly/msg/' + (ingles ? 'en' : 'pt-br') + '.js'));
     Object.keys(msgs).forEach(k => { Blockly.Msg[k] = msgs[k]; });
 
     // Sem DOM, o evento BlockCreate tenta serializar em XML e quebra.

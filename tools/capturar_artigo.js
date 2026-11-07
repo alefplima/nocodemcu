@@ -2,7 +2,9 @@
 /**
  * Prints do exemplo 16 para o artigo, no tema claro.
  *
- *   npx electron tools/capturar_artigo.js
+ *   npx electron tools/capturar_artigo.js          # português
+ *   npx electron tools/capturar_artigo.js --en     # inglês: exemplos/en/16-...,
+ *                                                  # saída em docs/img_artigo_tarefas_en/
  *
  * Abre o aplicativo de verdade com um perfil de preferências temporário (o do
  * usuário fica intocado), arruma os blocos de topo em colunas pelo tamanho
@@ -19,13 +21,37 @@ const os = require('os');
 const path = require('path');
 
 const RAIZ = path.join(__dirname, '..');
-const TBK = path.join(RAIZ, 'exemplos', '16-abstrato-carro4x4-tarefas.tbk');
-const SAIDA = path.join(RAIZ, 'docs', 'img_artigo_tarefas');
+const INGLES = process.argv.includes('--en');
+const TBK = INGLES
+    ? path.join(RAIZ, 'exemplos', 'en', '16-abstract-4x4-car-tasks.tbk')
+    : path.join(RAIZ, 'exemplos', '16-abstrato-carro4x4-tarefas.tbk');
+const SAIDA = path.join(RAIZ, 'docs', INGLES ? 'img_artigo_tarefas_en' : 'img_artigo_tarefas');
+
+/*
+ * Nomes das tarefas nos dois idiomas, na ordem das colunas. Os arquivos
+ * bloco-tarefa-*.png ficam sempre com o nome em português, para o
+ * gerar_figuras_artigo.py achar o mesmo bloco nas duas versões.
+ */
+const TAREFAS = [
+    ['ligar a rede e a câmera', 'start the network and camera'],
+    ['medir as distâncias', 'measure the distances'],
+    ['calcular as evidências', 'compute the evidence'],
+    ['dirigir pela LPA2v', 'drive by PAL2v'],
+    ['conferir se está preso', 'check if stuck'],
+    ['desviar', 'swerve'],
+    ['arrancar devagar', 'start slowly'],
+    ['dirigir pelo operador', 'drive by operator'],
+    ['ver se o operador assumiu', 'check if operator took over'],
+    ['mostrar o estado na página', 'show the status on the page']
+];
+const NOME = pt => INGLES ? TAREFAS.find(t => t[0] === pt)[1] : pt;
+const NOME_PT = n => (TAREFAS.find(t => t[1] === n || t[0] === n) || [n])[0];
 const ESCALA_PNG = 3;
 
 const perfil = fs.mkdtempSync(path.join(os.tmpdir(), 'nocodemcu-prints-'));
 fs.writeFileSync(path.join(perfil, 'preferencias.json'), JSON.stringify({
     tema: 'claro', modo: 'abstrato', placa: 'esp32s3cam', lateralRecolhida: false,
+    idioma: INGLES ? 'en' : 'pt',
     janela: { largura: 1600, altura: 960 }
 }));
 app.setPath('userData', perfil);
@@ -40,24 +66,21 @@ const espera = ms => new Promise(r => setTimeout(r, ms));
 /* ------------------------------------------------------------------ */
 
 /** Coloca os blocos de topo em colunas, sem sobreposição. */
-function arrumar() {
+function arrumar(N) {
     const ws = App.ws;
     ws.setScale(1);
     const topo = ws.getTopBlocks(false);
     const pega = tipo => topo.filter(b => b.type === tipo);
     const nome = b => b.getFieldValue('NOME');
-    const ordem = ['ligar a rede e a câmera', 'medir as distâncias', 'calcular as evidências',
-        'dirigir pela LPA2v', 'conferir se está preso', 'desviar', 'arrancar devagar',
-        'dirigir pelo operador', 'ver se o operador assumiu', 'mostrar o estado na página'];
+    const ordem = N.ordem;
     const tarefas = pega('abs_tarefa').sort((a, b) => ordem.indexOf(nome(a)) - ordem.indexOf(nome(b)));
 
     const colunas = [
         pega('abs_sempre').concat(pega('abs_ao_iniciar')),
-        tarefas.filter(t => ['medir as distâncias', 'calcular as evidências', 'ligar a rede e a câmera',
-            'ver se o operador assumiu', 'mostrar o estado na página'].includes(nome(t))),
-        tarefas.filter(t => ['dirigir pela LPA2v'].includes(nome(t))),
-        tarefas.filter(t => ['conferir se está preso', 'desviar', 'arrancar devagar'].includes(nome(t))),
-        tarefas.filter(t => ['dirigir pelo operador'].includes(nome(t)))
+        tarefas.filter(t => N.colunas[0].includes(nome(t))),
+        tarefas.filter(t => N.colunas[1].includes(nome(t))),
+        tarefas.filter(t => N.colunas[2].includes(nome(t))),
+        tarefas.filter(t => N.colunas[3].includes(nome(t)))
     ];
     const GAP = 48;
     let x = 40;
@@ -151,7 +174,16 @@ async function rodar(janela) {
     await espera(3000);
 
     // 1. Arrumação, gravada de volta no exemplo.
-    const estado = await js(arrumar);
+    const estado = await js(arrumar, {
+        ordem: TAREFAS.map(t => NOME(t[0])),
+        colunas: [
+            ['medir as distâncias', 'calcular as evidências', 'ligar a rede e a câmera',
+                'ver se o operador assumiu', 'mostrar o estado na página'].map(NOME),
+            [NOME('dirigir pela LPA2v')],
+            ['conferir se está preso', 'desviar', 'arrancar devagar'].map(NOME),
+            [NOME('dirigir pelo operador')]
+        ]
+    });
     const tbk = JSON.parse(fs.readFileSync(TBK, 'utf8'));
     tbk.workspace = estado;
     fs.writeFileSync(TBK, JSON.stringify(tbk, null, 2), 'utf8');
@@ -162,7 +194,7 @@ async function rodar(janela) {
     // responder; a barra de status fica em "verificando" até lá.
     for (let i = 0; i < 180; i++) {
         const st = await js(() => document.getElementById('status-toolchain').textContent);
-        if (!/verificando/.test(st)) break;
+        if (!/verificando|checking/.test(st)) break;
         await espera(500);
     }
     await espera(800);
@@ -173,7 +205,7 @@ async function rodar(janela) {
         id: b.id, tipo: b.type, nome: b.getField('NOME') ? b.getFieldValue('NOME') : ''
     })));
     for (const b of topo) {
-        const base = b.tipo === 'abs_tarefa' ? 'tarefa-' + b.nome : b.tipo.replace('abs_', '');
+        const base = b.tipo === 'abs_tarefa' ? 'tarefa-' + NOME_PT(b.nome) : b.tipo.replace('abs_', '');
         const arq = 'bloco-' + base.normalize('NFD').replace(/[̀-ͯ]/g, '')
             .replace(/[^A-Za-z0-9]+/g, '-').toLowerCase() + '.png';
         salvarPng(arq, await js(blocoPng, b.id, ESCALA_PNG));
@@ -182,7 +214,7 @@ async function rodar(janela) {
     // 3. A janela inteira: o Sempre e as primeiras tarefas, com o C++ ao lado
     //    rolado até as funções que as tarefas viraram.
     console.log('janela:');
-    await js(() => {
+    await js(funcao => {
         const ws = App.ws;
         ws.setScale(0.72);
         ws.scroll(0, 0);
@@ -191,19 +223,19 @@ async function rodar(janela) {
         ws.scroll(-(xy.x - 20) * ws.scale, -(xy.y - 20) * ws.scale);
         const pre = document.getElementById('codigo');
         const linhas = pre.textContent.split('\n');
-        const i = linhas.findIndex(l => /^void medir_as_distancias\(\) \{/.test(l));
+        const i = linhas.findIndex(l => l === 'void ' + funcao + '() {');
         const alturaLinha = parseFloat(getComputedStyle(pre).lineHeight) || 18;
         pre.scrollTop = Math.max(0, i - 1) * alturaLinha;
-    });
+    }, INGLES ? 'measure_the_distances' : 'medir_as_distancias');
     await espera(800);
     await capturar('ide-visao-geral.png');
 
     // 4. A categoria "Tarefas" aberta na caixa de ferramentas.
-    await js(() => {
+    await js(categoria => {
         const tb = App.ws.getToolbox();
-        const item = tb.getToolboxItems().find(i => i.getName && i.getName() === 'Tarefas');
+        const item = tb.getToolboxItems().find(i => i.getName && i.getName() === categoria);
         tb.setSelectedItem(item);
-    });
+    }, INGLES ? 'Tasks' : 'Tarefas');
     await espera(800);
     await capturar('ide-categoria-tarefas.png');
     await js(() => App.ws.getToolbox().clearSelection());

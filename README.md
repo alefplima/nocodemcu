@@ -1,11 +1,17 @@
 # NoCodeMCU
 
+**Português** | [English](README.en.md)
+
 Aplicação **desktop** de programação no-code para Arduino: o aluno monta o
 programa com blocos, vê o `.ino` real sendo escrito ao lado, e **grava na placa
 física pela USB** — Uno, Nano, Mega, Leonardo, ESP32, ESP32-S3 CAM e ESP8266.
 
 O instalador já traz tudo: o aplicativo, o `arduino-cli` e os compiladores das
 placas. Não precisa instalar a IDE do Arduino nem baixar nada depois.
+
+O aplicativo fala **português e inglês**: troque em **Opções → Idioma /
+Language**. Em inglês, os blocos, os menus, as mensagens, os comentários do
+código gerado e os exemplos (em `exemplos/en/`) também ficam em inglês.
 
 ## Instalação (Windows)
 

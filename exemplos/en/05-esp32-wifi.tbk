@@ -1,0 +1,208 @@
+{
+  "formato": "taskarduino/1",
+  "salvoEm": "2026-11-07T15:37:10.136Z",
+  "placa": "esp32",
+  "modo": "literal",
+  "nome": "ESP32 connecting to WiFi",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "ard_setup",
+          "id": "aSDQ|O}Pahn0@fqq]D_U",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_serial_begin",
+                "id": "hZ7.SU=LGCe)4HHnj:^V",
+                "icons": {
+                  "comment": {
+                    "text": "The ESP32 uses no pins here: the WiFi radio is internal. 115200 is its\ndefault — the Serial monitor needs the same value, otherwise the\nscreen shows garbage",
+                    "pinned": false,
+                    "height": 80,
+                    "width": 160
+                  }
+                },
+                "fields": {
+                  "PORTA": "Serial",
+                  "BAUD": "115200"
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_wifi_begin",
+                    "id": "{:)++1w0M]hO?yQVoE9`",
+                    "icons": {
+                      "comment": {
+                        "text": "replace with your network name and password (2.4 GHz: the ESP32 cannot see 5 GHz)",
+                        "pinned": false,
+                        "height": 80,
+                        "width": 160
+                      }
+                    },
+                    "fields": {
+                      "SSID": "my-network",
+                      "SENHA": "password123"
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_while",
+                        "id": "IW0;Z*h3c~4^4~Nn4A#W",
+                        "inputs": {
+                          "COND": {
+                            "block": {
+                              "type": "logic_compare",
+                              "id": "z~HA^z0QO$~-YqMmf!c_",
+                              "fields": {
+                                "OP": "NEQ"
+                              },
+                              "inputs": {
+                                "A": {
+                                  "block": {
+                                    "type": "ard_wifi_status",
+                                    "id": "?C}^68V[UMvR=[~%0LWi"
+                                  }
+                                },
+                                "B": {
+                                  "block": {
+                                    "type": "ard_const",
+                                    "id": "lUW@~=hlv_U(Z8t5MzK$",
+                                    "fields": {
+                                      "CONST": "WL_CONNECTED"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "BODY": {
+                            "block": {
+                              "type": "ard_serial_print",
+                              "id": "HIkTrFY?nPn/=`o-9@J:",
+                              "fields": {
+                                "PORTA": "Serial"
+                              },
+                              "inputs": {
+                                "VALOR": {
+                                  "block": {
+                                    "type": "ard_text",
+                                    "id": "LN.(z*g@mK1{He/8`eT/",
+                                    "fields": {
+                                      "TEXTO": "."
+                                    }
+                                  }
+                                }
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "ard_delay",
+                                  "id": "?szbJS^cH1aWQmI-_8cs",
+                                  "inputs": {
+                                    "MS": {
+                                      "block": {
+                                        "type": "ard_number",
+                                        "id": "WC!KY{:CFr~[7LX,kbB1",
+                                        "fields": {
+                                          "NUM": 500
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "ard_serial_println",
+                            "id": "85*wmXNb1Mxf!3;PNqQ;",
+                            "fields": {
+                              "PORTA": "Serial"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_wifi_localip",
+                                  "id": "0EF/WuV.:DkU6~cE~{p:"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ard_loop",
+          "id": "AwUZ36@%hUeq7rONjJ_Y",
+          "x": 40,
+          "y": 706,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "ard_serial_print",
+                "id": "rThdKDN~S9o$gE^pZO0k",
+                "fields": {
+                  "PORTA": "Serial"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_text",
+                      "id": "2_zV-JGx_3Xn0)7nHgb7",
+                      "fields": {
+                        "TEXTO": "rssi:"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "ard_serial_println",
+                    "id": "z_I4SJWl;f]CJ7bgU:26",
+                    "fields": {
+                      "PORTA": "Serial"
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_wifi_rssi",
+                          "id": "VzTdmqX~S3BmO0LN}D=V"
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "ard_delay",
+                        "id": "q$}R}R0qfj}C%,95mtRz",
+                        "inputs": {
+                          "MS": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "qa(E#g]%g63F}:[%q?{i",
+                              "fields": {
+                                "NUM": 2000
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

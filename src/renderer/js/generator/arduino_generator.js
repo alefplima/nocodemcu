@@ -110,6 +110,7 @@
     };
 
     Arduino.aviso = function (mensagem, blockId) {
+        if (global.I18N) mensagem = global.I18N.t(mensagem);
         this.avisos_.push({ mensagem: mensagem, blockId: blockId || null });
     };
 
@@ -229,7 +230,10 @@
         });
 
         const fonte = partes.join('\n\n') + '\n';
-        return this.extrairMarcas_(fonte);
+        const pronto = this.extrairMarcas_(fonte);
+        // Em inglês, o que a placa mostra na página e no Monitor serial também
+        // sai em inglês. A troca é dentro das linhas, então o mapa de linhas vale.
+        return global.I18N ? global.I18N.codigo(pronto) : pronto;
     };
 
     /**

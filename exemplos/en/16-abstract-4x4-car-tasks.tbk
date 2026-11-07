@@ -1,0 +1,2442 @@
+{
+  "formato": "nocodemcu/1",
+  "salvoEm": "2026-11-07T15:37:17.022Z",
+  "placa": "esp32s3cam",
+  "modo": "abstrato",
+  "nome": "4x4 car — PAL2v in tasks",
+  "workspace": {
+    "blocks": {
+      "languageVersion": 0,
+      "blocks": [
+        {
+          "type": "abs_ao_iniciar",
+          "id": "8TT-YA(%WgjAzl.02nWb",
+          "x": 40,
+          "y": 736,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_motores_pinos",
+                "id": "@MOm9A1{*j7xzuw}9-XS",
+                "fields": {
+                  "E1": "42",
+                  "E2": "41",
+                  "D1": "1",
+                  "D2": "2"
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_criar",
+                    "id": "4`B-aT9mQN5#c7m~BjR8",
+                    "fields": {
+                      "VAR": {
+                        "id": "2SL#z{Tr#E+pt4emOC$o"
+                      }
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "_aJZV}G*YD6M3Als7K%Z",
+                          "fields": {
+                            "NUM": 80
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_criar",
+                        "id": "AC*D?ZH5Fk*4BT%fZ}X`",
+                        "fields": {
+                          "VAR": {
+                            "id": "Wr/kFZ)}-.[bcp$R0O%y"
+                          }
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "(IIjH9?rR])B%LB:BmyW",
+                              "fields": {
+                                "NUM": 15
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_criar",
+                            "id": "$o}3ne(/056pu(xje%=7",
+                            "fields": {
+                              "VAR": {
+                                "id": "4:y9v(LrasDre}[c;B`Q"
+                              }
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "adnWj7Gx[abvJub[9AMO",
+                                  "fields": {
+                                    "NUM": 400
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_criar",
+                                "id": "rqy?ulGRIiTNV;p@_P=?",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "8K9?[i3U1l_$}:#}w7}O"
+                                  }
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "ard_number",
+                                      "id": "tw|g_Ud,H~@2B[}R[VbI",
+                                      "fields": {
+                                        "NUM": 400
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "abs_criar",
+                                    "id": "rRuw~CHYW71!+*|PR`D{",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "rH`kvFAe`NGmjES2Gazb"
+                                      }
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "ard_number",
+                                          "id": "_Smi8PAJ~1PcMO?)=[[=",
+                                          "fields": {
+                                            "NUM": 0.5
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_criar",
+                                        "id": "z2VBgjk-DDGC].x5?dH4",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "H^`Ffx5QvX7%9=+`=5eU"
+                                          }
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "ard_number",
+                                              "id": "`w4xvY7Lf;3o4Koln!*M",
+                                              "fields": {
+                                                "NUM": 0.5
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "abs_criar",
+                                            "id": "y{KaN6gJYqH/SW)50uTu",
+                                            "fields": {
+                                              "VAR": {
+                                                "id": "(G_f9(ugIm9+Lrbg^6(3"
+                                              }
+                                            },
+                                            "inputs": {
+                                              "VALOR": {
+                                                "block": {
+                                                  "type": "ard_number",
+                                                  "id": "fq2h}xy9VII1FXtm?-~/",
+                                                  "fields": {
+                                                    "NUM": 0
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "abs_criar",
+                                                "id": "S`O1Ghd6zxE~`0-;/*m5",
+                                                "fields": {
+                                                  "VAR": {
+                                                    "id": "~oqvho=:*i8%DG0ze^X2"
+                                                  }
+                                                },
+                                                "inputs": {
+                                                  "VALOR": {
+                                                    "block": {
+                                                      "type": "ard_number",
+                                                      "id": "R*sLPJxwVfD+|$oUvHp/",
+                                                      "fields": {
+                                                        "NUM": 8
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "abs_criar",
+                                                    "id": "G@U.w_Y/?J{Pk~0vA/7U",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": ":q{hmZqdN:=(.~}}3Zsl"
+                                                      }
+                                                    },
+                                                    "inputs": {
+                                                      "VALOR": {
+                                                        "block": {
+                                                          "type": "ard_number",
+                                                          "id": "(gl~,m8TId@KOh;AhW}k",
+                                                          "fields": {
+                                                            "NUM": 0
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "next": {
+                                                      "block": {
+                                                        "type": "abs_criar",
+                                                        "id": "cEbL)qYL[y;b-yvZI~cm",
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": "tly;zMlszs[bOs*aQF(d"
+                                                          }
+                                                        },
+                                                        "inputs": {
+                                                          "VALOR": {
+                                                            "block": {
+                                                              "type": "ard_number",
+                                                              "id": "/G$G)w:%p:miF0M%C7d1",
+                                                              "fields": {
+                                                                "NUM": 3
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "next": {
+                                                          "block": {
+                                                            "type": "abs_criar",
+                                                            "id": "7.)|mByySh2pjnGv2%W^",
+                                                            "fields": {
+                                                              "VAR": {
+                                                                "id": "B]T?4}=v0GmCabs*^FY-"
+                                                              }
+                                                            },
+                                                            "inputs": {
+                                                              "VALOR": {
+                                                                "block": {
+                                                                  "type": "ard_number",
+                                                                  "id": "S*_3!!^5)JmcWRMM/%ew",
+                                                                  "fields": {
+                                                                    "NUM": 0
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "next": {
+                                                              "block": {
+                                                                "type": "abs_criar",
+                                                                "id": "1hIe}qxuM~ShRS1.s4!Y",
+                                                                "fields": {
+                                                                  "VAR": {
+                                                                    "id": "Ir=X9rX*R[w+`v=g%deD"
+                                                                  }
+                                                                },
+                                                                "inputs": {
+                                                                  "VALOR": {
+                                                                    "block": {
+                                                                      "type": "ard_number",
+                                                                      "id": "D(V$z!aAVh!|[B#38`K!",
+                                                                      "fields": {
+                                                                        "NUM": 0
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "abs_criar",
+                                                                    "id": "UTZU3C4RNt)8l@rG_eRi",
+                                                                    "fields": {
+                                                                      "VAR": {
+                                                                        "id": "m|=pY2I#ypnPC;VXLVhs"
+                                                                      }
+                                                                    },
+                                                                    "inputs": {
+                                                                      "VALOR": {
+                                                                        "block": {
+                                                                          "type": "ard_number",
+                                                                          "id": "+PG8GRCsD|^z3_L2W)rb",
+                                                                          "fields": {
+                                                                            "NUM": 50
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "abs_criar",
+                                                                        "id": "xJJ0kq6=).(d8dSeq)Z1",
+                                                                        "fields": {
+                                                                          "VAR": {
+                                                                            "id": "y^F^DO2ig`DJ85BICd@D"
+                                                                          }
+                                                                        },
+                                                                        "inputs": {
+                                                                          "VALOR": {
+                                                                            "block": {
+                                                                              "type": "ard_number",
+                                                                              "id": "hv=0y[dRTg~cI%(s!XFQ",
+                                                                              "fields": {
+                                                                                "NUM": 75
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "abs_criar",
+                                                                            "id": "tu[b@zf)5]fMRY,e`^Kt",
+                                                                            "fields": {
+                                                                              "VAR": {
+                                                                                "id": "T4cDd#,l@li@]f|LFe/+"
+                                                                              }
+                                                                            },
+                                                                            "inputs": {
+                                                                              "VALOR": {
+                                                                                "block": {
+                                                                                  "type": "ard_number",
+                                                                                  "id": "o=t;1vi`.+8~g1Lbn%5S",
+                                                                                  "fields": {
+                                                                                    "NUM": 55
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "next": {
+                                                                              "block": {
+                                                                                "type": "abs_criar",
+                                                                                "id": "bmYIHd+aj4qz[*a17%A6",
+                                                                                "fields": {
+                                                                                  "VAR": {
+                                                                                    "id": "b]?J*g4`z5rp4S;_NWld"
+                                                                                  }
+                                                                                },
+                                                                                "inputs": {
+                                                                                  "VALOR": {
+                                                                                    "block": {
+                                                                                      "type": "ard_number",
+                                                                                      "id": ",x6eGx,uxdB,P)gFEQ{t",
+                                                                                      "fields": {
+                                                                                        "NUM": 70
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "next": {
+                                                                                  "block": {
+                                                                                    "type": "abs_criar",
+                                                                                    "id": "z8q}VjPA4hAinGk?/4j8",
+                                                                                    "fields": {
+                                                                                      "VAR": {
+                                                                                        "id": "%uy:V-_(VIYgy1|6z93+"
+                                                                                      }
+                                                                                    },
+                                                                                    "inputs": {
+                                                                                      "VALOR": {
+                                                                                        "block": {
+                                                                                          "type": "ard_number",
+                                                                                          "id": "A+L_Cn?qR2p$SO8jLA0;",
+                                                                                          "fields": {
+                                                                                            "NUM": 800
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    "next": {
+                                                                                      "block": {
+                                                                                        "type": "abs_fazer_tarefa",
+                                                                                        "id": "Ff@-{*t7m@~_0[kf[j(v",
+                                                                                        "fields": {
+                                                                                          "NOME": "start the network and camera"
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_sempre",
+          "id": "W#e*m#}i2[LG*74If`p=",
+          "x": 40,
+          "y": 40,
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_web_atender",
+                "id": "`}9t_#2C!~]dW9wI01Jl",
+                "next": {
+                  "block": {
+                    "type": "abs_fazer_tarefa",
+                    "id": "HBV)%$f:kQXU%.O@)dIS",
+                    "fields": {
+                      "NOME": "measure the distances"
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_fazer_tarefa",
+                        "id": "Xml@-+L^JEI=RKJ/|K~-",
+                        "fields": {
+                          "NOME": "compute the evidence"
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_se_senao",
+                            "id": "dS|r!ymw@ykq{3`@1;af",
+                            "inputs": {
+                              "COND": {
+                                "block": {
+                                  "type": "abs_comparar",
+                                  "id": "n.Z92*_}c6q:IlQWfzb;",
+                                  "fields": {
+                                    "OP": "EQ"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "abs_ler",
+                                        "id": "0hujY~28_SkdsN+(RdmZ",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "B]T?4}=v0GmCabs*^FY-"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "B": {
+                                      "block": {
+                                        "type": "ard_number",
+                                        "id": "r+t-bF-;O|~`erM-(UP^",
+                                        "fields": {
+                                          "NUM": 1
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "ENTAO": {
+                                "block": {
+                                  "type": "abs_fazer_tarefa",
+                                  "id": "=KHBh[}8e33c`%z=b-Cz",
+                                  "fields": {
+                                    "NOME": "drive by operator"
+                                  }
+                                }
+                              },
+                              "SENAO": {
+                                "block": {
+                                  "type": "abs_fazer_tarefa",
+                                  "id": "af[(#cR9f6A=lXMHUxLv",
+                                  "fields": {
+                                    "NOME": "drive by PAL2v"
+                                  },
+                                  "next": {
+                                    "block": {
+                                      "type": "abs_fazer_tarefa",
+                                      "id": "*tQ8SUmIsuYKjH{1m)d*",
+                                      "fields": {
+                                        "NOME": "check if stuck"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_fazer_tarefa",
+                                "id": "-m6pyO/xv1jsQePW~pF1",
+                                "fields": {
+                                  "NOME": "check if operator took over"
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "abs_fazer_tarefa",
+                                    "id": "+v412cn3l?MI@f/h`TGr",
+                                    "fields": {
+                                      "NOME": "show the status on the page"
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_web_esperar",
+                                        "id": "_H2Nxn!mE@b,bk0E$V?+",
+                                        "inputs": {
+                                          "MS": {
+                                            "block": {
+                                              "type": "ard_number",
+                                              "id": "*rPgOdZQO%=M/do@}a!V",
+                                              "fields": {
+                                                "NUM": 60
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_tarefa",
+          "id": "WYF86,#HZVxglN#1:R{y",
+          "x": 509,
+          "y": 40,
+          "fields": {
+            "NOME": "start the network and camera"
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_wifi_rede_aberta",
+                "id": "!CRr0G`5V1~V),?tn^1s",
+                "fields": {
+                  "NOME": "car4x4"
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_web_servidor",
+                    "id": "pCE$qnm05]4jcFY!]xcc",
+                    "fields": {
+                      "PORTA_REDE": 80
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_camera_ligar",
+                        "id": "oe@P!D3M72^sNz#8n|90",
+                        "fields": {
+                          "TAMANHO": "FRAMESIZE_VGA",
+                          "GIRAR": "1"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_tarefa",
+          "id": "T]/J5M@|zx0BIH3-SG_1",
+          "x": 509,
+          "y": 320,
+          "fields": {
+            "NOME": "measure the distances"
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_definir",
+                "id": "xt+^HnG=!Q(d7N_2k!^3",
+                "fields": {
+                  "VAR": {
+                    "id": "4:y9v(LrasDre}[c;B`Q"
+                  }
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "abs_distancia",
+                      "id": "AfJLR-.F|u~y!3TN#`K7",
+                      "fields": {
+                        "TRIG": "14",
+                        "ECHO": "21"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_web_esperar",
+                    "id": "fNNzgL#IEM^G}`CVXRfa",
+                    "inputs": {
+                      "MS": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "6XsR83b-bd]_NT*31`1E",
+                          "fields": {
+                            "NUM": 60
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_definir",
+                        "id": "aL]:m6n*)mTWox*OVY+U",
+                        "fields": {
+                          "VAR": {
+                            "id": "8K9?[i3U1l_$}:#}w7}O"
+                          }
+                        },
+                        "inputs": {
+                          "VALOR": {
+                            "block": {
+                              "type": "abs_distancia",
+                              "id": "6P#,.+3`hp#v_tWBsp#1",
+                              "fields": {
+                                "TRIG": "47",
+                                "ECHO": "40"
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_web_mostrar",
+                            "id": "P.t#_)5kMg%75N]yvNce",
+                            "fields": {
+                              "ROTULO": "left"
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "abs_ler",
+                                  "id": "?Cf0Me(^@,@N!P5q(p(1",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "4:y9v(LrasDre}[c;B`Q"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_web_mostrar",
+                                "id": "_pvX`4v}{+bS_@th`](t",
+                                "fields": {
+                                  "ROTULO": "right"
+                                },
+                                "inputs": {
+                                  "VALOR": {
+                                    "block": {
+                                      "type": "abs_ler",
+                                      "id": "^e[+4neYc`mroDuCgvT4",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "8K9?[i3U1l_$}:#}w7}O"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_tarefa",
+          "id": "$!7v:0Q~C!_l)O]#7fL7",
+          "x": 509,
+          "y": 698,
+          "fields": {
+            "NOME": "compute the evidence"
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_definir",
+                "id": "Iw[`Tfc6-HU2^ZNH5^:3",
+                "fields": {
+                  "VAR": {
+                    "id": "rH`kvFAe`NGmjES2Gazb"
+                  }
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "abs_evidencia",
+                      "id": "oC4aL0~C1:e0^JGbJ@K+",
+                      "inputs": {
+                        "X": {
+                          "block": {
+                            "type": "abs_ler",
+                            "id": "IfnKtI.^;wDqOE+[e:8_",
+                            "fields": {
+                              "VAR": {
+                                "id": "4:y9v(LrasDre}[c;B`Q"
+                              }
+                            }
+                          }
+                        },
+                        "A1": {
+                          "block": {
+                            "type": "abs_ler",
+                            "id": "F;w;qY113d7{U8%toUEG",
+                            "fields": {
+                              "VAR": {
+                                "id": "2SL#z{Tr#E+pt4emOC$o"
+                              }
+                            }
+                          }
+                        },
+                        "A2": {
+                          "block": {
+                            "type": "abs_ler",
+                            "id": ";$kzl5,3XGQi/ZLVLXKt",
+                            "fields": {
+                              "VAR": {
+                                "id": "Wr/kFZ)}-.[bcp$R0O%y"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_definir",
+                    "id": "2;`EyHJro}!]%ogob5$=",
+                    "fields": {
+                      "VAR": {
+                        "id": "H^`Ffx5QvX7%9=+`=5eU"
+                      }
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "abs_evidencia",
+                          "id": "BS)0NPxi{U@{xy^.Uq-8",
+                          "inputs": {
+                            "X": {
+                              "block": {
+                                "type": "abs_ler",
+                                "id": "#csC2#:2jtrwE2=]E+-o",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "8K9?[i3U1l_$}:#}w7}O"
+                                  }
+                                }
+                              }
+                            },
+                            "A1": {
+                              "block": {
+                                "type": "abs_ler",
+                                "id": "do^OT](LbI9K4CHo]IT:",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "2SL#z{Tr#E+pt4emOC$o"
+                                  }
+                                }
+                              }
+                            },
+                            "A2": {
+                              "block": {
+                                "type": "abs_ler",
+                                "id": "B_O/9*tgFA(yFq]K?OU-",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "Wr/kFZ)}-.[bcp$R0O%y"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_web_reticulado",
+                        "id": "D30LPga4vd~fagpx|cAw",
+                        "inputs": {
+                          "MU": {
+                            "block": {
+                              "type": "abs_ler",
+                              "id": "8pJ9grL/:@_zu_a,9i0*",
+                              "fields": {
+                                "VAR": {
+                                  "id": "rH`kvFAe`NGmjES2Gazb"
+                                }
+                              }
+                            }
+                          },
+                          "LAMBDA": {
+                            "block": {
+                              "type": "abs_conta",
+                              "id": "(JN9ZEjm@Im3e?DMn7@#",
+                              "fields": {
+                                "OP": "-"
+                              },
+                              "inputs": {
+                                "A": {
+                                  "block": {
+                                    "type": "ard_number",
+                                    "id": "i=cUlNNJK@Q)%-Hgg{n4",
+                                    "fields": {
+                                      "NUM": 1
+                                    }
+                                  }
+                                },
+                                "B": {
+                                  "block": {
+                                    "type": "abs_ler",
+                                    "id": "a)4ml^:qpMB1{-Nbw|k;",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "H^`Ffx5QvX7%9=+`=5eU"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_tarefa",
+          "id": "4g)eON9/?^2Rz$)u)v|t",
+          "x": 1489,
+          "y": 40,
+          "fields": {
+            "NOME": "drive by PAL2v"
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_quando_estado",
+                "id": "l2Oe+~Tmcz,9*J:_p3c-",
+                "inputs": {
+                  "MU1": {
+                    "block": {
+                      "type": "abs_ler",
+                      "id": "g@1p?yP#hpf)yq`4|6%I",
+                      "fields": {
+                        "VAR": {
+                          "id": "rH`kvFAe`NGmjES2Gazb"
+                        }
+                      }
+                    }
+                  },
+                  "MU2": {
+                    "block": {
+                      "type": "abs_ler",
+                      "id": "w[USv[IiuGuGfELw|Xu{",
+                      "fields": {
+                        "VAR": {
+                          "id": "H^`Ffx5QvX7%9=+`=5eU"
+                        }
+                      }
+                    }
+                  },
+                  "CASOS": {
+                    "block": {
+                      "type": "abs_caso_estado",
+                      "id": "GG33k*%1(7hYv%ST4Y^|",
+                      "fields": {
+                        "ESTADO": "LPA_V"
+                      },
+                      "inputs": {
+                        "BODY": {
+                          "block": {
+                            "type": "abs_definir",
+                            "id": "`e(zTC@:CEr)ObCtmU8*",
+                            "fields": {
+                              "VAR": {
+                                "id": "(G_f9(ugIm9+Lrbg^6(3"
+                              }
+                            },
+                            "inputs": {
+                              "VALOR": {
+                                "block": {
+                                  "type": "ard_number",
+                                  "id": "`N9~;[IVd]qFSbc@)8*8",
+                                  "fields": {
+                                    "NUM": 0
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_fazer_tarefa",
+                                "id": "v:p097Ft#bF$)^~~_s!4",
+                                "fields": {
+                                  "NOME": "swerve"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "abs_caso_estado",
+                          "id": "ary{|u=~~*W%j$hf-k)F",
+                          "fields": {
+                            "ESTADO": "LPA_QVT"
+                          },
+                          "inputs": {
+                            "BODY": {
+                              "block": {
+                                "type": "abs_motores",
+                                "id": "^JH3CzyT^+yiQk2XhrqL",
+                                "fields": {
+                                  "MANOBRA": "DIR"
+                                },
+                                "inputs": {
+                                  "VEL": {
+                                    "block": {
+                                      "type": "abs_ler",
+                                      "id": "g*ezrK|U)Zm~Mrzr_IN~",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "b]?J*g4`z5rp4S;_NWld"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "abs_web_esperar",
+                                    "id": "bqr!VG)(aO[sLXV9ZqBP",
+                                    "inputs": {
+                                      "MS": {
+                                        "block": {
+                                          "type": "ard_number",
+                                          "id": "?Q%`QmV|#$w/vtxAi]4g",
+                                          "fields": {
+                                            "NUM": 400
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_motores",
+                                        "id": "N(N;=a$z4p|SHo[Z^Rt:",
+                                        "fields": {
+                                          "MANOBRA": "PARAR"
+                                        },
+                                        "inputs": {
+                                          "VEL": {
+                                            "block": {
+                                              "type": "ard_number",
+                                              "id": "pqGl6-H^|3lr5t^|=;=_",
+                                              "fields": {
+                                                "NUM": 0
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "abs_caso_estado",
+                              "id": ":iRqJ;PPgwSpq~soH=W+",
+                              "fields": {
+                                "ESTADO": "LPA_F"
+                              },
+                              "inputs": {
+                                "BODY": {
+                                  "block": {
+                                    "type": "abs_definir",
+                                    "id": "pu4+xHKHEmA?PaMKs0_~",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "(G_f9(ugIm9+Lrbg^6(3"
+                                      }
+                                    },
+                                    "inputs": {
+                                      "VALOR": {
+                                        "block": {
+                                          "type": "ard_number",
+                                          "id": "%F!w`YC;E4O9bt#`:#7A",
+                                          "fields": {
+                                            "NUM": 0
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_definir",
+                                        "id": "Z($!JB$svV]gI5,%@zFo",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": ":q{hmZqdN:=(.~}}3Zsl"
+                                          }
+                                        },
+                                        "inputs": {
+                                          "VALOR": {
+                                            "block": {
+                                              "type": "ard_number",
+                                              "id": "Fa3kej,?%I)Ls9K]I:Ev",
+                                              "fields": {
+                                                "NUM": 0
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "abs_motores",
+                                            "id": "S`pfl!e}X}saK*YC5Ue]",
+                                            "fields": {
+                                              "MANOBRA": "FRENTE"
+                                            },
+                                            "inputs": {
+                                              "VEL": {
+                                                "block": {
+                                                  "type": "abs_ler",
+                                                  "id": "2^u*Z/j!n7hR?.$auOAS",
+                                                  "fields": {
+                                                    "VAR": {
+                                                      "id": "m|=pY2I#ypnPC;VXLVhs"
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "abs_caso_estado",
+                                  "id": "1jadl:UQ?am0}KgedznH",
+                                  "fields": {
+                                    "ESTADO": "LPA_T"
+                                  },
+                                  "inputs": {
+                                    "BODY": {
+                                      "block": {
+                                        "type": "abs_fazer_tarefa",
+                                        "id": "B~w7M(i(pW*Y/a^H/}UE",
+                                        "fields": {
+                                          "NOME": "start slowly"
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "abs_web_esperar",
+                                            "id": "EMtM=]^}V~PNxYL|oB[z",
+                                            "inputs": {
+                                              "MS": {
+                                                "block": {
+                                                  "type": "ard_number",
+                                                  "id": "0Xb66Cikmm+os(3JiTR,",
+                                                  "fields": {
+                                                    "NUM": 500
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "next": {
+                                    "block": {
+                                      "type": "abs_caso_estado",
+                                      "id": "]U;Cq4uLrB4I{[AtMe5V",
+                                      "fields": {
+                                        "ESTADO": "LPA_PC"
+                                      },
+                                      "inputs": {
+                                        "BODY": {
+                                          "block": {
+                                            "type": "abs_definir",
+                                            "id": "+%XaM}z~2OxIFKP!ghD8",
+                                            "fields": {
+                                              "VAR": {
+                                                "id": ":q{hmZqdN:=(.~}}3Zsl"
+                                              }
+                                            },
+                                            "inputs": {
+                                              "VALOR": {
+                                                "block": {
+                                                  "type": "abs_conta",
+                                                  "id": "v[t^i6|h8o%PbB-??|,Y",
+                                                  "fields": {
+                                                    "OP": "+"
+                                                  },
+                                                  "inputs": {
+                                                    "A": {
+                                                      "block": {
+                                                        "type": "abs_ler",
+                                                        "id": "{ty%Gl#rSQ]sZPstYW_o",
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": ":q{hmZqdN:=(.~}}3Zsl"
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "B": {
+                                                      "block": {
+                                                        "type": "ard_number",
+                                                        "id": "zA^!UNmKm{G#+s*Yeah9",
+                                                        "fields": {
+                                                          "NUM": 1
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "abs_motores",
+                                                "id": "k;F,X)g`5QS_9|=Npg!j",
+                                                "fields": {
+                                                  "MANOBRA": "RE"
+                                                },
+                                                "inputs": {
+                                                  "VEL": {
+                                                    "block": {
+                                                      "type": "abs_ler",
+                                                      "id": "!wJSh^6_cATp6K=R{-:I",
+                                                      "fields": {
+                                                        "VAR": {
+                                                          "id": "T4cDd#,l@li@]f|LFe/+"
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "abs_web_esperar",
+                                                    "id": "`-!5sU!w%~-Tj89.|_E5",
+                                                    "inputs": {
+                                                      "MS": {
+                                                        "block": {
+                                                          "type": "ard_number",
+                                                          "id": "7s+nOH+KPSnkC$e#8w_U",
+                                                          "fields": {
+                                                            "NUM": 300
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "next": {
+                                                      "block": {
+                                                        "type": "abs_motores",
+                                                        "id": "lzbsy|;f2gVLyEKm2.wM",
+                                                        "fields": {
+                                                          "MANOBRA": "DIR"
+                                                        },
+                                                        "inputs": {
+                                                          "VEL": {
+                                                            "block": {
+                                                              "type": "abs_ler",
+                                                              "id": "{cZOR~4]5#(tw~d@o5`T",
+                                                              "fields": {
+                                                                "VAR": {
+                                                                  "id": "b]?J*g4`z5rp4S;_NWld"
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "next": {
+                                                          "block": {
+                                                            "type": "abs_web_esperar",
+                                                            "id": "Y8M4Z@(i1o80{en%=5wJ",
+                                                            "inputs": {
+                                                              "MS": {
+                                                                "block": {
+                                                                  "type": "ard_number",
+                                                                  "id": "J#6e,@$fKGtk%I)-x0dd",
+                                                                  "fields": {
+                                                                    "NUM": 400
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "next": {
+                                                              "block": {
+                                                                "type": "abs_motores",
+                                                                "id": "rSD;0jGK.rQ~L`?[%1i0",
+                                                                "fields": {
+                                                                  "MANOBRA": "PARAR"
+                                                                },
+                                                                "inputs": {
+                                                                  "VEL": {
+                                                                    "block": {
+                                                                      "type": "ard_number",
+                                                                      "id": "jpAmQ+j*WExFW!j:,a*O",
+                                                                      "fields": {
+                                                                        "NUM": 0
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "next": {
+                                        "block": {
+                                          "type": "abs_senao_estado",
+                                          "id": ",rl#~niHX*bsEFh{XrQ*",
+                                          "inputs": {
+                                            "BODY": {
+                                              "block": {
+                                                "type": "abs_fazer_tarefa",
+                                                "id": "O5rpKrl8,,rjc/hEOE~j",
+                                                "fields": {
+                                                  "NOME": "start slowly"
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "abs_web_esperar",
+                                                    "id": "P%-jGwpQV-XE+DHe.{`A",
+                                                    "inputs": {
+                                                      "MS": {
+                                                        "block": {
+                                                          "type": "ard_number",
+                                                          "id": "DsDQ;~Y%kRj#I;4YIK7K",
+                                                          "fields": {
+                                                            "NUM": 200
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_tarefa",
+          "id": "twy7T4z^=RZDwl@(?f%l",
+          "x": 2149,
+          "y": 40,
+          "fields": {
+            "NOME": "check if stuck"
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_se",
+                "id": "T,x}VnbgPM^1IEUCC3bI",
+                "inputs": {
+                  "COND": {
+                    "block": {
+                      "type": "abs_comparar",
+                      "id": "kH3z1xxCN4nwafGPZhA]",
+                      "fields": {
+                        "OP": "GTE"
+                      },
+                      "inputs": {
+                        "A": {
+                          "block": {
+                            "type": "abs_ler",
+                            "id": "y~}7ftYm4|4V=e?.1V:z",
+                            "fields": {
+                              "VAR": {
+                                "id": "(G_f9(ugIm9+Lrbg^6(3"
+                              }
+                            }
+                          }
+                        },
+                        "B": {
+                          "block": {
+                            "type": "abs_ler",
+                            "id": "TjJJGEg~TB82vvno^@Go",
+                            "fields": {
+                              "VAR": {
+                                "id": "~oqvho=:*i8%DG0ze^X2"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "ENTAO": {
+                    "block": {
+                      "type": "abs_fazer_tarefa",
+                      "id": "?1^x8Lz.!(#Q=gW/}lH2",
+                      "fields": {
+                        "NOME": "swerve"
+                      },
+                      "next": {
+                        "block": {
+                          "type": "abs_definir",
+                          "id": "trT/@Eq]XcqO63v8NqCT",
+                          "fields": {
+                            "VAR": {
+                              "id": "(G_f9(ugIm9+Lrbg^6(3"
+                            }
+                          },
+                          "inputs": {
+                            "VALOR": {
+                              "block": {
+                                "type": "ard_number",
+                                "id": "`3Oe4z_5}Cz`Kc+qV0[e",
+                                "fields": {
+                                  "NUM": 0
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_definir",
+                    "id": "K{f%-Mu6#.~K=h=5{7zF",
+                    "fields": {
+                      "VAR": {
+                        "id": "(G_f9(ugIm9+Lrbg^6(3"
+                      }
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "abs_conta",
+                          "id": "7v4CKQWwG62_6R{#=GFh",
+                          "fields": {
+                            "OP": "+"
+                          },
+                          "inputs": {
+                            "A": {
+                              "block": {
+                                "type": "abs_ler",
+                                "id": "b=^@Y7D#A-_z/+SCCLK_",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "(G_f9(ugIm9+Lrbg^6(3"
+                                  }
+                                }
+                              }
+                            },
+                            "B": {
+                              "block": {
+                                "type": "ard_number",
+                                "id": "F,KqAq-07|D6Ry}0lk/z",
+                                "fields": {
+                                  "NUM": 1
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_se",
+                        "id": "XQQKBz)wj]5_GVVKfxSk",
+                        "inputs": {
+                          "COND": {
+                            "block": {
+                              "type": "abs_comparar",
+                              "id": "^g1dXZgFwNldlcpMMWSt",
+                              "fields": {
+                                "OP": "GTE"
+                              },
+                              "inputs": {
+                                "A": {
+                                  "block": {
+                                    "type": "abs_ler",
+                                    "id": "G45XH9#gkKu9HKOLfySg",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": ":q{hmZqdN:=(.~}}3Zsl"
+                                      }
+                                    }
+                                  }
+                                },
+                                "B": {
+                                  "block": {
+                                    "type": "abs_ler",
+                                    "id": "Is(qre^2[sj%2bS{@}Rx",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "tly;zMlszs[bOs*aQF(d"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "ENTAO": {
+                            "block": {
+                              "type": "abs_motores",
+                              "id": "4V2b|pW^;T@-~+6/ky|d",
+                              "fields": {
+                                "MANOBRA": "PARAR"
+                              },
+                              "inputs": {
+                                "VEL": {
+                                  "block": {
+                                    "type": "ard_number",
+                                    "id": "2{mWRWZX@1y=dIT{$^(*",
+                                    "fields": {
+                                      "NUM": 0
+                                    }
+                                  }
+                                }
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "abs_definir",
+                                  "id": "B-,b?vN|F~{V(cEVnp|w",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "B]T?4}=v0GmCabs*^FY-"
+                                    }
+                                  },
+                                  "inputs": {
+                                    "VALOR": {
+                                      "block": {
+                                        "type": "ard_number",
+                                        "id": "dNS]!~V{)yY6$x6CKF#7",
+                                        "fields": {
+                                          "NUM": 1
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "next": {
+                                    "block": {
+                                      "type": "abs_web_camera_mostrar",
+                                      "id": "A_kL!giU{5Mfx7BKu?nL",
+                                      "fields": {
+                                        "AVISO": "STUCK: drive with the buttons and tap release"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_tarefa",
+          "id": "5Bpo8Lk(Oo=ILbty@nX-",
+          "x": 2149,
+          "y": 652,
+          "fields": {
+            "NOME": "swerve"
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_definir",
+                "id": "eXOAFiZ5!(Hb~AKy/jU{",
+                "fields": {
+                  "VAR": {
+                    "id": ":q{hmZqdN:=(.~}}3Zsl"
+                  }
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "abs_conta",
+                      "id": "1`I7)A@LBP`CC1MpF)nD",
+                      "fields": {
+                        "OP": "+"
+                      },
+                      "inputs": {
+                        "A": {
+                          "block": {
+                            "type": "abs_ler",
+                            "id": "1/~Mia~H[7gI`HOCBq6.",
+                            "fields": {
+                              "VAR": {
+                                "id": ":q{hmZqdN:=(.~}}3Zsl"
+                              }
+                            }
+                          }
+                        },
+                        "B": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "kEoHo!DKiy@^Z!7Q@7vu",
+                            "fields": {
+                              "NUM": 1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_motores",
+                    "id": "~];=op`@WhJ%nD@Mv08W",
+                    "fields": {
+                      "MANOBRA": "PARAR"
+                    },
+                    "inputs": {
+                      "VEL": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "^WQDbsj_S*|+#GW7N+$z",
+                          "fields": {
+                            "NUM": 0
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_web_esperar",
+                        "id": "VM$46B^kW-~k{N??oJoO",
+                        "inputs": {
+                          "MS": {
+                            "block": {
+                              "type": "ard_number",
+                              "id": "jRGOunSbH}ijZ={q3RAS",
+                              "fields": {
+                                "NUM": 200
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_motores",
+                            "id": "PaH_|/wI[3C9o*Sy8tUr",
+                            "fields": {
+                              "MANOBRA": "RE"
+                            },
+                            "inputs": {
+                              "VEL": {
+                                "block": {
+                                  "type": "abs_ler",
+                                  "id": "9z*NEK!G8.YQp~#pEg%R",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "T4cDd#,l@li@]f|LFe/+"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_web_esperar",
+                                "id": "e})MXV1bHJ@}Tav/QE[^",
+                                "inputs": {
+                                  "MS": {
+                                    "block": {
+                                      "type": "ard_number",
+                                      "id": "=+f#xl;IL$ixEN.Op)sf",
+                                      "fields": {
+                                        "NUM": 400
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "abs_motores",
+                                    "id": ".$t:Ue=w9Rflnn2/x6*@",
+                                    "fields": {
+                                      "MANOBRA": "DIR"
+                                    },
+                                    "inputs": {
+                                      "VEL": {
+                                        "block": {
+                                          "type": "abs_ler",
+                                          "id": "7b$sG(WvueJeArD,WL8Y",
+                                          "fields": {
+                                            "VAR": {
+                                              "id": "b]?J*g4`z5rp4S;_NWld"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_web_esperar",
+                                        "id": "dtL^|vtF+8=B3)Q0sDC@",
+                                        "inputs": {
+                                          "MS": {
+                                            "block": {
+                                              "type": "abs_ler",
+                                              "id": "oAdi.=:byjLLvZ/}]H*f",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "%uy:V-_(VIYgy1|6z93+"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "abs_motores",
+                                            "id": "S]mZNttXq9+F4/3ESgmP",
+                                            "fields": {
+                                              "MANOBRA": "PARAR"
+                                            },
+                                            "inputs": {
+                                              "VEL": {
+                                                "block": {
+                                                  "type": "ard_number",
+                                                  "id": "u0ZQ?-:V}0BJrgOTaCEQ",
+                                                  "fields": {
+                                                    "NUM": 0
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_tarefa",
+          "id": "X}`fxN}?w~TVgs5~R!?;",
+          "x": 2149,
+          "y": 1182,
+          "fields": {
+            "NOME": "start slowly"
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_motores",
+                "id": "vW@(8m[3BnL3)j9Ra#eN",
+                "fields": {
+                  "MANOBRA": "FRENTE"
+                },
+                "inputs": {
+                  "VEL": {
+                    "block": {
+                      "type": "abs_ler",
+                      "id": "}#^;0zuS;aoG{#)~4MPR",
+                      "fields": {
+                        "VAR": {
+                          "id": "y^F^DO2ig`DJ85BICd@D"
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_web_esperar",
+                    "id": "rVzlCIHqj1WTzKQ-+Zl$",
+                    "inputs": {
+                      "MS": {
+                        "block": {
+                          "type": "ard_number",
+                          "id": "Xh@g@.Q?jiph3RK8OmX^",
+                          "fields": {
+                            "NUM": 80
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_motores",
+                        "id": "6/_eYIEEjl.Z=[!J+G$W",
+                        "fields": {
+                          "MANOBRA": "FRENTE"
+                        },
+                        "inputs": {
+                          "VEL": {
+                            "block": {
+                              "type": "abs_ler",
+                              "id": "*1eEzbupEUeabDc8Y;s{",
+                              "fields": {
+                                "VAR": {
+                                  "id": "m|=pY2I#ypnPC;VXLVhs"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_tarefa",
+          "id": "`2br`Mk=Y/9H7|G|g`Kn",
+          "x": 3011,
+          "y": 40,
+          "fields": {
+            "NOME": "drive by operator"
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_definir",
+                "id": "i]rE`C=,PISc1hmWi=Pq",
+                "fields": {
+                  "VAR": {
+                    "id": "Ir=X9rX*R[w+`v=g%deD"
+                  }
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "ard_number",
+                      "id": "?-BE/{N[#GQ%bgvAjOov",
+                      "fields": {
+                        "NUM": 0
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_se",
+                    "id": "ysvII._Y0y^y,dbe67g:",
+                    "inputs": {
+                      "COND": {
+                        "block": {
+                          "type": "abs_web_botao",
+                          "id": "=2bk]/8KL0O(t=]`|)y^",
+                          "fields": {
+                            "NOME": "forward"
+                          }
+                        }
+                      },
+                      "ENTAO": {
+                        "block": {
+                          "type": "abs_motores",
+                          "id": "_^LW5|Og,VIfyU/l14H5",
+                          "fields": {
+                            "MANOBRA": "FRENTE"
+                          },
+                          "inputs": {
+                            "VEL": {
+                              "block": {
+                                "type": "abs_ler",
+                                "id": "JV8OBO~wwk!CNdTQ^vwF",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "m|=pY2I#ypnPC;VXLVhs"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "abs_definir",
+                              "id": "@YgT-ZMfM`Gi9fp`,yUm",
+                              "fields": {
+                                "VAR": {
+                                  "id": "Ir=X9rX*R[w+`v=g%deD"
+                                }
+                              },
+                              "inputs": {
+                                "VALOR": {
+                                  "block": {
+                                    "type": "ard_number",
+                                    "id": "62PD{]$ZW;MDHLue@4.t",
+                                    "fields": {
+                                      "NUM": 1
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "abs_se",
+                        "id": "T)PnYR?mf^7;B*jK-p7u",
+                        "inputs": {
+                          "COND": {
+                            "block": {
+                              "type": "abs_web_botao",
+                              "id": "0yru@a^5ueR-D1L2Q]d^",
+                              "fields": {
+                                "NOME": "back"
+                              }
+                            }
+                          },
+                          "ENTAO": {
+                            "block": {
+                              "type": "abs_motores",
+                              "id": "4U@ju_{.]ur~`u^ohe|p",
+                              "fields": {
+                                "MANOBRA": "RE"
+                              },
+                              "inputs": {
+                                "VEL": {
+                                  "block": {
+                                    "type": "abs_ler",
+                                    "id": "|iF{(DHJZIm|Y0rTnk30",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "T4cDd#,l@li@]f|LFe/+"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "abs_definir",
+                                  "id": "hbaiXpcnb`uv`jdY_DFW",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "Ir=X9rX*R[w+`v=g%deD"
+                                    }
+                                  },
+                                  "inputs": {
+                                    "VALOR": {
+                                      "block": {
+                                        "type": "ard_number",
+                                        "id": ";IYCLQBeBqDd6U_kRtf#",
+                                        "fields": {
+                                          "NUM": 1
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "abs_se",
+                            "id": "x5Y)RX^mfmTQ$gzdFG5J",
+                            "inputs": {
+                              "COND": {
+                                "block": {
+                                  "type": "abs_web_botao",
+                                  "id": "^UKQ)SQ2#s=KCPX{q!aH",
+                                  "fields": {
+                                    "NOME": "left"
+                                  }
+                                }
+                              },
+                              "ENTAO": {
+                                "block": {
+                                  "type": "abs_motores",
+                                  "id": ";A5(BOV=p.IHZ1Bc^Unl",
+                                  "fields": {
+                                    "MANOBRA": "ESQ"
+                                  },
+                                  "inputs": {
+                                    "VEL": {
+                                      "block": {
+                                        "type": "abs_ler",
+                                        "id": "EWJ%q.y%EXUkq~A(ogR;",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "b]?J*g4`z5rp4S;_NWld"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "next": {
+                                    "block": {
+                                      "type": "abs_definir",
+                                      "id": "4/FTM@0nVRUyIDAe,E@?",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "Ir=X9rX*R[w+`v=g%deD"
+                                        }
+                                      },
+                                      "inputs": {
+                                        "VALOR": {
+                                          "block": {
+                                            "type": "ard_number",
+                                            "id": "pG9l+TvDA;g[Zzzi#A_c",
+                                            "fields": {
+                                              "NUM": 1
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "abs_se",
+                                "id": "nN:d@@40f$T2aM]*e}).",
+                                "inputs": {
+                                  "COND": {
+                                    "block": {
+                                      "type": "abs_web_botao",
+                                      "id": "q)X$e.hfwt=Nf{Gb|X7r",
+                                      "fields": {
+                                        "NOME": "right"
+                                      }
+                                    }
+                                  },
+                                  "ENTAO": {
+                                    "block": {
+                                      "type": "abs_motores",
+                                      "id": "||(C?0/|R6d3a)iE/s5Z",
+                                      "fields": {
+                                        "MANOBRA": "DIR"
+                                      },
+                                      "inputs": {
+                                        "VEL": {
+                                          "block": {
+                                            "type": "abs_ler",
+                                            "id": "ezuvc@hnT=,8s,aSgXZ#",
+                                            "fields": {
+                                              "VAR": {
+                                                "id": "b]?J*g4`z5rp4S;_NWld"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "next": {
+                                        "block": {
+                                          "type": "abs_definir",
+                                          "id": "u#JP^C;FU2=(4`c3xjq=",
+                                          "fields": {
+                                            "VAR": {
+                                              "id": "Ir=X9rX*R[w+`v=g%deD"
+                                            }
+                                          },
+                                          "inputs": {
+                                            "VALOR": {
+                                              "block": {
+                                                "type": "ard_number",
+                                                "id": "=p:DjCw|ffw+4h@n(XYy",
+                                                "fields": {
+                                                  "NUM": 1
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "abs_se",
+                                    "id": "Glp^?W{JK3aaa[gLIX1V",
+                                    "inputs": {
+                                      "COND": {
+                                        "block": {
+                                          "type": "abs_comparar",
+                                          "id": "gQaDD]fmtQE(4O;K2JH~",
+                                          "fields": {
+                                            "OP": "EQ"
+                                          },
+                                          "inputs": {
+                                            "A": {
+                                              "block": {
+                                                "type": "abs_ler",
+                                                "id": "OOAYCFcBzDH1zc3i6ir^",
+                                                "fields": {
+                                                  "VAR": {
+                                                    "id": "Ir=X9rX*R[w+`v=g%deD"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "B": {
+                                              "block": {
+                                                "type": "ard_number",
+                                                "id": "A%U;AB}+KQ5)4Jpp5!TM",
+                                                "fields": {
+                                                  "NUM": 0
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "ENTAO": {
+                                        "block": {
+                                          "type": "abs_motores",
+                                          "id": "6]3=V.^Kd|aIq}!}:@^)",
+                                          "fields": {
+                                            "MANOBRA": "PARAR"
+                                          },
+                                          "inputs": {
+                                            "VEL": {
+                                              "block": {
+                                                "type": "ard_number",
+                                                "id": "H]j[y#jh+)Ypj~FdvXF0",
+                                                "fields": {
+                                                  "NUM": 0
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "abs_se",
+                                        "id": "SnPo9iE*c7(qIixG#CS_",
+                                        "inputs": {
+                                          "COND": {
+                                            "block": {
+                                              "type": "abs_web_botao",
+                                              "id": "L[)3WFHf8lJ{:SlBDmu%",
+                                              "fields": {
+                                                "NOME": "release"
+                                              }
+                                            }
+                                          },
+                                          "ENTAO": {
+                                            "block": {
+                                              "type": "abs_motores",
+                                              "id": "wrV]?piwlZAD6s-5)?B^",
+                                              "fields": {
+                                                "MANOBRA": "PARAR"
+                                              },
+                                              "inputs": {
+                                                "VEL": {
+                                                  "block": {
+                                                    "type": "ard_number",
+                                                    "id": ";HU7Am+~]xmzX9X0(nh{",
+                                                    "fields": {
+                                                      "NUM": 0
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "next": {
+                                                "block": {
+                                                  "type": "abs_definir",
+                                                  "id": "cc#Ix~d4lV78R@Ta)RVU",
+                                                  "fields": {
+                                                    "VAR": {
+                                                      "id": "B]T?4}=v0GmCabs*^FY-"
+                                                    }
+                                                  },
+                                                  "inputs": {
+                                                    "VALOR": {
+                                                      "block": {
+                                                        "type": "ard_number",
+                                                        "id": "_altHJk+g|2@8aD?(HqJ",
+                                                        "fields": {
+                                                          "NUM": 0
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "next": {
+                                                    "block": {
+                                                      "type": "abs_definir",
+                                                      "id": "d=#Bdg9{VG^(Ee67h(`%",
+                                                      "fields": {
+                                                        "VAR": {
+                                                          "id": ":q{hmZqdN:=(.~}}3Zsl"
+                                                        }
+                                                      },
+                                                      "inputs": {
+                                                        "VALOR": {
+                                                          "block": {
+                                                            "type": "ard_number",
+                                                            "id": "OJUdwU*b?z_+!.*T]Lru",
+                                                            "fields": {
+                                                              "NUM": 0
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "next": {
+                                                        "block": {
+                                                          "type": "abs_definir",
+                                                          "id": "Bu^z9~e`z]s9tnaUqC@z",
+                                                          "fields": {
+                                                            "VAR": {
+                                                              "id": "(G_f9(ugIm9+Lrbg^6(3"
+                                                            }
+                                                          },
+                                                          "inputs": {
+                                                            "VALOR": {
+                                                              "block": {
+                                                                "type": "ard_number",
+                                                                "id": "jvSDMgya!T/{HeOp/HF,",
+                                                                "fields": {
+                                                                  "NUM": 0
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "next": {
+                                                            "block": {
+                                                              "type": "abs_web_camera_esconder",
+                                                              "id": "{hU-I_trJ+8N[pB6[k78"
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_tarefa",
+          "id": "sAGIIGg~OSdXKcY[+JTV",
+          "x": 509,
+          "y": 1002,
+          "fields": {
+            "NOME": "check if operator took over"
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_se",
+                "id": "y{c`Z|Pg7ZB+zHJ6g%fX",
+                "inputs": {
+                  "COND": {
+                    "block": {
+                      "type": "abs_web_botao",
+                      "id": "qlB|$1R0u|U%kh7v/3YH",
+                      "fields": {
+                        "NOME": "take over"
+                      }
+                    }
+                  },
+                  "ENTAO": {
+                    "block": {
+                      "type": "abs_definir",
+                      "id": "2|1ElYBj[hCbB%g;]uWk",
+                      "fields": {
+                        "VAR": {
+                          "id": "B]T?4}=v0GmCabs*^FY-"
+                        }
+                      },
+                      "inputs": {
+                        "VALOR": {
+                          "block": {
+                            "type": "ard_number",
+                            "id": "]lE7Kn4?O{x}R~d%Bdnq",
+                            "fields": {
+                              "NUM": 1
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "abs_web_camera_mostrar",
+                          "id": "W+L=rSZH5jJ-@R1rSk*:",
+                          "fields": {
+                            "AVISO": "manual control: tap release to hand back"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "abs_tarefa",
+          "id": "=]_#IlYOCRPL.GrZz^S8",
+          "x": 509,
+          "y": 1312,
+          "fields": {
+            "NOME": "show the status on the page"
+          },
+          "inputs": {
+            "BODY": {
+              "block": {
+                "type": "abs_web_mostrar",
+                "id": "J(+RGCK[7jYdR@M`Ea%p",
+                "fields": {
+                  "ROTULO": "swerves"
+                },
+                "inputs": {
+                  "VALOR": {
+                    "block": {
+                      "type": "abs_ler",
+                      "id": "AM{7qI%9^%nGjeuqiO;.",
+                      "fields": {
+                        "VAR": {
+                          "id": ":q{hmZqdN:=(.~}}3Zsl"
+                        }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "abs_web_mostrar",
+                    "id": "t4aCxE+OVptEshZ`V-es",
+                    "fields": {
+                      "ROTULO": "stuck"
+                    },
+                    "inputs": {
+                      "VALOR": {
+                        "block": {
+                          "type": "abs_ler",
+                          "id": "|)j/*mTOuGo:d*{{8JDB",
+                          "fields": {
+                            "VAR": {
+                              "id": "B]T?4}=v0GmCabs*^FY-"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "variables": [
+      {
+        "name": "UD_FAR",
+        "id": "2SL#z{Tr#E+pt4emOC$o"
+      },
+      {
+        "name": "UD_NEAR",
+        "id": "Wr/kFZ)}-.[bcp$R0O%y"
+      },
+      {
+        "name": "distLeft",
+        "id": "4:y9v(LrasDre}[c;B`Q"
+      },
+      {
+        "name": "distRight",
+        "id": "8K9?[i3U1l_$}:#}w7}O"
+      },
+      {
+        "name": "evidLeft",
+        "id": "rH`kvFAe`NGmjES2Gazb"
+      },
+      {
+        "name": "evidRight",
+        "id": "H^`Ffx5QvX7%9=+`=5eU"
+      },
+      {
+        "name": "undecided",
+        "id": "(G_f9(ugIm9+Lrbg^6(3"
+      },
+      {
+        "name": "STALL_LIMIT",
+        "id": "~oqvho=:*i8%DG0ze^X2"
+      },
+      {
+        "name": "swerves",
+        "id": ":q{hmZqdN:=(.~}}3Zsl"
+      },
+      {
+        "name": "STUCK_LIMIT",
+        "id": "tly;zMlszs[bOs*aQF(d"
+      },
+      {
+        "name": "stuck",
+        "id": "B]T?4}=v0GmCabs*^FY-"
+      },
+      {
+        "name": "manual",
+        "id": "Ir=X9rX*R[w+`v=g%deD"
+      },
+      {
+        "name": "SPEED",
+        "id": "m|=pY2I#ypnPC;VXLVhs"
+      },
+      {
+        "name": "START_SPEED",
+        "id": "y^F^DO2ig`DJ85BICd@D"
+      },
+      {
+        "name": "REVERSE_SPEED",
+        "id": "T4cDd#,l@li@]f|LFe/+"
+      },
+      {
+        "name": "TURN_SPEED",
+        "id": "b]?J*g4`z5rp4S;_NWld"
+      },
+      {
+        "name": "TURN_TIME",
+        "id": "%uy:V-_(VIYgy1|6z93+"
+      }
+    ]
+  }
+}

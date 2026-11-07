@@ -443,6 +443,13 @@
         }
     };
 
+    // Categorias e rótulos no idioma da interface (i18n.js).
+    const construirNoIdioma = Toolbox.construir;
+    Toolbox.construir = function (modo) {
+        const tb = construirNoIdioma.call(this, modo);
+        return global.I18N ? global.I18N.traduzirToolbox(tb) : tb;
+    };
+
     global.Toolbox = Toolbox;
     if (typeof module !== 'undefined' && module.exports) module.exports = Toolbox;
 

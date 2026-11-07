@@ -17,6 +17,8 @@
  */
 (function (global) {
 
+    const T = s => (global.I18N ? global.I18N.t(s) : s);
+
     /* Códigos e rótulos dos 12 estados, na mesma ordem do enum gerado no .ino */
     const ESTADOS = [
         { id: 'V', nome: 'Verdadeiro' },
@@ -119,7 +121,7 @@
 
         nomeEstado(id) {
             const e = ESTADOS.find(x => x.id === id);
-            return e ? e.nome : '';
+            return e ? T(e.nome) : '';
         },
 
         /** Grau de Certeza Real, com a guarda de indefinição do NAP. */
@@ -326,7 +328,7 @@
             if (!el.leitura) return;
 
             if (!u) {
-                el.leitura.textContent = 'aguardando dados da serial…';
+                el.leitura.textContent = T('aguardando dados da serial…');
                 el.leitura.className = 'reticulado-leitura vazio';
                 return;
             }
@@ -341,7 +343,7 @@
                 '   ·   φ ' + a.phi.toFixed(3) +
                 '   ·   ' + est + ' — ' + this.nomeEstado(est) +
                 (a.indefinido
-                    ? '   ·   INDEFINIÇÃO (' + (a.phi <= 0.25 ? 'φ ≤ 0,25' : 'D > 1') + ')'
+                    ? '   ·   ' + T('INDEFINIÇÃO') + ' (' + (a.phi <= 0.25 ? T('φ ≤ 0,25') : 'D > 1') + ')'
                     : '   ·   Gcr ' + n3(a.gcr) + '   μEr ' + a.muEr.toFixed(3));
         }
     };
