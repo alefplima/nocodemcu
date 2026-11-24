@@ -1,5 +1,7 @@
 # NoCodeMCU
 
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24502976.svg)](https://doi.org/10.5281/zenodo.24502976)
 [English](README.md) | **Português**
 
 Aplicação **desktop** de programação no-code para Arduino: o aluno monta o
